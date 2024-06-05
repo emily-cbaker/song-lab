@@ -5,12 +5,8 @@ navbar:
   left:
   - text: Home
     href: index.html
-    menu:
-    -text: "Test Tab"
-    
   - text: Notes
     href: notes.html
-
   - text: License
     href: license.html
 output:
