@@ -1,4 +1,4 @@
-# song-lab-notes-emily
+# bioinformatics-notes
 
 A [workflowr][] project.
 
