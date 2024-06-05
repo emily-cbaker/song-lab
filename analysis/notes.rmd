@@ -1,9 +1,8 @@
 ---
-title: "License"
+title: "Notes"
 output:
   workflowr::wflow_html:
     toc: false
 editor_options:
   chunk_output_type: console
 ---
-
