@@ -7,7 +7,8 @@ navbar:
     href: index.html
   - text: Notes
     menu:
-    -text: 6/4 - 6/7 
+      -text: 6/4 - 6/7 
+       href: page1.html 
     href: notes.html
   - text: License
     href: license.html
