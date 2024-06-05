@@ -1,0 +1,11 @@
+---
+title: "Progress & Notes: 6/4-6/7"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+#Setting up & using R
