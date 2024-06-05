@@ -6,9 +6,9 @@ navbar:
   - text: Home
     href: index.html
   - text: Notes
-    href: notes.html
     menu:
     -text: 6/4 - 6/7 
+    href: notes.html
   - text: License
     href: license.html
 output:
