@@ -5,13 +5,12 @@ navbar:
   left:
   - text: "Home"
     href: index.html
-    
+
   - text: "Notes"
     menu:
       -text: "6/4 - 6/7" 
        href: page1.html 
-      -text: "6/10 - 6/14"
-       href: page2.html
+
 output:
   workflowr::wflow_html:
     toc: yes
