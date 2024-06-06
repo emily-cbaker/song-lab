@@ -1,7 +1,7 @@
 name: "bioinformatics-notes"
 output_dir: ../docs
 navbar:
-  title: "bioinformatics-notes"
+  title: "Song Lab Projects - Emily Baker"
   left:
     - text: "Home"
       href: index.html
