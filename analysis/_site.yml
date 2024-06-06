@@ -1,18 +1,20 @@
 name: "bioinformatics-notes"
 output_dir: ../docs
 navbar:
-  title: "Song Lab Projects - Emily Baker"
+  title: "Home"
+  icon: fa-home
+  type: inverse
   left:
-    - text: "Home"
-      href: index.html
 
     - text: "Notes"
+      icon: fa-note-sticky
       menu:
         - text: "6/4 - 6/7"
           href: week1-notes.html
         - text: "6/10 - 6/14"
           href: week2-notes.html
     - text: "Projects"
+      icon: fa-book-open
       menu:
         - text: "Comparative Genomics of Large Orthoptera Genomes"
           href: orthop-genomes-project.html

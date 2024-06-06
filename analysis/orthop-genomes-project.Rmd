@@ -31,19 +31,17 @@ Publication_Link = c("https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_959613365
 # Italicize the species names
 data$Species <- paste0("*", data$Species, "*")
 
-species_levels <- c("Lepidoptera", "Orthoptera", "Hemiptera")
-species_colors <- c("#D8B2D8", "#008080", "#D8D8B2")
+# Define the factor levels and corresponding colors for Order column
+order_levels <- c("Lepidoptera", "Orthoptera", "Hemiptera")
+order_colors <- c("#D8B2D8", "#008080", "#D8D8B2")
 
-# Convert Species to a factor with specified levels
-data$Species <- factor(data$Species, levels = species_levels)
-
-# Handle NA values by replacing them with a default color (if needed)
-data$Color <- species_colors[as.numeric(data$Species)]
+# Map colors based on factor levels
+data$Color <- order_colors[match(data$Order, order_levels)]
 data$Color[is.na(data$Color)] <- "#FFFFFF"  # Default color for NA values
 
-# Apply cell_spec with correct color mapping
-data$Species <- cell_spec(
-  as.character(data$Species), 
+# Apply cell_spec with correct color mapping to Order column
+data$Order <- cell_spec(
+  data$Order, 
   background = data$Color
 )
 
@@ -51,10 +49,9 @@ data$Species <- cell_spec(
 data <- data[c("Species", "Order", "Common_Name", "Size", "Origin", "Assembly_Method", "Publication_Link")]
  
 # Create the table
-kable(data, escape = FALSE, caption = "") %>%
+kable(data, "html", escape = FALSE, caption = "") %>%
   
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), 
-                full_width = F) %>%
+  kable_styling() %>%
   
   scroll_box(width="1000px", height="500px")%>%
 
