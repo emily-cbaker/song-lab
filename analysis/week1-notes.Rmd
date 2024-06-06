@@ -14,7 +14,7 @@ I've began setting up and trying to work in R through creating the R markdown an
 I discovered that it is **necessary to have pandoc downloaded** in order to edit these files in VS Code, and add these 
 files into the environment variable paths.  
 
-## Beginning Work on Orhtoptera Genomes
+## Beginning Work on Orthoptera Genomes
 
 Julia and I will discuss later today (June 6th) what genomes we will create tables for. Processing of these genomes should begin next week.  
 

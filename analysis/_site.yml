@@ -10,6 +10,8 @@ navbar:
       menu: 
         - text: "6/4 - 6/7" 
           href: week1-notes.html 
+        - text: "6/10 - 6/14"
+          href: week2-notes.html
 
 output:
   workflowr::wflow_html:
