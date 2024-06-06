@@ -8,8 +8,8 @@ navbar:
       
     - text: "Notes"
       menu: 
-        -text: "6/4 - 6/7" 
-        href: week1-notes.html 
+        - text: "6/4 - 6/7" 
+          href: week1-notes.html 
 
 output:
   workflowr::wflow_html:
