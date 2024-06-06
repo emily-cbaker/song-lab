@@ -11,7 +11,7 @@
 
 
 
-<title>orthop-genomes-project.knit.md</title>
+<title>Comparative Genomics of Large Orthoptera Genomes</title>
 
 <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,12 +29,13 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
 <link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
@@ -232,69 +233,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -304,19 +242,9 @@ div.tocify {
 <div class="container-fluid main-container">
 
 
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
-
-
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
@@ -324,15 +252,14 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Song Lab Projects - Emily Baker</a>
+      <a class="navbar-brand" href="index.html">Home</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li>
-  <a href="index.html">Home</a>
-</li>
-<li class="dropdown">
+        <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="fa fa-note-sticky"></span>
+     
     Notes
      
     <span class="caret"></span>
@@ -348,6 +275,8 @@ div.tocify {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="fa fa-book-open"></span>
+     
     Projects
      
     <span class="caret"></span>
@@ -373,6 +302,8 @@ div.tocify {
 
 
 
+<h1 class="title toc-ignore">Comparative Genomics of Large Orthoptera
+Genomes</h1>
 
 </div>
 
@@ -405,7 +336,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span> 0
 </p>
@@ -448,15 +379,99 @@ results.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree6175191a71c11ddb31e6dc6ace554bbfc92127aetargetblank6175191a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20240605code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20240605)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20240605code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20240605)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree492506116f61cde86193d52acf7d2e88759755aetargetblank4925061a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/6175191a71c11ddb31e6dc6ace554bbfc92127ae" target="_blank">6175191</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/492506116f61cde86193d52acf7d2e88759755ae" target="_blank">4925061</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree6175191a71c11ddb31e6dc6ace554bbfc92127aetargetblank6175191a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree492506116f61cde86193d52acf7d2e88759755aetargetblank4925061a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -466,7 +481,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/6175191a71c11ddb31e6dc6ace554bbfc92127ae" target="_blank">6175191</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/492506116f61cde86193d52acf7d2e88759755ae" target="_blank">4925061</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -533,6 +548,40 @@ Message
 <tbody>
 <tr>
 <td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/492506116f61cde86193d52acf7d2e88759755ae/analysis/orthop-genomes-project.Rmd" target="_blank">4925061</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-06
+</td>
+<td>
+wflow_publish("analysis/orthop-genomes-project.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/70654503b3d5a90bd87cef050773f3792673354f/docs/orthop-genomes-project.html" target="_blank">7065450</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-06
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
 html
 </td>
 <td>
@@ -572,7 +621,383 @@ Site changes
 </div>
 </div>
 </div>
-<p>NA</p>
+<div
+style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:1000px; ">
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="6">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Available NCBI Information of Members of Orthoptera &amp; Other Orders
+in Insecta
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Species
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Order
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Common_Name
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Size
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Origin
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Assembly_Method
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Publication_Link
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+&lt;span style=” border-radius: 4px; padding-right: 4px; padding-left:
+4px; background-color: rgba(255, 255, 255, 255) !important;”
+&gt;NA&lt;/span&gt;
+</td>
+<td style="text-align:left;">
+Hemiptera
+</td>
+<td style="text-align:left;">
+N/A
+</td>
+<td style="text-align:left;">
+313.1 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+PacBio &amp; Arima2
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_959613365.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_959613365.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+&lt;span style=” border-radius: 4px; padding-right: 4px; padding-left:
+4px; background-color: rgba(255, 255, 255, 255) !important;”
+&gt;NA&lt;/span&gt;
+</td>
+<td style="text-align:left;">
+Hemiptera
+</td>
+<td style="text-align:left;">
+Brown planthopper
+</td>
+<td style="text-align:left;">
+1.1 Gb
+</td>
+<td style="text-align:left;">
+Wuhan, China
+</td>
+<td style="text-align:left;">
+WTDGB v. 2.1, SmartDenovo v. 1.5, &amp; HiC-Pro v 2.7.8
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_014356525.2/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_014356525.2/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+&lt;span style=” border-radius: 4px; padding-right: 4px; padding-left:
+4px; background-color: rgba(255, 255, 255, 255) !important;”
+&gt;NA&lt;/span&gt;
+</td>
+<td style="text-align:left;">
+Hemiptera
+</td>
+<td style="text-align:left;">
+Citrus mealybug
+</td>
+<td style="text-align:left;">
+403.6 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+PacBio, Arima2
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_950023065.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_950023065.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+&lt;span style=” border-radius: 4px; padding-right: 4px; padding-left:
+4px; background-color: rgba(255, 255, 255, 255) !important;”
+&gt;NA&lt;/span&gt;
+</td>
+<td style="text-align:left;">
+Hemiptera
+</td>
+<td style="text-align:left;">
+Corn leaf aphid
+</td>
+<td style="text-align:left;">
+326 Mb
+</td>
+<td style="text-align:left;">
+Ithaca, NY
+</td>
+<td style="text-align:left;">
+Canu v. 1.6 &amp; Hi-C chromatin interation maps
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_003676215.2/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_003676215.2/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+&lt;span style=” border-radius: 4px; padding-right: 4px; padding-left:
+4px; background-color: rgba(255, 255, 255, 255) !important;”
+&gt;NA&lt;/span&gt;
+</td>
+<td style="text-align:left;">
+Lepidoptera
+</td>
+<td style="text-align:left;">
+Fall armyworm
+</td>
+<td style="text-align:left;">
+383.9 Mb
+</td>
+<td style="text-align:left;">
+Australia
+</td>
+<td style="text-align:left;">
+CANU v. 2.2.0; PurgeDups v. 1.2.5; AllHiC v. 1; Racon v. 1.4.3;
+Masurca-Polca v. 4.0.9
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023101765.2/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023101765.2/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+&lt;span style=” border-radius: 4px; padding-right: 4px; padding-left:
+4px; background-color: rgba(255, 255, 255, 255) !important;”
+&gt;NA&lt;/span&gt;
+</td>
+<td style="text-align:left;">
+Lepidoptera
+</td>
+<td style="text-align:left;">
+Diamondback moth
+</td>
+<td style="text-align:left;">
+323.3 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+77x PacBio data, 10X Genomics Chromium data, &amp; Arima2 Hi-C data
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_932276165.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_932276165.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+&lt;span style=” border-radius: 4px; padding-right: 4px; padding-left:
+4px; background-color: rgba(255, 255, 255, 255) !important;”
+&gt;NA&lt;/span&gt;
+</td>
+<td style="text-align:left;">
+Lepidoptera
+</td>
+<td style="text-align:left;">
+Cabbage white
+</td>
+<td style="text-align:left;">
+256.4 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+56x PacBio data, 10X Genomics Chromium data, &amp; Arima Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905147795.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905147795.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+&lt;span style=” border-radius: 4px; padding-right: 4px; padding-left:
+4px; background-color: rgba(255, 255, 255, 255) !important;”
+&gt;NA&lt;/span&gt;
+</td>
+<td style="text-align:left;">
+Lepidoptera
+</td>
+<td style="text-align:left;">
+Squinting bush brown
+</td>
+<td style="text-align:left;">
+457.2 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+20x PacBio data &amp; Arima2 Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_947172395.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_947172395.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+&lt;span style=” border-radius: 4px; padding-right: 4px; padding-left:
+4px; background-color: rgba(255, 255, 255, 255) !important;”
+&gt;NA&lt;/span&gt;
+</td>
+<td style="text-align:left;">
+Lepidoptera
+</td>
+<td style="text-align:left;">
+European corn borer
+</td>
+<td style="text-align:left;">
+495.5 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+44x PacBio data &amp; Arima2 Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_963855985.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_963855985.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+&lt;span style=” border-radius: 4px; padding-right: 4px; padding-left:
+4px; background-color: rgba(255, 255, 255, 255) !important;”
+&gt;NA&lt;/span&gt;
+</td>
+<td style="text-align:left;">
+Lepidoptera
+</td>
+<td style="text-align:left;">
+Painted Lady
+</td>
+<td style="text-align:left;">
+424.8 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+25x PacBio data, 10X Genomics Chromium data, &amp; Arima Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905220365.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905220365.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+&lt;span style=” border-radius: 4px; padding-right: 4px; padding-left:
+4px; background-color: rgba(255, 255, 255, 255) !important;”
+&gt;NA&lt;/span&gt;
+</td>
+<td style="text-align:left;">
+Lepidoptera
+</td>
+<td style="text-align:left;">
+Large cabbage white
+</td>
+<td style="text-align:left;">
+292.3 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+92x PacBio data, 10X Genomics Chromium data, &amp; Qiagen Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905147105.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905147105.1/</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.4.0 (2024-04-24 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 11 x64 (build 22631)
+
+Matrix products: default
+
+
+locale:
+[1] LC_COLLATE=English_United States.utf8 
+[2] LC_CTYPE=English_United States.utf8   
+[3] LC_MONETARY=English_United States.utf8
+[4] LC_NUMERIC=C                          
+[5] LC_TIME=English_United States.utf8    
+
+time zone: America/Chicago
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] kableExtra_1.4.0 knitr_1.47       workflowr_1.7.1 
+
+loaded via a namespace (and not attached):
+ [1] jsonlite_1.8.8    highr_0.11        compiler_4.4.0    promises_1.3.0   
+ [5] Rcpp_1.0.12       xml2_1.3.6        stringr_1.5.1     git2r_0.33.0     
+ [9] callr_3.7.6       later_1.3.2       jquerylib_0.1.4   systemfonts_1.1.0
+[13] scales_1.3.0      yaml_2.3.8        fastmap_1.2.0     R6_2.5.1         
+[17] munsell_0.5.1     rprojroot_2.0.4   svglite_2.1.3     bslib_0.7.0      
+[21] rlang_1.1.3       cachem_1.1.0      stringi_1.8.4     httpuv_1.6.15    
+[25] xfun_0.44         getPass_0.2-4     fs_1.6.4          sass_0.4.9       
+[29] viridisLite_0.4.2 cli_3.6.2         magrittr_2.0.3    ps_1.7.6         
+[33] digest_0.6.35     processx_3.8.4    rstudioapi_0.16.0 lifecycle_1.0.4  
+[37] vctrs_0.6.5       evaluate_0.23     glue_1.7.0        whisker_0.4.1    
+[41] colorspace_2.1-0  rmarkdown_2.27    httr_1.4.7        tools_4.4.0      
+[45] htmltools_0.5.8.1</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -595,8 +1020,6 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -629,35 +1052,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
