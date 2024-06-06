@@ -1,0 +1,63 @@
+---
+title: "Comparative Genomics of Large Orthoptera Genomes "
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r RefSef info, echo=FALSE, message=FALSE, warning =FALSE}
+library(knitr)
+library(kableExtra)
+
+# Data for the table
+data <- data.frame(Species = c("Balanococcus diminutus", "Nilaparvata lugens", "Placoccus citri", "Rhopalosiphum maidis", "Spodoptera frugiperda", "Plutella xylostella", "Pieris rapae", "Bicyclus anyana", "Ostrinia nubilalis", "Vaneaa cardui", "Pieris brassicae"),
+                   
+Order = c("Hemiptera", "Hemiptera", "Hemiptera", "Hemiptera", "Lepidoptera", "Lepidoptera", "Lepidoptera", "Lepidoptera", "Lepidoptera", "Lepidoptera", "Lepidoptera"), 
+
+Common_Name = c("N/A", "Brown planthopper", "Citrus mealybug", "Corn leaf aphid", "Fall armyworm", "Diamondback moth", "Cabbage white", "Squinting bush brown", "European corn borer", "Painted Lady", "Large cabbage white"),
+
+Size = c("313.1 Mb", "1.1 Gb", "403.6 Mb", "326 Mb", "383.9 Mb", "323.3 Mb", "256.4 Mb","457.2 Mb", "495.5 Mb", "424.8 Mb", "292.3 Mb"), 
+
+Origin = c("United Kingdom", "Wuhan, China", "United Kingdom", "Ithaca, NY", "Australia", "United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom"), 
+
+Assembly_Method = c("PacBio & Arima2", "WTDGB v. 2.1, SmartDenovo v. 1.5, & HiC-Pro v 2.7.8", "PacBio, Arima2", "Canu v. 1.6 & Hi-C chromatin interation maps", "CANU v. 2.2.0; PurgeDups v. 1.2.5; AllHiC v. 1; Racon v. 1.4.3; Masurca-Polca v. 4.0.9", "77x PacBio data, 10X Genomics Chromium data, & Arima2 Hi-C data", "56x PacBio data, 10X Genomics Chromium data, & Arima Hi-C", "20x PacBio data & Arima2 Hi-C", "44x PacBio data & Arima2 Hi-C", "25x PacBio data, 10X Genomics Chromium data, & Arima Hi-C", "92x PacBio data, 10X Genomics Chromium data, & Qiagen Hi-C"),
+
+Publication_Link = c("https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_959613365.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_014356525.2/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_950023065.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_003676215.2/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023101765.2/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_932276165.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905147795.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_947172395.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_963855985.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905220365.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905147105.1/"))
+
+
+# Italicize the species names
+data$Species <- paste0("*", data$Species, "*")
+
+species_levels <- c("Lepidoptera", "Orthoptera", "Hemiptera")
+species_colors <- c("#D8B2D8", "#008080", "#D8D8B2")
+
+# Convert Species to a factor with specified levels
+data$Species <- factor(data$Species, levels = species_levels)
+
+# Handle NA values by replacing them with a default color (if needed)
+data$Color <- species_colors[as.numeric(data$Species)]
+data$Color[is.na(data$Color)] <- "#FFFFFF"  # Default color for NA values
+
+# Apply cell_spec with correct color mapping
+data$Species <- cell_spec(
+  as.character(data$Species), 
+  background = data$Color
+)
+
+# Select the Species column
+data <- data[c("Species", "Order", "Common_Name", "Size", "Origin", "Assembly_Method", "Publication_Link")]
+ 
+# Create the table
+kable(data, escape = FALSE, caption = "") %>%
+  
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), 
+                full_width = F) %>%
+  
+  scroll_box(width="1000px", height="500px")%>%
+
+  add_header_above(c(" " = 1, "Available NCBI Information of Members of Orthoptera & Other Orders in Insecta" = 6))
+  
+```
