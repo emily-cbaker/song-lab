@@ -16,7 +16,7 @@ files into the environment variable paths.
 
 ## Beginning Work on Orthoptera Genomes
 
-Julia and I will discuss later today (June 6th) what genomes we will create tables for. Processing of these genomes should begin next week.  
+I began work on the table and have now recorded the necessary information for 24 species across 7 orders. This table has been published to the R markdown site and a second table has recorded the requested statistics for each order (number of assemblies, number of annotated assemblies, etc.).
 
 ## Goals for next week
 - Get workflowR site set up totally (theme, menus, etc.)
