@@ -18,6 +18,8 @@ files into the environment variable paths.
 
 I began work on the table and have now recorded the necessary information for 24 species across 7 orders. This table has been published to the R markdown site and a second table has recorded the requested statistics for each order (number of assemblies, number of annotated assemblies, etc.).
 
+I have decided to spend the rest of today (Friday) reading the papers Maeva has given us on TOGA and gene content evolution in arthropods.
+
 ## Goals for next week
 - Get workflowR site set up totally (theme, menus, etc.)
 - Have tables finished & begin processing genomes
