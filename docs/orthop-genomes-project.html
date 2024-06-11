@@ -311,7 +311,7 @@ Genomes</h1>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -322,8 +322,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -332,13 +332,13 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-07
+<strong>Last updated:</strong> 2024-06-10
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>bioinformatics-notes/</code>
@@ -361,18 +361,21 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
@@ -463,15 +466,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreea6bb130def472bedd1a022846445c44a0fb49063targetblanka6bb130a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreefd43ac1fc6b64f64d63b0b9880c91e6d9205422dtargetblankfd43ac1a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/a6bb130def472bedd1a022846445c44a0fb49063" target="_blank">a6bb130</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/fd43ac1fc6b64f64d63b0b9880c91e6d9205422d" target="_blank">fd43ac1</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreea6bb130def472bedd1a022846445c44a0fb49063targetblanka6bb130a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreefd43ac1fc6b64f64d63b0b9880c91e6d9205422dtargetblankfd43ac1a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -481,7 +484,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/a6bb130def472bedd1a022846445c44a0fb49063" target="_blank">a6bb130</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/fd43ac1fc6b64f64d63b0b9880c91e6d9205422d" target="_blank">fd43ac1</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -498,6 +501,9 @@ were generated:
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+
+Unstaged changes:
+    Modified:   analysis/orthop-genomes-project.Rmd
 
 </code></pre>
 <p>
@@ -543,6 +549,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/c5aff7fb10b3f3ec7f80b0dc65e4156622d4a514/docs/orthop-genomes-project.html" target="_blank">c5aff7f</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -797,7 +820,7 @@ style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; o
 <tr>
 <th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
 </th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="6">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="7">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 Available NCBI Information of Members of Orthoptera &amp; Other Orders
 in Insecta
@@ -821,6 +844,9 @@ Size
 Origin
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+RefSeq_Annotation
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 Assembly_Method
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
@@ -831,7 +857,7 @@ Publication_Link
 <tbody>
 <tr>
 <td style="text-align:left;">
-<em>Scistocera gregaria</em>
+<em>Schistocera gregaria</em>
 </td>
 <td style="text-align:left;">
 <span
@@ -845,6 +871,9 @@ Desert locust
 </td>
 <td style="text-align:left;">
 Samburu, Kenya
+</td>
+<td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
 HiFiASM v. 0.13-r308
@@ -872,6 +901,9 @@ American grasshopper
 St. Augustine, FL
 </td>
 <td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
 HiFiASM v. 0.15.4; 3D-DNA v. 210817; Juicebox Assembly Tools v. 1.11
 </td>
 <td style="text-align:left;">
@@ -895,6 +927,9 @@ Vagrant locust
 </td>
 <td style="text-align:left;">
 Terlingua, TX
+</td>
+<td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
 HiFiASM v. 0.15.4; 3D-DNA v. 210817; Juicebox Assembly Tools v. 1.11
@@ -922,6 +957,9 @@ South American locust
 Argentina
 </td>
 <td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
 HiFiASM v. 0.15.4; 3D-DNA v. 210817; Juicebox Assembly Tools v. 1.11
 </td>
 <td style="text-align:left;">
@@ -945,6 +983,9 @@ Cuban bird grasshopper
 </td>
 <td style="text-align:left;">
 Islamorada, FL
+</td>
+<td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
 HiFiASM v. 0.15.4; 3D-DNA v. 210817; Juicebox Assembly Tools v. 1.11
@@ -972,11 +1013,98 @@ Central American locust
 Yucatan, Mexico nr. Tizimin
 </td>
 <td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
 HiFiASM v. 0.15.4; 3D-DNA v. 210817; Juicebox Assembly Tools v. 1.11
 </td>
 <td style="text-align:left;">
 <a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_021461385.2/"
 class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_021461385.2/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Locusta migratora</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(171, 218, 252, 255) !important;">Orthoptera</span>
+</td>
+<td style="text-align:left;">
+Migratory locust
+</td>
+<td style="text-align:left;">
+6.3 Gb
+</td>
+<td style="text-align:left;">
+Beijing, China
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Hifiasm v. 0.14-r312; LACHESIS v. Dec-2017
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_026315105.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_026315105.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Meconaema thalassinum</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(171, 218, 252, 255) !important;">Orthoptera</span>
+</td>
+<td style="text-align:left;">
+Oak bush-cricket
+</td>
+<td style="text-align:left;">
+9 Gb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+29x PacBio data and Arima2 Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_946902985.2/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_946902985.2/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Zhengitettix transpicula</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(171, 218, 252, 255) !important;">Orthoptera</span>
+</td>
+<td style="text-align:left;">
+Pygmy grasshopper
+</td>
+<td style="text-align:left;">
+993.6 Mb
+</td>
+<td style="text-align:left;">
+Yizhou, Guangxi Providence, China
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+HIFIasm v. 1.8.0
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_037074705.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_037074705.1/</a>
 </td>
 </tr>
 <tr>
@@ -995,6 +1123,9 @@ New Zealand flax mealybug
 </td>
 <td style="text-align:left;">
 United Kingdom
+</td>
+<td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
 PacBio &amp; Arima2
@@ -1022,6 +1153,9 @@ Brown planthopper
 Wuhan, China
 </td>
 <td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
 WTDGB v. 2.1, SmartDenovo v. 1.5, &amp; HiC-Pro v 2.7.8
 </td>
 <td style="text-align:left;">
@@ -1045,6 +1179,9 @@ Citrus mealybug
 </td>
 <td style="text-align:left;">
 United Kingdom
+</td>
+<td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
 PacBio, Arima2
@@ -1072,6 +1209,9 @@ Corn leaf aphid
 Ithaca, NY
 </td>
 <td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
 Canu v. 1.6 &amp; Hi-C chromatin interation maps
 </td>
 <td style="text-align:left;">
@@ -1095,6 +1235,9 @@ Fall armyworm
 </td>
 <td style="text-align:left;">
 Australia
+</td>
+<td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
 CANU v. 2.2.0; PurgeDups v. 1.2.5; AllHiC v. 1; Racon v. 1.4.3;
@@ -1123,6 +1266,9 @@ Diamondback moth
 United Kingdom
 </td>
 <td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
 77x PacBio data, 10X Genomics Chromium data, &amp; Arima2 Hi-C data
 </td>
 <td style="text-align:left;">
@@ -1146,6 +1292,9 @@ Cabbage white
 </td>
 <td style="text-align:left;">
 United Kingdom
+</td>
+<td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
 56x PacBio data, 10X Genomics Chromium data, &amp; Arima Hi-C
@@ -1173,6 +1322,9 @@ Squinting bush brown
 United Kingdom
 </td>
 <td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
 20x PacBio data &amp; Arima2 Hi-C
 </td>
 <td style="text-align:left;">
@@ -1196,6 +1348,9 @@ European corn borer
 </td>
 <td style="text-align:left;">
 United Kingdom
+</td>
+<td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
 44x PacBio data &amp; Arima2 Hi-C
@@ -1223,6 +1378,9 @@ Painted Lady
 United Kingdom
 </td>
 <td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
 25x PacBio data, 10X Genomics Chromium data, &amp; Arima Hi-C
 </td>
 <td style="text-align:left;">
@@ -1246,6 +1404,9 @@ Large cabbage white
 </td>
 <td style="text-align:left;">
 United Kingdom
+</td>
+<td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
 92x PacBio data, 10X Genomics Chromium data, &amp; Qiagen Hi-C
@@ -1273,6 +1434,9 @@ Speckled wood butterfly
 West Salton Forest, Scotland
 </td>
 <td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
 42x PacBio data, 10X Genomics Chromium data, &amp; Arima Hi-C
 </td>
 <td style="text-align:left;">
@@ -1296,6 +1460,9 @@ Brown argus
 </td>
 <td style="text-align:left;">
 Romania
+</td>
+<td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
 54x PacBio data, 10X Genomics Chromium data, &amp; Arima Hi-C
@@ -1323,6 +1490,9 @@ Beech moth
 United Kingdom
 </td>
 <td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
 45x PacBio data &amp; Arima2 Hi-C
 </td>
 <td style="text-align:left;">
@@ -1346,6 +1516,9 @@ European peacock butterfly
 </td>
 <td style="text-align:left;">
 United Kingdom
+</td>
+<td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
 64x PacBio data, 10X Genomics Chromium data, &amp; Qiagen Hi-C
@@ -1373,11 +1546,71 @@ European stick bug
 Ravenna, Italy
 </td>
 <td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
 HiFiASM v. 01.06.2021
 </td>
 <td style="text-align:left;">
 <a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_032445375.1/"
 class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_032445375.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Dryococelus australis</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(239, 254, 238, 255) !important;">Phasmatodea</span>
+</td>
+<td style="text-align:left;">
+Tree lobster
+</td>
+<td style="text-align:left;">
+3.4 Gb
+</td>
+<td style="text-align:left;">
+Melbourne Zoo, Australia
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+WTDBG v. 2.5, HiRise v. JULY-2021
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_029891345.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_029891345.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Timema cristinae</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(239, 254, 238, 255) !important;">Phasmatodea</span>
+</td>
+<td style="text-align:left;">
+Cristina’s timema
+</td>
+<td style="text-align:left;">
+955.5 Mb
+</td>
+<td style="text-align:left;">
+California
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Meraculous v. JUNE-2016; Dovetail HiRise v. JUNE-2016; LepMap2 -
+clustering of scaffolds in linkage groups using mapping families v. 2017
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_002928295.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_002928295.1/</a>
 </td>
 </tr>
 <tr>
@@ -1398,11 +1631,98 @@ style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; backgroun
 United Kingdom
 </td>
 <td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
 40x PacBio data, 10X Genomics Chromium data, &amp; Arima Hi-C
 </td>
 <td style="text-align:left;">
 <a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905475395.1/"
 class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905475395.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Sisyra terminalis</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(249, 215, 233, 255) !important;">Neuroptera</span>
+</td>
+<td style="text-align:left;">
+Spongefly / Spongillafly
+</td>
+<td style="text-align:left;">
+376.6 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+82x PacBio data and Arima2 Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_958496175.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_958496175.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Sisyra nigra</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(249, 215, 233, 255) !important;">Neuroptera</span>
+</td>
+<td style="text-align:left;">
+Black spongillafly
+</td>
+<td style="text-align:left;">
+372.6 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+55x PacBio data and Arima2 Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_958496155.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_958496155.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Nineta flava</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(249, 215, 233, 255) !important;">Neuroptera</span>
+</td>
+<td style="text-align:left;">
+N/A
+</td>
+<td style="text-align:left;">
+732.3 Mb
+</td>
+<td style="text-align:left;">
+Tonbridge, England
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+39x PacBio data and Arima2 Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_963920215.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_963920215.1/</a>
 </td>
 </tr>
 <tr>
@@ -1423,11 +1743,434 @@ style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; backgroun
 United Kingdom
 </td>
 <td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
 89x PacBio data, 10X Genomics Chromium data, &amp; Arima Hi-C
 </td>
 <td style="text-align:left;">
 <a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_949628265.1/"
 class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_949628265.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Siphlonurus alternatus</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(249, 248, 215, 255) !important;">Ephemeroptera</span>
+</td>
+<td style="text-align:left;">
+(Species of) Mayfly
+</td>
+<td style="text-align:left;">
+455.8 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+53x PacBio data &amp; Arima2 Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://ncbi.nlm.nih.gov/datasets/genome/GCA_949825025.1/"
+class="uri">https://ncbi.nlm.nih.gov/datasets/genome/GCA_949825025.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Ecdyonurus torrentis</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(249, 248, 215, 255) !important;">Ephemeroptera</span>
+</td>
+<td style="text-align:left;">
+Large brook dun
+</td>
+<td style="text-align:left;">
+503.3 Mb
+</td>
+<td style="text-align:left;">
+River Rye, Yorkshire, UK
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+67x PacBio data &amp; Arima2 Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_949318235.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_949318235.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Brahcyptera putata</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(250, 200, 165, 255) !important;">Plecoptera</span>
+</td>
+<td style="text-align:left;">
+Northern February red stonefly
+</td>
+<td style="text-align:left;">
+436.5 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom(?)
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+64x PacBio, 101x 10X Genomics Chromium, &amp; Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_907164805.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_907164805.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Nemurella pictetii</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(250, 200, 165, 255) !important;">Plecoptera</span>
+</td>
+<td style="text-align:left;">
+(Species of) Stonefly
+</td>
+<td style="text-align:left;">
+257 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+68x PacBio data, 10X Genomics Chromium data, &amp; Arima2 Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_921293315.2/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_921293315.2/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Protonemura montana</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(250, 200, 165, 255) !important;">Plecoptera</span>
+</td>
+<td style="text-align:left;">
+N/A
+</td>
+<td style="text-align:left;">
+258.5 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+83x PacBio data &amp; Arima2 Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_947568835.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_947568835.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Nemoura dubitans</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(250, 200, 165, 255) !important;">Plecoptera</span>
+</td>
+<td style="text-align:left;">
+N/A
+</td>
+<td style="text-align:left;">
+321 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+62x PacBio data, 10X Genomics Chromium data, &amp; Arima Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_921293005.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_921293005.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Isoperla grammatica</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(250, 200, 165, 255) !important;">Plecoptera</span>
+</td>
+<td style="text-align:left;">
+Common yellow sally stonefly
+</td>
+<td style="text-align:left;">
+874.6 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+34x PacBio data, 10X Genomics Chromium data, &amp; Arima2 Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_945910005.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_945910005.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Leuctra nigra</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(250, 200, 165, 255) !important;">Plecoptera</span>
+</td>
+<td style="text-align:left;">
+Black needle fly
+</td>
+<td style="text-align:left;">
+536.3 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+32x PacBio data &amp; Arima2 Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_934045905.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_934045905.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Brachyptera risi</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(250, 200, 165, 255) !important;">Plecoptera</span>
+</td>
+<td style="text-align:left;">
+(Species of) Stonefly
+</td>
+<td style="text-align:left;">
+680.2 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+45x PacBio data &amp; Arima2 Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_964007535.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_964007535.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Hymenopus coronatus</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(196, 252, 174, 255) !important;">Mantodea</span>
+</td>
+<td style="text-align:left;">
+Walking flower mantis
+</td>
+<td style="text-align:left;">
+3.1 Gb
+</td>
+<td style="text-align:left;">
+Xishuangbanna, China
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Hifiasm v. 0.14.2
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_030762935.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_030762935.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Tenodera sinensis</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(196, 252, 174, 255) !important;">Mantodea</span>
+</td>
+<td style="text-align:left;">
+Chinese praying mantis
+</td>
+<td style="text-align:left;">
+2.7 Gb
+</td>
+<td style="text-align:left;">
+Guangzhou, China
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Hifiasm v. 0.14.2
+</td>
+<td style="text-align:left;">
+<a href="https://ncbi.nlm.nih.gov/datasets/genome/GCA_030765045.1/"
+class="uri">https://ncbi.nlm.nih.gov/datasets/genome/GCA_030765045.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Mantis religiosa</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(196, 252, 174, 255) !important;">Mantodea</span>
+</td>
+<td style="text-align:left;">
+Praying mantis
+</td>
+<td style="text-align:left;">
+3.7 Gb
+</td>
+<td style="text-align:left;">
+Guangzhou, China
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Hifiasm v. 0.14.2
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_030765055.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_030765055.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Deroplatys truncata</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(196, 252, 174, 255) !important;">Mantodea</span>
+</td>
+<td style="text-align:left;">
+Dead leaf mantis
+</td>
+<td style="text-align:left;">
+4.3 Gb
+</td>
+<td style="text-align:left;">
+Cameron, Malaysia
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Hifiasm v. 0.14.2
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_030765065.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_030765065.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Metallyticus violacea</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(196, 252, 174, 255) !important;">Mantodea</span>
+</td>
+<td style="text-align:left;">
+Iridescent bark mantis
+</td>
+<td style="text-align:left;">
+2.3 Gb
+</td>
+<td style="text-align:left;">
+Kuala Lumpur, Malaysia
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Hifiasm v. 0.14.2
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_030762175.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_030762175.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Ectobius pallidus</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(204, 192, 186, 255) !important;">Blattodea</span>
+</td>
+<td style="text-align:left;">
+Tawny cockroach
+</td>
+<td style="text-align:left;">
+2.1 Gb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+51x PacBio data and Arima2 Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_964059185.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_964059185.1/</a>
 </td>
 </tr>
 </tbody>
@@ -1548,6 +2291,20 @@ Ephemeroptera
 </tr>
 <tr>
 <td style="text-align:left;width: 10em; ">
+Plecoptera
+</td>
+<td style="text-align:left;width: 20em; ">
+18
+</td>
+<td style="text-align:left;width: 20em; ">
+7
+</td>
+<td style="text-align:left;width: 20em; ">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; ">
 Mantodea
 </td>
 <td style="text-align:left;width: 20em; ">
@@ -1558,6 +2315,20 @@ Mantodea
 </td>
 <td style="text-align:left;width: 20em; ">
 0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; ">
+Blattodea
+</td>
+<td style="text-align:left;width: 20em; ">
+14
+</td>
+<td style="text-align:left;width: 20em; ">
+1
+</td>
+<td style="text-align:left;width: 20em; ">
+2
 </td>
 </tr>
 </tbody>
@@ -1592,21 +2363,20 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] kableExtra_1.4.0 knitr_1.47       workflowr_1.7.1 
+[1] kableExtra_1.4.0 knitr_1.47      
 
 loaded via a namespace (and not attached):
  [1] jsonlite_1.8.8    highr_0.11        compiler_4.4.0    promises_1.3.0   
  [5] Rcpp_1.0.12       xml2_1.3.6        stringr_1.5.1     git2r_0.33.0     
- [9] callr_3.7.6       later_1.3.2       jquerylib_0.1.4   systemfonts_1.1.0
-[13] scales_1.3.0      yaml_2.3.8        fastmap_1.2.0     R6_2.5.1         
+ [9] later_1.3.2       jquerylib_0.1.4   systemfonts_1.1.0 scales_1.3.0     
+[13] yaml_2.3.8        fastmap_1.2.0     R6_2.5.1          workflowr_1.7.1  
 [17] munsell_0.5.1     rprojroot_2.0.4   svglite_2.1.3     bslib_0.7.0      
 [21] rlang_1.1.3       cachem_1.1.0      stringi_1.8.4     httpuv_1.6.15    
-[25] xfun_0.44         getPass_0.2-4     fs_1.6.4          sass_0.4.9       
-[29] viridisLite_0.4.2 cli_3.6.2         magrittr_2.0.3    ps_1.7.6         
-[33] digest_0.6.35     processx_3.8.4    rstudioapi_0.16.0 lifecycle_1.0.4  
-[37] vctrs_0.6.5       evaluate_0.23     glue_1.7.0        whisker_0.4.1    
-[41] colorspace_2.1-0  rmarkdown_2.27    httr_1.4.7        tools_4.4.0      
-[45] htmltools_0.5.8.1</code></pre>
+[25] xfun_0.44         fs_1.6.4          sass_0.4.9        viridisLite_0.4.2
+[29] cli_3.6.2         magrittr_2.0.3    digest_0.6.35     rstudioapi_0.16.0
+[33] lifecycle_1.0.4   vctrs_0.6.5       evaluate_0.23     glue_1.7.0       
+[37] whisker_0.4.1     colorspace_2.1-0  rmarkdown_2.27    tools_4.4.0      
+[41] htmltools_0.5.8.1</code></pre>
 </div>
 </div>
 </div>
