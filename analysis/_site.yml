@@ -13,6 +13,7 @@ navbar:
           href: week1-notes.html
         - text: "6/10 - 6/14"
           href: week2-notes.html
+
     - text: "Projects"
       icon: fa-book-open
       menu:
@@ -20,6 +21,12 @@ navbar:
           href: orthop-genomes-project.html
         - text: "Population Genomics of Mormon Crickets, Central American Locusts, Eremidium Grasshoppers"
           href: pop-genomics-morm-crick.html
+
+    - text: "Program Information"
+      icon: fa-code
+      menu:
+        - text: "TOGA"
+          href: toga.html
 
 output:
   workflowr::wflow_html:
