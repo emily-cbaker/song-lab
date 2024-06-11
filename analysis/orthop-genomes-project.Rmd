@@ -116,7 +116,7 @@ Size = c(
 # Mantodea
 "3.1 Gb", "2.7 Gb", "3.7 Gb", "4.3 Gb", "2.3 Gb",
 
-# blattodea
+# Blattodea
 "2.1 Gb"
 ), 
 
