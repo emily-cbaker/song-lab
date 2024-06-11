@@ -400,7 +400,7 @@ Alignments</h1>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -411,8 +411,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -425,9 +425,9 @@ aria-hidden="true"></span> </a>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>bioinformatics-notes/</code>
@@ -450,36 +450,33 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of
-the R Markdown file created these results, you’ll want to first commit
-it to the Git repo. If you’re still working on the analysis, you can
-ignore this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree60b2cd35398762affa422f4957fc44b98518adabtargetblank60b2cd3a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree428b264ad87cc068be4acf365fafe5f7fd85bfe2targetblank428b264a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/60b2cd35398762affa422f4957fc44b98518adab" target="_blank">60b2cd3</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/428b264ad87cc068be4acf365fafe5f7fd85bfe2" target="_blank">428b264</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree60b2cd35398762affa422f4957fc44b98518adabtargetblank60b2cd3a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree428b264ad87cc068be4acf365fafe5f7fd85bfe2targetblank428b264a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -489,7 +486,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/60b2cd35398762affa422f4957fc44b98518adab" target="_blank">60b2cd3</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/428b264ad87cc068be4acf365fafe5f7fd85bfe2" target="_blank">428b264</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -508,15 +505,7 @@ Ignored files:
     Ignored:    .Rproj.user/
 
 Untracked files:
-    Untracked:  analysis/bootstrap.css
-    Untracked:  analysis/main.css
-    Untracked:  analysis/noscript.css
-    Untracked:  analysis/pulse.css
     Untracked:  bootswatch/
-
-Unstaged changes:
-    Modified:   analysis/_site.yml
-    Modified:   analysis/toga.Rmd
 
 </code></pre>
 <p>
@@ -560,6 +549,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/428b264ad87cc068be4acf365fafe5f7fd85bfe2/analysis/toga.Rmd" target="_blank">428b264</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-11
+</td>
+<td>
+Whole lot of changes
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/428b264ad87cc068be4acf365fafe5f7fd85bfe2/docs/toga.html" target="_blank">428b264</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-11
+</td>
+<td>
+Whole lot of changes
+</td>
+</tr>
 <tr>
 <td>
 html
