@@ -5,7 +5,6 @@ navbar:
   icon: fa-home
   type: inverse
   left:
-
     - text: "Notes"
       icon: fa-note-sticky
       menu:
@@ -32,5 +31,6 @@ output:
   workflowr::wflow_html:
     toc: yes
     toc_float: yes
-    theme: journal
+    theme: null
     highlight: textmate
+    css: "bootstrap.css"

@@ -3,7 +3,54 @@ title: "TOGA: Tool to Infer Orthologs from Genome Alignments"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
-    toc: false
+    toc: true
+    toc_float: true
+    toc_collapsed: true
+    theme: default
+    css: "bootstrap.css"
+toc_depth: 3
+number_sections: true
 editor_options:
   chunk_output_type: console
 ---
+
+## What is TOGA?
+
+> "Annotating coding genes and inferring orthologs are two classical > challenges in genomics and evolutionary biology that have 
+> traditionally been approached separately, limiting scalability. We
+> present TOGA (Tool to infer Orthologs from Genome Alignments), a 
+> method that integrates structural gene annotation and orthology 
+> inference. TOGA implements a different paradigm to infer
+> orthologous loci, improves ortholog detection and annotation of
+> conserved genes compared with state-of-the-art methods, and
+> handles even highly fragmented assemblies. TOGA scales to hundreds
+> of genomes, which we demonstrate by applying it to 488 placental
+> mammal and 501 bird assemblies, creating the largest comparative
+> gene resources so far. Additionally, TOGA detects gene losses,
+> enables selection screens, and automatically provides a superior
+> measure of mammalian genome quality. TOGA is a powerful and
+> scalable method to annotate and compare genes in the genomic era."
+
+--- Bogdan M. Kirilenko *et al.*, *Integrating gene annotation with orthology inference at scale*
+
+## TOGA Steps
+
+1. First, TOGA uses pairwise genome alignment between the reference & query genome. This is represented by chains of co-linear local alignments. Through this process, it captures orthologous gene loci and loci containing paralogs or processed pseudo-genes. To distinguish between these 2 groups, TOGA computes characteristic features that capture the amount of intronic and intergenic alignments, considering each gene & overlapping chain. Additionally, synteny (conserved gene order) can be used to help further distinguish orthologs from paralogs. TOGA also implements machine learning to compute the probability that a chain is an orthologous locus for the gene in question. 
+
+  - The most important feature for classification is the capture of    intronic and intergenic alignments, leaving synteny as the least    important. Hence, synteny is used as an auxiliary feature that      allows TOGA to detect orthologs that underwent translocation or     inversion.
+
+  * <details>
+     <summary>More on the machine learning feature</summary>
+       
+       The machine learning classifier was trained on known orthologous genes between humans (reference) and mice (query) from Ensembl Compara. This classifier was then tested on independent query species (rat, dog, and armadillo) that represented different placental mammal orders  and produced a nearly perfect classification of orthologous chains. 
+       
+       When manually examining data it was found that misclassifications that produced false positives are mostly due to partial or full gene duplications and half of false negative may be due to faster X chromosome evolution. 
+       
+   </details>
+   
+2. CESAR v. 2.0 is used to determine the position of coding exons of the focal gene in each (co-)orthologous query locus. TOGA then assesses the reading frame intactness for each transcript and applies a gene loss detection approach to identify gene-inactivating mutations while taking assembly incompleteness into account. A gene is classified as *lost* if all transcripts at all (co-)orthologous loci are classified as lost.
+
+  * <details>
+      <summary>CESEAR v. 2.0</summary>
+      
+    </deatils>

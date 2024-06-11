@@ -16,7 +16,7 @@
 <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -70,6 +73,7 @@ if (window.hljs) {
 
 
 
+<link rel="stylesheet" href="bootstrap.css" type="text/css" />
 
 
 
@@ -231,6 +235,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -238,6 +305,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -323,7 +400,7 @@ Alignments</h1>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -334,8 +411,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -348,9 +425,9 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>bioinformatics-notes/</code>
@@ -373,33 +450,36 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree41bcf66710b8066e96cb467da9b55291ab474a86targetblank41bcf66a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree60b2cd35398762affa422f4957fc44b98518adabtargetblank60b2cd3a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/41bcf66710b8066e96cb467da9b55291ab474a86" target="_blank">41bcf66</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/60b2cd35398762affa422f4957fc44b98518adab" target="_blank">60b2cd3</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree41bcf66710b8066e96cb467da9b55291ab474a86targetblank41bcf66a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree60b2cd35398762affa422f4957fc44b98518adabtargetblank60b2cd3a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -409,7 +489,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/41bcf66710b8066e96cb467da9b55291ab474a86" target="_blank">41bcf66</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/60b2cd35398762affa422f4957fc44b98518adab" target="_blank">60b2cd3</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -426,6 +506,17 @@ were generated:
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+
+Untracked files:
+    Untracked:  analysis/bootstrap.css
+    Untracked:  analysis/main.css
+    Untracked:  analysis/noscript.css
+    Untracked:  analysis/pulse.css
+    Untracked:  bootswatch/
+
+Unstaged changes:
+    Modified:   analysis/_site.yml
+    Modified:   analysis/toga.Rmd
 
 </code></pre>
 <p>
@@ -469,6 +560,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/beb300837454a169aae997c997703b1774891f2b/docs/toga.html" target="_blank">beb3008</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-11
+</td>
+<td>
+Try commit
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -527,8 +635,78 @@ wflow_publish("analysis/toga.Rmd")
 </div>
 </div>
 </div>
-<div id="na" class="section level2">
-<h2>NA</h2>
+<div id="what-is-toga" class="section level2">
+<h2>What is TOGA?</h2>
+<blockquote>
+<p>“Annotating coding genes and inferring orthologs are two classical
+&gt; challenges in genomics and evolutionary biology that have
+traditionally been approached separately, limiting scalability. We
+present TOGA (Tool to infer Orthologs from Genome Alignments), a method
+that integrates structural gene annotation and orthology inference. TOGA
+implements a different paradigm to infer orthologous loci, improves
+ortholog detection and annotation of conserved genes compared with
+state-of-the-art methods, and handles even highly fragmented assemblies.
+TOGA scales to hundreds of genomes, which we demonstrate by applying it
+to 488 placental mammal and 501 bird assemblies, creating the largest
+comparative gene resources so far. Additionally, TOGA detects gene
+losses, enables selection screens, and automatically provides a superior
+measure of mammalian genome quality. TOGA is a powerful and scalable
+method to annotate and compare genes in the genomic era.”</p>
+</blockquote>
+<p>— Bogdan M. Kirilenko <em>et al.</em>, <em>Integrating gene
+annotation with orthology inference at scale</em></p>
+</div>
+<div id="toga-steps" class="section level2">
+<h2>TOGA Steps</h2>
+<ol style="list-style-type: decimal">
+<li>First, TOGA uses pairwise genome alignment between the reference
+&amp; query genome. This is represented by chains of co-linear local
+alignments. Through this process, it captures orthologous gene loci and
+loci containing paralogs or processed pseudo-genes. To distinguish
+between these 2 groups, TOGA computes characteristic features that
+capture the amount of intronic and intergenic alignments, considering
+each gene &amp; overlapping chain. Additionally, synteny (conserved gene
+order) can be used to help further distinguish orthologs from paralogs.
+TOGA also implements machine learning to compute the probability that a
+chain is an orthologous locus for the gene in question.</li>
+</ol>
+<ul>
+<li><p>The most important feature for classification is the capture of
+intronic and intergenic alignments, leaving synteny as the least
+important. Hence, synteny is used as an auxiliary feature that allows
+TOGA to detect orthologs that underwent translocation or
+inversion.</p></li>
+<li><details>
+<summary>
+<p>More on the machine learning feature</p>
+</summary>
+<p>The machine learning classifier was trained on known orthologous
+genes between humans (reference) and mice (query) from Ensembl Compara.
+This classifier was then tested on independent query species (rat, dog,
+and armadillo) that represented different placental mammal orders and
+produced a nearly perfect classification of orthologous chains.</p>
+<p>When manually examining data it was found that misclassifications
+that produced false positives are mostly due to partial or full gene
+duplications and half of false negative may be due to faster X
+chromosome evolution.</p></li>
+</ul>
+</details>
+<ol start="2" style="list-style-type: decimal">
+<li>CESAR v. 2.0 is used to determine the position of coding exons of
+the focal gene in each (co-)orthologous query locus. TOGA then assesses
+the reading frame intactness for each transcript and applies a gene loss
+detection approach to identify gene-inactivating mutations while taking
+assembly incompleteness into account. A gene is classified as
+<em>lost</em> if all transcripts at all (co-)orthologous loci are
+classified as lost.</li>
+</ol>
+<ul>
+<li><details>
+<summary>
+CESEAR v. 2.0
+</summary>
+</deatils></li>
+</ul>
 </div>
 </div>
 </div>
@@ -552,6 +730,8 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -584,6 +764,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
