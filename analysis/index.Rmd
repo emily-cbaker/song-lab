@@ -4,8 +4,6 @@ site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
     toc: false
-    theme: journal
-    #css: "bootstrap.css"
 editor_options:
   chunk_output_type: console
 ---
