@@ -6,14 +6,15 @@ output:
     toc: true
     toc_float: true
     toc_collapsed: true
-    theme: journal
-    #css: "bootstrap.css"
+    theme: default
+    css: "theme3.css"
 toc_depth: 3
 number_sections: true
 editor_options:
   chunk_output_type: console
 ---
 
+#
 ## What is TOGA?
 
 > "Annotating coding genes and inferring orthologs are two classical > challenges in genomics and evolutionary biology that have 
@@ -35,7 +36,7 @@ editor_options:
 
 ## TOGA Steps
 
-1. First, TOGA uses pairwise genome alignment between the reference & query genome. This is represented by chains of co-linear local alignments. Through this process, it captures orthologous gene loci and loci containing paralogs or processed pseudo-genes. To distinguish between these 2 groups, TOGA computes characteristic features that capture the amount of intronic and intergenic alignments, considering each gene & overlapping chain. Additionally, synteny (conserved gene order) can be used to help further distinguish orthologs from paralogs. TOGA also implements machine learning to compute the probability that a chain is an orthologous locus for the gene in question. 
+1. First, TOGA uses pairwise genome alignment between the reference & query genome represented by chains of co-linear local alignments. Through this process, it captures orthologous gene loci and loci containing paralogs or processed pseudo-genes. To distinguish between these 2 groups, TOGA computes characteristic features that capture the amount of intronic and intergenic alignments, considering each gene & overlapping chain. Additionally, synteny (conserved gene order) can be used to help further distinguish orthologs from paralogs. TOGA also implements machine learning to compute the probability that a chain is an orthologous locus for the gene in question. 
 
   - The most important feature for classification is the capture of    intronic and intergenic alignments, leaving synteny as the least    important. Hence, synteny is used as an auxiliary feature that      allows TOGA to detect orthologs that underwent translocation or     inversion.
 
@@ -51,6 +52,92 @@ editor_options:
 2. CESAR v. 2.0 is used to determine the position of coding exons of the focal gene in each (co-)orthologous query locus. TOGA then assesses the reading frame intactness for each transcript and applies a gene loss detection approach to identify gene-inactivating mutations while taking assembly incompleteness into account. A gene is classified as *lost* if all transcripts at all (co-)orthologous loci are classified as lost.
 
   * <details>
-      <summary>CESEAR v. 2.0</summary>
+      <summary>CESAR v. 2.0</summary>
+      "CESAR 2.0 (Coding Exon Structure Aware Realigner 2.0) is a          method to realign coding exons or genes to DNA sequences            using a Hidden Markov Model.  
+
+      Compared to its predecessor, CESAR 2.0 is 77X times faster       on average (132X times faster for large exons) and requires         30-times less memory. In addition, CESAR 2.0 improves the           accuracy of the comparative gene annotation by two new              features. First, CESAR 2.0 substantially improves the               identification of splice sites that have shifted over a larger       distance, which improves the accuracy of detecting the correct       exon boundaries. Second, CESAR 2.0 provides a new gene mode         that re-aligns entire genes at once. This mode is able to           recognize complete intron deletions and will annotate larger        joined exons that arose by intron deletion events."
       
-    </deatils>
+      -- From the [Hiller Lab GitHub page on CESAR 2.0](https://github.com/hillerlab/CESAR2.0)
+      
+    </details>
+    
+3. In this step, TOGA determines the orthology type by considering all reference genes and orthologous query loci that encode within an intact reading frame. TOGA then uses an orthology graph to resolve any weakly supported orthology relationship among many:many orthologs.
+
+# Running TOGA
+
+## Installation
+
+### Locally
+Dependencies:  
+* Python (Version 3.9 or later)  
+* Java (Version 8 or later)  
+
+To setup TOGA, you must first install Nextflow using the command
+```{r installation, eval=FALSE}
+curl -fsSL https://get.nextflow.io | bash
+# OR
+conda install -c bioconda nextflow
+```
+If you download using curl, move the nextflow.exe into a directory that is accessible by your $PATH variable.  
+
+You must then clone the Hiller Lab GitHub repository onto your machine and then change into the TOGA directory using the commands
+
+```{r clone, eval=FALSE}
+git clone https://github.com/hillerlab/TOGA.git
+cd TOGA
+```
+
+We then must install any necessary Python packages using
+
+```{r install, eval=FALSE}
+python3 -m pip install -r requirements.txt --user
+```
+
+### On a Cluster
+
+<mark> If running on a Slurm cluster (like GRACE), there are configuration files already available in the Hiller Lab GitHub under the nextflow_config_files directory. Therefore you may download those files and skip this step! </mark>
+
+Here are the steps to prepare to run TOGA:
+
+1. Create a separate directory for configuration files.
+
+2. Create a file called "extract_chain_features_config.nf". This file contains the configuration for the chain features extraction step. For these jobs a runtime limit of 1 hour and 10 Gb of memory will be sufficient.
+
+3. Create a file called "call_cesar_config_template.nf". This configuration file is for the jobs run by CESAR. It is **highly recommended** that you request 24 hours of runtime. You do not need to provide an exact amount of memory because TOGA will compute this itself, so put in the placeholder "process.memory = "${_MEMORY_}G" "
+
+## Running
+
+### Prepare to Run
+To run TOGA, we must first provide it with the appropriate input files. These are:
+
+1. A reference and query genomes in 2bit format (can be generated from multi-fasta files using the [UCSC twoBitToFa](https://genome.ucsc.edu/goldenPath/help/twoBit.html) command)
+
+2. The coding gene annotation of the reference genome in bed-12 format (can by generated from genePred or gtf formats with the UCSC utilities [genePredToBed](https://genome.ucsc.edu/goldenPath/help/hubQuickStartSearch.html) or [gtfToGenePred](https://genome-store.ucsc.edu/))
+
+3. A chain file containing chains of co-linear local alignments between the reference and query genome.  
+
+Optionally, you may also provide information about U12 introns, in which noncanonical splice sites are common, as additional input.
+
+<details>
+      <summary>Optimal Sample Genomes</summary>
+       
+       In order to get the best results possible, the Hiller Lab suggests including representative (principle) isoforms for each gene, particularly ones that capture exon-intron structures, but exclude isoforms that represent much shorter and likely more non-finctional transcripts. It is also recommended to exclude transcripts that represent fusion isoforms between 2 ancestral genes because including these fusion transcripts interferes with the inference of the orthology type.
+       
+</details>
+
+
+## Testing
+
+The Hiller Lab provides a test [reference](https://hgdownload.cse.ucsc.edu/goldenpath/hg38/bigZips/hg38.2bit) and [query](https://hgdownload.cse.ucsc.edu/goldenpath/mm10/bigZips/mm10.2bit) genome, already in the required 2-bit formatting.   
+
+After this data has been downloaded & placed in the correct directory, call the following command:
+
+```{r test, eval=FALSE}
+./toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed ${path_to_human_2bit} ${path_to_mouse_2bit} --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc ${path_to_nextflow_config_dir} --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms
+
+```
+
+This will take about 20 minutes on a 500 core cluster.
+
+## Troubleshooting
+
