@@ -326,7 +326,7 @@ Genomes</h1>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -337,8 +337,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -351,9 +351,9 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>bioinformatics-notes/</code>
@@ -376,18 +376,21 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
@@ -478,15 +481,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreee34f1881c221c34e4a6039b7dd1caaa07da29c6atargetblanke34f188a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree22723cbb2f1b72a0e4e5288c20ca80a10d30db6ftargetblank22723cba">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/e34f1881c221c34e4a6039b7dd1caaa07da29c6a" target="_blank">e34f188</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/22723cbb2f1b72a0e4e5288c20ca80a10d30db6f" target="_blank">22723cb</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreee34f1881c221c34e4a6039b7dd1caaa07da29c6atargetblanke34f188a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree22723cbb2f1b72a0e4e5288c20ca80a10d30db6ftargetblank22723cba"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -496,7 +499,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/e34f1881c221c34e4a6039b7dd1caaa07da29c6a" target="_blank">e34f188</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/22723cbb2f1b72a0e4e5288c20ca80a10d30db6f" target="_blank">22723cb</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -515,12 +518,10 @@ Ignored files:
     Ignored:    .Rproj.user/
     Ignored:    bootswatch/
 
-Untracked files:
-    Untracked:  analysis/theme3.css
-
 Unstaged changes:
-    Modified:   analysis/_site.yml
-    Modified:   analysis/index.Rmd
+    Modified:   analysis/orthop-genomes-project.Rmd
+    Modified:   analysis/toga.Rmd
+    Modified:   analysis/week2-notes.Rmd
 
 </code></pre>
 <p>
@@ -566,6 +567,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/bfe7839ff32b4a1481703f0490eb4aa5401ff2f3/docs/orthop-genomes-project.html" target="_blank">bfe7839</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-12
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -2360,6 +2378,91 @@ N
 class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_964059185.1/</a>
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+<em>Apis mellifera</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(228, 111, 213, 255) !important;">Hymenoptera</span>
+</td>
+<td style="text-align:left;">
+Honey bee
+</td>
+<td style="text-align:left;">
+225.2 Mb
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+PacBio; 10X Chromium; Phase Genomics HiC; Bionano; FALCON v. 0.5.0; Arcs
+v. 1.0.1; Links v. 1.8.5; BioNano Solve v. 3.1
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_003254395.2/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_003254395.2/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Aleiodes testaceus</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(228, 111, 213, 255) !important;">Hymenoptera</span>
+</td>
+<td style="text-align:left;">
+Common mummy wasp
+</td>
+<td style="text-align:left;">
+110.7 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+199x PacBio data and Arima2 Hi-C
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_009193385.2/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_009193385.2/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Bombus terrestris</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(228, 111, 213, 255) !important;">Hymenoptera</span>
+</td>
+<td style="text-align:left;">
+Buff-tailed bumblebee
+</td>
+<td style="text-align:left;">
+393 Mb
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+57x PacBio data, 10X Genomics Chromium data, and Arima Hi-C data
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_910591885.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_910591885.1/</a>
+</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -2520,6 +2623,224 @@ Blattodea
 </tr>
 </tbody>
 </table>
+<div
+style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:1000px; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="6">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Species of Interest &amp; Outgroups Information
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Species
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Order
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+BUSCO_Analysis
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Genome_Size
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Genes_Annotated
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Protein_Coding
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+NCBI_link
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<em>Schistocera gregaria</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(171, 218, 252, 255) !important;">Orthoptera</span>
+</td>
+<td style="text-align:left;">
+96%
+</td>
+<td style="text-align:left;">
+8.7 Gb
+</td>
+<td style="text-align:left;">
+99,467
+</td>
+<td style="text-align:left;">
+19,799
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023897955.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023897955.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Schistocera americana</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(171, 218, 252, 255) !important;">Orthoptera</span>
+</td>
+<td style="text-align:left;">
+96.6%
+</td>
+<td style="text-align:left;">
+9 Gb
+</td>
+<td style="text-align:left;">
+81,274
+</td>
+<td style="text-align:left;">
+17,662
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_021461395.2/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_021461395.2/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Schistocera nitens</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(171, 218, 252, 255) !important;">Orthoptera</span>
+</td>
+<td style="text-align:left;">
+96.4%
+</td>
+<td style="text-align:left;">
+8.8 Gb
+</td>
+<td style="text-align:left;">
+72,560
+</td>
+<td style="text-align:left;">
+17,500
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023898315.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023898315.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Schistocera cancellata</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(171, 218, 252, 255) !important;">Orthoptera</span>
+</td>
+<td style="text-align:left;">
+96.3%
+</td>
+<td style="text-align:left;">
+8.5 Gb
+</td>
+<td style="text-align:left;">
+103,533
+</td>
+<td style="text-align:left;">
+16,907
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023864275.1/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023864275.1/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Schistocera serialis cubense</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(171, 218, 252, 255) !important;">Orthoptera</span>
+</td>
+<td style="text-align:left;">
+96.8%
+</td>
+<td style="text-align:left;">
+9.1 Gb
+</td>
+<td style="text-align:left;">
+75,810
+</td>
+<td style="text-align:left;">
+17,237
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023864345.2/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023864345.2/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Schistocerca piceifrons</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(171, 218, 252, 255) !important;">Orthoptera</span>
+</td>
+<td style="text-align:left;">
+94.8%
+</td>
+<td style="text-align:left;">
+8.7 Gb
+</td>
+<td style="text-align:left;">
+96,806
+</td>
+<td style="text-align:left;">
+17,490
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_021461385.2/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_021461385.2/</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<em>Apis mellifera</em>
+</td>
+<td style="text-align:left;">
+<span
+style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(228, 111, 213, 255) !important;">Hymenoptera</span>
+</td>
+<td style="text-align:left;">
+98.6%
+</td>
+<td style="text-align:left;">
+225.2 Mb
+</td>
+<td style="text-align:left;">
+12,398
+</td>
+<td style="text-align:left;">
+9,935
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_003254395.2/"
+class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_003254395.2/</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -2550,21 +2871,20 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] kableExtra_1.4.0 knitr_1.47       workflowr_1.7.1 
+[1] kableExtra_1.4.0 knitr_1.47      
 
 loaded via a namespace (and not attached):
  [1] jsonlite_1.8.8    highr_0.11        compiler_4.4.0    promises_1.3.0   
  [5] Rcpp_1.0.12       xml2_1.3.6        stringr_1.5.1     git2r_0.33.0     
- [9] callr_3.7.6       later_1.3.2       jquerylib_0.1.4   systemfonts_1.1.0
-[13] scales_1.3.0      yaml_2.3.8        fastmap_1.2.0     R6_2.5.1         
+ [9] later_1.3.2       jquerylib_0.1.4   systemfonts_1.1.0 scales_1.3.0     
+[13] yaml_2.3.8        fastmap_1.2.0     R6_2.5.1          workflowr_1.7.1  
 [17] munsell_0.5.1     rprojroot_2.0.4   svglite_2.1.3     bslib_0.7.0      
 [21] rlang_1.1.3       cachem_1.1.0      stringi_1.8.4     httpuv_1.6.15    
-[25] xfun_0.44         getPass_0.2-4     fs_1.6.4          sass_0.4.9       
-[29] viridisLite_0.4.2 cli_3.6.2         magrittr_2.0.3    ps_1.7.6         
-[33] digest_0.6.35     processx_3.8.4    rstudioapi_0.16.0 lifecycle_1.0.4  
-[37] vctrs_0.6.5       evaluate_0.23     glue_1.7.0        whisker_0.4.1    
-[41] colorspace_2.1-0  rmarkdown_2.27    httr_1.4.7        tools_4.4.0      
-[45] htmltools_0.5.8.1</code></pre>
+[25] xfun_0.44         fs_1.6.4          sass_0.4.9        viridisLite_0.4.2
+[29] cli_3.6.2         magrittr_2.0.3    digest_0.6.35     rstudioapi_0.16.0
+[33] lifecycle_1.0.4   vctrs_0.6.5       evaluate_0.23     glue_1.7.0       
+[37] whisker_0.4.1     colorspace_2.1-0  rmarkdown_2.27    tools_4.4.0      
+[41] htmltools_0.5.8.1</code></pre>
 </div>
 </div>
 </div>

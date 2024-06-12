@@ -39,7 +39,10 @@ data <- data.frame(Species = c(
 "Hymenopus coronatus", "Tenodera sinensis", "Mantis religiosa", "Deroplatys truncata", "Metallyticus violacea", 
 
 # Blattodea
-"Ectobius pallidus"
+"Ectobius pallidus",
+
+# Hymenoptera
+"Apis mellifera", "Aleiodes testaceus", "Bombus terrestris"
 ),
                    
 Order = c("Orthoptera","Orthoptera", "Orthoptera", "Orthoptera", "Orthoptera", "Orthoptera", "Orthoptera", "Orthoptera", "Orthoptera",
@@ -58,7 +61,9 @@ Order = c("Orthoptera","Orthoptera", "Orthoptera", "Orthoptera", "Orthoptera", "
           
           "Mantodea", "Mantodea", "Mantodea", "Mantodea", "Mantodea",
           
-          "Blattodea"
+          "Blattodea",
+          
+          "Hymenoptera", "Hymenoptera", "Hymenoptera"
            
           ), 
 
@@ -88,7 +93,10 @@ Common_Name = c(
 "Walking flower mantis", "Chinese praying mantis", "Praying mantis", "Dead leaf mantis", "Iridescent bark mantis",
 
 # Blattodea
-"Tawny cockroach"
+"Tawny cockroach",
+
+# Hymenoptera
+"Honey bee", "Common mummy wasp", "Buff-tailed bumblebee"
 ),
 
 Size = c(
@@ -117,7 +125,10 @@ Size = c(
 "3.1 Gb", "2.7 Gb", "3.7 Gb", "4.3 Gb", "2.3 Gb",
 
 # Blattodea
-"2.1 Gb"
+"2.1 Gb",
+
+# Hymenoptera
+"225.2 Mb", "110.7 Mb", "393 Mb"
 ), 
 
 Origin = c(
@@ -146,7 +157,10 @@ Origin = c(
 "Xishuangbanna, China", "Guangzhou, China", "Guangzhou, China", "Cameron, Malaysia", "Kuala Lumpur, Malaysia", 
 
 # Blattodea
-"United Kingdom"
+"United Kingdom",
+
+# Hymenoptera
+"USA", "United Kingdom", "United Kingdom"
 ), 
 
 RefSeq_Annotation = c(
@@ -175,7 +189,10 @@ RefSeq_Annotation = c(
 "N", "N", "N", "N", "N",
 
 # Blattodea
-"N"
+"N",
+
+# Hymenoptera
+"Y", "N", "Y"
 ),
 
 Assembly_Method = c(
@@ -206,7 +223,10 @@ Meraculous v. JUNE-2016; Dovetail HiRise v. JUNE-2016; LepMap2 - clustering of s
 "Hifiasm v. 0.14.2", "Hifiasm v. 0.14.2", "Hifiasm v. 0.14.2","Hifiasm v. 0.14.2","Hifiasm v. 0.14.2",
 
 #Blattodea
-"51x PacBio data and Arima2 Hi-C"
+"51x PacBio data and Arima2 Hi-C",
+
+# Hymenoptera
+"PacBio; 10X Chromium; Phase Genomics HiC; Bionano; FALCON v. 0.5.0; Arcs v. 1.0.1; Links v. 1.8.5; BioNano Solve v. 3.1", "199x PacBio data and Arima2 Hi-C", "57x PacBio data, 10X Genomics Chromium data, and Arima Hi-C data"
 ),
 
 Publication_Link = c(
@@ -236,7 +256,10 @@ Publication_Link = c(
 "https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_030762935.1/", "https://ncbi.nlm.nih.gov/datasets/genome/GCA_030765045.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_030765055.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_030765065.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_030762175.1/",
 
 # Blattodea
-"https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_964059185.1/"
+"https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_964059185.1/",
+
+# Hymenoptera
+"https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_003254395.2/","https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_009193385.2/","https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_910591885.1/"
 ))
 
 
@@ -244,8 +267,8 @@ Publication_Link = c(
 data$Species <- paste0("*", data$Species, "*")
 
 # Define the factor levels and corresponding colors for Order column
-order_levels <- c("Lepidoptera", "Orthoptera", "Hemiptera", "Phasmatodea", "Neuroptera", "Ephemeroptera", "Plecoptera", "Mantodea", "Blattodea")
-order_colors <- c("#c5cafb", "#abdafc", "#d0f0c0", "#effeee", "#f9d7e9", "#f9f8d7", "#fac8a5", "#c4fcae", "#ccc0ba")
+order_levels <- c("Lepidoptera", "Orthoptera", "Hemiptera", "Phasmatodea", "Neuroptera", "Ephemeroptera", "Plecoptera", "Mantodea", "Blattodea", "Hymenoptera")
+order_colors <- c("#c5cafb", "#abdafc", "#d0f0c0", "#effeee", "#f9d7e9", "#f9f8d7", "#fac8a5", "#c4fcae", "#ccc0ba", "#E46FD5")
 
 # Map colors based on factor levels
 data$Color <- order_colors[match(data$Order, order_levels)]
@@ -269,6 +292,7 @@ kable(data, "html", escape = FALSE, caption = "") %>%
 
   add_header_above(c(" " = 1, "Available NCBI Information of Members of Orthoptera & Other Orders in Insecta" = 7))
 ```
+
 ```{r NCBI-stats info, echo=FALSE, message=FALSE, warning =FALSE}
 library(knitr)
 library(kableExtra)
@@ -291,4 +315,100 @@ kable(data, escape = FALSE, caption = "") %>%
   column_spec(4, width = "20em") %>%
   row_spec(0, bold = TRUE, background = "#D3D3D3") %>%
   add_header_above(c(" " = 1, "Statistics of NCBI Assemblies" = 3))
+```
+
+```{r chosen-info, echo=FALSE, message=FALSE, warning =FALSE}
+library(knitr)
+library(kableExtra)
+
+# Data for the table
+data <- data.frame(
+  Species = c(
+  # Orthoptera  
+  "Schistocera gregaria","Schistocera americana","Schistocera nitens", "Schistocera cancellata", "Schistocera serialis cubense", "Schistocerca   piceifrons", 
+  
+  # Blattodea
+  "Ectobius pallidus",
+  
+  # Hymenoptera
+  "Apis mellifera"),
+
+  Order = c(
+    "Orthoptera","Orthoptera", "Orthoptera", "Orthoptera", "Orthoptera", "Orthoptera", "Blattodea", "Hymenoptera"),
+
+  BUSCO_Analysis = c(
+    # Orthoptera
+    "96%", "96.6%", "96.4%", "96.3%", "96.8%", "94.8%",
+    
+    # Blattodea
+    "N/A"
+    
+    # Hymenoptera
+    "98.6%"),
+
+  Genome_Size = c(
+    # Orthoptera
+    "8.7 Gb", "9 Gb", "8.8 Gb", "8.5 Gb", "9.1 Gb", "8.7 Gb",
+    
+    # Blattodea
+    "2.1 Gb",
+    
+    # Hymenoptera
+    "225.2 Mb"),
+
+  Genes_Annotated = c(
+    # Orthoptera
+    "99,467", "81,274", "72,560", "103,533", "75,810", "96,806",
+    
+    # Hymenoptera
+    "12,398"),
+
+  Protein_Coding = c(
+    # Orthoptera
+    "19,799", "17,662", "17,500", "16,907", "17,237", "17,490", 
+    
+    # Blattodea
+    
+    # Hymenoptera
+    "9,935"),
+
+  NCBI_link = c(
+    # Orthoptera
+    "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023897955.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_021461395.2/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023898315.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023864275.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023864345.2/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_021461385.2/",
+    
+    # Hymenoptera
+    "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_003254395.2/"
+    )
+  
+)
+
+
+# Italicize the species names
+data$Species <- paste0("*", data$Species, "*")
+
+# Define the factor levels and corresponding colors for Order column
+order_levels <- c("Orthoptera", "Blattodea", "Hymenoptera")
+order_colors <- c("#abdafc", "#ccc0ba", "#E46FD5")
+
+# Map colors based on factor levels
+data$Color <- order_colors[match(data$Order, order_levels)]
+data$Color[is.na(data$Color)] <- "#FFFFFF"  # Default color for NA values
+
+# Apply cell_spec with correct color mapping to Order column
+data$Order <- cell_spec(
+  data$Order, 
+  background = data$Color
+)
+
+# Select the Species column
+data <- data[c("Species", "Order", "BUSCO_Analysis", "Genome_Size", "Genes_Annotated", "Protein_Coding", "NCBI_link")]
+ 
+# Species info table
+kable(data, "html", escape = FALSE, caption = "") %>%
+  
+  kable_styling() %>%
+  
+  scroll_box(width="1000px", height="500px")%>%
+
+  add_header_above(c(" " = 1, "Species of Interest & Outgroups Information" = 6))
 ```
