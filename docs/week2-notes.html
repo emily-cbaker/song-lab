@@ -475,15 +475,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree94a70e6915577ca0ddf54556e8a9937b53fd9bd9targetblank94a70e6a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree5a41ea1606b36999f4a905f314ed2a3d013c7050targetblank5a41ea1a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/94a70e6915577ca0ddf54556e8a9937b53fd9bd9" target="_blank">94a70e6</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/5a41ea1606b36999f4a905f314ed2a3d013c7050" target="_blank">5a41ea1</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree94a70e6915577ca0ddf54556e8a9937b53fd9bd9targetblank94a70e6a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree5a41ea1606b36999f4a905f314ed2a3d013c7050targetblank5a41ea1a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -493,7 +493,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/94a70e6915577ca0ddf54556e8a9937b53fd9bd9" target="_blank">94a70e6</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/5a41ea1606b36999f4a905f314ed2a3d013c7050" target="_blank">5a41ea1</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -511,6 +511,11 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    bootswatch/
+
+Unstaged changes:
+    Modified:   analysis/orthop-genomes-project.Rmd
+    Modified:   analysis/theme3.css
+    Modified:   analysis/toga.Rmd
 
 </code></pre>
 <p>
@@ -555,6 +560,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/5a41ea1606b36999f4a905f314ed2a3d013c7050/analysis/week2-notes.Rmd" target="_blank">5a41ea1</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-12
+</td>
+<td>
+wflow_publish("analysis/week2-notes.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/f848c6e2440c9bc15a0601154a526075200ef5de/docs/week2-notes.html" target="_blank">f848c6e</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-12
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -738,6 +777,25 @@ Traceback (most recent call last):
 PermissionError: [Errno 13] Permission denied: &#39;/sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/nextflow_logs&#39;</code></pre>
 <p>I have emailed the HPRC help desk and am waiting for their response
 on how to proceed.</p>
+<p>Update: They answered and told me to remove the dollar signs from in
+front of the file paths. I tried this and also downloaded the
+<em>supply</em> folder from the Hiller Lab GitHub in order to have
+access to the U12 data, but neither of these things worked. I am waiting
+on another repsonse from the help desk.</p>
+<p>Final Update: This error has been resolved with the addition of a
+directory for Nextflow to operate from, as well as the –nextflow_dir
+<directory path> flag being added to the end of the command to run TOGA.
+The full documentation is found <a href="toga.html">here</a> under
+troubleshooting.</p>
+<p>I am now having the following problem: I run TOGA and it goes until
+step 2 before it tries to rerun all jobs and then crashes. I then get
+the following message in my .out file:</p>
+<pre class="r"><code>Traceback (most recent call last):
+  File &quot;/var/spool/slurmd/job10522779/slurm_script&quot;, line 19, in &lt;module&gt;
+    from modules.common import parts
+ModuleNotFoundError: No module named &#39;modules&#39;</code></pre>
+<p>The help desk has been emailed. Jackson tried to run it in a conda
+environment on the cluster, but that didn’t work either.</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
