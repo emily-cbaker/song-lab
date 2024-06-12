@@ -128,7 +128,7 @@ Optionally, you may also provide information about U12 introns, in which noncano
 
 #### Testing
 
-The Hiller Lab provides a test [reference](https://hgdownload.cse.ucsc.edu/goldenpath/hg38/bigZips/hg38.2bit) and [query](https://hgdownload.cse.ucsc.edu/goldenpath/mm10/bigZips/mm10.2bit) genome, already in the required 2-bit formatting.   
+The Hiller Lab provides a test [reference](https://hgdownload.cse.ucsc.edu/goldenpath/hg38/bigZips/hg38.2bit) and [query](https://hgdownload.cse.ucsc.edu/goldenpath/mm10/bigZips/mm10.2bit) genome, already in the required 2-bit formatting. You will also need to download the [supply](https://github.com/hillerlab/TOGA/tree/master/supply) folder in order to have the U12 data for the genomes. You can download the whole folder at once by copy and pasting the URL into [this website](https://download-directory.github.io/).
 
 After this data has been downloaded & placed in the correct directory, call the following command:
 
@@ -143,9 +143,9 @@ This will take about 20 minutes on a 500 core cluster.
 
 ## Troubleshooting
 
-#### Grace: PermissionError: [Errno 13]
+### Grace: PermissionError: [Errno 13]
   
-  I have emailed the HPRC help desk about this error and will update when I receive a response. The full input and error message is here: 
+The full input and error message is here: 
   
 ```{r error, eval=FALSE}
   (base) [ecbaker7@c076 toga]$ toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed $/toga $/toga --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc $/scratch/group/songlab/emily/toga/nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms  
@@ -166,4 +166,26 @@ Traceback (most recent call last):
 PermissionError: [Errno 13] Permission denied: '/sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/nextflow_logs'
 ```
 
+
+I corrected this by creating a new directory called *nextflow_logs* and then adding the flag --nextflow_dir or --nd followed by the path to *nextflow_logs*. This gives Nextflow a directory to operate from. The full command is:
+
+```{r corrected-command, eval=FALSE}
+
+toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs
+
+```
+
+### Error on Toga step 2: Nextflow jobs won't execute
+
+I'm having an error where I get to step 2 of TOGA but it can't complete any jobs and keeps retrying all of them. The error message I get in my .out file is 
+
+```{r nf-no-jobs, eval=FALSE}
+Traceback (most recent call last):
+  File "/var/spool/slurmd/job10522779/slurm_script", line 19, in <module>
+    from modules.common import parts
+ModuleNotFoundError: No module named 'modules'
+
+``` 
+
+The help desk seems to think it's a problem with how I'm specifying the nodes and tasks per node but that's either not the problem or my syntax is incorrect. Awaiting another response from IT.
 
