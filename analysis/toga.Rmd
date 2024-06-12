@@ -3,18 +3,18 @@ title: "TOGA: Tool to Infer Orthologs from Genome Alignments"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
-    toc: true
+    toc: false
     toc_float: true
-    toc_collapsed: true
+    toc_collapsed: false
     theme: default
     css: "theme3.css"
-toc_depth: 3
+toc_depth: 1
 number_sections: true
 editor_options:
   chunk_output_type: console
 ---
 
-#
+# TOGA {.tabset}
 ## What is TOGA?
 
 > "Annotating coding genes and inferring orthologs are two classical > challenges in genomics and evolutionary biology that have 
@@ -34,7 +34,8 @@ editor_options:
 
 --- Bogdan M. Kirilenko *et al.*, *Integrating gene annotation with orthology inference at scale*
 
-## TOGA Steps
+
+#### Steps of TOGA
 
 1. First, TOGA uses pairwise genome alignment between the reference & query genome represented by chains of co-linear local alignments. Through this process, it captures orthologous gene loci and loci containing paralogs or processed pseudo-genes. To distinguish between these 2 groups, TOGA computes characteristic features that capture the amount of intronic and intergenic alignments, considering each gene & overlapping chain. Additionally, synteny (conserved gene order) can be used to help further distinguish orthologs from paralogs. TOGA also implements machine learning to compute the probability that a chain is an orthologous locus for the gene in question. 
 
@@ -52,7 +53,7 @@ editor_options:
 2. CESAR v. 2.0 is used to determine the position of coding exons of the focal gene in each (co-)orthologous query locus. TOGA then assesses the reading frame intactness for each transcript and applies a gene loss detection approach to identify gene-inactivating mutations while taking assembly incompleteness into account. A gene is classified as *lost* if all transcripts at all (co-)orthologous loci are classified as lost.
 
   * <details>
-      <summary>CESAR v. 2.0</summary>
+      <summary>More on CESAR v. 2.0</summary>
       "CESAR 2.0 (Coding Exon Structure Aware Realigner 2.0) is a          method to realign coding exons or genes to DNA sequences            using a Hidden Markov Model.  
 
       Compared to its predecessor, CESAR 2.0 is 77X times faster       on average (132X times faster for large exons) and requires         30-times less memory. In addition, CESAR 2.0 improves the           accuracy of the comparative gene annotation by two new              features. First, CESAR 2.0 substantially improves the               identification of splice sites that have shifted over a larger       distance, which improves the accuracy of detecting the correct       exon boundaries. Second, CESAR 2.0 provides a new gene mode         that re-aligns entire genes at once. This mode is able to           recognize complete intron deletions and will annotate larger        joined exons that arose by intron deletion events."
@@ -63,11 +64,11 @@ editor_options:
     
 3. In this step, TOGA determines the orthology type by considering all reference genes and orthologous query loci that encode within an intact reading frame. TOGA then uses an orthology graph to resolve any weakly supported orthology relationship among many:many orthologs.
 
-# Running TOGA
+## Installation & Running
 
-## Installation
+### Installation
 
-### Locally
+#### Locally
 Dependencies:  
 * Python (Version 3.9 or later)  
 * Java (Version 8 or later)  
@@ -93,7 +94,7 @@ We then must install any necessary Python packages using
 python3 -m pip install -r requirements.txt --user
 ```
 
-### On a Cluster
+#### On a Cluster
 
 <mark> If running on a Slurm cluster (like GRACE), there are configuration files already available in the Hiller Lab GitHub under the nextflow_config_files directory. Therefore you may download those files and skip this step! </mark>
 
@@ -105,9 +106,9 @@ Here are the steps to prepare to run TOGA:
 
 3. Create a file called "call_cesar_config_template.nf". This configuration file is for the jobs run by CESAR. It is **highly recommended** that you request 24 hours of runtime. You do not need to provide an exact amount of memory because TOGA will compute this itself, so put in the placeholder "process.memory = "${_MEMORY_}G" "
 
-## Running
+### Running
 
-### Prepare to Run
+#### Prepare to Run
 To run TOGA, we must first provide it with the appropriate input files. These are:
 
 1. A reference and query genomes in 2bit format (can be generated from multi-fasta files using the [UCSC twoBitToFa](https://genome.ucsc.edu/goldenPath/help/twoBit.html) command)
@@ -125,8 +126,7 @@ Optionally, you may also provide information about U12 introns, in which noncano
        
 </details>
 
-
-## Testing
+#### Testing
 
 The Hiller Lab provides a test [reference](https://hgdownload.cse.ucsc.edu/goldenpath/hg38/bigZips/hg38.2bit) and [query](https://hgdownload.cse.ucsc.edu/goldenpath/mm10/bigZips/mm10.2bit) genome, already in the required 2-bit formatting.   
 
@@ -139,5 +139,31 @@ After this data has been downloaded & placed in the correct directory, call the 
 
 This will take about 20 minutes on a 500 core cluster.
 
+
+
 ## Troubleshooting
+
+#### Grace: PermissionError: [Errno 13]
+  
+  I have emailed the HPRC help desk about this error and will update when I receive a response. The full input and error message is here: 
+  
+```{r error, eval=FALSE}
+  (base) [ecbaker7@c076 toga]$ toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed $/toga $/toga --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc $/scratch/group/songlab/emily/toga/nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms  
+#### Initiating TOGA class ####
+Checking dependencies...
+check if binaries are compiled and libs are installed...
+All dependencies found
+/bin/sh: git: command not found
+Traceback (most recent call last):
+  File "/sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/toga.py", line 1965, in <module>
+    main()
+  File "/sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/toga.py", line 1960, in main
+    toga_manager = Toga(args)
+  File "/sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/toga.py", line 88, in __init__
+    self.nextflow_dir = self.__get_nf_dir(args.nextflow_dir)
+  File "/sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/toga.py", line 362, in __get_nf_dir
+    os.mkdir(default_dir) if not os.path.isdir(default_dir) else None
+PermissionError: [Errno 13] Permission denied: '/sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/nextflow_logs'
+```
+
 
