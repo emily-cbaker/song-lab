@@ -31,6 +31,6 @@ output:
   workflowr::wflow_html:
     toc: yes
     toc_float: yes
-    theme: journal
+    theme: default
     highlight: textmate
-   # css: "theme2.css"
+    css: "theme3.css"
