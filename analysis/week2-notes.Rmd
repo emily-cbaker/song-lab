@@ -30,3 +30,19 @@ PermissionError: [Errno 13] Permission denied: '/sw/eb/sw/TOGA/2021.12.15-foss-2
 ```
 
 I have emailed the HPRC help desk and am waiting for their response on how to proceed.
+
+Update: They answered and told me to remove the dollar signs from in front of the file paths. I tried this and also downloaded the *supply* folder from the Hiller Lab GitHub in order to have access to the U12 data, but neither of these things worked. I am waiting on another repsonse from the help desk.
+
+Final Update: This error has been resolved with the addition of a directory for Nextflow to operate from, as well as the --nextflow_dir <directory path> flag being added to the end of the command to run TOGA. The full documentation is found [here](toga.html) under troubleshooting.
+
+I am now having the following problem: I run TOGA and it goes until step 2 before it tries to rerun all jobs and then crashes. I then get the following message in my .out file:
+
+```{r out-file-message, eval=FALSE}
+Traceback (most recent call last):
+  File "/var/spool/slurmd/job10522779/slurm_script", line 19, in <module>
+    from modules.common import parts
+ModuleNotFoundError: No module named 'modules'
+
+```
+
+The help desk has been emailed. Jackson tried to run it in a conda environment on the cluster, but that didn't work either.
