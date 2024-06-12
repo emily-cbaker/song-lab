@@ -6,8 +6,8 @@ output:
     toc: true
     toc_float: true
     toc_collapsed: true
-    theme: journal
-    # css: "bootstrap.css"
+    theme: default
+    css: "theme3.css"
 toc_depth: 3
 number_sections: true
 editor_options:
