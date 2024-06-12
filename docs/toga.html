@@ -476,15 +476,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreea4645a5d195c2b97a6f50744ae7d3356c9ee7413targetblanka4645a5a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreeaf7a6105d0b64194f2e5e3bc1245eb02f6ac791etargetblankaf7a610a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/a4645a5d195c2b97a6f50744ae7d3356c9ee7413" target="_blank">a4645a5</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/af7a6105d0b64194f2e5e3bc1245eb02f6ac791e" target="_blank">af7a610</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreea4645a5d195c2b97a6f50744ae7d3356c9ee7413targetblanka4645a5a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreeaf7a6105d0b64194f2e5e3bc1245eb02f6ac791etargetblankaf7a610a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -494,7 +494,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/a4645a5d195c2b97a6f50744ae7d3356c9ee7413" target="_blank">a4645a5</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/af7a6105d0b64194f2e5e3bc1245eb02f6ac791e" target="_blank">af7a610</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -514,6 +514,7 @@ Ignored files:
     Ignored:    bootswatch/
 
 Unstaged changes:
+    Modified:   analysis/orthop-genomes-project.Rmd
     Modified:   analysis/theme3.css
 
 </code></pre>
@@ -558,6 +559,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/af7a6105d0b64194f2e5e3bc1245eb02f6ac791e/analysis/toga.Rmd" target="_blank">af7a610</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-12
+</td>
+<td>
+wflow_publish("analysis/toga.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/340b8a4591c55acafd18d4b41764fe04979242d0/docs/toga.html" target="_blank">340b8a4</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-12
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -984,7 +1019,12 @@ type.</p>
 href="https://hgdownload.cse.ucsc.edu/goldenpath/hg38/bigZips/hg38.2bit">reference</a>
 and <a
 href="https://hgdownload.cse.ucsc.edu/goldenpath/mm10/bigZips/mm10.2bit">query</a>
-genome, already in the required 2-bit formatting.</p>
+genome, already in the required 2-bit formatting. You will also need to
+download the <a
+href="https://github.com/hillerlab/TOGA/tree/master/supply">supply</a>
+folder in order to have the U12 data for the genomes. You can download
+the whole folder at once by copy and pasting the URL into <a
+href="https://download-directory.github.io/">this website</a>.</p>
 <p>After this data has been downloaded &amp; placed in the correct
 directory, call the following command:</p>
 <pre class="r"><code>./toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed ${path_to_human_2bit} ${path_to_mouse_2bit} --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc ${path_to_nextflow_config_dir} --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms</code></pre>
@@ -994,10 +1034,9 @@ directory, call the following command:</p>
 </div>
 <div id="troubleshooting" class="section level2">
 <h2>Troubleshooting</h2>
-<div id="grace-permissionerror-errno-13" class="section level4">
-<h4>Grace: PermissionError: [Errno 13]</h4>
-<p>I have emailed the HPRC help desk about this error and will update
-when I receive a response. The full input and error message is here:</p>
+<div id="grace-permissionerror-errno-13" class="section level3">
+<h3>Grace: PermissionError: [Errno 13]</h3>
+<p>The full input and error message is here:</p>
 <pre class="r"><code>  (base) [ecbaker7@c076 toga]$ toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed $/toga $/toga --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc $/scratch/group/songlab/emily/toga/nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms  
 #### Initiating TOGA class ####
 Checking dependencies...
@@ -1014,6 +1053,25 @@ Traceback (most recent call last):
   File &quot;/sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/toga.py&quot;, line 362, in __get_nf_dir
     os.mkdir(default_dir) if not os.path.isdir(default_dir) else None
 PermissionError: [Errno 13] Permission denied: &#39;/sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/nextflow_logs&#39;</code></pre>
+<p>I corrected this by creating a new directory called
+<em>nextflow_logs</em> and then adding the flag –nextflow_dir or –nd
+followed by the path to <em>nextflow_logs</em>. This gives Nextflow a
+directory to operate from. The full command is:</p>
+<pre class="r"><code>toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs</code></pre>
+</div>
+<div id="error-on-toga-step-2-nextflow-jobs-wont-execute"
+class="section level3">
+<h3>Error on Toga step 2: Nextflow jobs won’t execute</h3>
+<p>I’m having an error where I get to step 2 of TOGA but it can’t
+complete any jobs and keeps retrying all of them. The error message I
+get in my .out file is</p>
+<pre class="r"><code>Traceback (most recent call last):
+  File &quot;/var/spool/slurmd/job10522779/slurm_script&quot;, line 19, in &lt;module&gt;
+    from modules.common import parts
+ModuleNotFoundError: No module named &#39;modules&#39;</code></pre>
+<p>The help desk seems to think it’s a problem with how I’m specifying
+the nodes and tasks per node but that’s either not the problem or my
+syntax is incorrect. Awaiting another response from IT.</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
