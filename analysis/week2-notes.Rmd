@@ -7,3 +7,26 @@ output:
 editor_options:
   chunk_output_type: console
 ---
+
+## Beginning Work on TOGA
+I have downloaded all dependencies and loaded TOGA on the Grace cluster but I received the following Permission Error message given the input below:
+```{r toga-error, eval=FALSE}
+(base) [ecbaker7@c076 toga]$ toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed $/toga $/toga --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc $/scratch/group/songlab/emily/toga/nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms
+#### Initiating TOGA class ####
+Checking dependencies...
+check if binaries are compiled and libs are installed...
+All dependencies found
+/bin/sh: git: command not found
+Traceback (most recent call last):
+  File "/sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/toga.py", line 1965, in <module>
+    main()
+  File "/sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/toga.py", line 1960, in main
+    toga_manager = Toga(args)
+  File "/sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/toga.py", line 88, in __init__
+    self.nextflow_dir = self.__get_nf_dir(args.nextflow_dir)
+  File "/sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/toga.py", line 362, in __get_nf_dir
+    os.mkdir(default_dir) if not os.path.isdir(default_dir) else None
+PermissionError: [Errno 13] Permission denied: '/sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/nextflow_logs'
+```
+
+I have emailed the HPRC help desk and am waiting for their response on how to proceed.
