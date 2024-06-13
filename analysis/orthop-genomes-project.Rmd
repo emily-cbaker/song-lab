@@ -18,10 +18,10 @@ data <- data.frame(Species = c(
 "Schistocera gregaria","Schistocera americana","Schistocera nitens", "Schistocera cancellata", "Schistocera serialis cubense", "Schistocerca piceifrons", "Locusta migratora", "Meconaema thalassinum", "Zhengitettix transpicula",
                                
 # Hemiptera                              
-"Balanococcus diminutus", "Nilaparvata lugens", "Placoccus citri", "Rhopalosiphum maidis", 
+"Balanococcus diminutus", "Nilaparvata lugens", "Placoccus citri", "Rhopalosiphum maidis", "Acyrthosiphon pisum",
 
 # Lepidoptera
-"Spodoptera frugiperda", "Plutella xylostella", "Pieris rapae", "Bicyclus anyana", "Ostrinia nubilalis", "Vaneaa cardui", "Pieris brassicae", "Pararge aegeria", "Aricia agestis", "Cydia fagiglandana", "Nymphalis io", 
+"Spodoptera frugiperda", "Plutella xylostella", "Pieris rapae", "Bicyclus anyana", "Ostrinia nubilalis", "Vaneaa cardui", "Pieris brassicae", "Pararge aegeria", "Aricia agestis", "Cydia fagiglandana", "Nymphalis io", "Bicyclus anynana",
 
 # Phasmatodea
 "Bacillus rossius redtenbacheri", "Dryococelus australis", "Timema cristinae",
@@ -47,9 +47,9 @@ data <- data.frame(Species = c(
                    
 Order = c("Orthoptera","Orthoptera", "Orthoptera", "Orthoptera", "Orthoptera", "Orthoptera", "Orthoptera", "Orthoptera", "Orthoptera",
           
-          "Hemiptera", "Hemiptera", "Hemiptera", "Hemiptera", 
+          "Hemiptera", "Hemiptera", "Hemiptera", "Hemiptera", "Hemiptera", 
           
-          "Lepidoptera", "Lepidoptera", "Lepidoptera", "Lepidoptera", "Lepidoptera", "Lepidoptera", "Lepidoptera", "Lepidoptera", "Lepidoptera",              "Lepidoptera", "Lepidoptera", 
+          "Lepidoptera", "Lepidoptera", "Lepidoptera", "Lepidoptera", "Lepidoptera", "Lepidoptera", "Lepidoptera", "Lepidoptera", "Lepidoptera",              "Lepidoptera", "Lepidoptera", "Lepidoptera",
           
           "Phasmatodea", "Phasmatodea", "Phasmatodea", 
           
@@ -72,10 +72,10 @@ Common_Name = c(
 "Desert locust", "American grasshopper", "Vagrant locust", "South American locust", "Cuban bird grasshopper", "Central American locust", "Migratory locust", "Oak bush-cricket", "Pygmy grasshopper",
 
 # Hemiptera
-"New Zealand flax mealybug", "Brown planthopper", "Citrus mealybug", "Corn leaf aphid",
+"New Zealand flax mealybug", "Brown planthopper", "Citrus mealybug", "Corn leaf aphid", "Pea aphid",
 
 # Lepidoptera
-"Fall armyworm", "Diamondback moth", "Cabbage white", "Squinting bush brown", "European corn borer", "Painted Lady", "Large cabbage white", "Speckled wood butterfly", "Brown argus", "Beech moth", "European peacock butterfly",
+"Fall armyworm", "Diamondback moth", "Cabbage white", "Squinting bush brown", "European corn borer", "Painted Lady", "Large cabbage white", "Speckled wood butterfly", "Brown argus", "Beech moth", "European peacock butterfly", "Squinting bush brown",
 
 # Phasmatodea
 "European stick bug", "Tree lobster", "Cristina's timema",
@@ -104,10 +104,10 @@ Size = c(
 "8.7 Gb", "9 Gb", "8.8 Gb", "8.5 Gb", "9.1 Gb", "8.7 Gb", "6.3 Gb", "9 Gb", "993.6 Mb",
 
 # Hemiptera
-"313.1 Mb", "1.1 Gb", "403.6 Mb", "326 Mb",
+"313.1 Mb", "1.1 Gb", "403.6 Mb", "326 Mb", "533.6 Mb",
 
 # Lepidoptera
-"383.9 Mb", "323.3 Mb", "256.4 Mb","457.2 Mb", "495.5 Mb", "424.8 Mb", "292.3 Mb", "516.6 Mb", "435.3 Mb", "555.1 Mb", "384.2 Mb",
+"383.9 Mb", "323.3 Mb", "256.4 Mb","457.2 Mb", "495.5 Mb", "424.8 Mb", "292.3 Mb", "516.6 Mb", "435.3 Mb", "555.1 Mb", "384.2 Mb", "457.2 Mb",
 
 # Phasmatodea
 "1.6 Gb", "3.4 Gb", "955.5 Mb",
@@ -136,10 +136,10 @@ Origin = c(
 "Samburu, Kenya", "St. Augustine, FL", "Terlingua, TX", "Argentina", "Islamorada, FL", "Yucatan, Mexico nr. Tizimin", "Beijing, China", "United Kingdom", "Yizhou, Guangxi Providence, China",
 
 # Hemiptera
-"United Kingdom", "Wuhan, China", "United Kingdom", "Ithaca, NY",
+"United Kingdom", "Wuhan, China", "United Kingdom", "Ithaca, NY", "Texas, USA",
 
 # Lepidoptera
-"Australia", "United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom", "West Salton Forest, Scotland", "Romania", "United Kingdom", "United Kingdom",
+"Australia", "United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom", "United Kingdom", "West Salton Forest, Scotland", "Romania", "United Kingdom", "United Kingdom", "United Kingdom",
 
 # Phasmatodea
 "Ravenna, Italy", "Melbourne Zoo, Australia", "California",
@@ -168,10 +168,10 @@ RefSeq_Annotation = c(
 "Y", "Y", "Y","Y","Y","Y", "N", "N", "N",
 
 # Hemiptera           
-"Y","Y","Y","Y",
+"Y","Y","Y","Y", "Y",
 
 # Lepidoptera
-"Y","Y","Y","Y","Y","Y","Y","Y","Y","Y","Y",
+"Y","Y","Y","Y","Y","Y","Y","Y","Y","Y","Y", "Y",
 
 # Phasmatodea
 "Y","N", "N",
@@ -201,10 +201,11 @@ Assembly_Method = c(
 Hifiasm v. 0.14-r312; LACHESIS v. Dec-2017", " 29x PacBio data and Arima2 Hi-C", "HIFIasm v. 1.8.0",
                     
 # Hemiptera
-"PacBio & Arima2", "WTDGB v. 2.1, SmartDenovo v. 1.5, & HiC-Pro v 2.7.8", "PacBio, Arima2", "Canu v. 1.6 & Hi-C chromatin interation maps",
+"PacBio & Arima2", "WTDGB v. 2.1, SmartDenovo v. 1.5, & HiC-Pro v 2.7.8", "PacBio, Arima2", "Canu v. 1.6 & Hi-C chromatin interation maps", "
+HiRise v. Mar-2018",
 
 # Lepidoptera
-"CANU v. 2.2.0; PurgeDups v. 1.2.5; AllHiC v. 1; Racon v. 1.4.3; Masurca-Polca v. 4.0.9", "77x PacBio data, 10X Genomics Chromium data, & Arima2 Hi-C data", "56x PacBio data, 10X Genomics Chromium data, & Arima Hi-C", "20x PacBio data & Arima2 Hi-C", "44x PacBio data & Arima2 Hi-C", "25x PacBio data, 10X Genomics Chromium data, & Arima Hi-C", "92x PacBio data, 10X Genomics Chromium data, & Qiagen Hi-C", "42x PacBio data, 10X Genomics Chromium data, & Arima Hi-C", "54x PacBio data, 10X Genomics Chromium data, & Arima Hi-C", "45x PacBio data & Arima2 Hi-C", "64x PacBio data, 10X Genomics Chromium data, & Qiagen Hi-C",
+"CANU v. 2.2.0; PurgeDups v. 1.2.5; AllHiC v. 1; Racon v. 1.4.3; Masurca-Polca v. 4.0.9", "77x PacBio data, 10X Genomics Chromium data, & Arima2 Hi-C data", "56x PacBio data, 10X Genomics Chromium data, & Arima Hi-C", "20x PacBio data & Arima2 Hi-C", "44x PacBio data & Arima2 Hi-C", "25x PacBio data, 10X Genomics Chromium data, & Arima Hi-C", "92x PacBio data, 10X Genomics Chromium data, & Qiagen Hi-C", "42x PacBio data, 10X Genomics Chromium data, & Arima Hi-C", "54x PacBio data, 10X Genomics Chromium data, & Arima Hi-C", "45x PacBio data & Arima2 Hi-C", "64x PacBio data, 10X Genomics Chromium data, & Qiagen Hi-C", "20x PacBio data and Arima2 Hi-C",
 
 # Phasmatodea
 "HiFiASM v. 01.06.2021","WTDBG v. 2.5, HiRise v. JULY-2021", "
@@ -236,8 +237,13 @@ Publication_Link = c(
 "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023864275.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023864345.2/",
 "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_021461385.2/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_026315105.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_946902985.2/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_037074705.1/",
 
+# Hemiptera
+"https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_959613365.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_014356525.2/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_950023065.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_003676215.2/",
+"https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_005508785.2/",
+
 # Lepidoptera
-"https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_959613365.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_014356525.2/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_950023065.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_003676215.2/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023101765.2/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_932276165.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905147795.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_947172395.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_963855985.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905220365.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905147105.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905163445.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905147365.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_963556715.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905147045.1/", 
+"https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023101765.2/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_932276165.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905147795.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_947172395.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_963855985.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905220365.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905147105.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905163445.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905147365.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_963556715.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_905147045.1/", 
+"https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_947172395.1/",
 
 # Phasmatodea
 "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_032445375.1/","https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_029891345.1/",
@@ -325,59 +331,109 @@ library(kableExtra)
 data <- data.frame(
   Species = c(
   # Orthoptera  
-  "Schistocera gregaria","Schistocera americana","Schistocera nitens", "Schistocera cancellata", "Schistocera serialis cubense", "Schistocerca   piceifrons", 
+  "Schistocera gregaria","Schistocera americana","Schistocera nitens", "Schistocera cancellata", "Schistocera serialis cubense", "Schistocerca   piceifrons", "Locusta migratora",
   
-  # Blattodea
-  "Ectobius pallidus",
+  # Hemiptera
+  "Acyrthosiphon pisum", "Rhopalosiphum maidis",
   
   # Hymenoptera
-  "Apis mellifera"),
+  "Apis mellifera", "Bombus terrestris",
+  
+  # Lepidoptera
+  "Bicyclus anynana"
+  ),
+  
+  Common_Name = c(
+    "Desert locust", "American grasshopper", "Vagrant locust", "South American locust", "Cuban bird grasshopper", "Central American locust", "Migratory locust", 
+    
+    "Pea aphid", "Corn leaf aphid",
+    
+    "Honey bee", "Buff-tailed bumblebee",
+    
+    "Squinting bush brown"
+  ),
+  
+  Ref_or_Outgroup = c("R", "R", "R", "R", "R", "R","OG", 
+                      "OG", "OG", 
+                      "OG", "OG", 
+                      "OG"),
 
   Order = c(
-    "Orthoptera","Orthoptera", "Orthoptera", "Orthoptera", "Orthoptera", "Orthoptera", "Blattodea", "Hymenoptera"),
+    "Orthoptera","Orthoptera", "Orthoptera", "Orthoptera", "Orthoptera", "Orthoptera", "Orthoptera",
+    
+    "Hemiptera", "Hemiptera", 
+    
+    "Hymenoptera", "Hymenoptera",
+    
+    "Lepidoptera"),
 
   BUSCO_Analysis = c(
     # Orthoptera
-    "96%", "96.6%", "96.4%", "96.3%", "96.8%", "94.8%",
+    "96%", "96.6%", "96.4%", "96.3%", "96.8%", "94.8%", "N/A",
     
-    # Blattodea
-    "N/A"
-    
+    # Hemiptera
+    "N/A", "97.5%",
+
     # Hymenoptera
-    "98.6%"),
+    "98.6%", "98.5%",
+    
+    # Lepidoptera
+    "98%"),
 
   Genome_Size = c(
     # Orthoptera
-    "8.7 Gb", "9 Gb", "8.8 Gb", "8.5 Gb", "9.1 Gb", "8.7 Gb",
+    "8.7 Gb", "9 Gb", "8.8 Gb", "8.5 Gb", "9.1 Gb", "8.7 Gb", "6.3 Gb",
     
-    # Blattodea
-    "2.1 Gb",
+    # Hemiptera
+    "533.6 Mb", "326 Mb",
     
     # Hymenoptera
-    "225.2 Mb"),
+    "225.2 Mb", "393 Mb",
+    
+    # Lepidoptera
+    "457.2 Mb"),
 
   Genes_Annotated = c(
     # Orthoptera
-    "99,467", "81,274", "72,560", "103,533", "75,810", "96,806",
+    "99,467", "81,274", "72,560", "103,533", "75,810", "96,806", "N/A",
+    
+    # Hemiptera
+    "20,307","13,624",
     
     # Hymenoptera
-    "12,398"),
+    "12,398", "13,398",
+    
+    # Lepidoptera
+    "15,144"),
 
   Protein_Coding = c(
     # Orthoptera
-    "19,799", "17,662", "17,500", "16,907", "17,237", "17,490", 
+    "19,799", "17,662", "17,500", "16,907", "17,237", "17,490", "N/A",
     
-    # Blattodea
+    # Hemiptera
+    "17,681", "12,060",
     
     # Hymenoptera
-    "9,935"),
+    "9,935", "10,310",
+    
+    # Lepidoptera
+    "13,577"),
 
   NCBI_link = c(
     # Orthoptera
     "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023897955.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_021461395.2/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023898315.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023864275.1/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_023864345.2/", "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_021461385.2/",
+"https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_026315105.1/",
+    
+    # Hemiptera
+    "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_005508785.2/",
+    "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_003676215.2/",
     
     # Hymenoptera
-    "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_003254395.2/"
+    "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_003254395.2/",
+    "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_910591885.1/",
+    
+    # Lepidoptera
+    "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_947172395.1/"
     )
   
 )
@@ -387,8 +443,8 @@ data <- data.frame(
 data$Species <- paste0("*", data$Species, "*")
 
 # Define the factor levels and corresponding colors for Order column
-order_levels <- c("Orthoptera", "Blattodea", "Hymenoptera")
-order_colors <- c("#abdafc", "#ccc0ba", "#E46FD5")
+order_levels <- c("Orthoptera", "Blattodea", "Hemiptera", "Lepidoptera", "Hymenoptera")
+order_colors <- c("#abdafc", "#ccc0ba", "#d0f0c0", "#c5cafb", "#E46FD5")
 
 # Map colors based on factor levels
 data$Color <- order_colors[match(data$Order, order_levels)]
@@ -401,7 +457,7 @@ data$Order <- cell_spec(
 )
 
 # Select the Species column
-data <- data[c("Species", "Order", "BUSCO_Analysis", "Genome_Size", "Genes_Annotated", "Protein_Coding", "NCBI_link")]
+data <- data[c("Species", "Order", "Common_Name", "Ref_or_Outgroup", "BUSCO_Analysis", "Genome_Size", "Genes_Annotated", "Protein_Coding", "NCBI_link")]
  
 # Species info table
 kable(data, "html", escape = FALSE, caption = "") %>%
@@ -410,5 +466,5 @@ kable(data, "html", escape = FALSE, caption = "") %>%
   
   scroll_box(width="1000px", height="500px")%>%
 
-  add_header_above(c(" " = 1, "Species of Interest & Outgroups Information" = 6))
+  add_header_above(c(" " = 1, "Reference & Outgroup Species Information" = 8))
 ```
