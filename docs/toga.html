@@ -345,7 +345,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-12
+<strong>Last updated:</strong> 2024-06-13
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -476,15 +476,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreeaf7a6105d0b64194f2e5e3bc1245eb02f6ac791etargetblankaf7a610a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreec23e114a28012db85c96c68aa2546a81b0e6e227targetblankc23e114a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/af7a6105d0b64194f2e5e3bc1245eb02f6ac791e" target="_blank">af7a610</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/c23e114a28012db85c96c68aa2546a81b0e6e227" target="_blank">c23e114</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreeaf7a6105d0b64194f2e5e3bc1245eb02f6ac791etargetblankaf7a610a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreec23e114a28012db85c96c68aa2546a81b0e6e227targetblankc23e114a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -494,7 +494,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/af7a6105d0b64194f2e5e3bc1245eb02f6ac791e" target="_blank">af7a610</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/c23e114a28012db85c96c68aa2546a81b0e6e227" target="_blank">c23e114</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -515,7 +515,7 @@ Ignored files:
 
 Unstaged changes:
     Modified:   analysis/orthop-genomes-project.Rmd
-    Modified:   analysis/theme3.css
+    Modified:   analysis/week2-notes.Rmd
 
 </code></pre>
 <p>
@@ -559,6 +559,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/c23e114a28012db85c96c68aa2546a81b0e6e227/analysis/toga.Rmd" target="_blank">c23e114</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-13
+</td>
+<td>
+wflow_publish("analysis/toga.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/b35fb5e98ba20827cb21322d78de2d44b88e27a1/docs/toga.html" target="_blank">b35fb5e</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-12
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1013,6 +1047,18 @@ these fusion transcripts interferes with the inference of the orthology
 type.</p>
 </details>
 </div>
+<div id="locally-1" class="section level4">
+<h4>Locally</h4>
+<p>To load TOGA and its dependencies on the Grace cluster, enter the
+command</p>
+<pre class="r"><code>ml GCC/8.3.0 OpenMPI/3.1.4 TOGA/2021.12.15-Python-3.7.4</code></pre>
+<p>Then to launch TOGA use the command</p>
+<pre class="r"><code>toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs</code></pre>
+</div>
+<div id="on-a-cluster-1" class="section level4">
+<h4>On a Cluster</h4>
+<p>To run TOGA on a slurm-based cluster</p>
+</div>
 <div id="testing" class="section level4">
 <h4>Testing</h4>
 <p>The Hiller Lab provides a test <a
@@ -1069,9 +1115,15 @@ get in my .out file is</p>
   File &quot;/var/spool/slurmd/job10522779/slurm_script&quot;, line 19, in &lt;module&gt;
     from modules.common import parts
 ModuleNotFoundError: No module named &#39;modules&#39;</code></pre>
-<p>The help desk seems to think it’s a problem with how I’m specifying
-the nodes and tasks per node but that’s either not the problem or my
-syntax is incorrect. Awaiting another response from IT.</p>
+<p>I corrected this error by running the job through a .sh file called
+<em>run-toga.sh</em> using sbatch. It contained the commands below:</p>
+<pre class="r"><code>#!/bin/sh
+ml GCC/8.3.0 OpenMPI/3.1.4 TOGA/2021.12.15-Python-3.7.4      # load all necessary modules
+
+toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs</code></pre>
+<p>You can then run <em>run-toga.sh</em> on the cluster using the
+command</p>
+<pre class="r"><code>sbatch --ntasks=48 --mem=360G --nodes=1 --time=0-1:00:00 run-toga.sh</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
