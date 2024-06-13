@@ -125,6 +125,21 @@ Optionally, you may also provide information about U12 introns, in which noncano
        In order to get the best results possible, the Hiller Lab suggests including representative (principle) isoforms for each gene, particularly ones that capture exon-intron structures, but exclude isoforms that represent much shorter and likely more non-finctional transcripts. It is also recommended to exclude transcripts that represent fusion isoforms between 2 ancestral genes because including these fusion transcripts interferes with the inference of the orthology type.
        
 </details>
+#### Locally
+To load TOGA and its dependencies on the Grace cluster, enter the command 
+
+```{r load-command, eval=FALSE}
+ml GCC/8.3.0 OpenMPI/3.1.4 TOGA/2021.12.15-Python-3.7.4
+```
+
+Then to launch TOGA use the command
+```{r launch-toga, eval=FALSE}
+toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs
+
+```
+
+#### On a Cluster
+ To run TOGA on a slurm-based cluster
 
 #### Testing
 
@@ -187,5 +202,18 @@ ModuleNotFoundError: No module named 'modules'
 
 ``` 
 
-The help desk seems to think it's a problem with how I'm specifying the nodes and tasks per node but that's either not the problem or my syntax is incorrect. Awaiting another response from IT.
+I corrected this error by running the job through a .sh file called *run-toga.sh* using sbatch. It contained the commands below:
+
+```{r run-toga, eval=FALSE}
+#!/bin/sh
+ml GCC/8.3.0 OpenMPI/3.1.4 TOGA/2021.12.15-Python-3.7.4		 # load all necessary modules
+
+toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs
+```
+
+You can then run *run-toga.sh* on the cluster using the command
+```{r comm-run-toga, eval=FALSE}
+sbatch --ntasks=48 --mem=360G --nodes=1 --time=0-1:00:00 run-toga.sh
+
+```
 
