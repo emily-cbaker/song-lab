@@ -94,6 +94,8 @@ We then must install any necessary Python packages using
 python3 -m pip install -r requirements.txt --user
 ```
 
+
+
 #### On a Cluster
 
 <mark> If running on a Slurm cluster (like GRACE), there are configuration files already available in the Hiller Lab GitHub under the nextflow_config_files directory. Therefore you may download those files and skip this step! </mark>
@@ -126,20 +128,27 @@ Optionally, you may also provide information about U12 introns, in which noncano
        
 </details>
 #### Locally
+ To run TOGA locally, use the following command:
+
+```{r launch-toga-local, eval=FALSE}
+toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs
+
+```
+
+
+#### On a Cluster
 To load TOGA and its dependencies on the Grace cluster, enter the command 
 
 ```{r load-command, eval=FALSE}
 ml GCC/8.3.0 OpenMPI/3.1.4 TOGA/2021.12.15-Python-3.7.4
 ```
 
-Then to launch TOGA use the command
+Then to run TOGA use the command
+
 ```{r launch-toga, eval=FALSE}
 toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs
 
-```
-
-#### On a Cluster
- To run TOGA on a slurm-based cluster
+``` 
 
 #### Testing
 
@@ -154,6 +163,17 @@ After this data has been downloaded & placed in the correct directory, call the 
 
 This will take about 20 minutes on a 500 core cluster.
 
+## File Formatting
+In order to format files correctly, you must 
+
+1. Download the Hiller Lab's make_lastz_chain pipeline by following the instructions [here](https://github.com/hillerlab/make_lastz_chains). 
+
+2. Install the  necessary utilities. Some of these are necessary to run the pipeline and some will be used to convert our fasta files to the correct formats. You can download all of them using this command:
+
+```{r convert-downloads, eval=FALSE}
+Mac download: rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/ ./
+Windows or Linux download: rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/ ./
+```
 
 
 ## Troubleshooting
