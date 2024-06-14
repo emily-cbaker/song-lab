@@ -78,3 +78,6 @@ Making gene_id: bed_data dict...
 ```
 
 IT believes it may have something to do with my storage on the cluster. I moved my largest folder (/home.local) to my scratch directory and created a symlink between the 2 folders as per their instructions, but this does not seem to have corrected the issue. Waiting on another response from IT.
+
+### Friday update
+I still haven't gotten TOGA to run on Grace but I have gotten it to run on the Mac tower. I am also trying to get the pipeline to convert fasta files into the necessary formats to run on the tower, but the chain-building is taking a long time and it probably won't finish running today. I have a meeting scheduled with Michael from IT on Monday to try and get the Grace Toga pipeline to run and possibly talk about updating their TOGA version to the most current. 
