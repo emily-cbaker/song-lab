@@ -305,10 +305,10 @@ library(kableExtra)
 
 # Data for the table
 data <- data.frame(
-  Order = c("Orthoptera", "Hemiptera", "Lepidoptera", "Phasmatodea", "Neuroptera", "Ephemeroptera", "Plecoptera", "Mantodea", "Blattodea"),
-  Total_num_assemblies = c("28", "214", "2304", "21", "11", "10","18", "8", "14"),
-  Num_chrom_length_assemblies = c("11", "74", "580", "4", "5", "3", "7",  "6", "1"),
-  Number_annotated = c("6", "195", "43", "1", "1", "2", "0",  "0", "2")
+  Order = c("Orthoptera", "Hemiptera", "Lepidoptera", "Phasmatodea", "Neuroptera", "Ephemeroptera", "Plecoptera", "Mantodea", "Blattodea", "Hymenoptera"),
+  Total_num_assemblies = c("28", "214", "2304", "21", "11", "10","18", "8", "14", "763"),
+  Num_chrom_length_assemblies = c("11", "74", "580", "4", "5", "3", "7",  "6", "1", "233"),
+  Number_annotated = c("6", "195", "43", "1", "1", "2", "0",  "0", "2", "83")
 )
 
 # Create the table
@@ -322,6 +322,8 @@ kable(data, escape = FALSE, caption = "") %>%
   row_spec(0, bold = TRUE, background = "#D3D3D3") %>%
   add_header_above(c(" " = 1, "Statistics of NCBI Assemblies" = 3))
 ```
+
+In order to narrow down this data, I chose all *schistocera* members in Orthoptera that had available genomes as the reference species and I chose the outgroups based on whether or not the species had demonstrated phenotypic plasticity, as well as supplemented with species from the same orders as the phenotypically plastic species but had not necessarily shown any plasticity themselves. I consulted [this](https://pubmed.ncbi.nlm.nih.gov/32773028/#:~:text=We%20here%20report%20on%20the,of%20the%20butterfly%20Bicyclus%20anynana.) NCBI page and the associated papers to make these selections that are shown in the table below.
 
 ```{r chosen-info, echo=FALSE, message=FALSE, warning =FALSE}
 library(knitr)
