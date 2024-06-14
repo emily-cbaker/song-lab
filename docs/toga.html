@@ -345,7 +345,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-13
+<strong>Last updated:</strong> 2024-06-14
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -476,15 +476,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree50e7daed6663df9172061ada744edf1e4b7e693ctargetblank50e7daea">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree7b02b4bdd6a252dd19203f0209ba7a2caa601efctargetblank7b02b4ba">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/50e7daed6663df9172061ada744edf1e4b7e693c" target="_blank">50e7dae</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/7b02b4bdd6a252dd19203f0209ba7a2caa601efc" target="_blank">7b02b4b</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree50e7daed6663df9172061ada744edf1e4b7e693ctargetblank50e7daea"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree7b02b4bdd6a252dd19203f0209ba7a2caa601efctargetblank7b02b4ba"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -494,7 +494,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/50e7daed6663df9172061ada744edf1e4b7e693c" target="_blank">50e7dae</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/7b02b4bdd6a252dd19203f0209ba7a2caa601efc" target="_blank">7b02b4b</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -555,6 +555,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/7b02b4bdd6a252dd19203f0209ba7a2caa601efc/analysis/toga.Rmd" target="_blank">7b02b4b</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-14
+</td>
+<td>
+wflow_publish("analysis/toga.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/901fef24a3c081f02067c57b69230efc6e215fdf/docs/toga.html" target="_blank">901fef2</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1079,15 +1113,16 @@ type.</p>
 </div>
 <div id="locally-1" class="section level4">
 <h4>Locally</h4>
-<p>To load TOGA and its dependencies on the Grace cluster, enter the
-command</p>
-<pre class="r"><code>ml GCC/8.3.0 OpenMPI/3.1.4 TOGA/2021.12.15-Python-3.7.4</code></pre>
-<p>Then to launch TOGA use the command</p>
-<pre class="r"><code>toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs</code></pre>
+<p>To run TOGA locally, use the following command:</p>
+<pre class="r"><code>toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs</code></pre>
 </div>
 <div id="on-a-cluster-1" class="section level4">
 <h4>On a Cluster</h4>
-<p>To run TOGA on a slurm-based cluster</p>
+<p>To load TOGA and its dependencies on the Grace cluster, enter the
+command</p>
+<pre class="r"><code>ml GCC/8.3.0 OpenMPI/3.1.4 TOGA/2021.12.15-Python-3.7.4</code></pre>
+<p>Then to run TOGA use the command</p>
+<pre class="r"><code>toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs</code></pre>
 </div>
 <div id="testing" class="section level4">
 <h4>Testing</h4>
@@ -1107,6 +1142,21 @@ directory, call the following command:</p>
 <p>This will take about 20 minutes on a 500 core cluster.</p>
 </div>
 </div>
+</div>
+<div id="file-formatting" class="section level2">
+<h2>File Formatting</h2>
+<p>In order to format files correctly, you must</p>
+<ol style="list-style-type: decimal">
+<li><p>Download the Hiller Lab’s make_lastz_chain pipeline by following
+the instructions <a
+href="https://github.com/hillerlab/make_lastz_chains">here</a>.</p></li>
+<li><p>Install the necessary utilities. Some of these are necessary to
+run the pipeline and some will be used to convert our fasta files to the
+correct formats. You can download all of them using this
+command:</p></li>
+</ol>
+<pre class="r"><code>Mac download: rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/ ./
+Windows or Linux download: rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/ ./</code></pre>
 </div>
 <div id="troubleshooting" class="section level2">
 <h2>Troubleshooting</h2>
