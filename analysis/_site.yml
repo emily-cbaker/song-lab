@@ -12,6 +12,8 @@ navbar:
           href: week1-notes.html
         - text: "6/10 - 6/14"
           href: week2-notes.html
+        - text: "6/17 - 6/21"
+          href: week3-notes.html
 
     - text: "Projects"
       icon: fa-book-open
