@@ -14,6 +14,21 @@ TOGA seems to be running fine on the Mac tower still, I am attempting to run the
 #### Meeting with IT
 Michael had me remove the auto-launch script from my .bashrc file in my home directory. This allowed me to get past my inital error of nextflow being denied permission to cache files.   
 
-When I tried to run the script, he noticed that the jobs weren't taking up any memory on the cluster while they were running, so the script isnt actually doing anything. He did say we would probably need to run the pipeline on the big nodes due to the amount of memory they need to run.  
+When I tried to run the script, he noticed that the jobs weren't taking up any memory on the cluster while they were running, so the script isnt actually doing anything. He did say we would probably need to run the pipeline on the big nodes due to the amount of memory they need to run. The command to do this is 
+
+```{r new-command, eval=FALSE}
+sbatch --ntasks=80 --mem=2929G --nodes=1 --time 1:00:00  --partition=bigmem  run-toga.sh
+
+```
+
+He also had me add the lines 
+
+```{r add-lines, eval=FALSE}
+executor {
+    submitRateLimit = '10/2min'
+    queueSize = 100
+}
+```
+to the files in *nextflow_config_files* (extract_chain_features_config.nf and call_cesar_config_template.nf).  
 
 When we left off he said he would try and update the pipeline to the latest edition and then try and run the test data himself, so I am now waiting on him to get back to me on that. 
