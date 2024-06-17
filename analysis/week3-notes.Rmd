@@ -1,0 +1,14 @@
+---
+title: "Progress & Notes: 6/17-6/21"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+#### TOGA on Mac tower
+TOGA seems to be running fine on the Mac tower still, I am attempting to run the make_lastz_chain pipeline to create chain data between *gregaria* and *piceferons* so that I can try to run TOGA on them, but the pipeline is taking an extremely long time to run. I may have to try and let it run overnight as I don't think it will finish by EOD.
+
+#### Meeting with IT
