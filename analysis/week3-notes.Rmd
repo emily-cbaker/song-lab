@@ -12,3 +12,8 @@ editor_options:
 TOGA seems to be running fine on the Mac tower still, I am attempting to run the make_lastz_chain pipeline to create chain data between *gregaria* and *piceferons* so that I can try to run TOGA on them, but the pipeline is taking an extremely long time to run. I may have to try and let it run overnight as I don't think it will finish by EOD.
 
 #### Meeting with IT
+Michael had me remove the auto-launch script from my .bashrc file in my home directory. This allowed me to get past my inital error of nextflow being denied permission to cache files.   
+
+When I tried to run the script, he noticed that the jobs weren't taking up any memory on the cluster while they were running, so the script isnt actually doing anything. He did say we would probably need to run the pipeline on the big nodes due to the amount of memory they need to run.  
+
+When we left off he said he would try and update the pipeline to the latest edition and then try and run the test data himself, so I am now waiting on him to get back to me on that. 
