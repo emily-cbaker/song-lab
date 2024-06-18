@@ -306,6 +306,9 @@ $(document).ready(function () {
     <li>
       <a href="toga.html">TOGA</a>
     </li>
+    <li>
+      <a href="mlc.html">make_lastz_chains</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -350,7 +353,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-17
+<strong>Last updated:</strong> 2024-06-18
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -481,15 +484,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreed56909ef8cdd7644e407b046c6e56f19adff9c8btargetblankd56909ea">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreec570fc47d4d31c64ae944d9089a160af519c0a82targetblankc570fc4a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/d56909ef8cdd7644e407b046c6e56f19adff9c8b" target="_blank">d56909e</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/c570fc47d4d31c64ae944d9089a160af519c0a82" target="_blank">c570fc4</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreed56909ef8cdd7644e407b046c6e56f19adff9c8btargetblankd56909ea"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreec570fc47d4d31c64ae944d9089a160af519c0a82targetblankc570fc4a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -499,7 +502,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/d56909ef8cdd7644e407b046c6e56f19adff9c8b" target="_blank">d56909e</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/c570fc47d4d31c64ae944d9089a160af519c0a82" target="_blank">c570fc4</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -519,7 +522,7 @@ Ignored files:
     Ignored:    bootswatch/
 
 Unstaged changes:
-    Modified:   analysis/theme3.css
+    Modified:   analysis/_site.yml
 
 </code></pre>
 <p>
@@ -565,6 +568,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/c570fc47d4d31c64ae944d9089a160af519c0a82/analysis/orthop-genomes-project.Rmd" target="_blank">c570fc4</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-18
+</td>
+<td>
+wflow_publish("analysis/orthop-genomes-project.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/89d12ce6d41cc01cf318cb789183d0d241303dc0/docs/orthop-genomes-project.html" target="_blank">89d12ce</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-17
+</td>
+<td>
+updates
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -2636,16 +2673,16 @@ Statistics of NCBI Assemblies
 </th>
 </tr>
 <tr>
-<th style="text-align:left;font-weight: bold;background-color: rgba(211, 211, 211, 255) !important;">
+<th style="text-align:left;font-weight: bold;background-color: rgba(191, 162, 176, 255) !important;">
 Order
 </th>
-<th style="text-align:left;font-weight: bold;background-color: rgba(211, 211, 211, 255) !important;">
+<th style="text-align:left;font-weight: bold;background-color: rgba(191, 162, 176, 255) !important;">
 Total_num_assemblies
 </th>
-<th style="text-align:left;font-weight: bold;background-color: rgba(211, 211, 211, 255) !important;">
+<th style="text-align:left;font-weight: bold;background-color: rgba(191, 162, 176, 255) !important;">
 Num_chrom_length_assemblies
 </th>
-<th style="text-align:left;font-weight: bold;background-color: rgba(211, 211, 211, 255) !important;">
+<th style="text-align:left;font-weight: bold;background-color: rgba(191, 162, 176, 255) !important;">
 Number_annotated
 </th>
 </tr>
@@ -3253,20 +3290,21 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] kableExtra_1.4.0 knitr_1.47      
+[1] kableExtra_1.4.0 knitr_1.47       workflowr_1.7.1 
 
 loaded via a namespace (and not attached):
  [1] jsonlite_1.8.8    highr_0.11        compiler_4.4.0    promises_1.3.0   
  [5] Rcpp_1.0.12       xml2_1.3.6        stringr_1.5.1     git2r_0.33.0     
- [9] later_1.3.2       jquerylib_0.1.4   systemfonts_1.1.0 scales_1.3.0     
-[13] yaml_2.3.8        fastmap_1.2.0     R6_2.5.1          workflowr_1.7.1  
+ [9] callr_3.7.6       later_1.3.2       jquerylib_0.1.4   systemfonts_1.1.0
+[13] scales_1.3.0      yaml_2.3.8        fastmap_1.2.0     R6_2.5.1         
 [17] munsell_0.5.1     rprojroot_2.0.4   svglite_2.1.3     bslib_0.7.0      
 [21] rlang_1.1.3       cachem_1.1.0      stringi_1.8.4     httpuv_1.6.15    
-[25] xfun_0.44         fs_1.6.4          sass_0.4.9        viridisLite_0.4.2
-[29] cli_3.6.2         magrittr_2.0.3    digest_0.6.35     rstudioapi_0.16.0
-[33] lifecycle_1.0.4   vctrs_0.6.5       evaluate_0.23     glue_1.7.0       
-[37] whisker_0.4.1     colorspace_2.1-0  rmarkdown_2.27    tools_4.4.0      
-[41] htmltools_0.5.8.1</code></pre>
+[25] xfun_0.44         getPass_0.2-4     fs_1.6.4          sass_0.4.9       
+[29] viridisLite_0.4.2 cli_3.6.2         magrittr_2.0.3    ps_1.7.6         
+[33] digest_0.6.35     processx_3.8.4    rstudioapi_0.16.0 lifecycle_1.0.4  
+[37] vctrs_0.6.5       evaluate_0.23     glue_1.7.0        whisker_0.4.1    
+[41] colorspace_2.1-0  rmarkdown_2.27    httr_1.4.7        tools_4.4.0      
+[45] htmltools_0.5.8.1</code></pre>
 </div>
 </div>
 </div>
