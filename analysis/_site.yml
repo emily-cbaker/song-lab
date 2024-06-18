@@ -28,7 +28,8 @@ navbar:
       menu:
         - text: "TOGA"
           href: toga.html
-
+        - text: "make_lastz_chains"
+          href: mlc.html
 output:
   workflowr::wflow_html:
     toc: yes
