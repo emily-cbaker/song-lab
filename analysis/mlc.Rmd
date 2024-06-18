@@ -1,0 +1,57 @@
+---
+title: "Creating Genome Alignments for TOGA"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+    toc_float: true
+    toc_collapsed: false
+    theme: default
+    css: "theme3.css"
+toc_depth: 1
+number_sections: true
+editor_options:
+  chunk_output_type: console
+---
+
+## make_lastz_chains {.tabset}
+
+### What is make_lastz_chains?
+
+>This program is also from Hiller Lab (see [TOGA](toga.html)) and it is a pipeline that takes in a reference and a query genome either as .fna or .2bit files and creates pairwise genome alignment pairs from them for use in TOGA. 
+
+Read more in depth on their GitHub [here](https://github.com/hillerlab/make_lastz_chains).
+
+### Installation and Running
+
+This program is supported on MacOS, but the Hiller Lab team *highly recommends* running it on a Linux-based machine.
+
+#### On Grace
+This pipeline is already installed in Grace, but I am not sure how to use it yet. Will update (eventually).
+
+#### In a Conda Environment
+Follow the instructions on the Hiller Lab GitHub [here](https://github.com/hillerlab/make_lastz_chains) to install.
+
+### Troubleshooting
+####  fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists.
+
+The full error is here:
+```{r remote-fatal-fail, eval=FALSE}
+Warning: Permanently added the ECDSA host key for IP address '140.82.113.3' to the list of known hosts. Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists.
+```
+
+I corrected this by going into my home > .ssh directory in Grace and adding the passkey from *id_rsa.pub* to my GitHub SSH keys. This is the public key the Grace terminal uses to download files from GitHub. This allowed me to download from the Hiller Lab repository.  
+
+If your *id_rsa.pub* file is empty, visit [this link](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Fix-GitHubs-Permission-denied-publickey-SSH-error). It has the full documentation that I followed to fix this error.
+
+#### Error: detected space-or-tab-containing sequence
+
+The whole error is below:
+
+```{r space-error, eval=FALSE}
+Error! File: data/Nitens-and-Greg/GCF_021461395.2_iqSchAmer2.1_genomic.fna - detected space-or-tab-containing sequence:
+NC_060119.1 Schistocerca americana isolate TAMUIC-IGC-003095 chromosome 1, iqSchAmer2.1, whole genome shotgun sequence
+Please exclude or fix sequences with spaces and tabs.
+```
+
+I have submitted this error to the Hiller Lab GitHub and will update when I get a response.
