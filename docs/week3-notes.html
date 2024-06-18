@@ -304,6 +304,9 @@ $(document).ready(function () {
     <li>
       <a href="toga.html">TOGA</a>
     </li>
+    <li>
+      <a href="mlc.html">make_lastz_chains</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -326,7 +329,7 @@ $(document).ready(function () {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -337,8 +340,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -347,13 +350,13 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-17
+<strong>Last updated:</strong> 2024-06-18
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>bioinformatics-notes/</code>
@@ -376,21 +379,18 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of
-the R Markdown file created these results, you’ll want to first commit
-it to the Git repo. If you’re still working on the analysis, you can
-ignore this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
@@ -481,15 +481,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreed56909ef8cdd7644e407b046c6e56f19adff9c8btargetblankd56909ea">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreed501acd669e4f9971eb79ede9ca2048034951087targetblankd501acda">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/d56909ef8cdd7644e407b046c6e56f19adff9c8b" target="_blank">d56909e</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/d501acd669e4f9971eb79ede9ca2048034951087" target="_blank">d501acd</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreed56909ef8cdd7644e407b046c6e56f19adff9c8btargetblankd56909ea"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreed501acd669e4f9971eb79ede9ca2048034951087targetblankd501acda"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -499,7 +499,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/d56909ef8cdd7644e407b046c6e56f19adff9c8b" target="_blank">d56909e</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/d501acd669e4f9971eb79ede9ca2048034951087" target="_blank">d501acd</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -518,9 +518,12 @@ Ignored files:
     Ignored:    .Rproj.user/
     Ignored:    bootswatch/
 
+Untracked files:
+    Untracked:  analysis/mlc.Rmd
+
 Unstaged changes:
-    Modified:   analysis/theme3.css
-    Modified:   analysis/week3-notes.Rmd
+    Modified:   analysis/_site.yml
+    Modified:   analysis/orthop-genomes-project.Rmd
 
 </code></pre>
 <p>
@@ -565,6 +568,57 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/d501acd669e4f9971eb79ede9ca2048034951087/analysis/week3-notes.Rmd" target="_blank">d501acd</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-18
+</td>
+<td>
+wflow_publish("analysis/week3-notes.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/89d12ce6d41cc01cf318cb789183d0d241303dc0/analysis/week3-notes.Rmd" target="_blank">89d12ce</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-17
+</td>
+<td>
+updates
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/89d12ce6d41cc01cf318cb789183d0d241303dc0/docs/week3-notes.html" target="_blank">89d12ce</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-17
+</td>
+<td>
+updates
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -642,21 +696,25 @@ wflow_publish("analysis/week3-notes.Rmd")
 </div>
 <div id="toga-on-mac-tower" class="section level4">
 <h4>TOGA on Mac tower</h4>
-<p>TOGA seems to be running fine on the Mac tower still, I am attempting
-to run the make_lastz_chain pipeline to create chain data between
-<em>gregaria</em> and <em>piceferons</em> so that I can try to run TOGA
-on them, but the pipeline is taking an extremely long time to run. I may
-have to try and let it run overnight as I don’t think it will finish by
-EOD.</p>
+<p><strong>Monday:</strong> TOGA seems to be running fine on the Mac
+tower still, I am attempting to run the make_lastz_chain pipeline to
+create chain data between <em>gregaria</em> and <em>piceferons</em> so
+that I can try to run TOGA on them, but the pipeline is taking an
+extremely long time to run. I may have to try and let it run overnight
+as I don’t think it will finish by EOD.</p>
+<p><strong>Tuesday:</strong> Overnight make_lastz_chains was able to
+complete around 50 out of 13,000 jobs, so I have emailed HPRC to ask
+that the pipeline be installed on the cluster to try and get it to run
+faster on there as opposed to locally.</p>
 </div>
 <div id="meeting-with-it" class="section level4">
 <h4>Meeting with IT</h4>
-<p>Michael had me remove the auto-launch script from my .bashrc file in
-my home directory. This allowed me to get past my inital error of
-nextflow being denied permission to cache files.</p>
+<p><strong>Monday:</strong> Michael had me remove the auto-launch script
+from my .bashrc file in my home directory. This allowed me to get past
+my initial error of nextflow being denied permission to cache files.</p>
 <p>When I tried to run the script, he noticed that the jobs weren’t
 taking up any memory on the cluster while they were running, so the
-script isnt actually doing anything. He did say we would probably need
+script isn’t actually doing anything. He did say we would probably need
 to run the pipeline on the big nodes due to the amount of memory they
 need to run. The command to do this is</p>
 <pre class="r"><code>sbatch --ntasks=80 --mem=2929G --nodes=1 --time 1:00:00  --partition=bigmem  run-toga.sh</code></pre>
@@ -700,16 +758,20 @@ tzcode source: internal
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
+other attached packages:
+[1] workflowr_1.7.1
+
 loaded via a namespace (and not attached):
- [1] vctrs_0.6.5       cli_3.6.2         knitr_1.47        rlang_1.1.3      
- [5] xfun_0.44         stringi_1.8.4     promises_1.3.0    jsonlite_1.8.8   
- [9] workflowr_1.7.1   glue_1.7.0        rprojroot_2.0.4   git2r_0.33.0     
-[13] htmltools_0.5.8.1 httpuv_1.6.15     sass_0.4.9        rmarkdown_2.27   
-[17] evaluate_0.23     jquerylib_0.1.4   fastmap_1.2.0     yaml_2.3.8       
-[21] lifecycle_1.0.4   whisker_0.4.1     stringr_1.5.1     compiler_4.4.0   
-[25] fs_1.6.4          Rcpp_1.0.12       rstudioapi_0.16.0 later_1.3.2      
-[29] digest_0.6.35     R6_2.5.1          magrittr_2.0.3    bslib_0.7.0      
-[33] tools_4.4.0       cachem_1.1.0     </code></pre>
+ [1] vctrs_0.6.5       httr_1.4.7        cli_3.6.2         knitr_1.47       
+ [5] rlang_1.1.3       xfun_0.44         stringi_1.8.4     processx_3.8.4   
+ [9] promises_1.3.0    jsonlite_1.8.8    glue_1.7.0        rprojroot_2.0.4  
+[13] git2r_0.33.0      htmltools_0.5.8.1 httpuv_1.6.15     ps_1.7.6         
+[17] sass_0.4.9        rmarkdown_2.27    jquerylib_0.1.4   evaluate_0.23    
+[21] fastmap_1.2.0     yaml_2.3.8        lifecycle_1.0.4   whisker_0.4.1    
+[25] stringr_1.5.1     compiler_4.4.0    fs_1.6.4          Rcpp_1.0.12      
+[29] rstudioapi_0.16.0 later_1.3.2       digest_0.6.35     R6_2.5.1         
+[33] callr_3.7.6       magrittr_2.0.3    bslib_0.7.0       tools_4.4.0      
+[37] cachem_1.1.0      getPass_0.2-4    </code></pre>
 </div>
 </div>
 </div>
