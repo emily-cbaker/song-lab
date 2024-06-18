@@ -9,12 +9,14 @@ editor_options:
 ---
 
 #### TOGA on Mac tower
-TOGA seems to be running fine on the Mac tower still, I am attempting to run the make_lastz_chain pipeline to create chain data between *gregaria* and *piceferons* so that I can try to run TOGA on them, but the pipeline is taking an extremely long time to run. I may have to try and let it run overnight as I don't think it will finish by EOD.
+**Monday:** TOGA seems to be running fine on the Mac tower still, I am attempting to run the make_lastz_chain pipeline to create chain data between *gregaria* and *piceferons* so that I can try to run TOGA on them, but the pipeline is taking an extremely long time to run. I may have to try and let it run overnight as I don't think it will finish by EOD.
+
+**Tuesday:** Overnight make_lastz_chains was able to complete around 50 out of 13,000 jobs, so I have emailed HPRC to ask that the pipeline be installed on the cluster to try and get it to run faster on there as opposed to locally. 
 
 #### Meeting with IT
-Michael had me remove the auto-launch script from my .bashrc file in my home directory. This allowed me to get past my inital error of nextflow being denied permission to cache files.   
+**Monday:** Michael had me remove the auto-launch script from my .bashrc file in my home directory. This allowed me to get past my initial error of nextflow being denied permission to cache files.   
 
-When I tried to run the script, he noticed that the jobs weren't taking up any memory on the cluster while they were running, so the script isnt actually doing anything. He did say we would probably need to run the pipeline on the big nodes due to the amount of memory they need to run. The command to do this is 
+When I tried to run the script, he noticed that the jobs weren't taking up any memory on the cluster while they were running, so the script isn't actually doing anything. He did say we would probably need to run the pipeline on the big nodes due to the amount of memory they need to run. The command to do this is 
 
 ```{r new-command, eval=FALSE}
 sbatch --ntasks=80 --mem=2929G --nodes=1 --time 1:00:00  --partition=bigmem  run-toga.sh
