@@ -32,6 +32,8 @@ navbar:
           href: mlc.html
         - text: "Compare_Genomes"
           href: compare-genomes.html
+        - text: "FormicidaeMolecularEvolution"
+          href: barkdull.html
 
     - text: "Reference"
       icon: fa-book-open-reader
