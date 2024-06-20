@@ -37,7 +37,7 @@ navbar:
       icon: fa-book-open-reader
       menu:
         - text: "Glossary of Terminology"
-          href: terms.html
+          href: reference.html
 output:
   workflowr::wflow_html:
     toc: yes
