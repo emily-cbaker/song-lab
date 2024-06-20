@@ -132,9 +132,12 @@ g. ‘process.config’: configuration file setting the computing resource alloc
 ####  Pipeline cannot find output directory you specified in the config file
 Make sure you put the *entire* directory path in the params.config file. Yes, even if you're in a "closer" directory, you have to put the full file path from the very first parent folder, down to the output folder you've created. For example, I would enter the *entire* file path shown in the light blue box below if I wanted compare_genomes to output to my folder called output. 
 
-![](../images/filepath-ex.png)
+```{r, echo=FALSE}
+knitr::include_graphics("analysis/file-path.png")
+```
 
 
+Testing text below!!!!
 
   
 
