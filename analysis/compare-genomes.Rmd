@@ -137,9 +137,5 @@ knitr::include_graphics("analysis/file-path.png")
 ```
 
 
-Testing text below!!!!
-
-  
-
 
 
