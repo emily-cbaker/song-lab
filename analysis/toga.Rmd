@@ -14,8 +14,8 @@ editor_options:
   chunk_output_type: console
 ---
 
-# TOGA {.tabset}
-## What is TOGA?
+## TOGA {.tabset}
+### What is TOGA?
 
 > "Annotating coding genes and inferring orthologs are two classical > challenges in genomics and evolutionary biology that have 
 > traditionally been approached separately, limiting scalability. We
@@ -35,7 +35,7 @@ editor_options:
 --- Bogdan M. Kirilenko *et al.*, *Integrating gene annotation with orthology inference at scale*
 
 
-#### Steps of TOGA
+###### Steps of TOGA
 
 1. First, TOGA uses pairwise genome alignment between the reference & query genome represented by chains of co-linear local alignments. Through this process, it captures orthologous gene loci and loci containing paralogs or processed pseudo-genes. To distinguish between these 2 groups, TOGA computes characteristic features that capture the amount of intronic and intergenic alignments, considering each gene & overlapping chain. Additionally, synteny (conserved gene order) can be used to help further distinguish orthologs from paralogs. TOGA also implements machine learning to compute the probability that a chain is an orthologous locus for the gene in question. 
 
@@ -64,11 +64,11 @@ editor_options:
     
 3. In this step, TOGA determines the orthology type by considering all reference genes and orthologous query loci that encode within an intact reading frame. TOGA then uses an orthology graph to resolve any weakly supported orthology relationship among many:many orthologs.
 
-## Installation & Running
+### Installation & Running
 
-### Installation
+#### Installation
 
-#### Locally
+###### Locally
 Dependencies:  
 * Python (Version 3.9 or later)  
 * Java (Version 8 or later)  
@@ -96,7 +96,7 @@ python3 -m pip install -r requirements.txt --user
 
 
 
-#### On a Cluster
+###### On a Cluster
 
 <mark> If running on a Slurm cluster (like GRACE), there are configuration files already available in the Hiller Lab GitHub under the nextflow_config_files directory. Therefore you may download those files and skip this step! </mark>
 
@@ -108,9 +108,9 @@ Here are the steps to prepare to run TOGA:
 
 3. Create a file called "call_cesar_config_template.nf". This configuration file is for the jobs run by CESAR. It is **highly recommended** that you request 24 hours of runtime. You do not need to provide an exact amount of memory because TOGA will compute this itself, so put in the placeholder "process.memory = "${_MEMORY_}G" "
 
-### Running
+#### Running
 
-#### Prepare to Run
+###### Prepare to Run
 To run TOGA, we must first provide it with the appropriate input files. These are:
 
 1. A reference and query genomes in 2bit format (can be generated from multi-fasta files using the [UCSC twoBitToFa](https://genome.ucsc.edu/goldenPath/help/twoBit.html) command)
@@ -127,7 +127,7 @@ Optionally, you may also provide information about U12 introns, in which noncano
        In order to get the best results possible, the Hiller Lab suggests including representative (principle) isoforms for each gene, particularly ones that capture exon-intron structures, but exclude isoforms that represent much shorter and likely more non-finctional transcripts. It is also recommended to exclude transcripts that represent fusion isoforms between 2 ancestral genes because including these fusion transcripts interferes with the inference of the orthology type.
        
 </details>
-#### Locally
+###### Locally
  To run TOGA locally, use the following command:
 
 ```{r launch-toga-local, eval=FALSE}
@@ -136,7 +136,7 @@ toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed tes
 ```
 
 
-#### On a Cluster
+###### On a Cluster
 To load TOGA and its dependencies on the Grace cluster, enter the command 
 
 ```{r load-command, eval=FALSE}
@@ -150,7 +150,7 @@ toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed tes
 
 ``` 
 
-#### Testing
+###### Testing
 
 The Hiller Lab provides a test [reference](https://hgdownload.cse.ucsc.edu/goldenpath/hg38/bigZips/hg38.2bit) and [query](https://hgdownload.cse.ucsc.edu/goldenpath/mm10/bigZips/mm10.2bit) genome, already in the required 2-bit formatting. You will also need to download the [supply](https://github.com/hillerlab/TOGA/tree/master/supply) folder in order to have the U12 data for the genomes. You can download the whole folder at once by copy and pasting the URL into [this website](https://download-directory.github.io/).
 
@@ -163,7 +163,7 @@ After this data has been downloaded & placed in the correct directory, call the 
 
 This will take about 20 minutes on a 500 core cluster.
 
-## File Formatting
+### File Formatting
 In order to format files correctly, you must 
 
 1. Download the Hiller Lab's make_lastz_chain pipeline by following the instructions [here](https://github.com/hillerlab/make_lastz_chains). 
@@ -176,15 +176,15 @@ Windows or Linux download: rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admi
 ```
 
 
-## Troubleshooting
+### Troubleshooting
 
-### Grace: PermissionError: [Errno 13]
+#### Grace: PermissionError: [Errno 13]
   
 The full input and error message is here: 
   
 ```{r error, eval=FALSE}
   (base) [ecbaker7@c076 toga]$ toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed $/toga $/toga --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc $/scratch/group/songlab/emily/toga/nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms  
-#### Initiating TOGA class ####
+###### Initiating TOGA class ######
 Checking dependencies...
 check if binaries are compiled and libs are installed...
 All dependencies found
@@ -210,7 +210,7 @@ toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed tes
 
 ```
 
-### Error on Toga step 2: Nextflow jobs won't execute
+#### Error on Toga step 2: Nextflow jobs won't execute
 
 I'm having an error where I get to step 2 of TOGA but it can't complete any jobs and keeps retrying all of them. The error message I get in my .out file is 
 
@@ -237,7 +237,7 @@ sbatch --ntasks=48 --mem=360G --nodes=1 --time=0-1:00:00 run-toga.sh
 
 ```
 
-### Error: Process nextflow died
+#### Error: Process nextflow died
 The full error code is here:
 
 ```{r died-error, eval=FALSE}
@@ -256,7 +256,7 @@ Command output:
 Work dir:
   /scratch/group/songlab/emily/toga/nextflow_logs/test_chain_feats_at_1718311976/work/16/a70dc9c3f7b04b94a742de26c47b86
 
-Tip: you can try to figure out what's wrong by changing to the process work dir and showing the script file named `.command.sh`
+Tip: you can try to figure out what`s wrong by changing to the process work dir and showing the script file named `.command.sh`
 
 
 
@@ -267,4 +267,7 @@ Making gene_id: bed_data dict...
 ```
 
 IT believes it is an issue with the storage space on my home drive, but this hasn't seemed to have corrected the issue. 
+
+#### Error! File /sw/eb/sw/TOGA/2024.05.26-foss-2022a/CESAR2.0/cesar not found!
+ I have emailed IT about this error as this was a new installation on the cluster and it is possible this file is missing. I looked in the specified directory and the file was missing, it was not hidden either. Will update when I receive a response.
 

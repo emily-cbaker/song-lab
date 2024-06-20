@@ -27,7 +27,13 @@ Read more in depth on their GitHub [here](https://github.com/hillerlab/make_last
 This program is supported on MacOS, but the Hiller Lab team *highly recommends* running it on a Linux-based machine.
 
 #### On Grace
-This pipeline is already installed in Grace, but I am not sure how to use it yet. Will update (eventually).
+To run the make_lastz_chains pipeline on Grace, enter the following commands:
+```{r act-mlc, eval=FALSE}
+module spider make_lastz_chains/1.0.0
+
+make_chains.py target query ${path to target genome} ${path to query genome} --pd test_out -f --chaining_memory 16
+
+```
 
 #### In a Conda Environment
 Follow the instructions on the Hiller Lab GitHub [here](https://github.com/hillerlab/make_lastz_chains) to install.
@@ -55,3 +61,7 @@ Please exclude or fix sequences with spaces and tabs.
 ```
 
 I have submitted this error to the Hiller Lab GitHub and will update when I get a response.
+
+#### Error: unrecognized arguments: -f
+
+The -f or -force flag is meant to overwrite an output folder if a folder exists with the same name already. This error occurs when there is no pre-existing folder to overwrite, so simply remove this flag from your command and rerun.

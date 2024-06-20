@@ -304,6 +304,9 @@ $(document).ready(function () {
     <li>
       <a href="toga.html">TOGA</a>
     </li>
+    <li>
+      <a href="mlc.html">make_lastz_chains</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -327,7 +330,7 @@ Alignments</h1>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -338,8 +341,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -348,13 +351,13 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-17
+<strong>Last updated:</strong> 2024-06-19
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>bioinformatics-notes/</code>
@@ -377,18 +380,21 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
@@ -479,15 +485,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreea28d05552697723d914d2c52f55fe87136d181c2targetblanka28d055a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree03e33325bdb3b313898020ae1d25f446bb72c9dftargetblank03e3332a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/a28d05552697723d914d2c52f55fe87136d181c2" target="_blank">a28d055</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/03e33325bdb3b313898020ae1d25f446bb72c9df" target="_blank">03e3332</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreea28d05552697723d914d2c52f55fe87136d181c2targetblanka28d055a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree03e33325bdb3b313898020ae1d25f446bb72c9dftargetblank03e3332a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -497,7 +503,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/a28d05552697723d914d2c52f55fe87136d181c2" target="_blank">a28d055</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/03e33325bdb3b313898020ae1d25f446bb72c9df" target="_blank">03e3332</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -516,8 +522,12 @@ Ignored files:
     Ignored:    .Rproj.user/
     Ignored:    bootswatch/
 
+Untracked files:
+    Untracked:  analysis/compare-genomes.Rmd
+
 Unstaged changes:
-    Modified:   analysis/theme3.css
+    Modified:   analysis/mlc.Rmd
+    Modified:   analysis/toga.Rmd
 
 </code></pre>
 <p>
@@ -561,6 +571,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/89d12ce6d41cc01cf318cb789183d0d241303dc0/docs/toga.html" target="_blank">89d12ce</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-17
+</td>
+<td>
+updates
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -976,10 +1003,10 @@ wflow_publish("analysis/toga.Rmd")
 </div>
 </div>
 </div>
-<div id="toga" class="section level1 tabset">
-<h1 class="tabset">TOGA</h1>
-<div id="what-is-toga" class="section level2">
-<h2>What is TOGA?</h2>
+<div id="toga" class="section level2 tabset">
+<h2 class="tabset">TOGA</h2>
+<div id="what-is-toga" class="section level3">
+<h3>What is TOGA?</h3>
 <blockquote>
 <p>“Annotating coding genes and inferring orthologs are two classical
 &gt; challenges in genomics and evolutionary biology that have
@@ -998,8 +1025,8 @@ method to annotate and compare genes in the genomic era.”</p>
 </blockquote>
 <p>— Bogdan M. Kirilenko <em>et al.</em>, <em>Integrating gene
 annotation with orthology inference at scale</em></p>
-<div id="steps-of-toga" class="section level4">
-<h4>Steps of TOGA</h4>
+<div id="steps-of-toga" class="section level6">
+<h6>Steps of TOGA</h6>
 <ol style="list-style-type: decimal">
 <li>First, TOGA uses pairwise genome alignment between the reference
 &amp; query genome represented by chains of co-linear local alignments.
@@ -1072,12 +1099,12 @@ supported orthology relationship among many:many orthologs.</li>
 </ol>
 </div>
 </div>
-<div id="installation-running" class="section level2">
-<h2>Installation &amp; Running</h2>
-<div id="installation" class="section level3">
-<h3>Installation</h3>
-<div id="locally" class="section level4">
-<h4>Locally</h4>
+<div id="installation-running" class="section level3">
+<h3>Installation &amp; Running</h3>
+<div id="installation" class="section level4">
+<h4>Installation</h4>
+<div id="locally" class="section level6">
+<h6>Locally</h6>
 <p>Dependencies:<br />
 * Python (Version 3.9 or later)<br />
 * Java (Version 8 or later)</p>
@@ -1094,8 +1121,8 @@ cd TOGA</code></pre>
 <p>We then must install any necessary Python packages using</p>
 <pre class="r"><code>python3 -m pip install -r requirements.txt --user</code></pre>
 </div>
-<div id="on-a-cluster" class="section level4">
-<h4>On a Cluster</h4>
+<div id="on-a-cluster" class="section level6">
+<h6>On a Cluster</h6>
 <p><mark> If running on a Slurm cluster (like GRACE), there are
 configuration files already available in the Hiller Lab GitHub under the
 nextflow_config_files directory. Therefore you may download those files
@@ -1116,10 +1143,10 @@ itself, so put in the placeholder “process.memory =”${<em>MEMORY</em>}G”
 </ol>
 </div>
 </div>
-<div id="running" class="section level3">
-<h3>Running</h3>
-<div id="prepare-to-run" class="section level4">
-<h4>Prepare to Run</h4>
+<div id="running" class="section level4">
+<h4>Running</h4>
+<div id="prepare-to-run" class="section level6">
+<h6>Prepare to Run</h6>
 <p>To run TOGA, we must first provide it with the appropriate input
 files. These are:</p>
 <ol style="list-style-type: decimal">
@@ -1151,21 +1178,21 @@ these fusion transcripts interferes with the inference of the orthology
 type.</p>
 </details>
 </div>
-<div id="locally-1" class="section level4">
-<h4>Locally</h4>
+<div id="locally-1" class="section level6">
+<h6>Locally</h6>
 <p>To run TOGA locally, use the following command:</p>
 <pre class="r"><code>toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs</code></pre>
 </div>
-<div id="on-a-cluster-1" class="section level4">
-<h4>On a Cluster</h4>
+<div id="on-a-cluster-1" class="section level6">
+<h6>On a Cluster</h6>
 <p>To load TOGA and its dependencies on the Grace cluster, enter the
 command</p>
 <pre class="r"><code>ml GCC/8.3.0 OpenMPI/3.1.4 TOGA/2021.12.15-Python-3.7.4</code></pre>
 <p>Then to run TOGA use the command</p>
 <pre class="r"><code>toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs</code></pre>
 </div>
-<div id="testing" class="section level4">
-<h4>Testing</h4>
+<div id="testing" class="section level6">
+<h6>Testing</h6>
 <p>The Hiller Lab provides a test <a
 href="https://hgdownload.cse.ucsc.edu/goldenpath/hg38/bigZips/hg38.2bit">reference</a>
 and <a
@@ -1183,8 +1210,8 @@ directory, call the following command:</p>
 </div>
 </div>
 </div>
-<div id="file-formatting" class="section level2">
-<h2>File Formatting</h2>
+<div id="file-formatting" class="section level3">
+<h3>File Formatting</h3>
 <p>In order to format files correctly, you must</p>
 <ol style="list-style-type: decimal">
 <li><p>Download the Hiller Lab’s make_lastz_chain pipeline by following
@@ -1198,13 +1225,13 @@ command:</p></li>
 <pre class="r"><code>Mac download: rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/ ./
 Windows or Linux download: rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/ ./</code></pre>
 </div>
-<div id="troubleshooting" class="section level2">
-<h2>Troubleshooting</h2>
-<div id="grace-permissionerror-errno-13" class="section level3">
-<h3>Grace: PermissionError: [Errno 13]</h3>
+<div id="troubleshooting" class="section level3">
+<h3>Troubleshooting</h3>
+<div id="grace-permissionerror-errno-13" class="section level4">
+<h4>Grace: PermissionError: [Errno 13]</h4>
 <p>The full input and error message is here:</p>
 <pre class="r"><code>  (base) [ecbaker7@c076 toga]$ toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed $/toga $/toga --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc $/scratch/group/songlab/emily/toga/nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms  
-#### Initiating TOGA class ####
+###### Initiating TOGA class ######
 Checking dependencies...
 check if binaries are compiled and libs are installed...
 All dependencies found
@@ -1226,8 +1253,8 @@ directory to operate from. The full command is:</p>
 <pre class="r"><code>toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs</code></pre>
 </div>
 <div id="error-on-toga-step-2-nextflow-jobs-wont-execute"
-class="section level3">
-<h3>Error on Toga step 2: Nextflow jobs won’t execute</h3>
+class="section level4">
+<h4>Error on Toga step 2: Nextflow jobs won’t execute</h4>
 <p>I’m having an error where I get to step 2 of TOGA but it can’t
 complete any jobs and keeps retrying all of them. The error message I
 get in my .out file is</p>
@@ -1245,8 +1272,8 @@ toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed tes
 command</p>
 <pre class="r"><code>sbatch --ntasks=48 --mem=360G --nodes=1 --time=0-1:00:00 run-toga.sh</code></pre>
 </div>
-<div id="error-process-nextflow-died" class="section level3">
-<h3>Error: Process nextflow died</h3>
+<div id="error-process-nextflow-died" class="section level4">
+<h4>Error: Process nextflow died</h4>
 <p>The full error code is here:</p>
 <pre class="r"><code>Command executed:
 
@@ -1263,7 +1290,7 @@ Command output:
 Work dir:
   /scratch/group/songlab/emily/toga/nextflow_logs/test_chain_feats_at_1718311976/work/16/a70dc9c3f7b04b94a742de26c47b86
 
-Tip: you can try to figure out what&#39;s wrong by changing to the process work dir and showing the script file named `.command.sh`
+Tip: you can try to figure out what`s wrong by changing to the process work dir and showing the script file named `.command.sh`
 
 
 
@@ -1273,6 +1300,16 @@ Program finished with exit code 1
 Making gene_id: bed_data dict...</code></pre>
 <p>IT believes it is an issue with the storage space on my home drive,
 but this hasn’t seemed to have corrected the issue.</p>
+</div>
+<div
+id="error-file-swebswtoga2024.05.26-foss-2022acesar2.0cesar-not-found"
+class="section level4">
+<h4>Error! File /sw/eb/sw/TOGA/2024.05.26-foss-2022a/CESAR2.0/cesar not
+found!</h4>
+<p>I have emailed IT about this error as this was a new installation on
+the cluster and it is possible this file is missing. I looked in the
+specified directory and the file was missing, it was not hidden either.
+Will update when I receive a response.</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">

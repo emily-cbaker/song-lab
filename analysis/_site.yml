@@ -30,6 +30,8 @@ navbar:
           href: toga.html
         - text: "make_lastz_chains"
           href: mlc.html
+        - text: "Compare_Genomes"
+          href: compare-genomes.html
 output:
   workflowr::wflow_html:
     toc: yes
