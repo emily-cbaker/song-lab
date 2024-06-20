@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Compare_Genomes</title>
+
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="theme3.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="fa fa-note-sticky"></span>
+     
+    Notes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="week1-notes.html">6/4 - 6/7</a>
+    </li>
+    <li>
+      <a href="week2-notes.html">6/10 - 6/14</a>
+    </li>
+    <li>
+      <a href="week3-notes.html">6/17 - 6/21</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="fa fa-book-open"></span>
+     
+    Projects
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="orthop-genomes-project.html">Comparative Genomics of Large Orthoptera Genomes</a>
+    </li>
+    <li>
+      <a href="pop-genomics-morm-crick.html">Population Genomics of Mormon Crickets, Central American Locusts, Eremidium Grasshoppers</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="fa fa-code"></span>
+     
+    Program Information
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="toga.html">TOGA</a>
+    </li>
+    <li>
+      <a href="mlc.html">make_lastz_chains</a>
+    </li>
+    <li>
+      <a href="compare-genomes.html">Compare_Genomes</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Compare_Genomes</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2024-06-19
+</p>
+<p>
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>bioinformatics-notes/</code>
+<span class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.1). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20240605code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20240605)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20240605code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20240605)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreea4705fa358ecd1e5fa1f0925e1dc020c55c0d0f3targetblanka4705faa">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/a4705fa358ecd1e5fa1f0925e1dc020c55c0d0f3" target="_blank">a4705fa</a>
+</a>
+</p>
+</div>
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreea4705fa358ecd1e5fa1f0925e1dc020c55c0d0f3targetblanka4705faa"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/a4705fa358ecd1e5fa1f0925e1dc020c55c0d0f3" target="_blank">a4705fa</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    bootswatch/
+
+Untracked files:
+    Untracked:  images/
+
+Unstaged changes:
+    Modified:   analysis/_site.yml
+    Modified:   analysis/mlc.Rmd
+    Modified:   analysis/toga.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+These are the previous versions of the repository in which changes were
+made to the R Markdown (<code>analysis/compare-genomes.Rmd</code>) and
+HTML (<code>docs/compare-genomes.html</code>) files. If you’ve
+configured a remote Git repository (see <code>?wflow_git_remote</code>),
+click on the hyperlinks in the table below to view the files as they
+were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/a4705fa358ecd1e5fa1f0925e1dc020c55c0d0f3/analysis/compare-genomes.Rmd" target="_blank">a4705fa</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-19
+</td>
+<td>
+wflow_publish("analysis/compare-genomes.Rmd")
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div
+id="a-comparative-genomics-workflow-to-streamline-the-analysis-of-evolutionary-divergence-across-eukaryotic-genomes"
+class="section level2 tabset">
+<h2 class="tabset">A Comparative Genomics Workflow to Streamline the
+Analysis of Evolutionary Divergence Across Eukaryotic Genomes</h2>
+<div id="what-is-compare_genomes" class="section level3">
+<h3>What is Compare_Genomes?</h3>
+<blockquote>
+<p>The dawn of cost-effective genome assembly is enabling deep
+comparative genomics to address fundamental evolutionary questions by
+comparing the genomes of multiple species. However, comparative genomics
+analyses frequently deploy multiple, often purpose-built frameworks,
+limiting their transferability and replicability. Here, we present
+compare_genomes, a transferable and extensible comparative genomics
+workflow package we developed that streamlines the identification of
+orthologous families within and across eukaryotic genomes and tests for
+the presence of several mechanisms of evolution (gene family expansion
+or contraction and substitution rates within protein-coding sequences).
+The workflow is available for Linux, written as a Nextflow workflow that
+calls established genomics and phylogenetics tools to streamline the
+analysis and visualization of eukaryotic genome divergence.</p>
+</blockquote>
+<p>— Paril, J., Zare, T., &amp; Fournier‐Level, A.
+(2023).<em>Compare_genomes: A comparative genomics workflow to
+streamline the analysis of evolutionary divergence across eukaryotic
+genomes</em></p>
+<div id="my-thoughts-on-the-pipeline" class="section level4">
+<h4>My thoughts on the pipeline</h4>
+<p>So far the instructions are incredibly clear and have made it a lot
+easier than a lot of the other pipelines to install and get running. I
+love that it comes with a .yml file that creates and configures the
+conda environment for you, that alone gets rid of a lot of sources of
+error when it comes to getting it properly configured to run. Paril even
+includes the commands you need to edit the run.sh file directly from the
+terminal. So far, this has been easier than any other pipeline I’ve
+tried to use before. The only grievance I have is that it requires a lot
+of downloads to run, but as long as it’s not having to be done
+repeatedly it should be okay.</p>
+</div>
+<div id="workflow-of-the-pipeline" class="section level4">
+<h4>Workflow of the pipeline</h4>
+<p>This is taken directly from the paper by Paril, Zare, and
+Fournier-Level:</p>
+<p>“The compare_genomes workflow consists of nine analysis steps under
+the default setup (Fig. 1, left).</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Download the user-defined genome datasets: genome sequences
+(fasta, .fna), annotations (general feature format, .gff), coding DNA
+sequences or CDS (.cds), protein sequences (fasta, .faa), protein-coding
+gene models (probabilistic protein model format, .hmm), corresponding
+gene ontology terms (.txt), and protein sequences of specific genes of
+interest (.faa).</p></li>
+<li><p>Identify orthogroups using OrthoFinder (Emms &amp; Kelly, 2019)
+and gene families for each orthogroup using HMMER3 (Mistry et al., 2013)
+and Panther HMMs (protein-coding gene family models; Thomas et al.,
+2022). An orthogroup is a set of genes descended from a single gene from
+the last common ancestor of all the species included in the
+analysis.</p></li>
+<li><p>Infer phylogenetic trees for each orthogroup using IQ-TREE 2
+(Minh et al., 2020) based on CDS alignments generated by MACSE (Ranwez
+et al., 2011) and the most likely nucleotide substitution model inferred
+by ModelFinder (Kalyaanamoorthy et al., 2017).</p></li>
+<li><p>Infer the rate of sequence divergence based on transversion rates
+among four-fold-degenerate sites (4DTv) in single-copy genes between
+pairs of species using the custom Julia script for this purpose that
+ships with compare_genomes. 4DTv is a proxy for time, where the
+accumulation of transversion mutations at the degenerate (neutral) site
+is proportional to the amount of time passed.</p></li>
+<li><p>Identify whole-genome duplication events using 4DTv computed from
+multi-copy gene families. If the paralogs within a genome show an
+accumulation of 4DTv that is greater than 0, it is likely that a genome
+duplication or polyploidization occurred from which the multiple
+paralogs are derived.</p></li>
+<li><p>Test for significant gene family expansion or contraction across
+genomes using CAFE (version 5; De Bie et al., 2006). Gene family
+expansion and contraction are calculated relative to the gene family
+count in the ancestral species given the phylogenetic tree from IQ-TREE
+2. Expanded and contracted gene families can be indicative of
+adaptation.</p></li>
+<li><p>Analyze gene ontology (GO) term enrichment for significantly
+expanded gene families using the Panther GO API (Mi et al., 2019). To
+test the significantly contracted gene families, replace all instances
+of the term ‘expanded’ with ‘contracted’ in lines 47-59 of
+‘compare_genomes/modules/GO_enrichment.nf’.</p></li>
+<li><p>Visualize a summary of the results (i.e., see Fig. 1, right, for
+a sample output). This generates the summary output of the
+whole-genome-level analysis.</p></li>
+<li><p>This optional step is available for testing hypotheses involving
+specific genes: analyze user-defined genes of interest, i.e., gene
+family expansion/contraction analyses with CAFE, and estimate
+non-synonymous to synonymous nucleotide substitution rates (Ka/Ks) using
+KaKs_Calculator 2.0 (Wang et al., 2009) and custom R script.”</p></li>
+</ol>
+</div>
+</div>
+<div id="installation-and-running" class="section level3">
+<h3>Installation and Running</h3>
+<p>This pipeline is not available on Grace, but it is pretty simple to
+create a conda environment and run it from there by using these steps.
+The only difference between running locally and on a cluster will occur
+in step 2.</p>
+<p><strong>1.</strong> Download the compare_genomes repository using the
+command</p>
+<pre class="r"><code>git clone https://github.com/jeffersonfparil/compare_genomes.git</code></pre>
+<p><strong>2.</strong></p>
+<p><span style="text-decoration:underline">Locally:</span> Install Conda
+(<mark>Only if you have not installed it yet. If you have, you can skip
+this step.</mark>)</p>
+<pre class="r"><code>wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+sh./Miniconda3-latest-Linux-x86_64.sh</code></pre>
+<p><span style="text-decoration:underline">On a slurm cluster:</span>
+Load the Anaconda module</p>
+<pre class="r"><code>ml Anaconda3/2022.10 # Or whatever recent version is available </code></pre>
+<p><strong>3.</strong> Import and activate the compare_genomes Conda
+environment:</p>
+<pre class="r"><code>conda env create -n compare_genomes --file compare_genomes/compare_genomes.yml
+
+conda activate compare_genomes</code></pre>
+<p>This step may take a bit as there are a lot of modules that need to
+be downloaded.</p>
+<p><strong>4.</strong> Edit the configuration file, i.e.,
+compare_genomes/config/params.config, by replacing line number 2, dir =
+‘/data/TEST’, with the absolute path on the user’s computer that will be
+used as the output directory for the workflow:</p>
+<pre class="r"><code>cd compare_genomes
+nano config/params.config
+Replace “dir=&#39;/data/TEST&#39;” with your path.</code></pre>
+<p>Possible source of error: <mark> Replace /data/TEST with the
+<em>entire</em> directory path of your chosen output file.</p>
+<p><strong>5.</strong> Run the example:</p>
+<pre class="r"><code>chmod +x run.sh
+time ./run.sh</code></pre>
+<div id="setting-up-for-a-new-analysis" class="section level4">
+<h4>Setting up for a new analysis</h4>
+<p>Paril considers this step 6 of running the pipeline, so if you read
+the <a
+href="https://currentprotocols.onlinelibrary.wiley.com/doi/full/10.1002/cpz1.876">paper</a>
+that is where you will find these steps. The steps below are taken
+directly from their paper.</p>
+<p>To set up the workflow for a new analysis, edit the seven
+configuration files located in compare_genomes/config/.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>‘urls.txt’: list of web links or absolute paths to the genome
+sequences, genome annotations, coding DNA sequences, and amino acid
+sequences for at least three species to be included in the analyses. It
+is formatted as a headerless, two-columned, comma-separated file. Column
+1 contains the filenames of the genome sequence, genome annotation,
+coding DNA sequence, and amino acid sequences (species names and
+extension names should be the consistent across these files, e.g.,
+‘.fna’ for the genomes, ‘.gff’ for the annotations, ‘.cds’ for the
+coding DNA sequences, and ‘.faa’ for the amino acid sequences). Column 2
+contains the URL (uniform resource locator) of the zipped (‘.gz’ or
+‘.zip’) or unzipped files for download. Alternatively, this can be the
+absolute path to the pre-downloaded zipped or unzipped files on a local
+computer.</p></li>
+<li><p>‘dates.txt’: list of pairwise divergence times between species.
+This information can be found at <a href="http://timetree.org"
+class="uri">http://timetree.org</a>. Divergence times between all pairs
+of species are not required. Pick at least two pairs of species
+divergence times, ideally including the outgroup species. This file is
+formatted as a headerless, two-columned, tab-delimited file. Column 1
+contains the pair of species separated by a comma with the same names
+used in the ‘urls.txt’. Column 2 contains the time in million years,
+e.g., ‘-160’ for 160 million years ago.</p></li>
+<li><p>‘comparisons_4DTv.txt’: list of species and pairs of species to
+be included in the estimation of transversion rates among
+four-fold-degenerate sites (4DTv). This statistic is used to set the
+molecular clock, with more mutations at the third codon position meaning
+more divergence time between a pair of sequences. By default, 4DTv is
+estimated using genes present with two copies. Edit line 34 of
+‘compare_genomes/modules/assess_WGD.nf’ to include genes with more than
+two copies. This is formatted as a headerless, one-columned file. Column
+1 contains the species and/or pairs of species names, which should match
+the names in ‘urls.txt’, and species pairs should be written as, for
+example, “Zea_mays X Oryza_sativa”.</p></li>
+<li><p>‘venn_species_max_5.txt’: list of at most five species to be
+plotted in the Venn diagram comparing the differences and commonalities
+of gene families between species. It is currently not possible to fit
+more than five species in the Venn diagram because of the limitations of
+the plotting package used. This is formatted as a headerless,
+one-columned file. Column 1 contains the species names matching those in
+‘urls.txt’.</p></li>
+<li><p>‘genes.txt’: links to the gene sequences to be tested for
+significant expansion/contraction and for nonsynonymous/synonymous
+mutation (Ka/Ks) rates between pairs of sequences within and among
+species. It is formatted as a headerless, three-columned,
+comma-separated file. Column 1 contains phenotype names or some
+identifier (noncritical information). Column 2 contains the species
+names from which the gene sequence was derived and can be a species not
+included in ‘urls.txt’ (noncritical information). Column 3 contains the
+URL of the genes to be downloaded and analyzed.</p></li>
+<li><p>‘params.config’: configuration file listing the parameter values
+for the specific analyses to be conducted.</p>
+<ol style="list-style-type: lower-roman">
+<li>‘dir’: output directory.</li>
+<li>‘species_of_interest’: a single species of interest, which should
+match one of the species listed in ‘urls.txt’.</li>
+<li>‘species_of_interest_panther_HMM_for_gene_names_url’: URL to the
+Panther HMM database to extract gene names from, preferably from the
+species used for the gene ontology (GO) term enrichment analysis. See
+the current release list at <a
+href="http://data.pantherdb.org/ftp/sequence_classifications/current_release/PANTHER_Sequence_Classification_files/"
+class="uri">http://data.pantherdb.org/ftp/sequence_classifications/current_release/PANTHER_Sequence_Classification_files/</a>.</li>
+<li>‘urls’: location of ‘urls.txt’.</li>
+<li>‘dates’: location of ‘dates.txt’.</li>
+<li>‘comparisons_4DTv’: location of ‘comparisons_4DTv.txt’.</li>
+<li>‘venn_species_max_5’: location of ‘venn_species_max_5.txt’.</li>
+<li>‘genes’: location of ‘genes.txt’.</li>
+<li>‘cafe5_n_gamma_cats’: number of the Gamma values (parameter of the
+substitution model) to use for the assessment of significant gene family
+expansion and contraction using CAFE5. If this is equal to 1, then we
+use the substitution model without the gamma function.</li>
+<li>‘cafe5_pvalue’: significance threshold for the gene family expansion
+and contraction test.</li>
+<li>‘go_term_enrich_genome_id’: genome ID for the species specified in
+‘species_of_interest_panther_HMM_for_gene_names_url’ or some closely
+related species. Find the appropriate taxon ID at <a
+href="https://pantherdb.org/services/oai/pantherdb/supportedgenomes"
+class="uri">https://pantherdb.org/services/oai/pantherdb/supportedgenomes</a>.</li>
+<li>‘go_term_enrich_annotation_id’: code for the gene ontology level to
+be used, e.g., “<a href="GO:0008150" class="uri">GO:0008150</a>” for
+“Biological Process”. See the list of GO codes at <a
+href="https://pantherdb.org/services/oai/pantherdb/supportedannotdatasets"
+class="uri">https://pantherdb.org/services/oai/pantherdb/supportedannotdatasets</a>.</li>
+<li>‘go_term_enrich_test’: GO term enrichment test, which can be set to
+either “FISHER” (Fisher’s exact test) or “BINOMIAL” (binomial
+distribution test).</li>
+<li>‘go_term_enrich_correction’: multiple testing correction which can
+be set to “NONE”, “FDR” (false-discovery rate), or “BONFERRONI”
+(Bonferroni correction).</li>
+<li>‘go_term_enrich_ngenes_per_test’: number of randomly sampled genes
+to include in each GO term enrichment analysis.</li>
+<li>‘go_term_enrich_ntests’: number of GO term enrichment test
+replications to perform.</li>
+</ol></li>
+<li><p>‘process.config’: configuration file setting the computing
+resource allocation. Assign the number of ‘cpus’ and ‘memory’ capacity
+to use for low- and high-resource tasks with ‘LOW_MEM_LOW_CPU’ and
+‘HIGH_MEM_HIGH_CPU’, respectively.</p></li>
+</ol>
+</div>
+</div>
+<div id="troubleshooting" class="section level3">
+<h3>Troubleshooting</h3>
+<div
+id="pipeline-cannot-find-output-directory-you-specified-in-the-config-file"
+class="section level4">
+<h4>Pipeline cannot find output directory you specified in the config
+file</h4>
+<p>Make sure you put the <em>entire</em> directory path in the
+params.config file. Yes, even if you’re in a “closer” directory, you
+have to put the full file path from the very first parent folder, down
+to the output folder you’ve created. For example, I would enter the
+<em>entire</em> file path shown in the light blue box below if I wanted
+compare_genomes to output to my folder called output.</p>
+<p><img src="../images/filepath-ex.png" /></p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.4.0 (2024-04-24 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 11 x64 (build 22631)
+
+Matrix products: default
+
+
+locale:
+[1] LC_COLLATE=English_United States.utf8 
+[2] LC_CTYPE=English_United States.utf8   
+[3] LC_MONETARY=English_United States.utf8
+[4] LC_NUMERIC=C                          
+[5] LC_TIME=English_United States.utf8    
+
+time zone: America/Chicago
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] workflowr_1.7.1
+
+loaded via a namespace (and not attached):
+ [1] vctrs_0.6.5       httr_1.4.7        cli_3.6.2         knitr_1.47       
+ [5] rlang_1.1.3       xfun_0.44         stringi_1.8.4     processx_3.8.4   
+ [9] promises_1.3.0    jsonlite_1.8.8    glue_1.7.0        rprojroot_2.0.4  
+[13] git2r_0.33.0      htmltools_0.5.8.1 httpuv_1.6.15     ps_1.7.6         
+[17] sass_0.4.9        rmarkdown_2.27    jquerylib_0.1.4   evaluate_0.23    
+[21] fastmap_1.2.0     yaml_2.3.8        lifecycle_1.0.4   whisker_0.4.1    
+[25] stringr_1.5.1     compiler_4.4.0    fs_1.6.4          Rcpp_1.0.12      
+[29] rstudioapi_0.16.0 later_1.3.2       digest_0.6.35     R6_2.5.1         
+[33] callr_3.7.6       magrittr_2.0.3    bslib_0.7.0       tools_4.4.0      
+[37] cachem_1.1.0      getPass_0.2-4    </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
