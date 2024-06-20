@@ -86,9 +86,50 @@ Replace “dir='/data/TEST'” with your path.
 Possible source of error: <mark> Replace /data/TEST with the *entire* directory path of your chosen output file. 
 
 **5.** Run the example:
+
+<span style="text-decoration:underline">Locally:</span>
 ```{r run-ex, eval=FALSE}
 chmod +x run.sh
 time ./run.sh
+```
+
+<span style="text-decoration:underline">On a slurm cluster:</span>
+
+Create a new .sh file called *run-cluster.sh* and copy and paste the following code into it:
+
+```{r run-cluster, eval=FALSE}
+#!/usr/bin/env bash
+#SBATCH --job-name=genomics_workflow
+#SBATCH --output=genomics_workflow.out
+#SBATCH --error=genomics_workflow.err
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --time=72:00:00
+#SBATCH --mem=16G
+
+echo "========================================================="
+echo "Running the entire comparative genomics workflow."
+echo "========================================================="
+
+# Load necessary modules or set environment variables here
+# module load nextflow
+
+nextflow run modules/setup.nf                               -c config/params.config ### SETUP
+nextflow run modules/orthofinder.nf                         -c config/params.config ### DETERMINE ORTHOGROUPS
+nextflow run modules/single_gene_orthogroups_tree.nf        -c config/params.config ### BUILD A PHYLOGENETIC TREE USING SINGLE-COPY GENE FAMILIES
+nextflow run modules/single_gene_orthogroups_4DTv.nf        -c config/params.config ### COMPUTE THE TRANSVERSION RATES AMONG 4-FOLD DEGENERATE SITES (4DTv)
+nextflow run modules/gene_family_contraction_expansion.nf   -c config/params.config ### ASSESS SIGNIFICANT GENE FAMILY CONTRACTION AND EXPANSION (This may take days depending on your machine, number of species, and proteome sizes)
+nextflow run modules/GO_enrichment.nf                       -c config/params.config ### GENE ONTOLOGY TERM ENRICHMENT ANALYSIS OF SIGNIFICANTLY EXPANDED GENE FAMILIES
+nextflow run modules/assess_WGD.nf                          -c config/params.config ### ASSESS WHOLE GENOME DUPLICATION EVENTS
+nextflow run modules/plot_tree_conex_venn_4DTv.nf           -c config/params.config ### PLOT THE PHYLOGENETIC TREE, CONTRACTION/EXPANSION, GENE SETS VENN DIAGRAM AND 4DTv
+nextflow run modules/assess_specific_genes.nf               -c config/params.config ### ASSESS CONTRACTION/EXPANSION AND NON-SYNONYMOUS TO SYNONYMOUS NUCLEOTIDE SUBSTITUTION RATIOS
+
+```
+
+Then to run this file on the cluster, use the command
+
+```{r run-cluster, eval=FALSE}
+sbatch run-cluster.sh
 ```
 
 

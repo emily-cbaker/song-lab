@@ -16,7 +16,7 @@ navbar:
           href: week3-notes.html
 
     - text: "Projects"
-      icon: fa-book-open
+      icon: fa-microscope
       menu:
         - text: "Comparative Genomics of Large Orthoptera Genomes"
           href: orthop-genomes-project.html
@@ -32,6 +32,12 @@ navbar:
           href: mlc.html
         - text: "Compare_Genomes"
           href: compare-genomes.html
+
+    - text: "Reference"
+      icon: fa-book-open-reader
+      menu:
+        - text: "Glossary of Terminology"
+          href: terms.html
 output:
   workflowr::wflow_html:
     toc: yes

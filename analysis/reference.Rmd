@@ -1,0 +1,36 @@
+---
+title: "Reference Page"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+    toc_float: true
+    toc_collapsed: false
+    theme: default
+    css: "theme3.css"
+toc_depth: 1
+number_sections: true
+editor_options:
+  chunk_output_type: console
+---
+
+## {.tabset}
+### Definitions
+
+[Duplication, Gene - ](https://www.genome.gov/genetics-glossary/Duplication) A mutation where one or more copies of a DNA segment are duplicated in reproduction.
+
+[Homologous Genes -](https://bio.libretexts.org/Bookshelves/Microbiology/Microbiology_(Boundless)/07%3A_Microbial_Genetics/7.13%3A_Bioinformatics/7.13C%3A_Homologs_Orthologs_and_Paralogs) A type of gene that is inherited by 2 species that have a common ancestor. We can further subdivide homologous genes into orthologous and paralogous genes.
+
+[Nucleotide - ](https://www.cancer.gov/publications/dictionaries/genetics-dictionary/def/nucleotide)A molecule that makes up DNA and RNA
+
+[Orthologous Genes -](https://bio.libretexts.org/Bookshelves/Microbiology/Microbiology_(Boundless)/07%3A_Microbial_Genetics/7.13%3A_Bioinformatics/7.13C%3A_Homologs_Orthologs_and_Paralogs) Homologous genes that diverge after a speciation event, but the gene and its main function are preserved.
+
+[Paralogous Genes - ](https://bio.libretexts.org/Bookshelves/Microbiology/Microbiology_(Boundless)/07%3A_Microbial_Genetics/7.13%3A_Bioinformatics/7.13C%3A_Homologs_Orthologs_and_Paralogs) Genes present in a particular organism that are related to each other through a gene duplication event.
+
+[Isoform(s) -](https://elifesciences.org/articles/34477) Proteins that are similar and perform similar roles within the cell.
+
+[RNA - ](https://www.genome.gov/genetics-glossary/RNA-Ribonucleic-Acid)Ribonucleic acid (RNA) is a copy of DNA that is used to produce proteins and assists in the translation of DNA.
+
+[Synteny -](https://www.nature.com/scitable/topicpage/synteny-inferring-ancestral-genomes-44022/) The conservation of order of blocks within the order of 2 sets of chromosomes that are being compared to one another.
+
+

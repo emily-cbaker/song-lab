@@ -11,7 +11,7 @@ editor_options:
 #### TOGA on Mac tower
 **Monday:** TOGA seems to be running fine on the Mac tower still, I am attempting to run the make_lastz_chain pipeline to create chain data between *gregaria* and *piceferons* so that I can try to run TOGA on them, but the pipeline is taking an extremely long time to run. I may have to try and let it run overnight as I don't think it will finish by EOD.
 
-**Tuesday:** Overnight make_lastz_chains was able to complete around 50 out of 13,000 jobs, so I have emailed HPRC to ask that the pipeline be installed on the cluster to try and get it to run faster on there as opposed to locally. 
+**Tuesday:** Overnight make_lastz_chains was able to complete around 50 out of 13,000 jobs, so I have emailed HPRC to ask that the pipeline be installed on the cluster to try and get it to run faster on there as opposed to locally.
 
 #### Meeting with IT
 **Monday:** Michael had me remove the auto-launch script from my .bashrc file in my home directory. This allowed me to get past my initial error of nextflow being denied permission to cache files.   
@@ -34,3 +34,6 @@ executor {
 to the files in *nextflow_config_files* (extract_chain_features_config.nf and call_cesar_config_template.nf).  
 
 When we left off he said he would try and update the pipeline to the latest edition and then try and run the test data himself, so I am now waiting on him to get back to me on that. 
+
+#### Compare_Genomes pipeline
+**Wednesday:** I started downloading this pipeline today and so far it is incredibly easy to use from the instructions provided in the paper. I have not been able to run test data yet as my wifi connection wasn't strong enough but I will try again today.

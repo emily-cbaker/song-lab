@@ -1,0 +1,110 @@
+---
+title: "FormicidaeMolecularEvolution - Comparative Genomic Analysis Workflow"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+    toc_float: true
+    toc_collapsed: false
+    theme: default
+    css: "theme3.css"
+toc_depth: 1
+number_sections: true
+editor_options:
+  chunk_output_type: console
+---
+
+## Scripts and how-tos for comparative genomics work. {.tabset}
+### What is FormicidaeMolecularEvolution?
+This workflow was developed by Megan Barkdull of the Moreau lab at Cornell University to find orthogroups between a reference and at least 1 query species. In particular, this pipeline allows for the user to select for the longest [isoform](https://elifesciences.org/articles/34477). This feature allows us to skip analyzing repeating sequences in the *schistocerca* genomes.
+
+### Installation and Running 
+#### Clone the GitHub repository
+For both local and cluster installation, you just need to clone Barkdull's GitHub repository into your own environment using the command 
+
+```{r clone-barkdull, eval=FALSE}
+git clone git@github.com:mbarkdull/FormicidaeMolecularEvolution.git
+```
+
+#### Preparing your data files
+
+Barkdull provides a script that downloads all the data you need from an FTP address, but the formatting must be within a .csv file, with the URLs formatted within the columns as follows
+
+```{r NCBI-stats csv-format, echo=FALSE, message=FALSE, warning =FALSE}
+library(knitr)
+library(kableExtra)
+
+# Data for the table
+data <- data.frame(
+  Column_1 = c("Coding Sequence URL"),
+  Column_2 = c("Protein Sequence URL"),
+  Column_3 = c("Species abbreviation code"),
+  Column_4 = c("Longest isoform? (yes/no)"),
+  Column_5 = c("Comments")
+)
+
+# Create the table
+kable(data, escape = FALSE, caption = "") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), 
+                full_width = F) %>%
+  column_spec(1, width = "30em") %>%
+  column_spec(2, width = "30em") %>%
+  column_spec(3, width = "30em") %>%
+  column_spec(4, width = "30em") %>%
+  column_spec(5, width = "30em") %>%
+  row_spec(0, bold = TRUE, background = "#bfa2b0")
+```
+
+Please note that <mark><b> all data must be on the same row!!!</b></mark>
+
+These files are easily created in Microsoft Excel, Google Sheets, or any spreadsheet software by entering your data in the columns as shown above and selecting the .csv option under "Save as". 
+
+Then, move this file into the scripts folder within the cloned GitHub repository. Finally, from the FormicidaeMolecularEvolution directory run the command
+
+```{r download-data, eval=FALSE}
+./scripts/DataDownload scripts/YourInputFile.csv
+```
+
+This will download all the data you need to run this workflow.
+
+#### Running the Pipeline 
+
+<u>On a cluster:</u> 
+
+First we need to download PanDoc in order to update our packages as needed without interference. We do this with the command
+
+```{r configR, eval=FALSE}
+ml GCC/12.2.0  OpenMPI/4.1.4 R_tamu/4.3.1
+
+export R_LIBS=$SCRATCH/R_LIBS_USER/
+  
+ml Pandoc/2.13
+```
+
+
+Then, we need to load the orthologr module onto your terminal. whatever recent version is available will be okay, but for this example I'll use version 4.3.2. The commands are as follows:
+
+```{r ml-R, eval=FALSE}
+module load R\4.3.2
+
+R
+
+install.packages("orthologr")
+
+library("orthologr")
+
+exit
+```
+
+Now we can run the scripts as Barkdull outlines on her GitHub without modification. The next step is the command
+
+```{r gene-retrieval, eval=FALSE}
+./scripts/GeneRetrieval.R scripts/YourInputFile.csv
+```
+
+
+
+
+
+
+

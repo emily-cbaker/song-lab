@@ -1,0 +1,12 @@
+name: shiny
+title:
+username: ecbaker7
+account: ecbaker7
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 12211996
+bundleId: 8769151
+url: https://ecbaker7.shinyapps.io/shiny/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

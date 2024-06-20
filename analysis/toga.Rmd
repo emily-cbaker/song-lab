@@ -269,5 +269,8 @@ Making gene_id: bed_data dict...
 IT believes it is an issue with the storage space on my home drive, but this hasn't seemed to have corrected the issue. 
 
 #### Error! File /sw/eb/sw/TOGA/2024.05.26-foss-2022a/CESAR2.0/cesar not found!
- I have emailed IT about this error as this was a new installation on the cluster and it is possible this file is missing. I looked in the specified directory and the file was missing, it was not hidden either. Will update when I receive a response.
+ This is an issue that occurs when TOGA is incorrectly installed on a cluster, contact IT to have them redo the installation.
 
+
+#### Permission denied for chain files in modules
+  I believe this is another error with the new TOGA installation in the cluster, I have contacted IT again.
