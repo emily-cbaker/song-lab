@@ -1,0 +1,113 @@
+---
+title: "Progress & Notes: 6/24-6/28"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    toc_collapsed: false
+    theme: default
+    css: "theme3.css"
+editor_options:
+  chunk_output_type: console
+---
+
+#### TOGA
+
+**Monday:** It seems like the error where TOGA produces no data from the given data may be due to the fact that it cannot find numpy to run analysis. I tried to run the command for *requirements.txt* as specified on the Hiller Lab GitHub, but it produced the following error:
+
+
+![](assets/error-no-numpy.png)
+
+I have emailed Michael about this error and am waiting for a response.
+
+**UPDATE:** Michael answered and asked me to add these lines to the file nextflow_config_files/call_cesar_config_template.nf
+
+```{r cesar-add-lines, eval=FALSE}
+
+ process.pollInterval = '3 min'
+    process.queueStatInterval = '6 min'
+    process.submitRateLimit = '2/1min'
+
+    process.clusterOptions = '--ntasks=1 --cpus-per-task=1'
+
+
+```
+
+This did not work and resulted in the same problem as before. Michael also said that numpy should be available by loading the TOGA module so that may not be the source of error. He asked me to run the test command for TOGA and that did not work. Waiting on a response.
+
+#### make_lastz_chains
+
+Maeva asked me to try running a script on the genomes to replace the periods with two underscores before putting them through the pipeline to see if that may fix the spacing error we're getting. The script was as follows:
+
+```{r remove-periods, eval=FALSE}
+#!/bin/bash
+
+# Define the input and output files
+input_file="input.fna"
+output_file="input_np.fna"
+# np = no periods
+
+# Use grep to handle lines that are not sequence headers and sed to replace periods
+grep -v "^>" "$input_file" | sed 's/\./__/g' > sequences.tmp
+
+# Use grep to handle sequence headers
+grep "^>" "$input_file" > headers.tmp
+
+# Combine the headers and the modified sequences
+cat headers.tmp sequences.tmp > "$output_file"
+
+# Clean up temporary files
+rm headers.tmp sequences.tmp
+
+echo "Replacement complete. Output written to $output_file."
+```
+
+If this does not work we will modify the script to replace all spaces with a single underscore as well. Then as a last resort we will try to remove everything but the contig name from the line.
+
+**UPDATE:** The no spaces script did not work, trying with the following script to replace all spaces and periods: 
+
+```{r nospacenoperiod, eval=FALSE}
+
+#!/bin/bash
+
+# Define the input and output files
+input_file="input.fna"
+output_file="output.fna"
+
+# Use grep to handle lines that are not sequence headers and sed to replace periods and spaces
+grep -v "^>" "$input_file" | sed 's/\./__/g' | sed 's/ /_/g' > sequences.tmp
+
+# Use grep to handle sequence headers
+grep "^>" "$input_file" > headers.tmp
+
+# Combine the headers and the modified sequences
+cat headers.tmp sequences.tmp > "$output_file"
+
+# Clean up temporary files
+rm headers.tmp sequences.tmp
+
+echo "Replacement complete. Output written to $output_file."
+
+
+```
+
+**UPDATE 2:** Removing the spaces didn't work either, using this script to remove verything from the header lines except the contig name.
+
+```{r ony-contig-ame, eval=FALSE}
+
+#!/bin/bash
+
+# Define the input and output files
+input_file="input.fna"
+output_file="output.fna"
+
+# Use sed to process both headers and sequences in one pass
+sed -e 's/^\(>\S*\).*/\1/' "$input_file" > "$output_file"
+
+echo "Processing complete. Output written to $output_file."
+
+
+```
+
+This works but I am now running into the problem that make_lastz_chains is not allowed to run as many jobs as it wants to at a time and this causes the pipeline to crash. Emailed Michael, waiting on an answer.
