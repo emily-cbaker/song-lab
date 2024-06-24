@@ -14,6 +14,8 @@ navbar:
           href: week2-notes.html
         - text: "6/17 - 6/21"
           href: week3-notes.html
+        - text: "6/24 - 6/28"
+          href: week4-notes.html
 
     - text: "Projects"
       icon: fa-microscope
@@ -44,7 +46,7 @@ output:
   workflowr::wflow_html:
     toc: yes
     toc_float: yes
-    toc_depth: 5
+    toc_depth: 4
     theme: default
     highlight: textmate
     css: "theme3.css"

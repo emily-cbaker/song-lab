@@ -1079,7 +1079,7 @@ html {
 body {
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 15px;
-  line-height: 1.42857143;
+  line-height: 2;
   color: #474747;
   background-color: #fff;
 }
@@ -1286,7 +1286,7 @@ p {
   margin-bottom: 21px;
   font-size: 17px;
   font-weight: 300;
-  line-height: 1.4;
+  line-height: 2;
 }
 @media (min-width: 768px) {
   .lead {
@@ -1436,7 +1436,7 @@ dl {
 }
 dt,
 dd {
-  line-height: 1.42857143;
+  line-height: 2;
 }
 dt {
   font-weight: 700;
