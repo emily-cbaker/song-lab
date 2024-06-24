@@ -82,19 +82,19 @@ ml Pandoc/2.13
 ```
 
 
-Then, we need to load the orthologr module onto your terminal. whatever recent version is available will be okay, but for this example I'll use version 4.3.2. The commands are as follows:
+Then, we need to load the the necessary modules onto your terminal. The command is as follows:
 
 ```{r ml-R, eval=FALSE}
-module load R\4.3.2
-
 R
 
-install.packages("orthologr")
-
 library("orthologr")
+library("biomartr")
 
-exit
+quit()
 ```
+
+**Is orthologr not available?** Copy and paste the code from [this link](https://github.com/drostlab/orthologr) under *Install orthologr*.
+
 
 Now we can run the scripts as Barkdull outlines on her GitHub without modification. The next step is the command
 
