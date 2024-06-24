@@ -26,16 +26,44 @@ Read more in depth on their GitHub [here](https://github.com/hillerlab/make_last
 
 This program is supported on MacOS, but the Hiller Lab team *highly recommends* running it on a Linux-based machine.
 
-#### On Grace
+#### Prepare Files
+
+To acquire files to put into this pipeline, find your genome(s) of interest on NCBI, click on the FTP tab, and download the file ending in genomic.fna.gz. Then upload this file to the cluster and use the command
+
+```{r gunzip, eval=FALSE}
+
+gunzip YOUR-GENOME_genomic.fna.gz
+
+```
+
+This will turn your file from a .fna.gz to just .fna. Then create a file called *remove-headers.sh* and copy the following code into it.
+
+```{r remove-headers.sh, eval=FALSE}
+#!/bin/bash
+
+# Define the input and output files
+input_file="input-name.fna"
+output_file="input-name_only_contig_name.fna"
+
+# Use sed to process both headers and sequences in one pass
+sed -e 's/^\(>\S*\).*/\1/' "$input_file" > "$output_file"
+
+echo "Processing complete. Output written to $output_file."
+
+```
+
+This script removes everything except the contig name from the headers in the .fna file. We do this because make_lastz_chains will through a spacing error otherwise. <mark> You must do this for each file you intend to create chains for.</mark> You are now eady to run this pipeline!
+
+#### Running on Grace
 To run the make_lastz_chains pipeline on Grace, enter the following commands:
 ```{r act-mlc, eval=FALSE}
-module spider make_lastz_chains/1.0.0
+ml GCC/12.2.0 make_lastz_chains/1.0.0
 
 make_chains.py target query ${path to target genome} ${path to query genome} --pd test_out -f --chaining_memory 16
 
 ```
 
-#### In a Conda Environment
+#### Running in a Conda Environment
 Follow the instructions on the Hiller Lab GitHub [here](https://github.com/hillerlab/make_lastz_chains) to install.
 
 ### Troubleshooting
@@ -48,7 +76,7 @@ Warning: Permanently added the ECDSA host key for IP address '140.82.113.3' to t
 
 I corrected this by going into my home > .ssh directory in Grace and adding the passkey from *id_rsa.pub* to my GitHub SSH keys. This is the public key the Grace terminal uses to download files from GitHub. This allowed me to download from the Hiller Lab repository.  
 
-If your *id_rsa.pub* file is empty, visit [this link](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Fix-GitHubs-Permission-denied-publickey-SSH-error). It has the full documentation that I followed to fix this error.
+If your *id_rsa.pub* file is empty, visit [this link](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Fix-GitHubs-Permission-denied-publickey-SSH-error). It has the full documentation that I followed to fix this error. Here you will find instructions on how to get the necessary information in your *id_rsa.pub* file.
 
 #### Error: detected space-or-tab-containing sequence
 
@@ -60,8 +88,34 @@ NC_060119.1 Schistocerca americana isolate TAMUIC-IGC-003095 chromosome 1, iqSch
 Please exclude or fix sequences with spaces and tabs.
 ```
 
-I have submitted this error to the Hiller Lab GitHub and will update when I get a response.
+To correct this error, first run your .fna files through this script:
+
+```{r space-error-correcting-script, eval=FALSE}
+#!/bin/bash
+
+# Define the input and output files
+input_file="input-name.fna"
+output_file="input-name_only_contig_name.fna"
+
+# Use sed to process both headers and sequences in one pass
+sed -e 's/^\(>\S*\).*/\1/' "$input_file" > "$output_file"
+
+echo "Processing complete. Output written to $output_file."
+```
+
+This removes everything following the contig name in each header of the fasta file. 
 
 #### Error: unrecognized arguments: -f
 
 The -f or -force flag is meant to overwrite an output folder if a folder exists with the same name already. This error occurs when there is no pre-existing folder to overwrite, so simply remove this flag from your command and rerun.
+
+
+#### ModuleNotFoundError: No module named 'dataclasses'
+
+This error occurs for me when I've forgetten to load the make_lastz_chains module on Grace. Simply enter
+```{r nomod-fix, eval=FALSE}
+
+ml GCC/12.2.0 make_lastz_chains/1.0.0
+
+```
+
