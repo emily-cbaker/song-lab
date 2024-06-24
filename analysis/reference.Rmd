@@ -14,22 +14,33 @@ editor_options:
   chunk_output_type: console
 ---
 
+<style type="text/css">
+  body{
+  line-height: 2
+  }
+</style>
+
 ## {.tabset}
 ### Definitions
+[DNA Methylation - ](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3174260/#:~:text=DNA%20methylation%20is%20a%20heritable,T%2C%20or%20C%20contexts.) A heritable epigenetic change where a methyl group is added to DNA that can change how the DNA is expressed.
 
 [Duplication, Gene - ](https://www.genome.gov/genetics-glossary/Duplication) A mutation where one or more copies of a DNA segment are duplicated in reproduction.
 
+[Epigenetic -](https://medlineplus.gov/genetics/understanding/howgeneswork/epigenome/#:~:text=%22Epi%2D%22means%20on%20or,sequence%20of%20DNA%20building%20blocks.) Factors that change gene expression but **not** the actual sequence of the DNA.
+
 [Homologous Genes -](https://bio.libretexts.org/Bookshelves/Microbiology/Microbiology_(Boundless)/07%3A_Microbial_Genetics/7.13%3A_Bioinformatics/7.13C%3A_Homologs_Orthologs_and_Paralogs) A type of gene that is inherited by 2 species that have a common ancestor. We can further subdivide homologous genes into orthologous and paralogous genes.
 
-[Nucleotide - ](https://www.cancer.gov/publications/dictionaries/genetics-dictionary/def/nucleotide)A molecule that makes up DNA and RNA
+[Nucleotide -](https://www.cancer.gov/publications/dictionaries/genetics-dictionary/def/nucleotide) A molecule that makes up DNA and RNA
 
 [Orthologous Genes -](https://bio.libretexts.org/Bookshelves/Microbiology/Microbiology_(Boundless)/07%3A_Microbial_Genetics/7.13%3A_Bioinformatics/7.13C%3A_Homologs_Orthologs_and_Paralogs) Homologous genes that diverge after a speciation event, but the gene and its main function are preserved.
 
-[Paralogous Genes - ](https://bio.libretexts.org/Bookshelves/Microbiology/Microbiology_(Boundless)/07%3A_Microbial_Genetics/7.13%3A_Bioinformatics/7.13C%3A_Homologs_Orthologs_and_Paralogs) Genes present in a particular organism that are related to each other through a gene duplication event.
+[Paralogous Genes -](https://bio.libretexts.org/Bookshelves/Microbiology/Microbiology_(Boundless)/07%3A_Microbial_Genetics/7.13%3A_Bioinformatics/7.13C%3A_Homologs_Orthologs_and_Paralogs) Genes present in a particular organism that are related to each other through a gene duplication event.
 
 [Isoform(s) -](https://elifesciences.org/articles/34477) Proteins that are similar and perform similar roles within the cell.
 
-[RNA - ](https://www.genome.gov/genetics-glossary/RNA-Ribonucleic-Acid)Ribonucleic acid (RNA) is a copy of DNA that is used to produce proteins and assists in the translation of DNA.
+[RNA - ](https://www.genome.gov/genetics-glossary/RNA-Ribonucleic-Acid) Ribonucleic acid (RNA) is a copy of DNA that is used to produce proteins and assists in the translation of DNA.
+
+[Synathrope - ](https://davidrousefaicp.com/synanthropic-species-why-are-they-important-to-our-future/) Animals that live in close association with humans but are not domesticated.
 
 [Synteny -](https://www.nature.com/scitable/topicpage/synteny-inferring-ancestral-genomes-44022/) The conservation of order of blocks within the order of 2 sets of chromosomes that are being compared to one another.
 
