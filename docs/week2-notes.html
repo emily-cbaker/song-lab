@@ -270,11 +270,17 @@ $(document).ready(function () {
     <li>
       <a href="week2-notes.html">6/10 - 6/14</a>
     </li>
+    <li>
+      <a href="week3-notes.html">6/17 - 6/21</a>
+    </li>
+    <li>
+      <a href="week4-notes.html">6/24 - 6/28</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <span class="fa fa-book-open"></span>
+    <span class="fa fa-microscope"></span>
      
     Projects
      
@@ -300,6 +306,29 @@ $(document).ready(function () {
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="toga.html">TOGA</a>
+    </li>
+    <li>
+      <a href="mlc.html">make_lastz_chains</a>
+    </li>
+    <li>
+      <a href="compare-genomes.html">Compare_Genomes</a>
+    </li>
+    <li>
+      <a href="barkdull.html">FormicidaeMolecularEvolution</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="fa fa-book-open-reader"></span>
+     
+    Reference
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="reference.html">Glossary of Terminology</a>
     </li>
   </ul>
 </li>
@@ -344,7 +373,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-14
+<strong>Last updated:</strong> 2024-06-24
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -475,15 +504,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree1d5e2e431bf94a76b37b36ef3d395dbf33189857targetblank1d5e2e4a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree4f0eeeeefbb855bee6b2a994a6be64dc04348714targetblank4f0eeeea">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/1d5e2e431bf94a76b37b36ef3d395dbf33189857" target="_blank">1d5e2e4</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/4f0eeeeefbb855bee6b2a994a6be64dc04348714" target="_blank">4f0eeee</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree1d5e2e431bf94a76b37b36ef3d395dbf33189857targetblank1d5e2e4a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree4f0eeeeefbb855bee6b2a994a6be64dc04348714targetblank4f0eeeea"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -493,7 +522,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/1d5e2e431bf94a76b37b36ef3d395dbf33189857" target="_blank">1d5e2e4</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/4f0eeeeefbb855bee6b2a994a6be64dc04348714" target="_blank">4f0eeee</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -510,7 +539,18 @@ were generated:
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+    Ignored:    analysis/shiny/
     Ignored:    bootswatch/
+    Ignored:    images/
+
+Untracked files:
+    Untracked:  analysis/week4-notes.Rmd
+
+Unstaged changes:
+    Modified:   analysis/_site.yml
+    Deleted:    analysis/pulse.css
+    Deleted:    analysis/theme2.css
+    Modified:   analysis/theme3.css
 
 </code></pre>
 <p>
@@ -555,6 +595,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/845a20a417e1ad236d36533e43adda9b0524ac99/docs/week2-notes.html" target="_blank">845a20a</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -934,15 +991,16 @@ other attached packages:
 
 loaded via a namespace (and not attached):
  [1] vctrs_0.6.5       httr_1.4.7        cli_3.6.2         knitr_1.47       
- [5] rlang_1.1.3       xfun_0.44         stringi_1.8.4     processx_3.8.4   
+ [5] rlang_1.1.3       xfun_0.45         stringi_1.8.4     processx_3.8.4   
  [9] promises_1.3.0    jsonlite_1.8.8    glue_1.7.0        rprojroot_2.0.4  
 [13] git2r_0.33.0      htmltools_0.5.8.1 httpuv_1.6.15     ps_1.7.6         
-[17] sass_0.4.9        rmarkdown_2.27    jquerylib_0.1.4   evaluate_0.23    
-[21] fastmap_1.2.0     yaml_2.3.8        lifecycle_1.0.4   whisker_0.4.1    
-[25] stringr_1.5.1     compiler_4.4.0    fs_1.6.4          Rcpp_1.0.12      
-[29] rstudioapi_0.16.0 later_1.3.2       digest_0.6.35     R6_2.5.1         
-[33] callr_3.7.6       magrittr_2.0.3    bslib_0.7.0       tools_4.4.0      
-[37] cachem_1.1.0      getPass_0.2-4    </code></pre>
+[17] sass_0.4.9        fansi_1.0.6       rmarkdown_2.27    jquerylib_0.1.4  
+[21] tibble_3.2.1      evaluate_0.24.0   fastmap_1.2.0     yaml_2.3.8       
+[25] lifecycle_1.0.4   whisker_0.4.1     stringr_1.5.1     compiler_4.4.0   
+[29] fs_1.6.4          pkgconfig_2.0.3   Rcpp_1.0.12       rstudioapi_0.16.0
+[33] later_1.3.2       digest_0.6.35     R6_2.5.1          utf8_1.2.4       
+[37] pillar_1.9.0      callr_3.7.6       magrittr_2.0.3    bslib_0.7.0      
+[41] tools_4.4.0       cachem_1.1.0      getPass_0.2-4    </code></pre>
 </div>
 </div>
 </div>
