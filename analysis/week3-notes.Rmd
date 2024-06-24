@@ -37,3 +37,17 @@ When we left off he said he would try and update the pipeline to the latest edit
 
 #### Compare_Genomes pipeline
 **Wednesday:** I started downloading this pipeline today and so far it is incredibly easy to use from the instructions provided in the paper. I have not been able to run test data yet as my wifi connection wasn't strong enough but I will try again today.
+
+
+**FINAL UPDATE:** Michael updated TOGA on the cluster and at first the CESAR 2.0 file was missing. After that was fixed it had a permissions error due to the fact that TOGA requires permission to edit the config files before running the actual TOGA.py script. He instructed me to run it using my own toga.py script that way it would configure itself before uploading to the TOGA module on the cluster. This required me to add the following lines in my job script:
+
+```{r add-lines-again, eval=FALSE}  
+module purge
+module load GCC/11.3.0  OpenMPI/4.1.4  TOGA/2024.05.26
+cd $SCRATCH/TOGA
+./toga.py WITH_YOUR_OPTIONS
+```
+
+This then resulted in TOGA being able to configure correctly and properly pull data but it produced 0 results. This issue has not been resolved.
+
+
