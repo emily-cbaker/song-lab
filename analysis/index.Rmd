@@ -8,4 +8,27 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+
+<div class="img-with-text">
+  ![](assets/cricket-lineart.png)
+  <p>This website is dedicated to the work I (Emily Baker) conduct at the Song Laboratory at the Texas A&M University Department of Entomology. Documented on this site are all of the projects I have previously or currently am working on, along with documentation of pipeline installation, error correction, and a glossary of bioinformatics terminology for quick reference. </p>
+</div>
+<style>
+.img-with-text {
+  display: flex;
+  align-items: flex-start;
+}
+
+.img-with-text img {
+  margin-right: 15px;
+  max-width: 30%;
+  height: auto;
+}
+
+.img-with-text p {
+  flex: 1;
+}
+</style>
+
+
+
