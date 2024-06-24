@@ -13,7 +13,11 @@ number_sections: true
 editor_options:
   chunk_output_type: console
 ---
-
+<style type="text/css">
+  body{
+  line-height: 2
+  }
+</style>
 ## A Comparative Genomics Workflow to Streamline the Analysis of Evolutionary Divergence Across Eukaryotic Genomes {.tabset}
 ### What is Compare_Genomes?
 >The dawn of cost-effective genome assembly is enabling deep comparative genomics to address fundamental evolutionary questions by comparing the genomes of multiple species. However, comparative genomics analyses frequently deploy multiple, often purpose-built frameworks, limiting their transferability and replicability. Here, we present compare_genomes, a transferable and extensible comparative genomics workflow package we developed that streamlines the identification of orthologous families within and across eukaryotic genomes and tests for the presence of several mechanisms of evolution (gene family expansion or contraction and substitution rates within protein-coding sequences). The workflow is available for Linux, written as a Nextflow workflow that calls established genomics and phylogenetics tools to streamline the analysis and visualization of eukaryotic genome divergence.
@@ -128,7 +132,7 @@ nextflow run modules/assess_specific_genes.nf               -c config/params.con
 
 Then to run this file on the cluster, use the command
 
-```{r run-cluster, eval=FALSE}
+```{r run-cluster-command, eval=FALSE}
 sbatch run-cluster.sh
 ```
 
@@ -173,9 +177,11 @@ g. ‘process.config’: configuration file setting the computing resource alloc
 ####  Pipeline cannot find output directory you specified in the config file
 Make sure you put the *entire* directory path in the params.config file. Yes, even if you're in a "closer" directory, you have to put the full file path from the very first parent folder, down to the output folder you've created. For example, I would enter the *entire* file path shown in the light blue box below if I wanted compare_genomes to output to my folder called output. 
 
-```{r, echo=FALSE}
-knitr::include_graphics("analysis/file-path.png")
-```
+<center>
+
+![](assets/file-path.png){width=50%}
+</center>
+
 
 
 
