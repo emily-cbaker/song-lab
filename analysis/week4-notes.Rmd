@@ -92,7 +92,7 @@ echo "Replacement complete. Output written to $output_file."
 
 ```
 
-**UPDATE 2:** Removing the spaces didn't work either, using this script to remove verything from the header lines except the contig name.
+**UPDATE 2:** Removing the spaces didn't work either, using this script to remove everything from the header lines except the contig name. I responded to my comment on the Hiller Lab GitHub page and closed the issue, and Dr. Hiller responded and said that this is the easiest solution to this problem.
 
 ```{r ony-contig-ame, eval=FALSE}
 
@@ -111,3 +111,7 @@ echo "Processing complete. Output written to $output_file."
 ```
 
 This works but I am now running into the problem that make_lastz_chains is not allowed to run as many jobs as it wants to at a time and this causes the pipeline to crash. Emailed Michael, waiting on an answer.
+
+
+#### Barkdull Pipeline
+**Tuesday:** I am currently running the second to last step of the Barkdull pipeline for OrthoFinder and I expect to have a completely finished run by tomorrow. I did have an error where it could not find BioPython, but I just added a module purge line to my .sh script and that corrected the issue. I have updated my scipt outline in my instructions to include this line for future users.
