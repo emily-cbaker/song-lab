@@ -18,6 +18,10 @@ editor_options:
 ### What is FormicidaeMolecularEvolution?
 This workflow was developed by Megan Barkdull of the Moreau lab at Cornell University to find orthogroups between a reference and at least 1 query species. In particular, this pipeline allows for the user to select for the longest [isoform](https://elifesciences.org/articles/34477). This feature allows us to skip analyzing repeating sequences in the *schistocerca* genomes.
 
+On her GitHub, Barkdull provides a flowchart that summarizes the process of this pipeline and the purpose of each step. Pictured below is the simplified version of this flowchart.
+
+![Simplified FormicidaeMolecularEvolution Pipeline Flowchart](barkdull-flowchart-simple.png)
+
 ### Installation and Running 
 #### Clone the GitHub repository
 For both local and cluster installation, you just need to clone Barkdull's GitHub repository into your own environment using the command 
