@@ -11,7 +11,7 @@
 
 
 
-<title>Reference Page</title>
+<title>Glossary</title>
 
 <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -232,6 +235,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -239,6 +305,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -344,7 +420,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Reference Page</h1>
+<h1 class="title toc-ignore">Glossary</h1>
 
 </div>
 
@@ -373,7 +449,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-24
+<strong>Last updated:</strong> 2024-06-25
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -420,15 +496,15 @@ results.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreeec8d5e8a1e827cb968a689eba1be59e5566a2234targetblankec8d5e8a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree2d61e50b5f206cb17242778a2d9310de8eb0a7e0targetblank2d61e50a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/ec8d5e8a1e827cb968a689eba1be59e5566a2234" target="_blank">ec8d5e8</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/2d61e50b5f206cb17242778a2d9310de8eb0a7e0" target="_blank">2d61e50</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreeec8d5e8a1e827cb968a689eba1be59e5566a2234targetblankec8d5e8a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree2d61e50b5f206cb17242778a2d9310de8eb0a7e0targetblank2d61e50a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -438,7 +514,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/ec8d5e8a1e827cb968a689eba1be59e5566a2234" target="_blank">ec8d5e8</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/2d61e50b5f206cb17242778a2d9310de8eb0a7e0" target="_blank">2d61e50</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -459,14 +535,9 @@ Ignored files:
     Ignored:    bootswatch/
     Ignored:    images/
 
-Untracked files:
-    Untracked:  analysis/week4-notes.Rmd
-
 Unstaged changes:
-    Modified:   analysis/_site.yml
-    Deleted:    analysis/pulse.css
-    Deleted:    analysis/theme2.css
-    Modified:   analysis/theme3.css
+    Modified:   analysis/barkdull.Rmd
+    Modified:   analysis/week4-notes.Rmd
 
 </code></pre>
 <p>
@@ -511,6 +582,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/2d61e50b5f206cb17242778a2d9310de8eb0a7e0/analysis/reference.Rmd" target="_blank">2d61e50</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-25
+</td>
+<td>
+wflow_publish("analysis/reference.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/b078955b58690e17d518fb7b769a281fc879fe0f/docs/reference.html" target="_blank">b078955</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-24
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -608,10 +713,48 @@ updates
   line-height: 2
   }
 </style>
-<div id="section" class="section level2 tabset">
-<h2 class="tabset"></h2>
-<div id="definitions" class="section level3">
-<h3>Definitions</h3>
+<div id="a" class="section level3">
+<h3>A</h3>
+<p><a href="">Amino Acid -</a> Chemical building blocks that are joined
+by peptide linkages to form a polypeptide chain of protein.</p>
+<p><a
+href="https://support.nlm.nih.gov/knowledgebase/article/KA-03574/en-us">Annotation,
+Gene</a> The process of finding and designating the locations of
+individual genes and other featres on raw DNA sequences.</p>
+<p><a
+href="https://www.sciencedirect.com/topics/pharmacology-toxicology-and-pharmaceutical-science/bioassay">Assay
+-</a> A laboratory test to find the measure of the amount of a specific
+substance.</p>
+</div>
+<div id="b" class="section level3">
+<h3>B</h3>
+<p><a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST -</a>
+Software that finds regions of similarity between biological sequences
+by comparing nucleotide or protein sequences to sequence databases and
+computing their statistical significance. There are specialized versions
+of BLAST that can be used to find conserved domains, search immunoglobin
+and T cell receptor sequences, vector contamination, and many other
+applications. While this program is more accurate than DIAMOND it is
+heavier computationally.</p>
+</div>
+<div id="c" class="section level3">
+<h3>C</h3>
+<p><a
+href="https://bioinformaticsworkbook.org/introduction/dataTerminology.html#gsc.tab=0">Contig
+-</a> The sequence generated by aligning overlapping reads to each
+other.</p>
+</div>
+<div id="d" class="section level3">
+<h3>D</h3>
+<p><a
+href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6542195/"><em>De
+novo</em> gene birth -</a> The process by which new genes evolve from
+non-coding DNA sequences.</p>
+<p><a href="https://github.com/bbuchfink/diamond">DIAMOND -</a> A
+software that aligns sequences and translated DNA searches that is
+designed for high-performance. This is comparable to BLAST but is
+typically less accurate by about 2% but is computationally lighter and
+faster.</p>
 <p><a
 href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3174260/#:~:text=DNA%20methylation%20is%20a%20heritable,T%2C%20or%20C%20contexts.">DNA
 Methylation -</a> A heritable epigenetic change where a methyl group is
@@ -620,32 +763,92 @@ added to DNA that can change how the DNA is expressed.</p>
 href="https://www.genome.gov/genetics-glossary/Duplication">Duplication,
 Gene -</a> A mutation where one or more copies of a DNA segment are
 duplicated in reproduction.</p>
+</div>
+<div id="e" class="section level3">
+<h3>E</h3>
 <p><a
 href="https://medlineplus.gov/genetics/understanding/howgeneswork/epigenome/#:~:text=%22Epi%2D%22means%20on%20or,sequence%20of%20DNA%20building%20blocks.">Epigenetic
 -</a> Factors that change gene expression but <strong>not</strong> the
 actual sequence of the DNA.</p>
+</div>
+<div id="f" class="section level3">
+<h3>F</h3>
+</div>
+<div id="g" class="section level3">
+<h3>G</h3>
+</div>
+<div id="h" class="section level3">
+<h3>H</h3>
 <p><a
 href="https://bio.libretexts.org/Bookshelves/Microbiology/Microbiology_(Boundless)/07%3A_Microbial_Genetics/7.13%3A_Bioinformatics/7.13C%3A_Homologs_Orthologs_and_Paralogs">Homologous
 Genes -</a> A type of gene that is inherited by 2 species that have a
 common ancestor. We can further subdivide homologous genes into
 orthologous and paralogous genes.</p>
+</div>
+<div id="i" class="section level3">
+<h3>I</h3>
+<p><a href="https://elifesciences.org/articles/34477">Isoform(s) -</a>
+Proteins that are similar and perform similar roles within the cell.</p>
+</div>
+<div id="j" class="section level3">
+<h3>J</h3>
+</div>
+<div id="k" class="section level3">
+<h3>K</h3>
+</div>
+<div id="l" class="section level3">
+<h3>L</h3>
+</div>
+<div id="m" class="section level3">
+<h3>M</h3>
+<p><a
+href="https://www.illumina.com/science/technology/next-generation-sequencing/mate-pair-sequencing.html#:~:text=Mate%20pair%20sequencing%20involves%20generating,Structural%20variant%20detection">Mate
+Pair Sequencing -</a> The generation of long-insert paired-end DNA
+libraries useful for applications like <em>de novo</em> sequencing,
+genome finishing, structural variant detection, and the identification
+of complex genomic rearrangements.</p>
+<p>[Multiple Sequence Alignment (MSA) Programs -](<a
+href="https://www.sciencedirect.com/topics/medicine-and-dentistry/multiple-sequence-alignment#"
+class="uri">https://www.sciencedirect.com/topics/medicine-and-dentistry/multiple-sequence-alignment#</a>:~:text=A%20multiple%20sequence%20alignment%20(MSA,Bioinformatics%20and%20Computational%20Biology%2C%202019)
+Software that attempts to align multiple DNA sequences to attain optimal
+matches.</p>
+</div>
+<div id="n" class="section level3">
+<h3>N</h3>
 <p><a
 href="https://www.cancer.gov/publications/dictionaries/genetics-dictionary/def/nucleotide">Nucleotide
--</a> A molecule that makes up DNA and RNA</p>
+-</a> A molecule that makes up DNA and RNA.</p>
+</div>
+<div id="o" class="section level3">
+<h3>O</h3>
 <p><a
 href="https://bio.libretexts.org/Bookshelves/Microbiology/Microbiology_(Boundless)/07%3A_Microbial_Genetics/7.13%3A_Bioinformatics/7.13C%3A_Homologs_Orthologs_and_Paralogs">Orthologous
 Genes -</a> Homologous genes that diverge after a speciation event, but
 the gene and its main function are preserved.</p>
+</div>
+<div id="p" class="section level3">
+<h3>P</h3>
 <p><a
 href="https://bio.libretexts.org/Bookshelves/Microbiology/Microbiology_(Boundless)/07%3A_Microbial_Genetics/7.13%3A_Bioinformatics/7.13C%3A_Homologs_Orthologs_and_Paralogs">Paralogous
 Genes -</a> Genes present in a particular organism that are related to
 each other through a gene duplication event.</p>
-<p><a href="https://elifesciences.org/articles/34477">Isoform(s) -</a>
-Proteins that are similar and perform similar roles within the cell.</p>
+</div>
+<div id="q" class="section level3">
+<h3>Q</h3>
+</div>
+<div id="r" class="section level3">
+<h3>R</h3>
 <p><a
 href="https://www.genome.gov/genetics-glossary/RNA-Ribonucleic-Acid">RNA
 -</a> Ribonucleic acid (RNA) is a copy of DNA that is used to produce
 proteins and assists in the translation of DNA.</p>
+</div>
+<div id="s" class="section level3">
+<h3>S</h3>
+<p><a
+href="https://bioinformaticsworkbook.org/introduction/dataTerminology.html#gsc.tab=0">Scaffold
+-</a> A set of contigs that have been orientated and ordered with either
+mate-apired or long reads.</p>
 <p><a
 href="https://davidrousefaicp.com/synanthropic-species-why-are-they-important-to-our-future/">Synathrope
 -</a> Animals that live in close association with humans but are not
@@ -655,6 +858,26 @@ href="https://www.nature.com/scitable/topicpage/synteny-inferring-ancestral-geno
 -</a> The conservation of order of blocks within the order of 2 sets of
 chromosomes that are being compared to one another.</p>
 </div>
+<div id="t" class="section level3">
+<h3>T</h3>
+</div>
+<div id="u" class="section level3">
+<h3>U</h3>
+</div>
+<div id="v" class="section level3">
+<h3>V</h3>
+</div>
+<div id="w" class="section level3">
+<h3>W</h3>
+</div>
+<div id="x" class="section level3">
+<h3>X</h3>
+</div>
+<div id="y" class="section level3">
+<h3>Y</h3>
+</div>
+<div id="z" class="section level3">
+<h3>Z</h3>
 </div>
 </div>
 </div>
@@ -678,6 +901,8 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -710,6 +935,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
