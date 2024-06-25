@@ -20,7 +20,8 @@ This workflow was developed by Megan Barkdull of the Moreau lab at Cornell Unive
 
 On her GitHub, Barkdull provides a flowchart that summarizes the process of this pipeline and the purpose of each step. Pictured below is the simplified version of this flowchart.
 
-![Simplified FormicidaeMolecularEvolution Pipeline Flowchart](barkdull-flowchart-simple.png)
+<center><img src="assets/barkdull-flowchart-simple.png"></center>
+<center><i><font size="-1.5">Simplified FormicidaeMolecularEvolution Pipeline Flowchart</font></i></center>
 
 ### Installation and Running 
 #### Clone the GitHub repository
@@ -75,6 +76,8 @@ This will download all the data you need to run this workflow.
 
 <u>On a cluster:</u> 
 
+##### Step 1: Set Up the Environment
+
 First we need to download PanDoc in order to update our packages as needed without interference. We do this with the command
 
 ```{r configR, eval=FALSE}
@@ -99,16 +102,292 @@ quit()
 
 **Is orthologr not available?** Copy and paste the code from [this link](https://github.com/drostlab/orthologr) under *Install orthologr*.
 
+##### Step 2: Select the Longest Isoforms
 
-Now we can run the scripts as Barkdull outlines on her GitHub without modification. The next step is the command
+The next step is the command
 
 ```{r gene-retrieval, eval=FALSE}
 ./scripts/GeneRetrieval.R scripts/YourInputFile.csv
 ```
 
+Running this script selects for the single longest isoform in each gene then matches protein names to gene names in order to subset the coding sequence file to just the longest isoforms. This produces 2 files for each species, one containing the longest protein isoforms and another with the longest coding sequence isoforms in a directory called *2_LongestIsoforms*.
+
+##### Step 3: Clean the Raw Data
+
+The next step is to clean the data using the command
+
+```{r clean-data-script-command, eval=FALSE}
+
+./scripts/DataCleaning scripts/YourInputFile.txt
+
+```
+
+This script removes any special characters from gene names and adds the 4-letter taxon abbreviation to the beginning of each gene name. This creates a new directory called *3_CleanedData*.
+
+##### Step 4: Translate Nucleotide Sequences to Amino Acid Sequences
+
+For this next step we will need to alter one of Barkdull's files with some of our own lines.
+
+  i) Create a file in *scripts* called *DataTranslating_modif*. 
+    
+  ii) Copy and paste the code from the *scripts/DataTranslating* file.
+    
+  iii) Replace lines 25-28 in *DataTranslating_modif* with the following code  
+  ```{r add-datatranslating-lines, eval=FALSE}
+       # Now we can run Transdecoder on the cleaned file:
+    echo "First, attempting TransDecoder run on $cleanName"
+    ml GCC/10.2.0 OpenMPI/4.0.5 TransDecoder/5.5.0
+    TransDecoder.LongOrfs -t $cleanName
+    TransDecoder.Predict -t $cleanName --single_best_only
+  ```
+      
+  iv) Replace the header in *DataTranslating_modif* with the following lines
+  ```{r replace-header, eval=FALSE}
+    
+    #!/bin/bash
+
+    ##NECESSARY JOB SPECIFICATIONS
+    #SBATCH --job-name=Transdecoder         #Set the job name to "JobExample4"
+    #SBATCH --time=02:00:00         #Set the wall clock limit to 1hr and 30min
+    #SBATCH --ntasks=2              #Request 2 task
+    #SBATCH --cpus-per-task=4       #Request 8 task
+    #SBATCH --mem=20G              #Request 50GB per node
+
+    ml GCC/10.2.0 OpenMPI/4.0.5 TransDecoder/5.5.0 Biopython/1.78
+    
+  ```
+
+  v) Run the script using the command
+  ```{r run-datatrans-modif, eval=FALSE}
+  sbatch ./scripts/DataTranslating_modif ./scripts/YourInputFile.txt
+  ```
+  
+##### Step 5: Running OrthoFinder
+For this step we will not be using anything from the original pipeline's steps, instead we will create our own directory and copy over the translated fasta files as follows:
+
+```{r step-5-altered, eval=FALSE}
+  mkdir /LocustsGenomeEvolution/tmp
+  mkdir ./5_OrthoFinder/fasta
+  cp ./4_1_TranslatedData/OutputFiles/translated* ./5_OrthoFinder/fasta
+  cd ./5_OrthoFinder/fasta
+  rename translated '' translated*
+  cd ../
+```
+
+Then to run OrthoFinder on the Grace cluster we will create a file within the *scripts* directory called *run-ortho.sh*. Copy and paste the following code into *run-ortho.sh*
+```{r run-ortho-grace, eval=FALSE}
+
+#!/bin/bash
+
+##NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=orthofinder1         #Set the job name to "JobExample4"
+#SBATCH --time=06:00:00         #Set the wall clock limit to 1hr and 30min
+#SBATCH --ntasks=2              #Request 1 task
+#SBATCH --cpus-per-task=4       #Request 1 task
+#SBATCH --mem=30G              #Request 100GB per node
+
+ml iccifort/2019.5.281  impi/2018.5.288 OrthoFinder/2.3.11-Python-3.7.4 
+ml IQ-TREE/1.6.12 FastTree/2.1.11
+ml MAFFT/7.453-with-extensions
+
+orthofinder -S diamond -T iqtree -A mafft -I 5 -t 32 -a 4 -M msa -f ${file path to 5_OrthoFinder/fasta} -p ${file path to LocustsGenomeEvolution/tmp}
+
+```
+
+<details>
+  <summary>What do these flags mean? (-S, -T, etc.)</summary>
+  
+  -S diamond: Use diamond as the sequence search program.
+  
+  -T iqtree: Use iqtree as the tree inference program.
+  
+  -A mafft: Use mafft as the multiple sequence alignment (MSA) program.
+  
+  -I 5: Sets the MCL inflation parameter to 5.
+  
+  -t 32: Sets the number of threads to 32.
+  
+</details>
+
+Now we want to run OrthoFinder using BLAST to improve accuracy (around 2% increase). To load this we use the command
+```{r ortho-with-BLAST, eval=FALSE}
+
+ml GCC/8.2.0-2.31.1  OpenMPI/3.1.3 iccifort/2019.5.281  impi/2018.5.288 BLAST+/2.9.0
+
+```
+
+and then we can run our slurm script using 
+
+```{r run-ortho-submit, eval=FALSE}
+
+sbatch scripts/run-ortho.sh
+
+```
 
 
+##### Step 6: Orthogroups to GeneID
+
+First we must remove the suffixes that the pipeline puts in front of our protein coding sequences, so create a file called *remove-suffix.py* and copy the following code into it
+
+```{r remove-suff.py, eval=FALSE}
+
+import re
+
+# Define the input and output file names
+input_file = 'Orthogroups.txt'
+output_file = 'Orthogroups_reprocessed.txt'
+
+# Read the input file
+with open(input_file, 'r') as file:
+    data = file.read()
+
+# Remove all prefixes before any occurrence of "_XP", "_NP", and "_YP"
+result = re.sub(r'\b\w+_(XP|NP|YP)', r'\1', data)
+
+# Write the result to the output file
+with open(output_file, 'w') as file:
+    file.write(result)
+
+print(f"Processed data has been written to {output_file}")
+
+```
 
 
+##### Step 7: Create a Table and Clean the Data
+We then need to create a table with each protein and gene ID for all species present, so we must use the the script *protein2geneid_loop.py* by David Emms, a software developer for OrthoFinder,
 
+Create a file called *protein2geneid_loop.py* and copy and paste the following code into it
 
+```{r protein2geneid.py, eval=FALSE}
+
+import os
+import re
+
+# Get the current working directory
+gff_directory = os.getcwd()
+
+# Create a directory to store the output files
+output_directory = os.path.join(gff_directory, "output_files")
+os.makedirs(output_directory, exist_ok=True)
+
+# List GFF files with "_GFF.gff" extension
+species_list = [filename for filename in os.listdir(gff_directory) if filename.endswith("_GFF.gff")]
+
+# Process each species' GFF file
+for species_filename in species_list:
+    # Extract the species name from the file name
+    species_name = re.sub(r"_GFF\.gff$", "", species_filename)
+    
+    # Construct input and output file paths
+    input_path = os.path.join(gff_directory, species_filename)
+    output_filename = f"xp{species_name}.gff"  # Remove the dot before species_name
+    output_path = os.path.join(output_directory, output_filename)
+    
+    # Use 'grep' to filter lines containing "XP" and save to the output file
+    grep_command = f'grep "XP" "{input_path}" > "{output_path}"'
+    os.system(grep_command)
+    
+    # Print a message indicating the filtering process
+    print(f"Filtered {species_filename} to {output_filename}")
+
+    # Construct the output TSV file path
+    tsv_output_filename = f'gffKey{species_name}.tsv'  # Remove the dot before species_name
+    tsv_output_path = os.path.join(output_directory, tsv_output_filename)
+    lol = {}
+
+    # Read and process the contents of the GFF file
+    with open(output_path) as gffFile:
+        for line in gffFile:
+            if re.search(r"product=[^;]+", line):
+                gene_match = re.search(r"gene=[^;=]+", line)
+                product_match = re.search(r"product=[^;]+", line)
+                proteinID_match = re.search(r"protein_id=(.+)", line)
+                
+                if gene_match and product_match and proteinID_match:
+                    gene = gene_match.group(0)
+                    if gene.endswith('product'):
+                        gene = gene[5:-7]
+                    else:
+                        gene = gene[5:]
+                    
+                    product = product_match.group(0)
+                    product = product.replace("product=", "")
+                    product = product.rstrip()
+                    
+                    proteinID = proteinID_match.group(1)
+                    
+                    if proteinID not in lol.keys():
+                        lol[proteinID] = [gene, product, species_name]  # Add species name
+
+    # Write the processed data to the output TSV file
+    with open(tsv_output_path, 'w') as output:
+        for proID, lis in lol.items():
+            output.writelines(proID + '\t' + lis[0] + '\t' + lis[1] + '\t' + lis[2] + '\n')  # Include species name
+
+    # Print a message indicating the processing of the GFF file
+    print(f"Processed {output_filename} to {tsv_output_filename}")
+
+# Concatenate all final files into a single file
+final_output_filename = "allspecies_protein2geneid.tsv"
+final_output_path = os.path.join(output_directory, final_output_filename)
+
+with open(final_output_path, 'w') as final_output:
+    for species_filename in species_list:
+        species_name = re.sub(r"_GFF\.gff$", "", species_filename)
+        tsv_output_filename = f'gffKey{species_name}.tsv'  # Remove the dot before species_name
+        tsv_output_path = os.path.join(output_directory, tsv_output_filename)
+        
+        with open(tsv_output_path, 'r') as species_output:
+            final_output.write(species_output.read())
+
+print(f"Concatenated all species files into {final_output_filename}")
+
+```
+
+Then run this script in the folder *1_RawData* using
+
+```{r run-protein2geneid.py, eval=FALSE}
+
+cd 1_RawData # May need to alter depending on current directory
+
+python protein2geneid_loop.py
+
+```
+
+After we get this table, we need to run this script to clean some small errors that may occur in the table. Create a file named *clean-table.R* and copy and paste the following code into it
+
+```{r clean-table.R, eval=FALSE}
+library(readr)
+library(tidyverse)
+
+orthogroup <- read_table("data/orthologs/Orthogroups_reprocessed.txt", col_names = FALSE)
+
+# We reshape the table so that we have one orthogroup line associated with one protein id
+transformed_orthogroup <- orthogroup %>%
+  pivot_longer(cols = -X1, names_to = "Protein_Column", values_to = "protein_id") %>%
+  replace_na(list(X1 = "N/A")) %>%
+  select(orthogroup = X1, protein_id) %>%
+  filter(!is.na(protein_id))
+
+# Export the table to  tab-separated text file (you can change the delimiter if needed)
+write.table(transformed_orthogroup, file = "data/orthologs/Orthogroups_11species_May2024.txt", sep = "\t", quote = FALSE, row.names = FALSE)
+
+proteingeneid <- read_tsv("data/orthologs/allspecies_protein2geneid.tsv", col_names = TRUE ) 
+
+final_orthotable <- left_join(transformed_orthogroup, proteingeneid, by = "protein_id")
+write.table(final_orthotable, file = "data/orthologs/Orthogroups_genesprotein_11species_May2024.csv", sep = ",", quote = FALSE, row.names = FALSE)
+
+```
+
+Finally, we have finished and gotten a table of all species and their corresponding IDs.
+
+### Troubleshooting
+
+##### No Module named Bio
+This error occurs when the program can't find BioPython. Before the "ml" line in your script add the command 
+
+```{r purge, eval=FALSE}
+module purge
+```
+
+This will get rid of all previously loaded packages before you reload the ones you need for this script. Not quite sure why this works but it does. 
