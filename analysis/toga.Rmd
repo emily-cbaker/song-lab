@@ -117,7 +117,7 @@ To run TOGA, we must first provide it with the appropriate input files. These ar
 
 2. The coding gene annotation of the reference genome in bed-12 format (can by generated from genePred or gtf formats with the UCSC utilities [genePredToBed](https://genome.ucsc.edu/goldenPath/help/hubQuickStartSearch.html) or [gtfToGenePred](https://genome-store.ucsc.edu/))
 
-3. A chain file containing chains of co-linear local alignments between the reference and query genome.  
+3. A chain file containing chains of co-linear local alignments between the reference and query genome. Learn about how to generate these files [here](mlc.html).  
 
 Optionally, you may also provide information about U12 introns, in which noncanonical splice sites are common, as additional input.
 
@@ -127,6 +127,7 @@ Optionally, you may also provide information about U12 introns, in which noncano
        In order to get the best results possible, the Hiller Lab suggests including representative (principle) isoforms for each gene, particularly ones that capture exon-intron structures, but exclude isoforms that represent much shorter and likely more non-finctional transcripts. It is also recommended to exclude transcripts that represent fusion isoforms between 2 ancestral genes because including these fusion transcripts interferes with the inference of the orthology type.
        
 </details>
+
 ###### Locally
  To run TOGA locally, use the following command:
 
@@ -134,7 +135,6 @@ Optionally, you may also provide information about U12 introns, in which noncano
 toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs
 
 ```
-
 
 ###### On a Cluster
 To load TOGA and its dependencies on the Grace cluster, enter the command 

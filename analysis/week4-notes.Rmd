@@ -113,5 +113,12 @@ echo "Processing complete. Output written to $output_file."
 This works but I am now running into the problem that make_lastz_chains is not allowed to run as many jobs as it wants to at a time and this causes the pipeline to crash. Emailed Michael, waiting on an answer.
 
 
+**FINAL UPDATE:** It works! Now running alignments for most of the species on Maeva's table on her markdown site.
+
+
 #### Barkdull Pipeline
 **Tuesday:** I am currently running the second to last step of the Barkdull pipeline for OrthoFinder and I expect to have a completely finished run by tomorrow. I did have an error where it could not find BioPython, but I just added a module purge line to my .sh script and that corrected the issue. I have updated my scipt outline in my instructions to include this line for future users.
+
+**Wednesday:** I've finished running this except for the step that cleans up the table after it's been created. I did have to rerun orthofinder because I accidentally overwrote the Orthogroups.txt file and I couldn't figure out how to get it back. The only reason I haven't run it yet is because I'm not sure where to run it or what command to use, but I just ran out of time yesterday before I was able to figure it out.
+
+**Thursday:** Maeva said I could skip the very last step, so I'm finished with this as well, the only piece of this that isn't working is TOGA.

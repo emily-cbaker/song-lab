@@ -23,12 +23,14 @@ editor_options:
 Read more in depth on their GitHub [here](https://github.com/hillerlab/make_lastz_chains).
 
 ### Installation and Running
-
-This program is supported on MacOS, but the Hiller Lab team *highly recommends* running it on a Linux-based machine.
+<center>
+<mark style="background: #f9d9da">This program is supported on MacOS, but the Hiller Lab team *highly   
+recommends* running it on a Linux-based machine.</mark>
+</center>
 
 #### Prepare Files
 
-To acquire files to put into this pipeline, find your genome(s) of interest on NCBI, click on the FTP tab, and download the file ending in genomic.fna.gz. Then upload this file to the cluster and use the command
+To acquire files to put into this pipeline, find your genome(s) of interest on NCBI, click on the FTP tab, and download the file ending in genomic.fna.gz. Then create a folder called *data* and copy your files from your system into this folder. Then run the command
 
 ```{r gunzip, eval=FALSE}
 
@@ -36,7 +38,7 @@ gunzip YOUR-GENOME_genomic.fna.gz
 
 ```
 
-This will turn your file from a .fna.gz to just .fna. Then create a file called *remove-headers.sh* and copy the following code into it.
+This will turn your file from a .fna.gz to just .fna. Then create a file called *remove-headers.sh* in your *data* folder and copy the following code into it.
 
 ```{r remove-headers.sh, eval=FALSE}
 #!/bin/bash
@@ -52,15 +54,31 @@ echo "Processing complete. Output written to $output_file."
 
 ```
 
-This script removes everything except the contig name from the headers in the .fna file. We do this because make_lastz_chains will through a spacing error otherwise. <mark> You must do this for each file you intend to create chains for.</mark> You are now eady to run this pipeline!
+This script removes everything except the contig name from the headers in the .fna file. We do this because make_lastz_chains will through a spacing error otherwise. <u> You must do this for each file you intend to create chains for.</u> You are now ready to run this pipeline!
 
 #### Running on Grace
-To run the make_lastz_chains pipeline on Grace, enter the following commands:
+To run the make_lastz_chains pipeline on Grace, create a file in your folder for make_lastz_chains called *run-mlc.sh* and copy and paste the following code into it:
 ```{r act-mlc, eval=FALSE}
-ml GCC/12.2.0 make_lastz_chains/1.0.0
+#!/bin/sh
+#SBATCH --time=0-1:00:00
+#SBATCH --ntasks=48
+#SBATCH --mem=50G
+#SBATCH --nodes=1
+#SBATCH --job-name=MLC-TEST
 
-make_chains.py target query ${path to target genome} ${path to query genome} --pd test_out -f --chaining_memory 16
+# module purge
 
+module load GCC/12.3.0  make_lastz_chains/1.0.0  # load modules
+
+conda activate mlc
+
+./make_chains.py target query ${Path to Target Genome} ${Path to Query Genome} --pd test_out -f --chaining_memory 16 --executor slurm
+
+```
+
+Then run this script using the command
+```{r run-mlc-command, eval=FALSE}
+sbatch run-mlc.sh
 ```
 
 #### Running in a Conda Environment
@@ -112,10 +130,7 @@ The -f or -force flag is meant to overwrite an output folder if a folder exists 
 
 #### ModuleNotFoundError: No module named 'dataclasses'
 
-This error occurs for me when I've forgetten to load the make_lastz_chains module on Grace. Simply enter
-```{r nomod-fix, eval=FALSE}
+This error occurs for me when the incorrect GCC module is loaded on Grace, verify that GCC 12.3.0 is available on the cluster and if not contact IT. 
 
-ml GCC/12.2.0 make_lastz_chains/1.0.0
-
-```
+If running locally, verify that the correct GCC is loaded on your machine.
 
