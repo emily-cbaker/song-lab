@@ -1,5 +1,6 @@
 name: "bioinformatics-notes"
 output_dir: ../docs
+
 navbar:
   title: "Home"
   icon: fa-home

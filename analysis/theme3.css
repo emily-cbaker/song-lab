@@ -240,6 +240,7 @@ th {
   h3 {
     page-break-after: avoid;
   }
+
   .navbar {
     display: none;
   }
@@ -6739,4 +6740,16 @@ button.close {
 .panel-danger .panel-title,
 .panel-info .panel-title {
   color: #f9f2f4;
+}
+
+
+.banner {
+  width: 100%;
+  overflow: hidden;
+}
+
+.banner img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
