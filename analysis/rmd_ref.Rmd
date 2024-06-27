@@ -1,0 +1,15 @@
+---
+title: "R Markdown & WorkflowR Reference"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    toc_collapsed: false
+    theme: default
+    css: "theme3.css"
+editor_options:
+  chunk_output_type: console
+---
+
+
