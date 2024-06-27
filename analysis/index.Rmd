@@ -1,5 +1,5 @@
 ---
-title: "Song Laboratory of Insect Systematics & Evolution"
+title: ""
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
@@ -9,44 +9,27 @@ editor_options:
   chunk_output_type: console
 ---
 
-<style>
-.container {
-  position: relative;
-  width: 100%;
-  height: 60px;
-  border: 0px;
-}
+<center><img src="assets/song-header-6.png" width="3000px"></center>
 
-.image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100px;
-  height: auto;
-}
-</style>
+<br>
 
-<div class="container">
-  <img src="assets/bug-transparent.png" class="image" alt="Bug Image">
-</div>
-
-<head>
-    <style>
-        p {
-            text-indent: 40px;
-        }
-    </style>
-</head>
 
 <div class="img-with-text">
+<style>
+p {
+  text-indent: 4em; /* Adjust the value as needed to simulate a tab */
+}
+</style>
 <div class="text">
   <p>   
-    This website is dedicated to the work I conduct at the Song Laboratory at the Texas A&M University             Department of Entomology. Documented on this site are all of the projects I have previously or currently am     working on, along with documentation of pipeline installation, error correction, and a glossary of             bioinformatics terminology for quick reference.
+    This website is dedicated to the work I conduct at the Song Laboratory at the Texas A&M University Department of Entomology. Documented on this site are all of the projects I have previously or currently am working on, along with documentation of pipeline installation, error correction, and a glossary of bioinformatics terminology for quick reference.
   </p>
   
   <p>
-  There are links for almost every software and package used on this site if you wish to view the original       documentation. For installation and execution, I have tried to provide robust instructions but I am limited    somewhat by the operating systems I use and am familiar with (Windows OS, slurm cluster).
+  There are links for almost every software and package used on this site if you wish to view the original documentation. For installation and execution, I have tried to provide robust instructions but I am limited somewhat by the operating systems I use and am familiar with (Windows OS, slurm cluster).
   </p>
+  
+
   
 </div>
 
@@ -60,7 +43,7 @@ editor_options:
 
 .img-with-text img {
   margin-left: 15px;
-  max-width: 70%;
+  max-width: 80%;
   height: auto;
 }
 
