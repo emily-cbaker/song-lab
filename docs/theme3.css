@@ -241,18 +241,6 @@ th {
     page-break-after: avoid;
   }
 
-  .banner {
-  width: 100%;
-  overflow: hidden; /* Ensure the image doesn't overflow the container */
-}
-
-.banner img {
-  width: 100%;
-  height: auto; /* Maintain aspect ratio */
-  display: block; /* Remove the bottom margin/space */
-}
-
-
   .navbar {
     display: none;
   }
@@ -6752,4 +6740,16 @@ button.close {
 .panel-danger .panel-title,
 .panel-info .panel-title {
   color: #f9f2f4;
+}
+
+
+.banner {
+  width: 100%;
+  overflow: hidden;
+}
+
+.banner img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
