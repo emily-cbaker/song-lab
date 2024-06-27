@@ -166,12 +166,15 @@ For this next step we will need to alter one of Barkdull's files with some of ou
 For this step we will not be using anything from the original pipeline's steps, instead we will create our own directory and copy over the translated fasta files as follows:
 
 ```{r step-5-altered, eval=FALSE}
-  mkdir /LocustsGenomeEvolution/tmp
-  mkdir ./5_OrthoFinder/fasta
+  mkdir LocustsGenomeEvolution
+  mkdir LocustsGenomeEvolution/tmp
+  mkdir 5_OrthoFinder
+  mkdir 5_OrthoFinder/fasta
   cp ./4_1_TranslatedData/OutputFiles/translated* ./5_OrthoFinder/fasta
   cd ./5_OrthoFinder/fasta
   rename translated '' translated*
-  cd ../
+  cd ..
+  cd ..
 ```
 
 Then to run OrthoFinder on the Grace cluster we will create a file within the *scripts* directory called *run-ortho.sh*. Copy and paste the following code into *run-ortho.sh*
@@ -227,7 +230,7 @@ sbatch scripts/run-ortho.sh
 
 ##### Step 6: Orthogroups to GeneID
 
-First we must remove the suffixes that the pipeline puts in front of our protein coding sequences, so create a file called *remove-suffix.py* and copy the following code into it
+First we must remove the suffixes that the pipeline puts in front of our protein coding sequences, so create a file called *remove-suffix.py* in the directory 5_OrthoFinder/fasta/OrthoFinder/Results_{DATE-OF-RUN}/Orthogroups and copy the following code into it
 
 ```{r remove-suff.py, eval=FALSE}
 
