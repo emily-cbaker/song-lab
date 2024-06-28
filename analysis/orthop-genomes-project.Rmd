@@ -7,6 +7,39 @@ output:
 editor_options:
   chunk_output_type: console
 ---
+## {.tabset}
+
+### Duplication of Previous Analysis
+
+For this part, I re-ran OrthoFinder with the data Maeva used [here](https://maevatecher.github.io/locust-comparative-genomics/2_orthologs-prediction.html). My results are outlined in this table:
+
+### UNDER CONSTRUCTION
+
+```{r, include=FALSE, eval=FALSE}
+library(readr)
+library(dplyr)
+library(tidyr)
+library(UpSetR)
+
+data <- read.csv("analysis/Stats/Statistics_PerSpecies.csv")
+
+# Transform data to binary matrix
+binary_matrix <- data %>%
+  #pivot_longer(cols = -Orthogroup, names_to = "Species", values_to = "Presence") %>%
+  mutate(Presence = ifelse(Presence > 0, 1, 0)) %>%
+  pivot_wider(names_from = Species, values_from = Presence, values_fill = list(Presence = 0))
+
+# Convert to data frame
+binary_matrix <- as.data.frame(binary_matrix)
+
+# Create UpSet plot
+upset(binary_matrix, sets = colnames(binary_matrix)[-1], order.by = "freq")
+
+
+```
+
+
+### Initial Analysis 
 
 ```{r RefSef info, echo=FALSE, message=FALSE, warning =FALSE}
 library(knitr)

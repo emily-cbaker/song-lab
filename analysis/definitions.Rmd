@@ -73,7 +73,11 @@ editor_options:
 
 ### G 
 
-[Gene Ontology -](https://geneontology.org/) A major bioinformatics initiative to unify the representation of gene and gene product attributes across all species through a comprehensive computational model.
+[Gene Localization -]() The contig a particular gene is located on.
+
+[Gene Ontology -](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6438694/#:~:text=The%20Gene%20Ontology%20defines%20the,function%20of%20a%20particular%20gene.) The "universe" of possible functions a gene may have, but doesn't make any claims about the function of a particular gene.
+
+[Gene Ontology (GO) Term -]() A term ascribed to genes through gene enrichment that describes a function a gene possesses. 
 
 ### H
 
@@ -127,6 +131,9 @@ editor_options:
 
 
 ### R  
+
+[Riparian Plots -](https://www.researchgate.net/figure/Riparian-synteny-plots-generated-using-BUSCO-gene-regions-as-anchors-showing-209_fig2_375462545) Plots used to show syntenic relationships between 2 or more species.
+
 [RNA - ](https://www.genome.gov/genetics-glossary/RNA-Ribonucleic-Acid) Ribonucleic acid (RNA) is a copy of DNA that is used to produce proteins and assists in the translation of DNA.
 
 ### S  

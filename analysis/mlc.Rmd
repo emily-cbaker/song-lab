@@ -134,3 +134,22 @@ This error occurs for me when the incorrect GCC module is loaded on Grace, verif
 
 If running locally, verify that the correct GCC is loaded on your machine.
 
+#### Error! The nextflow process lastz crashed!
+This error is addressed on the Hiller Lab GitHub page [here](https://github.com/hillerlab/make_lastz_chains/issues/16), but here is the comment from Dr. Hiller containing both the source of the issue and the solution: 
+"I think, based on the log file, you don't get to the chaining step, as some of the lastz jobs fail (increasing chaining mem is downstream).
+This typically happens when lastz 'sees' too many seeds from repeats.
+
+If you already repeatModeled (a denovo RepeatModeler run is important) and masked your genome, you could try reducing chunksize (e.g. set
+--seq1_chunk 50000000
+--seq2_chunk 10000000
+). Gives you more but smaller jobs."
+
+So by adding the --seq1_chunk 50000000 and --seq2_chunk 10000000 flags to your *run-mlc.sh* file, this problem should be fixed.
+
+#### Number of jobs should not exceed 6000
+Run the command
+```{r correct-numbr-of-jobs, eval=FALSE}
+rm -rf /scratch/group/songlab/emily/comparative-genomics/make_lastz_chains/greg-and-serialis/TEMP_run.lastz /scratch/group/songlab/emily/comparative-genomics/make_lastz_chains/greg-and-serialis/TEMP_psl
+```
+To be honest, I have no idea what this does but it's what my .out file told me to do and it works.
+

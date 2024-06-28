@@ -122,3 +122,39 @@ This works but I am now running into the problem that make_lastz_chains is not a
 **Wednesday:** I've finished running this except for the step that cleans up the table after it's been created. I did have to rerun orthofinder because I accidentally overwrote the Orthogroups.txt file and I couldn't figure out how to get it back. The only reason I haven't run it yet is because I'm not sure where to run it or what command to use, but I just ran out of time yesterday before I was able to figure it out.
 
 **Thursday:** Maeva said I could skip the very last step, so I'm finished with this as well, the only piece of this that isn't working is TOGA.
+
+
+#### OrthoFinder Synteny Analysis 
+Possible pipelines:  
+
+```{r program-specs, echo=FALSE, message=FALSE, warning =FALSE}
+library(knitr)
+library(kableExtra)
+
+# Data for the table
+data <- data.frame(
+  Program_name = c("GENESPACE", "Synima", "OrthoRefine", "pSONIC"),
+  Last_update = c("May 2024", "January 2024", "April 2024", "2021"),
+  OrthoFinder_Comp = c("Integrated", "Integrated", "Can be run both ways", "Takes OrthoFinder output"),
+  Main_laguage =c("R", "Perl, Python, & R", "C++", "Python"),
+  On_Cluster = c("N", "N", "N", "N"),
+  GitHub_Link = c("https://github.com/jtlovell/GENESPACE?tab=readme-ov-file", "https://github.com/rhysf/Synima", "https://github.com/jl02142/OrthoRefine", "https://github.com/conJUSTover/pSONIC"),
+  Notes___________________ = c("Seems to have the most doucmentation","Has a lot of documentation but runs on a lot of different languages","Likely faster since it's built on C++ but integrated plotting is simpler than Python and R", "Lab is very unresponsive, all updates are old, and not much documentation")
+)
+
+# Species info table
+kable(data, "html", escape = FALSE, caption = "") %>%
+  
+  kable_styling() %>%
+  column_spec(1, width = "30em") %>%
+  column_spec(2, width = "30em") %>%
+  column_spec(3, width = "30em") %>%
+  column_spec(4, width = "30em") %>%
+  column_spec(5, width = "15em") %>%
+  column_spec(6, width = "30em") %>%
+  column_spec(6, width = "50em") %>%
+  row_spec(0, bold = TRUE, background = "#bfa2b0")%>%
+  
+  scroll_box(width="1000px", height="400px")
+
+```
