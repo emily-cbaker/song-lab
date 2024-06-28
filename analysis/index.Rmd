@@ -17,7 +17,7 @@ editor_options:
 <div class="img-with-text">
 <style>
 p {
-  text-indent: 4em; /* Adjust the value as needed to simulate a tab */
+  text-indent: 2em; /* Adjust the value as needed to simulate a tab */
 }
 </style>
 <div class="text">
