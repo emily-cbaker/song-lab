@@ -35,6 +35,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
@@ -449,7 +451,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-27
+<strong>Last updated:</strong> 2024-06-28
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -580,15 +582,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree8a621bdf242f76e9ab93716d2c690dd7bfae85d5targetblank8a621bda">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreef23c37e754eb27304dc42564f4f61df0e3c82606targetblankf23c37ea">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/8a621bdf242f76e9ab93716d2c690dd7bfae85d5" target="_blank">8a621bd</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/f23c37e754eb27304dc42564f4f61df0e3c82606" target="_blank">f23c37e</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree8a621bdf242f76e9ab93716d2c690dd7bfae85d5targetblank8a621bda"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreef23c37e754eb27304dc42564f4f61df0e3c82606targetblankf23c37ea"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -598,7 +600,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/8a621bdf242f76e9ab93716d2c690dd7bfae85d5" target="_blank">8a621bd</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/f23c37e754eb27304dc42564f4f61df0e3c82606" target="_blank">f23c37e</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -620,12 +622,10 @@ Ignored files:
     Ignored:    images/
 
 Untracked files:
-    Untracked:  analysis/rmd_ref.Rmd
+    Untracked:  analysis/Stats/
 
 Unstaged changes:
-    Modified:   analysis/_site.yml
-    Deleted:    analysis/reference.Rmd
-    Modified:   analysis/theme3.css
+    Modified:   analysis/index.Rmd
 
 </code></pre>
 <p>
@@ -670,6 +670,41 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/f23c37e754eb27304dc42564f4f61df0e3c82606/analysis/week4-notes.Rmd" target="_blank">f23c37e</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-28
+</td>
+<td>
+wflow_publish(c("analysis/week4-notes.Rmd",
+"analysis/orthop-genomes-project.Rmd",
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/94e9d6309b6decb954ef83ea7672e983e76b1e62/docs/week4-notes.html" target="_blank">94e9d63</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-27
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -909,6 +944,142 @@ to figure it out.</p>
 <p><strong>Thursday:</strong> Maeva said I could skip the very last
 step, so I’m finished with this as well, the only piece of this that
 isn’t working is TOGA.</p>
+</div>
+<div id="orthofinder-synteny-analysis" class="section level4">
+<h4>OrthoFinder Synteny Analysis</h4>
+<p>Possible pipelines:</p>
+<div
+style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:1000px; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;background-color: rgba(191, 162, 176, 255) !important;position: sticky; top:0; background-color: #FFFFFF;">
+Program_name
+</th>
+<th style="text-align:left;font-weight: bold;background-color: rgba(191, 162, 176, 255) !important;position: sticky; top:0; background-color: #FFFFFF;">
+Last_update
+</th>
+<th style="text-align:left;font-weight: bold;background-color: rgba(191, 162, 176, 255) !important;position: sticky; top:0; background-color: #FFFFFF;">
+OrthoFinder_Comp
+</th>
+<th style="text-align:left;font-weight: bold;background-color: rgba(191, 162, 176, 255) !important;position: sticky; top:0; background-color: #FFFFFF;">
+Main_laguage
+</th>
+<th style="text-align:left;font-weight: bold;background-color: rgba(191, 162, 176, 255) !important;position: sticky; top:0; background-color: #FFFFFF;">
+On_Cluster
+</th>
+<th style="text-align:left;font-weight: bold;background-color: rgba(191, 162, 176, 255) !important;position: sticky; top:0; background-color: #FFFFFF;">
+GitHub_Link
+</th>
+<th style="text-align:left;font-weight: bold;background-color: rgba(191, 162, 176, 255) !important;position: sticky; top:0; background-color: #FFFFFF;">
+Notes___________________
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 30em; ">
+GENESPACE
+</td>
+<td style="text-align:left;width: 30em; ">
+May 2024
+</td>
+<td style="text-align:left;width: 30em; ">
+Integrated
+</td>
+<td style="text-align:left;width: 30em; ">
+R
+</td>
+<td style="text-align:left;width: 15em; ">
+N
+</td>
+<td style="text-align:left;width: 30em; width: 50em; ">
+<a href="https://github.com/jtlovell/GENESPACE?tab=readme-ov-file"
+class="uri">https://github.com/jtlovell/GENESPACE?tab=readme-ov-file</a>
+</td>
+<td style="text-align:left;">
+Seems to have the most doucmentation
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 30em; ">
+Synima
+</td>
+<td style="text-align:left;width: 30em; ">
+January 2024
+</td>
+<td style="text-align:left;width: 30em; ">
+Integrated
+</td>
+<td style="text-align:left;width: 30em; ">
+Perl, Python, &amp; R
+</td>
+<td style="text-align:left;width: 15em; ">
+N
+</td>
+<td style="text-align:left;width: 30em; width: 50em; ">
+<a href="https://github.com/rhysf/Synima"
+class="uri">https://github.com/rhysf/Synima</a>
+</td>
+<td style="text-align:left;">
+Has a lot of documentation but runs on a lot of different languages
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 30em; ">
+OrthoRefine
+</td>
+<td style="text-align:left;width: 30em; ">
+April 2024
+</td>
+<td style="text-align:left;width: 30em; ">
+Can be run both ways
+</td>
+<td style="text-align:left;width: 30em; ">
+C++
+</td>
+<td style="text-align:left;width: 15em; ">
+N
+</td>
+<td style="text-align:left;width: 30em; width: 50em; ">
+<a href="https://github.com/jl02142/OrthoRefine"
+class="uri">https://github.com/jl02142/OrthoRefine</a>
+</td>
+<td style="text-align:left;">
+Likely faster since it’s built on C++ but integrated plotting is simpler
+than Python and R
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 30em; ">
+pSONIC
+</td>
+<td style="text-align:left;width: 30em; ">
+2021
+</td>
+<td style="text-align:left;width: 30em; ">
+Takes OrthoFinder output
+</td>
+<td style="text-align:left;width: 30em; ">
+Python
+</td>
+<td style="text-align:left;width: 15em; ">
+N
+</td>
+<td style="text-align:left;width: 30em; width: 50em; ">
+<a href="https://github.com/conJUSTover/pSONIC"
+class="uri">https://github.com/conJUSTover/pSONIC</a>
+</td>
+<td style="text-align:left;">
+Lab is very unresponsive, all updates are old, and not much
+documentation
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -939,20 +1110,22 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] workflowr_1.7.1
+[1] kableExtra_1.4.0 knitr_1.47       workflowr_1.7.1 
 
 loaded via a namespace (and not attached):
- [1] vctrs_0.6.5       httr_1.4.7        cli_3.6.2         knitr_1.47       
- [5] rlang_1.1.3       xfun_0.45         stringi_1.8.4     processx_3.8.4   
- [9] promises_1.3.0    jsonlite_1.8.8    glue_1.7.0        rprojroot_2.0.4  
-[13] git2r_0.33.0      htmltools_0.5.8.1 httpuv_1.6.15     ps_1.7.6         
-[17] sass_0.4.9        fansi_1.0.6       rmarkdown_2.27    jquerylib_0.1.4  
-[21] tibble_3.2.1      evaluate_0.24.0   fastmap_1.2.0     yaml_2.3.8       
-[25] lifecycle_1.0.4   whisker_0.4.1     stringr_1.5.1     compiler_4.4.0   
-[29] fs_1.6.4          pkgconfig_2.0.3   Rcpp_1.0.12       rstudioapi_0.16.0
-[33] later_1.3.2       digest_0.6.35     R6_2.5.1          utf8_1.2.4       
-[37] pillar_1.9.0      callr_3.7.6       magrittr_2.0.3    bslib_0.7.0      
-[41] tools_4.4.0       cachem_1.1.0      getPass_0.2-4    </code></pre>
+ [1] jsonlite_1.8.8    compiler_4.4.0    promises_1.3.0    Rcpp_1.0.12      
+ [5] xml2_1.3.6        stringr_1.5.1     git2r_0.33.0      callr_3.7.6      
+ [9] later_1.3.2       jquerylib_0.1.4   systemfonts_1.1.0 scales_1.3.0     
+[13] yaml_2.3.8        fastmap_1.2.0     R6_2.5.1          tibble_3.2.1     
+[17] munsell_0.5.1     rprojroot_2.0.4   svglite_2.1.3     bslib_0.7.0      
+[21] pillar_1.9.0      rlang_1.1.3       utf8_1.2.4        cachem_1.1.0     
+[25] stringi_1.8.4     httpuv_1.6.15     xfun_0.45         getPass_0.2-4    
+[29] fs_1.6.4          sass_0.4.9        viridisLite_0.4.2 cli_3.6.2        
+[33] magrittr_2.0.3    ps_1.7.6          digest_0.6.35     processx_3.8.4   
+[37] rstudioapi_0.16.0 lifecycle_1.0.4   vctrs_0.6.5       evaluate_0.24.0  
+[41] glue_1.7.0        whisker_0.4.1     colorspace_2.1-0  fansi_1.0.6      
+[45] rmarkdown_2.27    httr_1.4.7        tools_4.4.0       pkgconfig_2.0.3  
+[49] htmltools_0.5.8.1</code></pre>
 </div>
 </div>
 </div>
