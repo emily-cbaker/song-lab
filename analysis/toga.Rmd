@@ -17,23 +17,42 @@ editor_options:
 ## TOGA {.tabset}
 ### What is TOGA?
 
-> "Annotating coding genes and inferring orthologs are two classical > challenges in genomics and evolutionary biology that have 
-> traditionally been approached separately, limiting scalability. We
-> present TOGA (Tool to infer Orthologs from Genome Alignments), a 
-> method that integrates structural gene annotation and orthology 
-> inference. TOGA implements a different paradigm to infer
-> orthologous loci, improves ortholog detection and annotation of
-> conserved genes compared with state-of-the-art methods, and
-> handles even highly fragmented assemblies. TOGA scales to hundreds
-> of genomes, which we demonstrate by applying it to 488 placental
-> mammal and 501 bird assemblies, creating the largest comparative
-> gene resources so far. Additionally, TOGA detects gene losses,
-> enables selection screens, and automatically provides a superior
-> measure of mammalian genome quality. TOGA is a powerful and
-> scalable method to annotate and compare genes in the genomic era."
 
---- Bogdan M. Kirilenko *et al.*, *Integrating gene annotation with orthology inference at scale*
 
+<div class="img-with-text">
+
+<br>
+<img src="assets/toga-logo.png" alt="TOGA Logo">
+<div class="text">
+<b>"Annotating coding genes and inferring orthologs are two classical challenges in genomics and evolutionary biology that have traditionally been approached separately, limiting scalability. We present TOGA (Tool to infer Orthologs from Genome Alignments), a method that integrates structural gene annotation and orthology inference. TOGA implements a different paradigm to infer orthologous loci, improves ortholog detection and annotation of conserved genes compared with state-of-the-art methods, and handles even highly fragmented assemblies."</b>
+
+  -- Kirilenko <i>et al.</i>, <i>Integrating gene annotation with orthology inference at scale</i>
+  
+</div>
+
+
+</div>
+<style>
+.img-with-text {
+  display: flex;
+  align-items: flex-start;
+}
+
+.img-with-text img {
+  margin-right: 15px;
+  max-width: 500px;
+  height: auto;
+}
+
+.img-with-text .text {
+  flex: 3 0 450px;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+}
+</style>
+
+<hr class="solid">
 
 ###### Steps of TOGA
 
@@ -143,9 +162,21 @@ To load TOGA and its dependencies on the Grace cluster, enter the command
 ml GCC/8.3.0 OpenMPI/3.1.4 TOGA/2021.12.15-Python-3.7.4
 ```
 
-Then to run TOGA use the command
+Then to run TOGA create a file called *run-toga.sh* and copy and paste the following code into it
 
 ```{r launch-toga, eval=FALSE}
+#!/bin/sh
+
+#SBATCH --time=0-24:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=48
+#SBATCH --mem=50G
+#SBATCH --job-name=toga
+
+module purge
+
+module load GCC/11.3.0  OpenMPI/4.1.4  TOGA/2024.05.26
+
 toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs
 
 ``` 
@@ -168,7 +199,7 @@ In order to format files correctly, you must
 
 1. Download the Hiller Lab's make_lastz_chain pipeline by following the instructions [here](https://github.com/hillerlab/make_lastz_chains). 
 
-2. Install the  necessary utilities. Some of these are necessary to run the pipeline and some will be used to convert our fasta files to the correct formats. You can download all of them using this command:
+2. <u>If you are running TOGA on Grace, skip this step! </u> Install the  necessary utilities. Some of these are necessary to run the pipeline and some will be used to convert our fasta files to the correct formats. You can download all of them using this command:
 
 ```{r convert-downloads, eval=FALSE}
 Mac download: rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/ ./
@@ -266,11 +297,13 @@ Program finished with exit code 1
 Making gene_id: bed_data dict...
 ```
 
-IT believes it is an issue with the storage space on my home drive, but this hasn't seemed to have corrected the issue. 
+This error occurred when I was trying to run TOGA wihtout submitting it as a slurm job. Follow the instructions to create a file called *run-toga.sh* and submit as a batch job.
 
 #### Error! File /sw/eb/sw/TOGA/2024.05.26-foss-2022a/CESAR2.0/cesar not found!
  This is an issue that occurs when TOGA is incorrectly installed on a cluster, contact IT to have them redo the installation.
 
 
 #### Permission denied for chain files in modules
-  I believe this is another error with the new TOGA installation in the cluster, I have contacted IT again.
+If using the --nd or --nextflow_dir flags, remove from your command.
+  
+

@@ -1,0 +1,15 @@
+---
+title: "Progress & Notes: 6/24-6/28"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    toc_collapsed: false
+    theme: default
+    css: "theme3.css"
+editor_options:
+  chunk_output_type: console
+---
+
+**Sunday:** I recloned the TOGA repository as Michael instructed but it still doesn't run correctly. I have emails scheduled to go out to him tomorrow at 8am for both my TOGA and make_lastz_chains errors.
