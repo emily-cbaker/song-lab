@@ -264,17 +264,30 @@ $(document).ready(function () {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="week1-notes.html">6/4 - 6/7</a>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">June</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="week1-notes.html">6/4 - 6/7</a>
+        </li>
+        <li>
+          <a href="week2-notes.html">6/10 - 6/14</a>
+        </li>
+        <li>
+          <a href="week3-notes.html">6/17 - 6/21</a>
+        </li>
+        <li>
+          <a href="week4-notes.html">6/24 - 6/28</a>
+        </li>
+      </ul>
     </li>
-    <li>
-      <a href="week2-notes.html">6/10 - 6/14</a>
-    </li>
-    <li>
-      <a href="week3-notes.html">6/17 - 6/21</a>
-    </li>
-    <li>
-      <a href="week4-notes.html">6/24 - 6/28</a>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">July</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="week5-notes.html">6/31 - 7/5</a>
+        </li>
+      </ul>
     </li>
   </ul>
 </li>
@@ -304,11 +317,16 @@ $(document).ready(function () {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="toga.html">TOGA</a>
-    </li>
-    <li>
-      <a href="mlc.html">make_lastz_chains</a>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">TOGA &amp; Related Pipelines</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="toga.html">TOGA</a>
+        </li>
+        <li>
+          <a href="mlc.html">make_lastz_chains</a>
+        </li>
+      </ul>
     </li>
     <li>
       <a href="compare-genomes.html">Compare_Genomes</a>
@@ -374,7 +392,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-28
+<strong>Last updated:</strong> 2024-06-30
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -505,15 +523,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreef23c37e754eb27304dc42564f4f61df0e3c82606targetblankf23c37ea">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree8affc4975d11397b6f14b192cb9a1fb8c94191a7targetblank8affc49a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/f23c37e754eb27304dc42564f4f61df0e3c82606" target="_blank">f23c37e</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/8affc4975d11397b6f14b192cb9a1fb8c94191a7" target="_blank">8affc49</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreef23c37e754eb27304dc42564f4f61df0e3c82606targetblankf23c37ea"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree8affc4975d11397b6f14b192cb9a1fb8c94191a7targetblank8affc49a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -523,7 +541,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/f23c37e754eb27304dc42564f4f61df0e3c82606" target="_blank">f23c37e</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/8affc4975d11397b6f14b192cb9a1fb8c94191a7" target="_blank">8affc49</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -545,10 +563,15 @@ Ignored files:
     Ignored:    images/
 
 Untracked files:
-    Untracked:  analysis/Stats/
+    Untracked:  analysis/Publish all files
+    Untracked:  analysis/Stats/stats_2.csv
 
 Unstaged changes:
-    Modified:   analysis/index.Rmd
+    Deleted:    analysis/Notes/week1-notes.Rmd
+    Deleted:    analysis/Notes/week2-notes.Rmd
+    Deleted:    analysis/Notes/week3-notes.Rmd
+    Deleted:    analysis/Notes/week4-notes.Rmd
+    Modified:   analysis/_site.yml
 
 </code></pre>
 <p>
@@ -592,6 +615,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/8affc4975d11397b6f14b192cb9a1fb8c94191a7/analysis/toga.Rmd" target="_blank">8affc49</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-30
+</td>
+<td>
+wflow_publish(c("analysis/barkdull.Rmd", "analysis/compare-genomes.Rmd",
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/ad8ffae6b7fadda9860fff7d5f5b2d3bfe93339f/docs/toga.html" target="_blank">ad8ffae</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -1147,24 +1204,42 @@ wflow_publish("analysis/toga.Rmd")
 <h2 class="tabset">TOGA</h2>
 <div id="what-is-toga" class="section level3">
 <h3>What is TOGA?</h3>
-<blockquote>
-<p>“Annotating coding genes and inferring orthologs are two classical
-&gt; challenges in genomics and evolutionary biology that have
-traditionally been approached separately, limiting scalability. We
-present TOGA (Tool to infer Orthologs from Genome Alignments), a method
-that integrates structural gene annotation and orthology inference. TOGA
-implements a different paradigm to infer orthologous loci, improves
-ortholog detection and annotation of conserved genes compared with
-state-of-the-art methods, and handles even highly fragmented assemblies.
-TOGA scales to hundreds of genomes, which we demonstrate by applying it
-to 488 placental mammal and 501 bird assemblies, creating the largest
-comparative gene resources so far. Additionally, TOGA detects gene
-losses, enables selection screens, and automatically provides a superior
-measure of mammalian genome quality. TOGA is a powerful and scalable
-method to annotate and compare genes in the genomic era.”</p>
-</blockquote>
-<p>— Bogdan M. Kirilenko <em>et al.</em>, <em>Integrating gene
-annotation with orthology inference at scale</em></p>
+<div class="img-with-text">
+<br> <img src="assets/toga-logo.png" alt="TOGA Logo">
+<div class="text">
+<p><b>“Annotating coding genes and inferring orthologs are two classical
+challenges in genomics and evolutionary biology that have traditionally
+been approached separately, limiting scalability. We present TOGA (Tool
+to infer Orthologs from Genome Alignments), a method that integrates
+structural gene annotation and orthology inference. TOGA implements a
+different paradigm to infer orthologous loci, improves ortholog
+detection and annotation of conserved genes compared with
+state-of-the-art methods, and handles even highly fragmented
+assemblies.”</b></p>
+<p>– Kirilenko <i>et al.</i>, <i>Integrating gene annotation with
+orthology inference at scale</i></p>
+</div>
+</div>
+<style>
+.img-with-text {
+  display: flex;
+  align-items: flex-start;
+}
+
+.img-with-text img {
+  margin-right: 15px;
+  max-width: 500px;
+  height: auto;
+}
+
+.img-with-text .text {
+  flex: 3 0 450px;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+}
+</style>
+<hr class="solid">
 <div id="steps-of-toga" class="section level6">
 <h6>Steps of TOGA</h6>
 <ol style="list-style-type: decimal">
@@ -1329,8 +1404,21 @@ type.</p>
 <p>To load TOGA and its dependencies on the Grace cluster, enter the
 command</p>
 <pre class="r"><code>ml GCC/8.3.0 OpenMPI/3.1.4 TOGA/2021.12.15-Python-3.7.4</code></pre>
-<p>Then to run TOGA use the command</p>
-<pre class="r"><code>toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs</code></pre>
+<p>Then to run TOGA create a file called <em>run-toga.sh</em> and copy
+and paste the following code into it</p>
+<pre class="r"><code>#!/bin/sh
+
+#SBATCH --time=0-24:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=48
+#SBATCH --mem=50G
+#SBATCH --job-name=toga
+
+module purge
+
+module load GCC/11.3.0  OpenMPI/4.1.4  TOGA/2024.05.26
+
+toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs</code></pre>
 </div>
 <div id="testing" class="section level6">
 <h6>Testing</h6>
@@ -1358,10 +1446,10 @@ directory, call the following command:</p>
 <li><p>Download the Hiller Lab’s make_lastz_chain pipeline by following
 the instructions <a
 href="https://github.com/hillerlab/make_lastz_chains">here</a>.</p></li>
-<li><p>Install the necessary utilities. Some of these are necessary to
-run the pipeline and some will be used to convert our fasta files to the
-correct formats. You can download all of them using this
-command:</p></li>
+<li><p><u>If you are running TOGA on Grace, skip this step! </u> Install
+the necessary utilities. Some of these are necessary to run the pipeline
+and some will be used to convert our fasta files to the correct formats.
+You can download all of them using this command:</p></li>
 </ol>
 <pre class="r"><code>Mac download: rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/ ./
 Windows or Linux download: rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/ ./</code></pre>
@@ -1439,8 +1527,9 @@ Error! Process nextflow /sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/execut
 Program finished with exit code 1
 
 Making gene_id: bed_data dict...</code></pre>
-<p>IT believes it is an issue with the storage space on my home drive,
-but this hasn’t seemed to have corrected the issue.</p>
+<p>This error occurred when I was trying to run TOGA wihtout submitting
+it as a slurm job. Follow the instructions to create a file called
+<em>run-toga.sh</em> and submit as a batch job.</p>
 </div>
 <div
 id="error-file-swebswtoga2024.05.26-foss-2022acesar2.0cesar-not-found"
@@ -1453,8 +1542,8 @@ cluster, contact IT to have them redo the installation.</p>
 <div id="permission-denied-for-chain-files-in-modules"
 class="section level4">
 <h4>Permission denied for chain files in modules</h4>
-<p>I believe this is another error with the new TOGA installation in the
-cluster, I have contacted IT again.</p>
+<p>If using the –nd or –nextflow_dir flags, remove from your
+command.</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">

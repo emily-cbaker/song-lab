@@ -340,17 +340,30 @@ div.tocify {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="week1-notes.html">6/4 - 6/7</a>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">June</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="week1-notes.html">6/4 - 6/7</a>
+        </li>
+        <li>
+          <a href="week2-notes.html">6/10 - 6/14</a>
+        </li>
+        <li>
+          <a href="week3-notes.html">6/17 - 6/21</a>
+        </li>
+        <li>
+          <a href="week4-notes.html">6/24 - 6/28</a>
+        </li>
+      </ul>
     </li>
-    <li>
-      <a href="week2-notes.html">6/10 - 6/14</a>
-    </li>
-    <li>
-      <a href="week3-notes.html">6/17 - 6/21</a>
-    </li>
-    <li>
-      <a href="week4-notes.html">6/24 - 6/28</a>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">July</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="week5-notes.html">6/31 - 7/5</a>
+        </li>
+      </ul>
     </li>
   </ul>
 </li>
@@ -380,11 +393,16 @@ div.tocify {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="toga.html">TOGA</a>
-    </li>
-    <li>
-      <a href="mlc.html">make_lastz_chains</a>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">TOGA &amp; Related Pipelines</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="toga.html">TOGA</a>
+        </li>
+        <li>
+          <a href="mlc.html">make_lastz_chains</a>
+        </li>
+      </ul>
     </li>
     <li>
       <a href="compare-genomes.html">Compare_Genomes</a>
@@ -404,7 +422,7 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="reference.html">Glossary of Terminology</a>
+      <a href="definitions.html">Glossary of Terminology</a>
     </li>
   </ul>
 </li>
@@ -450,7 +468,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-24
+<strong>Last updated:</strong> 2024-06-30
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -497,15 +515,15 @@ results.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreece57758a487212db50ab8e365cada166fc94f8catargetblankce57758a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree8affc4975d11397b6f14b192cb9a1fb8c94191a7targetblank8affc49a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/ce57758a487212db50ab8e365cada166fc94f8ca" target="_blank">ce57758</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/8affc4975d11397b6f14b192cb9a1fb8c94191a7" target="_blank">8affc49</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreece57758a487212db50ab8e365cada166fc94f8catargetblankce57758a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree8affc4975d11397b6f14b192cb9a1fb8c94191a7targetblank8affc49a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -515,7 +533,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/ce57758a487212db50ab8e365cada166fc94f8ca" target="_blank">ce57758</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/8affc4975d11397b6f14b192cb9a1fb8c94191a7" target="_blank">8affc49</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -537,14 +555,15 @@ Ignored files:
     Ignored:    images/
 
 Untracked files:
-    Untracked:  analysis/week4-notes.Rmd
+    Untracked:  analysis/Publish all files
+    Untracked:  analysis/Stats/stats_2.csv
 
 Unstaged changes:
+    Deleted:    analysis/Notes/week1-notes.Rmd
+    Deleted:    analysis/Notes/week2-notes.Rmd
+    Deleted:    analysis/Notes/week3-notes.Rmd
+    Deleted:    analysis/Notes/week4-notes.Rmd
     Modified:   analysis/_site.yml
-    Deleted:    analysis/pulse.css
-    Modified:   analysis/reference.Rmd
-    Deleted:    analysis/theme2.css
-    Modified:   analysis/theme3.css
 
 </code></pre>
 <p>
@@ -590,6 +609,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/b3234fe26f5fe34b932a1852609463e12e7d178c/docs/pop-genomics-morm-crick.html" target="_blank">b3234fe</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-06-24
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
