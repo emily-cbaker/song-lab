@@ -3363,7 +3363,7 @@ fieldset[disabled] .btn-danger.focus {
 }
 .btn-link {
   font-weight: 400;
-  color: #87194A;
+  color: #ff0000; /* Change this to your desired color */
   border-radius: 0;
 }
 .btn-link,
@@ -3382,7 +3382,7 @@ fieldset[disabled] .btn-link {
 }
 .btn-link:hover,
 .btn-link:focus {
-  color: #601235;
+  color: #3dc6c6;
   text-decoration: underline;
   background-color: transparent;
 }
@@ -4961,7 +4961,7 @@ a.badge:focus {
 a.thumbnail:hover,
 a.thumbnail:focus,
 a.thumbnail.active {
-  border-color: #87194A;
+  border-color: #3dc6c6;
 }
 .thumbnail .caption {
   padding: 9px;
