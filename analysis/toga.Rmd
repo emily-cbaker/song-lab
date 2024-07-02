@@ -85,101 +85,68 @@ editor_options:
 
 ### Installation & Running
 
-#### Installation
+<mark>These instructions are specific to the Grace cluster at Texas A&M University, you may need to contact your IT for specifics regarding steps 2 and 3. Read more about the TAMU Grace cluster specs [here](https://hprc.tamu.edu/kb/User-Guides/Grace/) to compare to your own setup. </mark> 
 
-###### Locally
-Dependencies:  
-* Python (Version 3.9 or later)  
-* Java (Version 8 or later)  
+<u>These instructions are courtesy of Michael Dickens at TAMU Grace, who was a *huge* help getting this pipeline running!</u>  
 
-To setup TOGA, you must first install Nextflow using the command
-```{r installation, eval=FALSE}
-curl -fsSL https://get.nextflow.io | bash
-# OR
-conda install -c bioconda nextflow
-```
-If you download using curl, move the nextflow.exe into a directory that is accessible by your $PATH variable.  
+1. Clone the Hiller Lab GitHub into your own directory with the command
 
-You must then clone the Hiller Lab GitHub repository onto your machine and then change into the TOGA directory using the commands
-
-```{r clone, eval=FALSE}
+```{r clone-github, eval=FALSE}
+mkdir $SCRATCH/toga_test
+cd $SCRATCH/toga_test/
 git clone https://github.com/hillerlab/TOGA.git
-cd TOGA
+cd TOGA/
 ```
 
-We then must install any necessary Python packages using
+2. Edit file with the following 5 lines (change executor.queueSize to 100): nextflow_config_files/call_cesar_config_template.nf
 
-```{r install, eval=FALSE}
-python3 -m pip install -r requirements.txt --user
-```
-
-
-
-###### On a Cluster
-
-<mark> If running on a Slurm cluster (like GRACE), there are configuration files already available in the Hiller Lab GitHub under the nextflow_config_files directory. Therefore you may download those files and skip this step! </mark>
-
-Here are the steps to prepare to run TOGA:
-
-1. Create a separate directory for configuration files.
-
-2. Create a file called "extract_chain_features_config.nf". This file contains the configuration for the chain features extraction step. For these jobs a runtime limit of 1 hour and 10 Gb of memory will be sufficient.
-
-3. Create a file called "call_cesar_config_template.nf". This configuration file is for the jobs run by CESAR. It is **highly recommended** that you request 24 hours of runtime. You do not need to provide an exact amount of memory because TOGA will compute this itself, so put in the placeholder "process.memory = "${_MEMORY_}G" "
-
-#### Running
-
-###### Prepare to Run
-To run TOGA, we must first provide it with the appropriate input files. These are:
-
-1. A reference and query genomes in 2bit format (can be generated from multi-fasta files using the [UCSC twoBitToFa](https://genome.ucsc.edu/goldenPath/help/twoBit.html) command)
-
-2. The coding gene annotation of the reference genome in bed-12 format (can by generated from genePred or gtf formats with the UCSC utilities [genePredToBed](https://genome.ucsc.edu/goldenPath/help/hubQuickStartSearch.html) or [gtfToGenePred](https://genome-store.ucsc.edu/))
-
-3. A chain file containing chains of co-linear local alignments between the reference and query genome. Learn about how to generate these files [here](mlc.html).  
-
-Optionally, you may also provide information about U12 introns, in which noncanonical splice sites are common, as additional input.
-
-<details>
-      <summary>Optimal Sample Genomes</summary>
-       
-       In order to get the best results possible, the Hiller Lab suggests including representative (principle) isoforms for each gene, particularly ones that capture exon-intron structures, but exclude isoforms that represent much shorter and likely more non-finctional transcripts. It is also recommended to exclude transcripts that represent fusion isoforms between 2 ancestral genes because including these fusion transcripts interferes with the inference of the orthology type.
-       
-</details>
-
-###### Locally
- To run TOGA locally, use the following command:
-
-```{r launch-toga-local, eval=FALSE}
-toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs
+```{r edit-cesar-config, eval=FALSE}
+executor.queueSize = 100
+process.pollInterval = '3 min'
+process.queueStatInterval = '6 min'
+process.submitRateLimit = '2/1min'
+process.clusterOptions = '--ntasks=1 --cpus-per-task=1'
 
 ```
 
-###### On a Cluster
-To load TOGA and its dependencies on the Grace cluster, enter the command 
+3. Edit file with the following 4 lines: nextflow_config_files/extract_chain_features_config.nf 
 
-```{r load-command, eval=FALSE}
-ml GCC/8.3.0 OpenMPI/3.1.4 TOGA/2021.12.15-Python-3.7.4
+```{r edit-nextflow-config, eval=FALSE}
+process.pollInterval = '3 min'
+process.queueStatInterval = '6 min'
+process.submitRateLimit = '2/1min'
+process.clusterOptions = '--ntasks=1 --cpus-per-task=1'
 ```
 
-Then to run TOGA create a file called *run-toga.sh* and copy and paste the following code into it
+4. Copy the 2bit files
 
-```{r launch-toga, eval=FALSE}
+```{r copy-2bits, eval=FALSE}
+cp /scratch/data/bio/ucsc/gbdb/hg38/hg38.2bit  test_input/
+cp /scratch/data/bio/ucsc/gbdb/mm10/mm10.2bit  test_input/ 
+```
+
+5. Load the TOGA module and run the configure.sh script
+
+```{r load-mods-michael, eval=FALSE}
+module purge
+module load GCC/11.3.0  OpenMPI/4.1.4  TOGA/2024.05.26  git/2.36.0-nodocs
+./configure.sh
+```
+
+6. Create a job script in the TOGA directory with the following lines and submit the job script using sbatch:
+```{r michael-toga-script, eval=FALSE}
 #!/bin/sh
-
-#SBATCH --time=0-24:00:00
-#SBATCH --nodes=1
-#SBATCH --ntasks=48
-#SBATCH --mem=50G
 #SBATCH --job-name=toga
+#SBATCH --time=7-00:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=8
+#SBATCH --mem=50G
 
 module purge
+module load GCC/11.3.0  OpenMPI/4.1.4  TOGA/2024.05.26 
 
-module load GCC/11.3.0  OpenMPI/4.1.4  TOGA/2024.05.26
-
-toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed test_input/hg38.2bit test_input/mm10.2bit --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms --nextflow_dir nextflow_logs
-
-``` 
+./toga.py $PWD/test_input/hg38.mm10.chr11.chain $PWD/test_input/hg38.genCode27.chr11.bed $PWD/test_input/hg38.2bit $PWD/test_input/mm10.2bit --kt --pn test -i $PWD/supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc $PWD/nextflow_config_files --cb 3,5 --cjn 500 --u12 $PWD/supply/hg38.U12sites.tsv --ms
+```
 
 ###### Testing
 
