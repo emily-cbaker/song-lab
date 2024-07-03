@@ -56,6 +56,8 @@ echo "Processing complete. Output written to $output_file."
 
 This script removes everything except the contig name from the headers in the .fna file. We do this because make_lastz_chains will through a spacing error otherwise. <u> You must do this for each file you intend to create chains for.</u> You are now ready to run this pipeline!
 
+You can also run RepeatMasker and RepeatModeler on your genome files. The compatible versions are RepeatMasker/4.1.4 and RepeatModeler/2.0.5.
+
 #### Running on Grace
 To run the make_lastz_chains pipeline on Grace, create a file in your folder for make_lastz_chains called *run-mlc.sh* and copy and paste the following code into it:
 ```{r act-mlc, eval=FALSE}
@@ -151,5 +153,7 @@ Run the command
 ```{r correct-numbr-of-jobs, eval=FALSE}
 rm -rf /scratch/group/songlab/emily/comparative-genomics/make_lastz_chains/greg-and-serialis/TEMP_run.lastz /scratch/group/songlab/emily/comparative-genomics/make_lastz_chains/greg-and-serialis/TEMP_psl
 ```
-To be honest, I have no idea what this does but it's what my .out file told me to do and it works.
+This command is provided by the error message in the make_lastz_chains module. If this does not work, increase your node memory in your slurm script and the chaining memory in your ./run-mlc.sh command. For example, IT had me increase my node memory from 50G to 360G and my chaining memory from 16 to 200.
+
+
 

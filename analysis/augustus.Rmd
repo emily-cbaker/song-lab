@@ -1,0 +1,186 @@
+---
+title: "Augustus"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+    toc_float: true
+    toc_collapsed: false
+    theme: default
+    css: "theme3.css"
+toc_depth: 1
+number_sections: true
+editor_options:
+  chunk_output_type: console
+---
+
+## Gene Prediction {.tabset}
+
+### What is Augustus?
+From the [Augustus GitHub introduction page](https://github.com/Gaius-Augustus/Augustus/blob/master/docs/ABOUT.md):
+
+AUGUSTUS is a gene prediction program written or maintained by Mario Stanke, Oliver Keller, Stefanie König, Lizzy Gerischer, Katharina Hoff, Giovanna Migliorelli, Lars Gabriel, Anica Hoppe, Tonatiuh Peña Centeno, Henry Mehlan, Daniel Honsel and Steffen Herbold. It can be used as an ab initio program, which means it bases its prediction purely on the sequence. AUGUSTUS may also incorporate hints on the gene structure coming from extrinsic sources such as EST, MS/MS, protein alignments and syntenic genomic alignments. Since version 3.0 AUGUSTUS can also predict the genes simultaneously in several aligned genomes (see README-cgp.md). AUGUSTUS has been trained for predicting genes, among other species, in:
+
+<style>
+.two-columns {
+  column-count: 2; /* Number of columns */
+  column-gap: 20px; /* Space between columns */
+}
+
+.two-columns p, .two-columns ul {
+  margin: 0;
+  padding-left: 20px; /* Ensure consistent indentation */
+}
+
+ul {
+  padding-left: 20px; /* Adjust as needed */
+}
+
+ul li {
+  margin-bottom: 5px; /* Adjust spacing between items */
+}
+</style>
+
+
+<div class="two-columns">
+  <p>
+  
+  - Homo sapiens (human),
+  - Drosophila melanogaster (fruit fly),
+  - Arabidopsis thaliana (plant),
+  - Brugia malayi (nematode),
+  - Aedes aegypti (mosquito),
+  - Coprinus cinereus (fungus),
+  - Tribolium castaneum (beetle)
+  - Schistosoma mansoni (worm)
+  - Tetrahymena thermophila (ciliate)
+  - Galdieria sulphuraria (red algae)
+  - Zea mays (maize)
+  - Toxoplasma gondii (parasitic protozoa)
+  - Caenorhabditis elegans (worm)
+  - Aspergillus fumigatus
+  - Aspergillus nidulans
+  - Aspergillus oryzae
+  - Aspergillus terreus
+  - Botrytis cinerea
+  - Callorhinchus milii
+  - Candida albicans
+  - Candida guilliermondii
+  - Candida tropicalis
+  - Chaetomium globosum
+  - Coccidioides immitis
+  - Cryptococcus neoformans gattii
+  - Cryptococcus neoformans neoformans
+  - Danio rerio
+  - Debaryomyces hansenii
+  - Encephalitozoon cuniculi
+  - Eremothecium gossypii
+  - Fusarium graminearum
+  - Gallus gallus
+  - Histoplasma capsulatum
+  - Kluyveromyces lactis
+  - Laccaria bicolor
+  - Lodderomyces elongisporus
+  - Magnaporthe grisea
+  - Neurospora crassa
+  - Nicotiana attenuata (coyote tobacco)
+  - Petromyzon marinus (sea lamprey)
+  - Phanerochaete chrysosporium
+  - Pichia stipitis
+  - Rhizopus oryzae
+  - Saccharomyces cerevisiae
+  - Schizosaccharomyces pombe
+  - Staphylococcus aureus
+  - Ustilago maydis
+  - Yarrowia lipolytica
+  - Nasonia vitripennis (wasp)
+  - Solanum lycopersicum (tomato)
+  - Chlamydomonas reinhardtii (green algae)
+  - Amphimedon queenslandica (sponge)
+  - Acyrthosiphon pisum (pea aphid)
+  - Leishmania tarentolae (protozoa, intronless)
+  - Trichinella spiralis
+  - Theobroma cacao (cacao)
+  - Escherichia coli
+  - Thermoanaerobacter tengcongensis (a bacterium)
+  - Triticum aestivum (wheat)
+  - Ancylostoma ceylanicum
+  - Volvox carteri
+  - Mnemiopsis leidyi (Ctenophora)
+  - Nematostella vectensis (Cnidaria)
+  - Ciona intestinalis (Chordata)
+  - Strongylocentrotus purpuratus (Echinodermata)
+  - Pisaster ochraceus (starfish)
+  - Chiloscyllium punctatum (bamboo shark)
+  - Scyliorhinus torazame (cat shark)
+  - Rhincodon typus (whale shark)
+  </p>
+</div>
+
+
+
+
+### Installation & Running
+
+1. Load Augustus
+
+The Augustus module is available on the TAMU Grace cluster, you can load it using the command 
+
+```{r, eval=FALSE}
+ ml GCC/10.2.0  OpenMPI/4.0.5 GCC/11.2.0  OpenMPI/4.1.1 AUGUSTUS/3.4.0
+```
+
+2. After loading Augustus, you are ready to run the program. Augustus only requires 2 input files, the fasta file of the query species and the species you want to reference from the AUGUSTUS database (see the list [here](https://github.com/Gaius-Augustus/Augustus/blob/master/docs/RUNNING-AUGUSTUS.md)). The command is as follows: 
+
+```{r, eval=FALSE}
+augustus [parameters] --species=SPECIES queryfilename
+```
+
+```{r augustus-options, echo=FALSE, message=FALSE, warning =FALSE}
+library(knitr)
+library(kableExtra)
+
+# Data for the table
+data <- data.frame(
+  Command = c("--strand", 
+              "--genemodel",
+              "--singlestrand", 
+              "hintsfile",
+              "--extrinsicCfgFile",
+              "--maxDNAPieceSize",
+              "--protein",
+              "--codingseq",
+              "--introns"),
+  
+  Options = c("both, forward, backward", 
+              "partial, intronless, or complete", 
+              "true", 
+              "hintsfilename",
+              "cfg-file-name",
+              "Number",
+              "on, off",
+              "on, off",
+              "on, off"),
+  
+  Function = c("Report predicted genes on both strands, just the forward or just the backward. Default is both",
+               "Allow prediction of incomplete genes at the sequence boundaries (default) intronless : only predict single-exon genes like in prokaryotes and some eukaryotes complete : only predict complete genes atleastone : predict at least one complete gene exactlyone : predict exactly one complete gene",
+               "Predict genes independently on each strand, allow overlapping genes on opposite strands This option is turned off by default.",
+               "When this option is used the prediction considering hints (extrinsic information) is turned on. hintsfilename contains the hints in gff format.",
+               "Optional. This file contains the list of used sources for the hints and their boni and mali. If not specified the file 'extrinsic.cfg' in the config directory $AUGUSTUS_CONFIG_PATH is used.",
+               "This value specifies the maximal length of the pieces that the sequence is cut into for the core algorithm (Viterbi) to be run. Default is --maxDNAPieceSize=200000. AUGUSTUS tries to place the boundaries of these pieces in the intergenic region, which is inferred by a preliminary prediction. GC-content dependent parameters are chosen for each piece of DNA if /Constant/decomp_num_steps > 1 for that species. This is why this value should not be set very large, even if you have plenty of memory.",
+               "Includes protein fasta file",
+               "Include coding sequences",
+               "Include introns")
+)
+
+# Create the table
+kable(data, escape = FALSE, caption = "") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), 
+                full_width = F) %>%
+  column_spec(1, width = "20em") %>%
+  column_spec(2, width = "30em") %>%
+  column_spec(3, width = "50em") %>%
+  row_spec(0, bold = TRUE, background = "#bfa2b0")
+```
+
+### Troubleshooting

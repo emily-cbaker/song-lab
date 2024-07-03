@@ -148,6 +148,8 @@ module load GCC/11.3.0  OpenMPI/4.1.4  TOGA/2024.05.26
 ./toga.py $PWD/test_input/hg38.mm10.chr11.chain $PWD/test_input/hg38.genCode27.chr11.bed $PWD/test_input/hg38.2bit $PWD/test_input/mm10.2bit --kt --pn test -i $PWD/supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc $PWD/nextflow_config_files --cb 3,5 --cjn 500 --u12 $PWD/supply/hg38.U12sites.tsv --ms
 ```
 
+This file will need to be edited for each TOGA run.
+
 ###### Testing
 
 The Hiller Lab provides a test [reference](https://hgdownload.cse.ucsc.edu/goldenpath/hg38/bigZips/hg38.2bit) and [query](https://hgdownload.cse.ucsc.edu/goldenpath/mm10/bigZips/mm10.2bit) genome, already in the required 2-bit formatting. You will also need to download the [supply](https://github.com/hillerlab/TOGA/tree/master/supply) folder in order to have the U12 data for the genomes. You can download the whole folder at once by copy and pasting the URL into [this website](https://download-directory.github.io/).

@@ -12,4 +12,4 @@ editor_options:
   chunk_output_type: console
 ---
 
-**Sunday:** I recloned the TOGA repository as Michael instructed but it still doesn't run correctly. I have emails scheduled to go out to him tomorrow at 8am for both my TOGA and make_lastz_chains errors.
+**Sunday:** I re-cloned the TOGA repository as Michael instructed but it still doesn't run correctly. I have emails scheduled to go out to him tomorrow at 8am for both my TOGA and make_lastz_chains errors.
