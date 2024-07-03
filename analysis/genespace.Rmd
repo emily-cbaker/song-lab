@@ -237,7 +237,7 @@ ripd <- plot_riparian(
 ![](assets/dotplots.png){width=600px}
 </center>
 
-Dot plots are used to visualize global pattern of synteny between a pair of genomes. The following command produces 3 dot plots: (1) All hits above a score threshhold, (2) All hits where the query and target genomes are in the same orthgroup, and (3) Syntentic anchor hits colored by syntenic block ID. The command to do this is
+Dot plots are used to visualize global pattern of synteny between a pair of genomes. The following command produces 3 dot plots: (1) All hits above a score threshold, (2) All hits where the query and target genomes are in the same orthogroup, and (3) Syntenic anchor hits colored by syntenic block ID. The command to do this is
 
 ```{r, eval=FALSE}
 hits <- read_allBlast(
