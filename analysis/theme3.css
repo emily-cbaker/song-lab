@@ -1093,7 +1093,7 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #87194A;
+  color: #b42163;
   text-decoration: none;
 }
 a:hover,
@@ -3363,7 +3363,7 @@ fieldset[disabled] .btn-danger.focus {
 }
 .btn-link {
   font-weight: 400;
-  color: #87194A;
+  color: #b42163;
   border-radius: 0;
 }
 .btn-link,
@@ -3514,14 +3514,14 @@ tbody.collapse.in {
 .dropdown-menu > li > a:focus {
   color: #fff;
   text-decoration: none;
-  background-color: #87194A;
+  background-color: #b42163;
 }
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
 .dropdown-menu > .active > a:focus {
   color: #fff;
   text-decoration: none;
-  background-color: #87194A;
+  background-color: #b42163;
   outline: 0;
 }
 .dropdown-menu > .disabled > a,

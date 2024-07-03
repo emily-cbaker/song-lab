@@ -41,11 +41,17 @@ navbar:
               href: toga.html
             - text: "make_lastz_chains"
               href: mlc.html
+        - text: "GENESPACE"
+          href: genespace.html
         - text: "Compare_Genomes"
           href: compare-genomes.html
-        - text: "FormicidaeMolecularEvolution"
+        - text: "FormicidaeMolecularEvolution (OrthoFinder)"
           href: barkdull.html
-
+        - text: "Annotation Pipelines"
+          menu:
+            - text: "Augustus"
+              href: augustus.html
+            - text: "Braker"
     - text: "Reference"
       icon: fa-book-open-reader
       menu:
