@@ -19,4 +19,4 @@ editor_options:
 ![](assets/synteny-plot-trial.png)
 </center>
 
-My plan for next week is to begin more of the heavier tasks like trying to run the annotation pipelines on  meconema thalassinum and locusta migratora, continuing troubleshooting for make_lastz_chains, making more sophisticated plots for the species trees, and finishing steps 6-8 on the Barkdull pipeline. This is all to set me up to run analysis on the mormon cricket genome.
+My plan for next week is to begin more of the heavier tasks like trying to run the annotation pipelines on  meconema thalassinum and locusta migratora, continuing troubleshooting for make_lastz_chains, making more sophisticated plots for the species trees, and finishing steps 6-8 on the Barkdull pipeline. This is all to set me up to run analysis on the Mormon cricket genome.
