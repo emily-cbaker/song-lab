@@ -1,1 +1,21 @@
-wflow_publish(c("analysis/barkdull.Rmd", "analysis/compare-genomes.Rmd", "analysis/definitions.Rmd", "analysis/index.Rmd", "analysis/license.Rmd", "analysis/mlc.Rmd", "analysis/notes.rmd", "analysis/orthop-genomes-project.Rmd", "analysis/pop-genomics-morm-crick.Rmd", "analysis/rmd_ref.Rmd", "analysis/toga.Rmd","analysis/week1-notes.Rmd", "analysis/week2-notes.Rmd", "analysis/week3-notes.Rmd", "analysis/week4-notes.Rmd", "analysis/week5-notes.Rmd", "analysis/genespace.Rmd", "analysis/cafe5.Rmd", "analysis/augustus.Rmd"))
+wflow_publish(c(
+"analysis/augustus.Rmd",
+"analysis/barkdull.Rmd",
+"analysis/braker.Rmd",
+"analysis/cafe5.Rmd",
+"analysis/compare-genomes.Rmd",
+"analysis/definitions.Rmd",
+"analysis/genespace.Rmd",
+"analysis/index.Rmd",
+"analysis/mlc.Rmd",
+"analysis/orthop-genomes-project.Rmd",
+"analysis/pop-genomics-morm-crick.Rmd",
+"analysis/toga.Rmd",
+"analysis/week1-notes.Rmd",
+"analysis/week2-notes.Rmd",
+"analysis/week3-notes.Rmd",
+"analysis/week4-notes.Rmd",
+"analysis/week5-notes.Rmd",
+"analysis/week6-notes.Rmd",
+"analysis/week7-notes.Rmd"
+))
