@@ -1,0 +1,21 @@
+---
+title: "Progress & Notes: 7/15-7/19"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+    toc_float: true
+    toc_collapsed: false
+    theme: default
+    css: "theme3.css"
+toc_depth: 1
+number_sections: true
+editor_options:
+  chunk_output_type: console
+---
+
+**Monday:** Today Jackson and I met with Devon and he consulted on both the best implementation of BRAKER and the errors the make_lastz_chains is throwing. 
+
+  BRAKER: He said he believed that the best way to run BRAKER is in a singularity channel and to run 2 different models for the mormon cricket genomes. This will give what he calls the "structural" annotation and then he suggested that we intersect the .gtf files and remove the common genomes and run InterPro on the non-common genomes. 
+  
+  make_lastz_chains: Since Michael added the missing dependency, the py_nf (Nextflow) module can't be found. He said I could get it running in an Anaconda environment on my own or I could wait for Michael to respond. I will give Michael a bit to try and correct it, as I tried previously and again after the meeting to get it running in a conda environment on Grace but I haven't been able to configure everything correctly yet.

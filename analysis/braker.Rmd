@@ -1,0 +1,66 @@
+---
+title: "Braker"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+    toc_float: true
+    toc_collapsed: false
+    theme: default
+    css: "theme3.css"
+toc_depth: 1
+number_sections: true
+editor_options:
+  chunk_output_type: console
+---
+
+## Fully automated prediction of protein coding gene structure {.tabset}
+
+### What is BRAKER?
+
+From the Gaius-Augustus GitHub:
+
+<b><i>"The rapidly growing number of sequenced genomes requires fully automated methods for accurate gene structure annotation. With this goal in mind, we have developed BRAKER1R1R0, a combination of GeneMark-ET R2 and AUGUSTUS R3, R4, that uses genomic and RNA-Seq data to automatically generate full gene structure annotations in novel genome.
+
+However, the quality of RNA-Seq data that is available for annotating a novel genome is variable, and in some cases, RNA-Seq data is not available, at all.
+
+BRAKER2 is an extension of BRAKER1 which allows for fully automated training of the gene prediction tools GeneMark-ES/ET/EP/ETP R14, R15, R17, F1 and AUGUSTUS from RNA-Seq and/or protein homology information, and that integrates the extrinsic evidence from RNA-Seq and protein homology information into the prediction.
+
+In contrast to other available methods that rely on protein homology information, BRAKER2 reaches high gene prediction accuracy even in the absence of the annotation of very closely related species and in the absence of RNA-Seq data.
+
+BRAKER3 is the latest pipeline in the BRAKER suite. It enables the usage of RNA-seq and protein data in a fully automated pipeline to train and predict highly reliable genes with GeneMark-ETP and AUGUSTUS. The result of the pipeline is the combined gene set of both gene prediction tools, which only contains genes with very high support from extrinsic evidence."</b></i>
+
+
+### Keys to sucessful gene prediction
+
+  - Use a high quality genome assembly. If you have a huge number of very short scaffolds in your genome assembly, those short scaffolds will likely increase runtime dramatically but will not increase prediction accuracy.
+  
+  - Use simple scaffold names in the genome file (e.g. *>contig1* will work better than *>contig1my custom species namesome putative function /more/information/  and lots of special characters %&!(){}*). Make the scaffold names in all your fasta files simple before running any alignment program.
+  
+  - In order to predict genes accurately in a novel genome, the genome should be masked for repeats. This will avoid the prediction of false positive gene structures in repetitive and low complexitiy regions. Repeat masking is also essential for mapping RNA-Seq data to a genome with some tools (other RNA-Seq mappers, such as HISAT2, ignore masking information). In case of GeneMark-ES/ET/EP/ETP and AUGUSTUS, softmasking (i.e. putting repeat regions into lower case letters and all other regions into upper case letters) leads to better results than hardmasking (i.e. replacing letters in repetitive regions by the letter N for unknown nucleotide).
+  
+  - Many genomes have gene structures that will be predicted accurately with standard parameters of GeneMark-ES/ET/EP/ETP and AUGUSTUS within BRAKER. However, some genomes have clade-specific features, i.e. special branch point model in fungi, or non-standard splice-site patterns. Please read the options section [options] in order to determine whether any of the custom options may improve gene prediction accuracy in the genome of your target species.
+  
+  - Always check gene prediction results before further usage! You can e.g. use a genome browser for visual inspection of gene models in context with extrinsic evidence data. BRAKER supports the generation of track data hubs for the UCSC Genome Browser with MakeHub for this purpose.
+  
+  
+### Installation & Running
+
+Braker is available on the Grace cluster, you can load it using the command 
+```{r, eval=FALSE}
+ml GCC/9.3.0  OpenMPI/4.0.3  BRAKER/3.0.3-Python-3.8.2
+
+```
+
+Then, there are 3 ways you can run Braker,
+
+  1. With a genome file only. This method is the least accurate, but is useful if you have no genome data.
+
+  2. With a genome file and RNA-Seq file from the same species. This is best for short read RNA-Seq libraries with good transcriptiome coverage. <mark>This approach requires that each intron is covered by many alignments, i.e. it <u>does not work</u> with assembles transcriptiome readings</mark>
+  
+  3. 
+
+### Citations 
+Stanke, M., Diekhans, M., Baertsch, R. and Haussler, D. (2008). *Using native and syntenically mapped cDNA alignments to improve de novo gene finding*. Bioinformatics, doi: 10.1093/bioinformatics/btn013.
+
+Stanke. M., Schöffmann, O., Morgenstern, B. and Waack, S. (2006). *Gene prediction in eukaryotes with a generalized hidden Markov model that uses hints from external sources*. BMC Bioinformatics 7, 62.
