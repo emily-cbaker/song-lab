@@ -99,7 +99,7 @@ time ./run.sh
 
 <span style="text-decoration:underline">On a slurm cluster:</span>
 
-Create a new .sh file called *run-cluster.sh* and copy and paste the following code into it:
+Create a new .sh file called *run-compare-genomes.sh* and copy and paste the following code into it:
 
 ```{r run-cluster, eval=FALSE}
 #!/usr/bin/env bash
@@ -186,3 +186,6 @@ Make sure you put the *entire* directory path in the params.config file. Yes, ev
 
 
 
+
+### Citations
+Paril, Jefferson, Tannaz Zare, and Alexandre Fournier-Level. *Compare_Genomes: A Comparative Genomics Workflow to Streamline the Analysis of Evolutionary Divergence Across Eukaryotic Genomes*. Current Protocols 3, no. 8 (2023): e876. https://doi.org/10.1002/cpz1.876.

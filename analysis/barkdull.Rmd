@@ -394,3 +394,6 @@ module purge
 ```
 
 This will get rid of all previously loaded packages before you reload the ones you need for this script. Not quite sure why this works but it does. 
+
+### Citations
+Megan Barkdull. (2021). mbarkdull/FormicidaeMolecularEvolution: v1.0.0-beta (v1.0.0-beta). Zenodo. [https://doi.org/10.5281/zenodo.5668329](https://doi.org/10.5281/zenodo.5668329)

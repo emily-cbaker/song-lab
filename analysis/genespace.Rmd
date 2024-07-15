@@ -251,3 +251,8 @@ ggdotplot(hits = hits, type = "all", verbose = FALSE)
 
 
 ### Troubleshooting
+### Citations 
+John T Lovell, Avinash Sreedasyam, M Eric Schranz, Melissa Wilson, Joseph W Carlson, Alex Harkess, David Emms, David M Goodstein, Jeremy Schmutz (2022) *GENESPACE tracks regions of interest and gene copy number variation across multiple genomes* eLife 11:e78526
+
+    
+

@@ -136,6 +136,9 @@ The Augustus module is available on the TAMU Grace cluster, you can load it usin
 augustus [parameters] --species=SPECIES queryfilename
 ```
 
+Below is a table of optional flags you can add to the above command to customize your Augustus run.
+
+
 ```{r augustus-options, echo=FALSE, message=FALSE, warning =FALSE}
 library(knitr)
 library(kableExtra)
@@ -145,12 +148,14 @@ data <- data.frame(
   Command = c("--strand", 
               "--genemodel",
               "--singlestrand", 
-              "hintsfile",
+              "--hintsfile",
               "--extrinsicCfgFile",
               "--maxDNAPieceSize",
               "--protein",
               "--codingseq",
-              "--introns"),
+              "--introns", "--start", "--stop", "--cds",
+              "--exonnames",
+              "--AUGUSTUS_CONFIG_PATH", "--alternatives-from-evidence", "--alternatives-from-sampling", "--sample", "--minexonintronprob", "--minmeanexonintronprob", "--maxtracks", "--proteinprofile", "--predictionStart / --predictionEnd", "--gff3", "--UTR", "--outfile", "--noInFrameStop", "--noprediction", "--contentmodels"),
   
   Options = c("both, forward, backward", 
               "partial, intronless, or complete", 
@@ -160,7 +165,11 @@ data <- data.frame(
               "Number",
               "on, off",
               "on, off",
-              "on, off"),
+              "on, off",
+              "on, off",
+              "on, off",
+              "on, off", 
+              "on, off", "path", "true, false", "true, false", "n", "p", "p", "n", "filename", "A / B", "on, off", "on, off", "filename", "on, off", "on, off", "on, off"),
   
   Function = c("Report predicted genes on both strands, just the forward or just the backward. Default is both",
                "Allow prediction of incomplete genes at the sequence boundaries (default) intronless : only predict single-exon genes like in prokaryotes and some eukaryotes complete : only predict complete genes atleastone : predict at least one complete gene exactlyone : predict exactly one complete gene",
@@ -170,7 +179,14 @@ data <- data.frame(
                "This value specifies the maximal length of the pieces that the sequence is cut into for the core algorithm (Viterbi) to be run. Default is --maxDNAPieceSize=200000. AUGUSTUS tries to place the boundaries of these pieces in the intergenic region, which is inferred by a preliminary prediction. GC-content dependent parameters are chosen for each piece of DNA if /Constant/decomp_num_steps > 1 for that species. This is why this value should not be set very large, even if you have plenty of memory.",
                "Includes protein fasta file",
                "Include coding sequences",
-               "Include introns")
+               "Include introns",
+               "Look for start codons",
+               "Look for stop codons",
+               "Looks for coding sequences",
+               "Output options. Output predicted amino acid sequences or coding sequences. Or toggle the display of the GFF features/lines of type intron, start codon, stop codon, CDS or 'initial', 'internal', 'terminal' and 'single' exon type names. The CDS excludes the stop codon (unless stopCodonExcludedFromCDS=false) whereas the terminal and single exon include the stop codon.",
+               "Path to config directory (if not specified as environment variable)", 
+               "Report alternative transcripts when they are suggested by hints", "Report alternative transcripts generated through probabilistic sampling", "Set number of data points in sample", "The posterior probability of every exon and every intron in a transcript must be at least 'minexonintronprob'", "The geometric mean of the probabilities of all exons and introns must be at least 'minmeanexonintronprob'.", "The maximum number of tracks when displayed in a genome browser is 'maxtracks' (unless maxtracks=-1, then it is unbounded). In cases where all transcripts of a gene overlap at some position this is also the maximal number of transcripts for that gene... I recommend increasing the parameter 'maxtracks' for improving sensitivity and setting 'maxtracks' to 1 and increasing minmeanexonintronprob and/or minexonintronprob in order to improve specificity.", "Read a protein profile from filename", "Define the range of the sequence for which predictions should be found (from A to B). Quicker if you only need predictions for a small part of the genome.", "Output in gff3 format", "Predict the untranslated regions in addition to the coding sequence. This currently works only for human, galdieria, toxoplasma and caenorhabditis.", "print output to filename instead to standard output. This is useful for computing environments, e.g. parasol jobs, which do not allow shell redirection.", "Don't report transcripts with in-frame stop codons. Otherwise, intron-spanning stop codons could occur. Default: false", "If true and input is in genbank format, no prediction is made. Useful for getting the annotated protein sequences.", "If 'off' the content models are disabled (all emissions uniformly 1/4). The content models are; coding region Markov chain (emiprobs), initial k-mers in coding region (Pls), intron and intergenic regin Markov chain. This option is intended for special applications that require judging gene structures from the signal models only, e.g. for predicting the effect of SNPs or mutations on splicing. For all typical gene predictions, this should be true. Default: on"
+               )
 )
 
 # Create the table
@@ -180,7 +196,13 @@ kable(data, escape = FALSE, caption = "") %>%
   column_spec(1, width = "20em") %>%
   column_spec(2, width = "30em") %>%
   column_spec(3, width = "50em") %>%
-  row_spec(0, bold = TRUE, background = "#bfa2b0")
+  row_spec(0, bold = TRUE, background = "#bfa2b0")%>%
+  add_header_above(c(" " = 1, "Augustus Commands" = 1, " "=1), align="r")
 ```
 
 ### Troubleshooting
+
+### Citations
+Mario Stanke, Mark Diekhans, Robert Baertsch, David Haussler (2008). *Using native and syntenically mapped cDNA alignments to improve de novo gene finding*. Bioinformatics, 24(5), pages 637–644, doi: 10.1093/bioinformatics/btn013
+
+

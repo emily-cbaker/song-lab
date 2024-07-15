@@ -276,3 +276,6 @@ This error occurred when I was trying to run TOGA wihtout submitting it as a slu
 If using the --nd or --nextflow_dir flags, remove from your command.
   
 
+
+### Citations
+Kirilenko BM, Munegowda C, Osipova E, Jebb D, Sharma V, Blumer M, Morales AE, Ahmed AW, Kontopoulos DG, Hilgers L, Lindblad-Toh K, Karlsson EK, Zoonomia Consortium, Hiller M. *Integrating gene annotation with orthology inference at scale*. Science, 380(6643), eabn3107, 2023
