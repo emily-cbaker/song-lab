@@ -289,6 +289,7 @@ $(document).ready(function () {
         <li>
           <a href="week5-notes.html">6/31 - 7/5</a>
         </li>
+        <li class="dropdown-header">7/8 - 7/12</li>
       </ul>
     </li>
   </ul>
@@ -345,7 +346,9 @@ $(document).ready(function () {
         <li>
           <a href="augustus.html">Augustus</a>
         </li>
-        <li class="dropdown-header">Braker</li>
+        <li>
+          <a href="braker.html">Braker</a>
+        </li>
       </ul>
     </li>
   </ul>
@@ -405,7 +408,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-07-03
+<strong>Last updated:</strong> 2024-07-15
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -536,15 +539,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreea60be8ed2b9562f92be143c0e35927110463bfcftargetblanka60be8ea">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree9a95e4e4daf346e551af00fb5642b117cba37e1etargetblank9a95e4ea">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/a60be8ed2b9562f92be143c0e35927110463bfcf" target="_blank">a60be8e</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/9a95e4e4daf346e551af00fb5642b117cba37e1e" target="_blank">9a95e4e</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreea60be8ed2b9562f92be143c0e35927110463bfcftargetblanka60be8ea"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree9a95e4e4daf346e551af00fb5642b117cba37e1etargetblank9a95e4ea"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -554,7 +557,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/a60be8ed2b9562f92be143c0e35927110463bfcf" target="_blank">a60be8e</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/9a95e4e4daf346e551af00fb5642b117cba37e1e" target="_blank">9a95e4e</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -576,14 +579,13 @@ Ignored files:
     Ignored:    images/
 
 Untracked files:
-    Untracked:  analysis/UpsetR.R
-    Untracked:  analysis/data/
-    Untracked:  analysis/riparian.R
+    Untracked:  analysis/braker.Rmd
+    Untracked:  analysis/week7-notes.Rmd
 
 Unstaged changes:
     Modified:   analysis/Publish all files
     Modified:   analysis/_site.yml
-    Modified:   analysis/theme3.css
+    Deleted:    analysis/notes.rmd
 
 </code></pre>
 <p>
@@ -628,6 +630,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/9a95e4e4daf346e551af00fb5642b117cba37e1e/analysis/augustus.Rmd" target="_blank">9a95e4e</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-07-15
+</td>
+<td>
+wflow_publish(c("analysis/cafe5.Rmd", "analysis/augustus.Rmd",
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/783cca38f0df082611321d7be930f88510b823c9/docs/augustus.html" target="_blank">783cca3</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-07-03
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -783,10 +819,23 @@ href="https://github.com/Gaius-Augustus/Augustus/blob/master/docs/RUNNING-AUGUST
 The command is as follows:</li>
 </ol>
 <pre class="r"><code>augustus [parameters] --species=SPECIES queryfilename</code></pre>
+<p>Below is a table of optional flags you can add to the above command
+to customize your Augustus run.</p>
 <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 </caption>
 <thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: right; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Augustus Commands
+</div>
+</th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+</tr>
 <tr>
 <th style="text-align:left;font-weight: bold;background-color: rgba(191, 162, 176, 255) !important;">
 Command
@@ -841,7 +890,7 @@ opposite strands This option is turned off by default.
 </tr>
 <tr>
 <td style="text-align:left;width: 20em; ">
-hintsfile
+–hintsfile
 </td>
 <td style="text-align:left;width: 30em; ">
 hintsfilename
@@ -916,11 +965,254 @@ on, off
 Include introns
 </td>
 </tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+–start
+</td>
+<td style="text-align:left;width: 30em; ">
+on, off
+</td>
+<td style="text-align:left;width: 50em; ">
+Look for start codons
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+–stop
+</td>
+<td style="text-align:left;width: 30em; ">
+on, off
+</td>
+<td style="text-align:left;width: 50em; ">
+Look for stop codons
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+–cds
+</td>
+<td style="text-align:left;width: 30em; ">
+on, off
+</td>
+<td style="text-align:left;width: 50em; ">
+Looks for coding sequences
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+–exonnames
+</td>
+<td style="text-align:left;width: 30em; ">
+on, off
+</td>
+<td style="text-align:left;width: 50em; ">
+Output options. Output predicted amino acid sequences or coding
+sequences. Or toggle the display of the GFF features/lines of type
+intron, start codon, stop codon, CDS or ‘initial’, ‘internal’,
+‘terminal’ and ‘single’ exon type names. The CDS excludes the stop codon
+(unless stopCodonExcludedFromCDS=false) whereas the terminal and single
+exon include the stop codon.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+–AUGUSTUS_CONFIG_PATH
+</td>
+<td style="text-align:left;width: 30em; ">
+path
+</td>
+<td style="text-align:left;width: 50em; ">
+Path to config directory (if not specified as environment variable)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+–alternatives-from-evidence
+</td>
+<td style="text-align:left;width: 30em; ">
+true, false
+</td>
+<td style="text-align:left;width: 50em; ">
+Report alternative transcripts when they are suggested by hints
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+–alternatives-from-sampling
+</td>
+<td style="text-align:left;width: 30em; ">
+true, false
+</td>
+<td style="text-align:left;width: 50em; ">
+Report alternative transcripts generated through probabilistic sampling
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+–sample
+</td>
+<td style="text-align:left;width: 30em; ">
+n
+</td>
+<td style="text-align:left;width: 50em; ">
+Set number of data points in sample
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+–minexonintronprob
+</td>
+<td style="text-align:left;width: 30em; ">
+p
+</td>
+<td style="text-align:left;width: 50em; ">
+The posterior probability of every exon and every intron in a transcript
+must be at least ‘minexonintronprob’
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+–minmeanexonintronprob
+</td>
+<td style="text-align:left;width: 30em; ">
+p
+</td>
+<td style="text-align:left;width: 50em; ">
+The geometric mean of the probabilities of all exons and introns must be
+at least ‘minmeanexonintronprob’.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+–maxtracks
+</td>
+<td style="text-align:left;width: 30em; ">
+n
+</td>
+<td style="text-align:left;width: 50em; ">
+The maximum number of tracks when displayed in a genome browser is
+‘maxtracks’ (unless maxtracks=-1, then it is unbounded). In cases where
+all transcripts of a gene overlap at some position this is also the
+maximal number of transcripts for that gene… I recommend increasing the
+parameter ‘maxtracks’ for improving sensitivity and setting ‘maxtracks’
+to 1 and increasing minmeanexonintronprob and/or minexonintronprob in
+order to improve specificity.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+–proteinprofile
+</td>
+<td style="text-align:left;width: 30em; ">
+filename
+</td>
+<td style="text-align:left;width: 50em; ">
+Read a protein profile from filename
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+–predictionStart / –predictionEnd
+</td>
+<td style="text-align:left;width: 30em; ">
+A / B
+</td>
+<td style="text-align:left;width: 50em; ">
+Define the range of the sequence for which predictions should be found
+(from A to B). Quicker if you only need predictions for a small part of
+the genome.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+–gff3
+</td>
+<td style="text-align:left;width: 30em; ">
+on, off
+</td>
+<td style="text-align:left;width: 50em; ">
+Output in gff3 format
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+–UTR
+</td>
+<td style="text-align:left;width: 30em; ">
+on, off
+</td>
+<td style="text-align:left;width: 50em; ">
+Predict the untranslated regions in addition to the coding sequence.
+This currently works only for human, galdieria, toxoplasma and
+caenorhabditis.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+–outfile
+</td>
+<td style="text-align:left;width: 30em; ">
+filename
+</td>
+<td style="text-align:left;width: 50em; ">
+print output to filename instead to standard output. This is useful for
+computing environments, e.g. parasol jobs, which do not allow shell
+redirection.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+–noInFrameStop
+</td>
+<td style="text-align:left;width: 30em; ">
+on, off
+</td>
+<td style="text-align:left;width: 50em; ">
+Don’t report transcripts with in-frame stop codons. Otherwise,
+intron-spanning stop codons could occur. Default: false
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+–noprediction
+</td>
+<td style="text-align:left;width: 30em; ">
+on, off
+</td>
+<td style="text-align:left;width: 50em; ">
+If true and input is in genbank format, no prediction is made. Useful
+for getting the annotated protein sequences.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 20em; ">
+–contentmodels
+</td>
+<td style="text-align:left;width: 30em; ">
+on, off
+</td>
+<td style="text-align:left;width: 50em; ">
+If ‘off’ the content models are disabled (all emissions uniformly 1/4).
+The content models are; coding region Markov chain (emiprobs), initial
+k-mers in coding region (Pls), intron and intergenic regin Markov chain.
+This option is intended for special applications that require judging
+gene structures from the signal models only, e.g. for predicting the
+effect of SNPs or mutations on splicing. For all typical gene
+predictions, this should be true. Default: on
+</td>
+</tr>
 </tbody>
 </table>
 </div>
 <div id="troubleshooting" class="section level3">
 <h3>Troubleshooting</h3>
+</div>
+<div id="citations" class="section level3">
+<h3>Citations</h3>
+<p>Mario Stanke, Mark Diekhans, Robert Baertsch, David Haussler (2008).
+<em>Using native and syntenically mapped cDNA alignments to improve de
+novo gene finding</em>. Bioinformatics, 24(5), pages 637–644, doi:
+10.1093/bioinformatics/btn013</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">

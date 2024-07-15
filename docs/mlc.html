@@ -11,7 +11,7 @@
 
 
 
-<title>Creating Genome Alignments for TOGA</title>
+<title>make_lastz_chains</title>
 
 <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -287,6 +287,7 @@ $(document).ready(function () {
         <li>
           <a href="week5-notes.html">6/31 - 7/5</a>
         </li>
+        <li class="dropdown-header">7/8 - 7/12</li>
       </ul>
     </li>
   </ul>
@@ -343,7 +344,9 @@ $(document).ready(function () {
         <li>
           <a href="augustus.html">Augustus</a>
         </li>
-        <li class="dropdown-header">Braker</li>
+        <li>
+          <a href="braker.html">Braker</a>
+        </li>
       </ul>
     </li>
   </ul>
@@ -374,7 +377,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Creating Genome Alignments for TOGA</h1>
+<h1 class="title toc-ignore">make_lastz_chains</h1>
 
 </div>
 
@@ -403,7 +406,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-07-03
+<strong>Last updated:</strong> 2024-07-15
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -534,15 +537,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreea60be8ed2b9562f92be143c0e35927110463bfcftargetblanka60be8ea">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree9a95e4e4daf346e551af00fb5642b117cba37e1etargetblank9a95e4ea">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/a60be8ed2b9562f92be143c0e35927110463bfcf" target="_blank">a60be8e</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/9a95e4e4daf346e551af00fb5642b117cba37e1e" target="_blank">9a95e4e</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreea60be8ed2b9562f92be143c0e35927110463bfcftargetblanka60be8ea"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree9a95e4e4daf346e551af00fb5642b117cba37e1etargetblank9a95e4ea"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -552,7 +555,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/a60be8ed2b9562f92be143c0e35927110463bfcf" target="_blank">a60be8e</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/9a95e4e4daf346e551af00fb5642b117cba37e1e" target="_blank">9a95e4e</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -574,14 +577,13 @@ Ignored files:
     Ignored:    images/
 
 Untracked files:
-    Untracked:  analysis/UpsetR.R
-    Untracked:  analysis/data/
-    Untracked:  analysis/riparian.R
+    Untracked:  analysis/braker.Rmd
+    Untracked:  analysis/week7-notes.Rmd
 
 Unstaged changes:
     Modified:   analysis/Publish all files
     Modified:   analysis/_site.yml
-    Modified:   analysis/theme3.css
+    Deleted:    analysis/notes.rmd
 
 </code></pre>
 <p>
@@ -625,6 +627,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/9a95e4e4daf346e551af00fb5642b117cba37e1e/analysis/mlc.Rmd" target="_blank">9a95e4e</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-07-15
+</td>
+<td>
+wflow_publish(c("analysis/cafe5.Rmd", "analysis/augustus.Rmd",
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/783cca38f0df082611321d7be930f88510b823c9/docs/mlc.html" target="_blank">783cca3</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-07-03
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -888,8 +924,9 @@ wflow_publish("analysis/mlc.Rmd")
 </div>
 </div>
 </div>
-<div id="make_lastz_chains" class="section level2 tabset">
-<h2 class="tabset">make_lastz_chains</h2>
+<div id="creating-genome-alignments-for-toga"
+class="section level2 tabset">
+<h2 class="tabset">Creating Genome Alignments for TOGA</h2>
 <div id="what-is-make_lastz_chains" class="section level3">
 <h3>What is make_lastz_chains?</h3>
 <blockquote>
@@ -1049,6 +1086,23 @@ make_lastz_chains module. If this does not work, increase your node
 memory in your slurm script and the chaining memory in your ./run-mlc.sh
 command. For example, IT had me increase my node memory from 50G to 360G
 and my chaining memory from 16 to 200.</p>
+</div>
+</div>
+<div id="citations" class="section level3">
+<h3>Citations</h3>
+<p>Kirilenko BM, Munegowda C, Osipova E, Jebb D, Sharma V, Blumer M,
+Morales A, Ahmed AW, Kontopoulos DG, Hilgers L, Lindblad-Toh K, Karlsson
+EK, Zoonomia Consortium, Hiller M. <em>Integrating gene annotation with
+orthology inference at scale.</em>, Science, 380, 2023</p>
+<p>Osipova E, Hecker N, Hiller M. <em>RepeatFiller newly identifies
+megabases of aligning repetitive sequences and improves annotations of
+conserved non-exonic elements</em>. GigaScience, 8(11), giz132, 2019</p>
+<p>Suarez H, Langer BE, Ladde P, Hiller M. <em>chainCleaner improves
+genome alignment specificity and sensitivity</em>. Bioinformatics,
+33(11), 1596-1603, 2017</p>
+<p>Kent WJ, Baertsch R, Hinrichs A, Miller W, Haussler D.
+<em>Evolution’s cauldron: Duplication, deletion, and rearrangement in
+the mouse and human genomes</em>, PNAS, 100(20):11484-9, 2003</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1093,7 +1147,6 @@ loaded via a namespace (and not attached):
 [33] later_1.3.2       digest_0.6.35     R6_2.5.1          utf8_1.2.4       
 [37] pillar_1.9.0      callr_3.7.6       magrittr_2.0.3    bslib_0.7.0      
 [41] tools_4.4.0       cachem_1.1.0      getPass_0.2-4    </code></pre>
-</div>
 </div>
 </div>
 </div>
