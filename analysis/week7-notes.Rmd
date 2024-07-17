@@ -16,6 +16,12 @@ editor_options:
 
 **Monday:** Today Jackson and I met with Devon and he consulted on both the best implementation of BRAKER and the errors the make_lastz_chains is throwing. 
 
-  BRAKER: He said he believed that the best way to run BRAKER is in a singularity channel and to run 2 different models for the mormon cricket genomes. This will give what he calls the "structural" annotation and then he suggested that we intersect the .gtf files and remove the common genomes and run InterPro on the non-common genomes. 
+  BRAKER3: He said he believed that the best way to run BRAKER is in a singularity channel and to run 2 different models for the mormon cricket genomes. This will give what he calls the "structural" annotation and then he suggested that we intersect the .gtf files and remove the common genomes and run InterPro on the non-common genomes. 
   
   make_lastz_chains: Since Michael added the missing dependency, the py_nf (Nextflow) module can't be found. He said I could get it running in an Anaconda environment on my own or I could wait for Michael to respond. I will give Michael a bit to try and correct it, as I tried previously and again after the meeting to get it running in a conda environment on Grace but I haven't been able to configure everything correctly yet.
+
+**Wednesday:** 
+
+  BRAKER3: I emailed Dr. Hoff yesterday to consult on the best workflow to implement for BRAKER3 using our data, and she said that following the steps for IsoSeq Reads in Singularity on [this poster](https://github.com/Gaius-Augustus/BRAKER/blob/master/docs/posters/poster_PAG2024.pdf) on the BRAKER3 GitHub.
+  
+  make_lastz_chains: Michael added the py_nf module to the make_lastz_chains/1.0.0 module on Grace but now it is throwing an error when trying to run Nextflow. I have emailed him the error and am waiting for a response. I also have a meeting scheduled with Devon for Friday at 1 so is Michael can't help he may be able to.
