@@ -411,7 +411,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-07-17
+<strong>Last updated:</strong> 2024-07-19
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -542,15 +542,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree282feaec18e7be39c002be61a79349a6eabc33fatargetblank282feaea">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree57f9dfc90faef39e1fc465c3cf05a589cfc71ccatargetblank57f9dfca">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/282feaec18e7be39c002be61a79349a6eabc33fa" target="_blank">282feae</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/57f9dfc90faef39e1fc465c3cf05a589cfc71cca" target="_blank">57f9dfc</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree282feaec18e7be39c002be61a79349a6eabc33fatargetblank282feaea"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree57f9dfc90faef39e1fc465c3cf05a589cfc71ccatargetblank57f9dfca"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -560,7 +560,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/282feaec18e7be39c002be61a79349a6eabc33fa" target="_blank">282feae</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/57f9dfc90faef39e1fc465c3cf05a589cfc71cca" target="_blank">57f9dfc</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -623,6 +623,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/57f9dfc90faef39e1fc465c3cf05a589cfc71cca/analysis/braker.Rmd" target="_blank">57f9dfc</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-07-19
+</td>
+<td>
+wflow_publish(c("analysis/braker.Rmd", "analysis/week7-notes.Rmd"))
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/9519d8ced3438ff21d05f90fc7718b531d72973d/docs/braker.html" target="_blank">9519d8c</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-07-17
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -775,19 +809,17 @@ want to run with long-read RNA-Seq data and protein data. To do this we
 need to use the following steps that are based on the poster from
 Dr. Hoff <a
 href="https://github.com/Gaius-Augustus/BRAKER/blob/master/docs/posters/poster_PAG2024.pdf">here</a>:</p>
-<ol style="list-style-type: decimal">
-<li>Download the iso-seq data by creating a file called
-<em>download-data.sh</em> and copy and paste the following code into
-it:</li>
-</ol>
+<p><strong>1.</strong> Download the iso-seq data by creating a file
+called <em>download-data.sh</em> and copy and paste the following code
+into it:</p>
 <pre class="r"><code>#!/bin/bash
 
 ##NECESSARY JOB SPECIFICATIONS
-#SBATCH --job-name=prefetch1           #Set the job name to &quot;prefetch1&quot;
-#SBATCH --time=2-00:00:00         #Set the wall clock limit to 2 days
-#SBATCH --ntasks=2              #Request 2 task
-#SBATCH --cpus-per-task=12       #Request 12 cpus for each task
-#SBATCH --mem=50G              #Request 50GB per node
+#SBATCH --job-name=prefetch1          #Set the job name to &quot;prefetch1&quot;
+#SBATCH --time=2-00:00:00             #Set the wall clock limit to 2 days
+#SBATCH --ntasks=2                    #Request 2 task
+#SBATCH --cpus-per-task=12            #Request 12 cpus for each task
+#SBATCH --mem=50G                     #Request 50GB per node
 
 # Load necessary modules
 ml GCC/11.3.0  OpenMPI/4.1.4 SRA-Toolkit/3.0.3
@@ -827,36 +859,40 @@ done &lt; &quot;$input_file&quot;
 
 echo &quot;fasterq-dump and gzip completed successfully.&quot;</code></pre>
 <p>Then visit <a href="https://www.ncbi.nlm.nih.gov/sra/">this site</a>
-to download the IsoSeq data. Download all available files by checking
-the box next to all the files and selecting Send &gt; File &gt;
+to get the IsoSeq data SRR access numbers. Select all available files by
+checking the box next to all the files and selecting Send &gt; File &gt;
 Accession List to in the upper right hand corner. This will download a
 .csv file with all of the accession numbers for your data. You then need
 to create a file called <em>SRR_Acc_List_isoseq.txt</em> and copy and
 paste the accession numbers into it. You can then run the
 <em>download-data.sh</em> file.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>Now you must combine all of the IsoSeq data using the following
-command:</li>
-</ol>
-<pre class="r"><code>cat file1.fastq, file2.fastq, ..., filen.fastq &gt; all.subreads.fastq</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Map the transcripts to the genome sequence and then sort them with
-MiniMap2 using the command:</li>
-</ol>
-<pre class="r"><code>minimap2 -t $threads -ax splice:hq genome.fa all.subreads.fastq  &gt;    long_reads.sam
-sort -k 3,3 -k 4,4n $wlong_reads.sam &gt; long_reads.s.sam</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Prepare the BAM file with MiniMap2 and Samtools</li>
-</ol>
-<pre class="r"><code>minimap2 -t48 -ax splice:hq -uf genome.fa isoseq.fa &gt; isoseq.sam
+<p><br> <strong>2.</strong> Now you must combine all of the IsoSeq data,
+map it to your genome of choice, and then convert the sam file to a BAM
+file by copy and pasting the following script into a file called
+<em>run-alignment.sh</em>:</p>
+<pre class="r"><code>#!/bin/bash
+#SBATCH --job-name=braker-step2           # Job name
+#SBATCH --output=braker-step2.out         # Output file
+#SBATCH --error=braker-step2.err          # Error file
+#SBATCH --ntasks=1                        # Number of tasks
+#SBATCH --cpus-per-task=48                # Number of CPU cores per task
+#SBATCH --mem=200G                        # Total memory limit
+#SBATCH --time=48:00:00                   # Time limit hrs:min:sec
+
+# Load necessary modules
+module load minimap2
+
+# Concatenate FASTQ files
+cat file-1.fastq file-2.fastq ... file-n.fastq &gt; all-subreads.fa
+
+# Run minimap2 for alignment w/ increased memory allotment
+minimap2 -t 48 -ax splice:hq -I8Gb GENOME.fna all-subreads.fa &gt; long_reads.sam
+
+# Use Samtools to convert sam to BAM
 Samtools view -bS --threads 48 isoseq.sam -o isoseq.bam</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Build the Singularity image</li>
-</ol>
+<p><br> <strong>3.</strong> Build the Singularity image</p>
 <pre class="r"><code>singularity build braker3_lr.sif docker://teambraker/braker3:isoseq</code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>Call BRAKER3 with the BAM file</li>
-</ol>
+<p><br> <strong>4.</strong> Call BRAKER3 with the BAM file</p>
 <pre class="r"><code>singularity exec -B ${PWD}:${PWD} braker3_lr.sif braker.pl --genome=genome.fa --prot_seq=protein_db.fa --bam=isoseq.bam --threads=48</code></pre>
 </div>
 <div id="citations" class="section level3">
