@@ -54,16 +54,16 @@ ml GCC/9.3.0  OpenMPI/4.0.3  BRAKER/3.0.3-Python-3.8.2
 
 Then, there are many ways you can run BRAKER, but for our purposes we want to run with long-read RNA-Seq data and protein data. To do this we need to use the following steps that are based on the poster from Dr. Hoff [here](https://github.com/Gaius-Augustus/BRAKER/blob/master/docs/posters/poster_PAG2024.pdf):
 
-  1. Download the iso-seq data by creating a file called *download-data.sh* and copy and paste the following code into it:
+  **1.** Download the iso-seq data by creating a file called *download-data.sh* and copy and paste the following code into it:
   ```{r, eval=FALSE}
 #!/bin/bash
 
 ##NECESSARY JOB SPECIFICATIONS
-#SBATCH --job-name=prefetch1           #Set the job name to "prefetch1"
-#SBATCH --time=2-00:00:00         #Set the wall clock limit to 2 days
-#SBATCH --ntasks=2              #Request 2 task
-#SBATCH --cpus-per-task=12       #Request 12 cpus for each task
-#SBATCH --mem=50G              #Request 50GB per node
+#SBATCH --job-name=prefetch1          #Set the job name to "prefetch1"
+#SBATCH --time=2-00:00:00             #Set the wall clock limit to 2 days
+#SBATCH --ntasks=2                    #Request 2 task
+#SBATCH --cpus-per-task=12            #Request 12 cpus for each task
+#SBATCH --mem=50G                     #Request 50GB per node
 
 # Load necessary modules
 ml GCC/11.3.0  OpenMPI/4.1.4 SRA-Toolkit/3.0.3
@@ -105,34 +105,41 @@ echo "fasterq-dump and gzip completed successfully."
   
   ```
   
-  Then visit [this site](https://www.ncbi.nlm.nih.gov/sra/) to download the IsoSeq data. Download all available files by checking the box next to all the files and selecting Send > File > Accession List to in the upper right hand corner. This will download a .csv file with all of the accession numbers for your data. You then need to create a file called *SRR_Acc_List_isoseq.txt* and copy and paste the accession numbers into it. You can then run the *download-data.sh* file.
+  Then visit [this site](https://www.ncbi.nlm.nih.gov/sra/) to get the IsoSeq data SRR access numbers. Select all available files by checking the box next to all the files and selecting Send > File > Accession List to in the upper right hand corner. This will download a .csv file with all of the accession numbers for your data. You then need to create a file called *SRR_Acc_List_isoseq.txt* and copy and paste the accession numbers into it. You can then run the *download-data.sh* file.
   
-  2. Now you must combine all of the IsoSeq data using the following command:
+  <br>
+  **2.** Now you must combine all of the IsoSeq data, map it to your genome of choice, and then convert the sam file to a BAM file by copy and pasting the following script into a file called *run-alignment.sh*:
   ```{r, eval=FALSE}
   
-  cat file1.fastq, file2.fastq, ..., filen.fastq > all.subreads.fastq
-  
-  ```
+  #!/bin/bash
+  #SBATCH --job-name=braker-step2           # Job name
+  #SBATCH --output=braker-step2.out         # Output file
+  #SBATCH --error=braker-step2.err          # Error file
+  #SBATCH --ntasks=1                        # Number of tasks
+  #SBATCH --cpus-per-task=48                # Number of CPU cores per task
+  #SBATCH --mem=200G                        # Total memory limit
+  #SBATCH --time=48:00:00                   # Time limit hrs:min:sec
 
-  3. Map the transcripts to the genome sequence and then sort them with MiniMap2 using the command: 
+  # Load necessary modules
+  module load minimap2
   
-  ```{r, eval=FALSE}
-  minimap2 -t $threads -ax splice:hq genome.fa all.subreads.fastq  >    long_reads.sam
-  sort -k 3,3 -k 4,4n $wlong_reads.sam > long_reads.s.sam
-  ```
-
-  4. Prepare the BAM file with MiniMap2 and Samtools
-  ```{r, eval=FALSE}
-  minimap2 -t48 -ax splice:hq -uf genome.fa isoseq.fa > isoseq.sam
+  # Concatenate FASTQ files
+  cat file-1.fastq file-2.fastq ... file-n.fastq > all-subreads.fa
+  
+  # Run minimap2 for alignment w/ increased memory allotment
+  minimap2 -t 48 -ax splice:hq -I8Gb GENOME.fna all-subreads.fa > long_reads.sam
+  
+  # Use Samtools to convert sam to BAM
   Samtools view -bS --threads 48 isoseq.sam -o isoseq.bam
+
   ```
-  
-  5. Build the Singularity image
+  <br>
+  **3.** Build the Singularity image
   ```{r, eval=FALSE}
   singularity build braker3_lr.sif docker://teambraker/braker3:isoseq
-  ```
-  
-  6. Call BRAKER3 with the BAM file
+  ```  
+  <br>
+  **4.** Call BRAKER3 with the BAM file
   ```{r, eval=FALSE}
   singularity exec -B ${PWD}:${PWD} braker3_lr.sif braker.pl --genome=genome.fa --prot_seq=protein_db.fa --bam=isoseq.bam --threads=48
   ```
