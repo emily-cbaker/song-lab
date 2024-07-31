@@ -115,22 +115,23 @@ echo "fasterq-dump and gzip completed successfully."
   #SBATCH --job-name=braker-step2           # Job name
   #SBATCH --output=braker-step2.out         # Output file
   #SBATCH --error=braker-step2.err          # Error file
+  #SBATCH --nodes=1                         # Number of nodes
   #SBATCH --ntasks=1                        # Number of tasks
-  #SBATCH --cpus-per-task=48                # Number of CPU cores per task
+  #SBATCH --cpus-per-task=12                # Number of CPU cores per task
   #SBATCH --mem=200G                        # Total memory limit
   #SBATCH --time=48:00:00                   # Time limit hrs:min:sec
 
   # Load necessary modules
-  module load minimap2
+  module load GCC/13.2.0 GCCcore/12.2.0 minimap2/2.26 SAMtools/13.2.0
   
   # Concatenate FASTQ files
   cat file-1.fastq file-2.fastq ... file-n.fastq > all-subreads.fa
   
   # Run minimap2 for alignment w/ increased memory allotment
-  minimap2 -t 48 -ax splice:hq -I8Gb GENOME.fna all-subreads.fa > long_reads.sam
+  minimap2 -t 12 -ax splice:hq -I4Gb --split-prefix=tmp GENOME.fna all-subreads.fa > long_reads.sam
   
   # Use Samtools to convert sam to BAM
-  Samtools view -bS --threads 48 isoseq.sam -o isoseq.bam
+  samtools view -bS --threads 48 long_reads.sam -o isoseq.bam
 
   ```
   <br>
@@ -143,6 +144,11 @@ echo "fasterq-dump and gzip completed successfully."
   ```{r, eval=FALSE}
   singularity exec -B ${PWD}:${PWD} braker3_lr.sif braker.pl --genome=genome.fa --prot_seq=protein_db.fa --bam=isoseq.bam --threads=48
   ```
+  
+### Troubleshooting
+
+#### Samtools: [E::sam_parse1] no SQ lines present in the header
+SQ lines are used by Samtools to align sequences in .sam and BAM files. This error occurs when SQ lines are not included in the .sam file and the you try to convert it to a BAM file. To solve this issue, add the flag --split-prefix=tmp to split up the alignments in order to retain these SQ lines in the headers (I have now included this in my Step 2 command by default).
 
 ### Citations 
 Stanke, M., Diekhans, M., Baertsch, R. and Haussler, D. (2008). *Using native and syntenically mapped cDNA alignments to improve de novo gene finding*. Bioinformatics, doi: 10.1093/bioinformatics/btn013.
