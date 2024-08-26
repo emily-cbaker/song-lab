@@ -29,6 +29,8 @@ navbar:
               href: week7-notes.html
             - text: "7/29 - 8/2"
               href: week9-notes.html
+            - text: "8/19 - 8/30"
+              href: week12-notes.html
 
     - text: "Projects"
       icon: fa-microscope
