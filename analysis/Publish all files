@@ -19,5 +19,6 @@ wflow_publish(c(
 "analysis/week6-notes.Rmd",
 "analysis/week7-notes.Rmd",
 "analysis/week9-notes.Rmd",
-"analysis/week12-notes.Rmd"
+"analysis/week12-notes.Rmd",
+"analysis/week14-notes.Rmd"
 ))
