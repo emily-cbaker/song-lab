@@ -60,7 +60,13 @@ kable(data, escape = FALSE, caption = "") %>%
   row_spec(0, bold = TRUE, background = "#bfa2b0")
 ```
 
-Please note that <mark><b> all data must be on the same row!!!</b></mark>
+This should be done for each species, where the data for each species is on its own row. So the format would be:
+
+    Species 1: Coding seq. URL, Protein seq. URL, ...  
+    Species 2: Coding seq. URL, Protein seq. URL, ...  
+    Species 3: Coding seq. URL, Protein seq. URL, ...  
+  
+and so on.
 
 These files are easily created in Microsoft Excel, Google Sheets, or any spreadsheet software by entering your data in the columns as shown above and selecting the .csv option under "Save as". 
 
@@ -118,7 +124,7 @@ The next step is to clean the data using the command
 
 ```{r clean-data-script-command, eval=FALSE}
 
-./scripts/DataCleaning scripts/YourInputFile.txt
+./scripts/DataCleaning scripts/YourInputFile.csv
 
 ```
 
