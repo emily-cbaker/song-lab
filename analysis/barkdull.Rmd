@@ -80,7 +80,6 @@ This will download all the data you need to run this workflow.
 
 #### Running the Pipeline 
 
-<u>On a cluster:</u> 
 
 ##### Step 1: Set Up the Environment
 
@@ -165,7 +164,7 @@ For this next step we will need to alter one of Barkdull's files with some of ou
 
   v) Run the script using the command
   ```{r run-datatrans-modif, eval=FALSE}
-  sbatch ./scripts/DataTranslating_modif ./scripts/YourInputFile.txt
+  sbatch ./scripts/DataTranslating_modif ./scripts/YourInputFile.csv
   ```
   
 ##### Step 5: Running OrthoFinder
@@ -263,9 +262,9 @@ print(f"Processed data has been written to {output_file}")
 
 
 ##### Step 7: Create a Table and Clean the Data
-We then need to create a table with each protein and gene ID for all species present, so we must use the the script *protein2geneid_loop.py* by David Emms, a software developer for OrthoFinder,
+We then need to create a table with each protein and gene ID for all species present, so we must use the the script *protein2geneid_loop.py* by David Emms, a software developer for OrthoFinder.
 
-Create a file called *protein2geneid_loop.py* and copy and paste the following code into it
+Create a file called *protein2geneid_loop.py* in your *1_RawData* directory and copy and paste the following code into it
 
 ```{r protein2geneid.py, eval=FALSE}
 
@@ -357,13 +356,14 @@ Then run this script in the folder *1_RawData* using
 
 ```{r run-protein2geneid.py, eval=FALSE}
 
-cd 1_RawData # May need to alter depending on current directory
+cd {PATH TO 1_RawData}
 
-python protein2geneid_loop.py
+python3 protein2geneid_loop.py
 
 ```
 
-After we get this table, we need to run this script to clean some small errors that may occur in the table. Create a file named *clean-table.R* and copy and paste the following code into it
+##### Step 8: Correct Possible Errors in Table
+After we get this table, we need to run this script to clean some small errors that may occur in the table. Create a file named *clean-table.R* in your main OrthoFinder directory and copy and paste the following code into it
 
 ```{r clean-table.R, eval=FALSE}
 library(readr)
@@ -386,6 +386,16 @@ proteingeneid <- read_tsv("data/orthologs/allspecies_protein2geneid.tsv", col_na
 final_orthotable <- left_join(transformed_orthogroup, proteingeneid, by = "protein_id")
 write.table(final_orthotable, file = "data/orthologs/Orthogroups_genesprotein_11species_May2024.csv", sep = ",", quote = FALSE, row.names = FALSE)
 
+```
+
+We can run this script in the main directory using the following commands:
+
+```{r runR, eval=FALSE}
+ml GCC/12.2.0  OpenMPI/4.1.4 R_tamu/4.3.1
+
+export R_LIBS=$SCRATCH/R_LIBS_USER/ # Can skip reloading these if still present from previous steps
+
+Rscript clean-table.R
 ```
 
 Finally, we have finished and gotten a table of all species and their corresponding IDs.
