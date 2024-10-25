@@ -44,8 +44,8 @@ navbar:
       menu:
         - text: "Comparative Genomics of Large Orthoptera Genomes"
           href: orthop-genomes-project.html
-        - text: "Population Genomics of Mormon Crickets, Central American Locusts, Eremidium Grasshoppers"
-          href: pop-genomics-morm-crick.html
+        - text: "Comparative Genomics of Mormon Cricket subgroups -- UNDER CONSTRUCTION"
+          href:
 
     - text: "Program Information"
       icon: fa-code

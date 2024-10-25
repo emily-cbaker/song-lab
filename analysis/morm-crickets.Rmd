@@ -1,0 +1,15 @@
+---
+title: "Comparative Genomics of Mormon Cricket Subgroups"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    toc_collapsed: true
+    theme: default
+    css: "theme3.css"
+toc_depth: 3
+number_sections: true
+editor_options:
+  chunk_output_type: console
+---
