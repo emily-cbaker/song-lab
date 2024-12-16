@@ -1,0 +1,34 @@
+---
+title: "Repeat Modeler and Masker"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+    toc_float: true
+    toc_collapsed: false
+    theme: default
+    css: "theme3.css"
+toc_depth: 1
+number_sections: true
+editor_options:
+  chunk_output_type: console
+---
+
+# Identifying, Classifying, and Masking Repetitive Elements {.tabset}
+
+## What is RepeatModeler & RepeatMasker?
+
+## Running the Pipeline
+The main problem with the currently available RepeatModeler and RepeatMasker software is that they create thousands of large "intermediary" files that do not get deleted once the pipeline is finished running. Devon J. Boland from the Texas A&M Institute of Genome Sciences and Society (TIGSS) developed this SnakeMake pipeline that automatically deletes these files, freeing up storage after the process has completed its run. To run this pipeline you will need to download the following 3 files:
+
+<a href="/docs/assets/Snakefile" download="Snakefile">
+Snakefile
+</a>
+
+<a href="/docs/assets/snakemake.slurm" download="snakemake.slurm">
+snakemake.slurm
+</a>
+
+<a href="/docs/assets/cluster.json" download="cluster.json">
+cluster.json
+</a>
