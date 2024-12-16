@@ -1,0 +1,41 @@
+{
+    "__default__" :
+    {
+        "cpus-per-task" : 12,
+        "partition" : "medium",
+        "ntasks": 1,
+        "mem" : "40G",
+        "time": "1-00:00:00",
+        "out": "%j.out.txt"
+    },
+    "repeat_modeler":
+    {
+        "cpus-per-task" : 48,
+        "partition" : "long",
+        "ntasks": 1,
+        "mem" : "320G",
+        "time": "7-00:00:00",
+        "output": "repeat_modeler.%j.stdout.txt",
+        "error": "repeat_modeler.%j.stderr.txt"
+    },
+    "run_trf":
+    {
+        "cpus-per-task" : 48,
+        "partition" : "long",
+        "ntasks": 1,
+        "mem" : "320G",
+        "time": "3-00:00:00",
+        "output": "run_trf.%j.stdout.txt",
+        "error": "run_trf.%j.stderr.txt"
+    },
+    "repeat_masker":
+    {
+        "cpus-per-task" : 48,
+        "partition" : "long",
+        "ntasks": 1,
+        "mem" : "320G",
+        "time": "7-00:00:00",
+        "output": "repeat_masker.%j.stdout.txt",
+        "error": "repeat_masker.%j.stderr.txt"
+    }
+}

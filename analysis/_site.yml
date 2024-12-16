@@ -68,6 +68,9 @@ navbar:
               href: augustus.html
             - text: "Braker"
               href: braker.html
+        - text: "RepeatModeler & RepeatMasker"
+          href: rep-model-mask.html
+
     - text: "Reference"
       icon: fa-book-open-reader
       menu:

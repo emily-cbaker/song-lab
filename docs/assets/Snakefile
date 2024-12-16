@@ -1,0 +1,103 @@
+### =================================================================
+### GENOME REPEAT MASKING PIPELINE (v. DECEMBER 2024)
+### Project: Comparative Genomics Of Locusts
+### Devon J. Boland, <devonjboland@tamu.edu>
+### =================================================================
+
+### SET DIRECTORY PATHS FOR REFERENCE AND OUTPUT DATA
+WORKDir = "/scratch/user/devonjboland/BPRI/Genomes/RepeatMasking"
+GENOMEDir = "/scratch/user/devonjboland/BPRI/Genomes"
+
+# For local testing
+#WORKDir = "/Users/devonjboland/Documents/TIGSS/Maeva_TECHER_SongLab/Repeat_Masking/SnakeMake"
+#GENOMEDir = "/Users/devonjboland/Documents/TIGSS/Maeva_TECHER_SongLab/Repeat_Masking/SnakeMake/Genomes"
+
+### SET SAMPLES LIST
+INSECTS, = glob_wildcards(GENOMEDir + "/{insect}.fa")
+
+### SET PATHS FOR STATIC FILES
+TRFSif = "/scratch/user/devonjboland/SIFs/trf_4.09.1--h031d066_4.sif"
+
+# SET PSEUDO-RULE
+
+rule all:
+        input:
+                ###   GENERATING TRANSCRIPT MAPPING AND READS COUNTS
+                expand(WORKDir + "/{insect}/{insect}.fa.2.7.7.80.10.50.500.mask.masked", insect = INSECTS)
+
+### =================================================================
+###  Build TE Family Database Using RepeatModeler
+### =================================================================
+
+rule repeat_modeler:
+        input:
+                genome = GENOMEDir + "/{insect}.fa"
+        threads: 48
+        params:
+                genome_loc = GENOMEDir,
+                work_dir = WORKDir + "/{insect}",
+                short_name = "{insect}"
+        output:
+                rm_lib = WORKDir + "/{insect}/{insect}-families.fa"
+        shell:
+                """
+                set -euxo pipefail
+                ml purge
+                ml GCC/12.3.0  OpenMPI/4.1.5 RepeatModeler/2.0.6
+
+                cp {input.genome} $TMPDIR
+                cd $TMPDIR
+
+                # Create Blastn database of genome
+                BuildDatabase -name {params.short_name} {params.short_name}.fa
+
+                # Execute Repeat Modeler
+                RepeatModeler -database {params.short_name} -threads {threads} -LTRStruct
+                mv {params.short_name}* {params.work_dir}
+                mv {params.short_name}.fa {params.work_dir}
+                cd ${params.work_dir}
+                ml purge
+
+                """
+
+
+### =================================================================
+###  Identify Tandem Repeats Using TRF
+### =================================================================
+
+rule run_trf:
+        params:
+                genome = WORKDir + "/{insect}/{insect}.fa",
+                work_dir = WORKDir + "/{insect}",
+                sif = TRFSif
+        output:
+                masked_trf = WORKDir + "/{insect}/{insect}.fa.2.7.7.80.10.50.500.mask"
+        shell:
+                """
+                ml purge
+                cd {params.work_dir}
+                singularity exec {params.sif} trf {params.genome} 2 7 7 80 10 50 500 -f -d -m -h
+
+                """
+
+### =================================================================
+###  Mask TEs Using RepeatMasker on TRF Output with RM Input
+### =================================================================
+
+rule repeat_masker:
+        input:
+                genome_trf = WORKDir + "/{insect}/{insect}.fa.2.7.7.80.10.50.500.mask",
+                rm_lib = WORKDir + "/{insect}/{insect}-families.fa"
+        threads: 48
+        output:
+                final_mask = WORKDir + "/{insect}/{insect}.fa.2.7.7.80.10.50.500.mask.masked"
+        shell:
+                """
+                set -euxo pipefail
+                ml purge
+                ml GCC/11.3.0  OpenMPI/4.1.4 RepeatMasker/4.1.4
+
+                RepeatMasker -lib {input.rm_lib} --pa ${threads} {input.genome_trf}
+
+                ml purge
+                """
