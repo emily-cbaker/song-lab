@@ -413,7 +413,7 @@ $(document).ready(function () {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -424,8 +424,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -438,9 +438,9 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>bioinformatics-notes/</code>
@@ -463,33 +463,36 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreee05dc1e7a4db86c6623bffe2a768bd6066d68ecbtargetblanke05dc1ea">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreec94142ce0993535f8293333eb9d8980a27b059ebtargetblankc94142ca">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/e05dc1e7a4db86c6623bffe2a768bd6066d68ecb" target="_blank">e05dc1e</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/c94142ce0993535f8293333eb9d8980a27b059eb" target="_blank">c94142c</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreee05dc1e7a4db86c6623bffe2a768bd6066d68ecbtargetblanke05dc1ea"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreec94142ce0993535f8293333eb9d8980a27b059ebtargetblankc94142ca"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -499,7 +502,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/e05dc1e7a4db86c6623bffe2a768bd6066d68ecb" target="_blank">e05dc1e</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/c94142ce0993535f8293333eb9d8980a27b059eb" target="_blank">c94142c</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -523,8 +526,7 @@ Ignored files:
     Ignored:    images/
 
 Unstaged changes:
-    Modified:   analysis/Publish all files
-    Modified:   analysis/_site.yml
+    Modified:   analysis/rep-model-mask.Rmd
 
 </code></pre>
 <p>
@@ -571,6 +573,23 @@ Message
 <tbody>
 <tr>
 <td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/a9233f82b9e3a659c6612c7f6f8279fb2e79e21d/docs/rep-model-mask.html" target="_blank">a9233f8</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-12-16
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
 Rmd
 </td>
 <td>
@@ -610,11 +629,11 @@ Genome Sciences and Society (TIGSS) developed this SnakeMake pipeline
 that automatically deletes these files, freeing up storage after the
 process has completed its run. To run this pipeline you will need to
 download the following 3 files:</p>
-<p><a href="/docs/assets/Snakefile" download="Snakefile"> Snakefile
+<p><a href="../docs/assets/Snakefile" download="Snakefile"> Snakefile
 </a></p>
-<p><a href="/docs/assets/snakemake.slurm" download="snakemake.slurm">
+<p><a href="../docs/assets/snakemake.slurm" download="snakemake.slurm">
 snakemake.slurm </a></p>
-<p><a href="/docs/assets/cluster.json" download="cluster.json">
+<p><a href="../docs/assets/cluster.json" download="cluster.json">
 cluster.json </a></p>
 </div>
 </div>
