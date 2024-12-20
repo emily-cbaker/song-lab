@@ -30,10 +30,6 @@ Create a new directory in your scratch folder (for example, you could put it in 
 
 Create a directory in your scratch directory called *genomes*. This is where we will store our data for the repeat modeler and repeat masker runs.
 
-#### SIF Directory
-
-Create a directory in your scratch directory called "SIFs". This is where we redirect the .sif files from snakemake to.
-
 ### Files
 
 The main problem with the currently available RepeatModeler and RepeatMasker software is that they create thousands of large "intermediary" files that do not get deleted once the pipeline is finished running. Devon J. Boland from the Texas A&M Institute of Genome Sciences and Society (TIGSS) developed this SnakeMake pipeline that automatically deletes these files, freeing up storage after the process has completed its run. To run this pipeline you will need to create the following 3 files:
