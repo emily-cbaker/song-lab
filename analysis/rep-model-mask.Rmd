@@ -14,7 +14,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-## What is RepeatModeler & RepeatMasker?
+<!-- ## What is RepeatModeler & RepeatMasker? -->
 
 ## Step 0: File & Directory Creation
 
