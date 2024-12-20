@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -232,6 +235,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -239,6 +305,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -413,7 +489,7 @@ $(document).ready(function () {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -424,8 +500,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -434,13 +510,13 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-12-17
+<strong>Last updated:</strong> 2024-12-20
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>bioinformatics-notes/</code>
@@ -463,33 +539,120 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree4f8a5c04aa5abc4f145f3016c7c973651361f755targetblank4f8a5c0a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20240605code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20240605)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20240605code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20240605)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree840f400efc8a7a06882560c830e0220c8bbff86etargetblank840f400a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/4f8a5c04aa5abc4f145f3016c7c973651361f755" target="_blank">4f8a5c0</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/840f400efc8a7a06882560c830e0220c8bbff86e" target="_blank">840f400</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree4f8a5c04aa5abc4f145f3016c7c973651361f755targetblank4f8a5c0a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree840f400efc8a7a06882560c830e0220c8bbff86etargetblank840f400a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -499,7 +662,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/4f8a5c04aa5abc4f145f3016c7c973651361f755" target="_blank">4f8a5c0</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/840f400efc8a7a06882560c830e0220c8bbff86e" target="_blank">840f400</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -521,6 +684,9 @@ Ignored files:
     Ignored:    analysis/shiny/
     Ignored:    bootswatch/
     Ignored:    images/
+
+Unstaged changes:
+    Modified:   analysis/rep-model-mask.Rmd
 
 </code></pre>
 <p>
@@ -565,6 +731,57 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/840f400efc8a7a06882560c830e0220c8bbff86e/analysis/rep-model-mask.Rmd" target="_blank">840f400</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-12-17
+</td>
+<td>
+Forgot a slash
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/70e69bb9cff81733b4f7c6ccb473bd09f1afdbd5/analysis/rep-model-mask.Rmd" target="_blank">70e69bb</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-12-17
+</td>
+<td>
+Fix Hyperlink
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/8be8cf9a1b07455989a9e425c7cf07d73cc78ef0/docs/rep-model-mask.html" target="_blank">8be8cf9</a>
+</td>
+<td>
+Emily Baker
+</td>
+<td>
+2024-12-17
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -674,15 +891,37 @@ wflow_publish(c("analysis/augustus.Rmd", "analysis/barkdull.Rmd",
 </div>
 </div>
 </div>
-<div id="identifying-classifying-and-masking-repetitive-elements"
-class="section level1 tabset">
-<h1 class="tabset">Identifying, Classifying, and Masking Repetitive
-Elements</h1>
 <div id="what-is-repeatmodeler-repeatmasker" class="section level2">
 <h2>What is RepeatModeler &amp; RepeatMasker?</h2>
 </div>
-<div id="running-the-pipeline" class="section level2">
-<h2>Running the Pipeline</h2>
+<div id="step-0-file-directory-creation" class="section level2">
+<h2>Step 0: File &amp; Directory Creation</h2>
+<div id="directories" class="section level3">
+<h3>Directories</h3>
+<p>Now we must create the necessary directories for this pipeline to
+function.</p>
+<div id="working-directory" class="section level4">
+<h4>Working Directory</h4>
+<p>Create a new directory in your scratch folder (for example, you could
+put it in the following file path:
+scratch/user/YOUR_USERNAME/PROJECT_NAME). Call this new directory
+<em>rep-model-mask</em>. This is where you will add in the files we will
+create later.</p>
+</div>
+<div id="genome-directory" class="section level4">
+<h4>Genome Directory</h4>
+<p>Create a directory in your scratch directory called <em>genomes</em>.
+This is where we will store our data for the repeat modeler and repeat
+masker runs.</p>
+</div>
+<div id="sif-directory" class="section level4">
+<h4>SIF Directory</h4>
+<p>Create a directory in your scratch directory called “SIFs”. This is
+where we redirect the .sif files from snakemake to.</p>
+</div>
+</div>
+<div id="files" class="section level3">
+<h3>Files</h3>
 <p>The main problem with the currently available RepeatModeler and
 RepeatMasker software is that they create thousands of large
 “intermediary” files that do not get deleted once the pipeline is
@@ -690,13 +929,253 @@ finished running. Devon J. Boland from the Texas A&amp;M Institute of
 Genome Sciences and Society (TIGSS) developed this SnakeMake pipeline
 that automatically deletes these files, freeing up storage after the
 process has completed its run. To run this pipeline you will need to
-download the following 3 files:</p>
-<p><a href="docs/assets/Snakefile" download="Snakefile"> Snakefile
-</a></p>
-<p><a href="docs/assets/snakemake.slurm" download="snakemake.slurm">
-snakemake.slurm </a></p>
-<p><a href="docs/assets/cluster.json" download="cluster.json">
-cluster.json </a></p>
+create the following 3 files:</p>
+<div id="i-snakefile" class="section level4">
+<h4>i) Snakefile</h4>
+<p>Create the file “Snakefile” in your rep-model-mask directory and copy
+and paste the below code into it.<mark> You will need to change lines 8
+and 9 to the file paths of the work and genome folders you created in
+your scratch directory (see Step 0: Directories).</mark></p>
+<pre><code>### =================================================================
+### GENOME REPEAT MASKING PIPELINE (v. DECEMBER 2024)
+### Project: Comparative Genomics Of Locusts
+### Devon J. Boland, &lt;devonjboland@tamu.edu&gt;
+### =================================================================
+
+### SET DIRECTORY PATHS FOR REFERENCE AND OUTPUT DATA
+WORKDir = &quot;/scratch/user/devonjboland/BPRI/Genomes/RepeatMasking&quot;
+GENOMEDir = &quot;/scratch/user/devonjboland/BPRI/Genomes&quot;
+
+# For local testing
+#WORKDir = &quot;/Users/devonjboland/Documents/TIGSS/Maeva_TECHER_SongLab/Repeat_Masking/SnakeMake&quot;
+#GENOMEDir = &quot;/Users/devonjboland/Documents/TIGSS/Maeva_TECHER_SongLab/Repeat_Masking/SnakeMake/Genomes&quot;
+
+### SET SAMPLES LIST
+INSECTS, = glob_wildcards(GENOMEDir + &quot;/{insect}.fa&quot;)
+
+### SET PATHS FOR STATIC FILES
+TRFSif = &quot;/scratch/user/devonjboland/SIFs/trf_4.09.1--h031d066_4.sif&quot;
+
+# SET PSEUDO-RULE
+
+rule all:
+        input:
+                ###   GENERATING TRANSCRIPT MAPPING AND READS COUNTS
+                expand(WORKDir + &quot;/{insect}/{insect}.fa.2.7.7.80.10.50.500.mask.masked&quot;, insect = INSECTS)
+
+### =================================================================
+###  Build TE Family Database Using RepeatModeler
+### =================================================================
+
+rule repeat_modeler:
+        input:
+                genome = GENOMEDir + &quot;/{insect}.fa&quot;
+        threads: 48
+        params:
+                genome_loc = GENOMEDir,
+                work_dir = WORKDir + &quot;/{insect}&quot;,
+                short_name = &quot;{insect}&quot;
+        output:
+                rm_lib = WORKDir + &quot;/{insect}/{insect}-families.fa&quot;
+        shell:
+                &quot;&quot;&quot;
+                set -euxo pipefail
+                ml purge
+                ml GCC/12.3.0  OpenMPI/4.1.5 RepeatModeler/2.0.6
+
+                cp {input.genome} $TMPDIR
+                cd $TMPDIR
+
+                # Create Blastn database of genome
+                BuildDatabase -name {params.short_name} {params.short_name}.fa
+
+                # Execute Repeat Modeler
+                RepeatModeler -database {params.short_name} -threads {threads} -LTRStruct
+                mv {params.short_name}* {params.work_dir}
+                mv {params.short_name}.fa {params.work_dir}
+                cd ${params.work_dir}
+                ml purge
+
+                &quot;&quot;&quot;
+
+
+### =================================================================
+###  Identify Tandem Repeats Using TRF
+### =================================================================
+
+rule run_trf:
+        params:
+                genome = WORKDir + &quot;/{insect}/{insect}.fa&quot;,
+                work_dir = WORKDir + &quot;/{insect}&quot;,
+                sif = TRFSif
+        output:
+                masked_trf = WORKDir + &quot;/{insect}/{insect}.fa.2.7.7.80.10.50.500.mask&quot;
+        shell:
+                &quot;&quot;&quot;
+                ml purge
+                cd {params.work_dir}
+                singularity exec {params.sif} trf {params.genome} 2 7 7 80 10 50 500 -f -d -m -h
+
+                &quot;&quot;&quot;
+
+### =================================================================
+###  Mask TEs Using RepeatMasker on TRF Output with RM Input
+### =================================================================
+
+rule repeat_masker:
+        input:
+                genome_trf = WORKDir + &quot;/{insect}/{insect}.fa.2.7.7.80.10.50.500.mask&quot;,
+                rm_lib = WORKDir + &quot;/{insect}/{insect}-families.fa&quot;
+        threads: 48
+        output:
+                final_mask = WORKDir + &quot;/{insect}/{insect}.fa.2.7.7.80.10.50.500.mask.masked&quot;
+        shell:
+                &quot;&quot;&quot;
+                set -euxo pipefail
+                ml purge
+                ml GCC/11.3.0  OpenMPI/4.1.4 RepeatMasker/4.1.4
+
+                RepeatMasker -lib {input.rm_lib} --pa ${threads} {input.genome_trf}
+
+                ml purge
+                &quot;&quot;&quot;</code></pre>
+</div>
+<div id="ii-snakefile.slurm" class="section level4">
+<h4>ii) snakefile.slurm</h4>
+<p>Create the file “snakefile.slurm” in your rep-model-mask directory
+and copy and paste the following code into it. This file specifies that
+the cluster should send a notification when any updates occurring the
+job process (job begin or end, next stage, job canceled, etc.) to the
+specified email. <mark> You will need to edit line 10 to email
+notifications to the appropriate email address. If you do not wish to
+receive the email updates, you can delete lines 9 and 10.</mark></p>
+<pre><code>#!/bin/bash
+#SBATCH --job-name=snakemake-master
+#SBATCH --time=&quot;7-00:00:00&quot;
+#SBATCH --mem=100GB
+#SBATCH --cpus-per-task=1
+#SBATCH --ntasks=1
+
+## OPTIONAL ##
+#SBATCH --mail-type=ALL              #Send email on all job events
+#SBATCH --mail-user=USEREMAIL@tamu.edu    #Send all emails
+
+ml GCC/12.2.0  OpenMPI/4.1.4 snakemake/7.32.3
+
+snakemake --latency-wait 1000 \
+--restart-times 1 \
+-j 30 -p \
+--max-jobs-per-second 1 \
+--cluster-config cluster.json \
+--cluster &quot;sbatch -p {cluster.partition} --ntasks {cluster.ntasks} --cpus-per-task {cluster.cpus-per-task} -t {cluster.time} --mem {cluster.mem} --output {cluster.output} --error {cluster.error}&quot; \
+--rerun-incomplete \
+--notemp \
+--nolock</code></pre>
+</div>
+<div id="iii-cluster.json" class="section level4">
+<h4>iii) cluster.json</h4>
+<p>Create a file called “cluster.json” in your rep-model-mask directory
+and copy and paste the following code into it. This file provides
+specifications for how the cluster should allocate memory and name the
+output files based on what task is being run. <mark> You do not need to
+edit any lines of code in this file prior to submitting the job.
+</mark></p>
+<pre><code>{
+&quot;__default__&quot; :
+{
+    &quot;cpus-per-task&quot; : 12,
+    &quot;partition&quot; : &quot;medium&quot;,
+    &quot;ntasks&quot;: 1,
+    &quot;mem&quot; : &quot;40G&quot;,
+    &quot;time&quot;: &quot;1-00:00:00&quot;,
+    &quot;out&quot;: &quot;%j.out.txt&quot;
+},
+&quot;repeat_modeler&quot;:
+{
+    &quot;cpus-per-task&quot; : 48,
+    &quot;partition&quot; : &quot;long&quot;,
+    &quot;ntasks&quot;: 1,
+    &quot;mem&quot; : &quot;320G&quot;,
+    &quot;time&quot;: &quot;7-00:00:00&quot;,
+    &quot;output&quot;: &quot;repeat_modeler.%j.stdout.txt&quot;,
+    &quot;error&quot;: &quot;repeat_modeler.%j.stderr.txt&quot;
+},
+&quot;run_trf&quot;:
+{
+    &quot;cpus-per-task&quot; : 48,
+    &quot;partition&quot; : &quot;long&quot;,
+    &quot;ntasks&quot;: 1,
+    &quot;mem&quot; : &quot;320G&quot;,
+    &quot;time&quot;: &quot;3-00:00:00&quot;,
+    &quot;output&quot;: &quot;run_trf.%j.stdout.txt&quot;,
+    &quot;error&quot;: &quot;run_trf.%j.stderr.txt&quot;
+},
+&quot;repeat_masker&quot;:
+{
+    &quot;cpus-per-task&quot; : 48,
+    &quot;partition&quot; : &quot;long&quot;,
+    &quot;ntasks&quot;: 1,
+    &quot;mem&quot; : &quot;320G&quot;,
+    &quot;time&quot;: &quot;7-00:00:00&quot;,
+    &quot;output&quot;: &quot;repeat_masker.%j.stdout.txt&quot;,
+    &quot;error&quot;: &quot;repeat_masker.%j.stderr.txt&quot;
+}
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="step-1-repeat-modeler" class="section level2">
+<h2>Step 1: Repeat Modeler</h2>
+<p>First we will run RepeatModeler on our genome of choice using the
+following code to submit the job to the cluster</p>
+<pre class="r"><code>sbatch snakemake.slurm repeat_modeler</code></pre>
+<p>This job will launch jobs to run in parallel, so don’t be alarmed if
+you see more jobs running than you’ve submitted.</p>
+</div>
+<div id="step-2-repeat-masker" class="section level2">
+<h2>Step 2: Repeat Masker</h2>
+<p>Run RepeatMasker using the command</p>
+<pre class="r"><code>sbatch snakemake.slurm repeat_masker</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.4.0 (2024-04-24 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 11 x64 (build 22631)
+
+Matrix products: default
+
+
+locale:
+[1] LC_COLLATE=English_United States.utf8 
+[2] LC_CTYPE=English_United States.utf8   
+[3] LC_MONETARY=English_United States.utf8
+[4] LC_NUMERIC=C                          
+[5] LC_TIME=English_United States.utf8    
+
+time zone: America/Chicago
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+loaded via a namespace (and not attached):
+ [1] vctrs_0.6.5       cli_3.6.2         knitr_1.47        rlang_1.1.3      
+ [5] xfun_0.45         stringi_1.8.4     promises_1.3.0    jsonlite_1.8.8   
+ [9] workflowr_1.7.1   glue_1.7.0        rprojroot_2.0.4   git2r_0.33.0     
+[13] htmltools_0.5.8.1 httpuv_1.6.15     sass_0.4.9        fansi_1.0.6      
+[17] rmarkdown_2.27    jquerylib_0.1.4   evaluate_0.24.0   tibble_3.2.1     
+[21] fastmap_1.2.0     yaml_2.3.8        lifecycle_1.0.4   whisker_0.4.1    
+[25] stringr_1.5.1     compiler_4.4.0    fs_1.6.4          Rcpp_1.0.12      
+[29] pkgconfig_2.0.3   rstudioapi_0.16.0 later_1.3.2       digest_0.6.35    
+[33] R6_2.5.1          utf8_1.2.4        pillar_1.9.0      magrittr_2.0.3   
+[37] bslib_0.7.0       tools_4.4.0       cachem_1.1.0     </code></pre>
 </div>
 </div>
 </div>
@@ -721,6 +1200,8 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -753,6 +1234,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
