@@ -11,7 +11,7 @@
 
 
 
-<title>index.knit</title>
+<title>Apollo i5</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -232,6 +235,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -239,6 +305,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -408,6 +484,7 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Apollo i5</h1>
 
 </div>
 
@@ -440,7 +517,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span> 0
 </p>
@@ -477,6 +554,90 @@ class="panel-collapse collapse">
 <p>Great! Since the R Markdown file has been committed to the Git
 repository, you know the exact version of the code that produced these
 results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20240605code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20240605)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20240605code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20240605)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
 </div>
 </div>
 </div>
@@ -537,8 +698,8 @@ have uncommitted changes.
 <div id="versions" class="tab-pane fade">
 <p>
 These are the previous versions of the repository in which changes were
-made to the R Markdown (<code>analysis/index.Rmd</code>) and HTML
-(<code>docs/index.html</code>) files. If you’ve configured a remote Git
+made to the R Markdown (<code>analysis/Apollo.Rmd</code>) and HTML
+(<code>docs/Apollo.html</code>) files. If you’ve configured a remote Git
 repository (see <code>?wflow_git_remote</code>), click on the hyperlinks
 in the table below to view the files as they were in that past version.
 </p>
@@ -566,801 +727,19 @@ Message
 <tbody>
 <tr>
 <td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/a9233f82b9e3a659c6612c7f6f8279fb2e79e21d/docs/index.html" target="_blank">a9233f8</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-12-16
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/b96dd10e745964b9491094cb342a421b6affab80/docs/index.html" target="_blank">b96dd10</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-10-01
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/3731e9e5fc895d0bb1d501e825e40d8f92ec9e6d/docs/index.html" target="_blank">3731e9e</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-09-16
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/0c3ed6b76968749b6ad01b7a66f347fc1d7b8be3/docs/index.html" target="_blank">0c3ed6b</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-09-16
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/79140076f6780bbbd8c216112c863ca77cdafb1a/docs/index.html" target="_blank">7914007</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-08-26
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/98122725125fb3eac2898505b1869c1b94c26204/docs/index.html" target="_blank">9812272</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-07-31
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/f2bc75a7088b701660c636f42bc845588b644ad2/docs/index.html" target="_blank">f2bc75a</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-07-15
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/c93686e4e53271171e03b8c09ccd48906b416205/docs/index.html" target="_blank">c93686e</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-07-15
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/783cca38f0df082611321d7be930f88510b823c9/docs/index.html" target="_blank">783cca3</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-07-03
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/521747a727d407e3232e8bdb9db449cef883fc91/docs/index.html" target="_blank">521747a</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-30
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/1126462a2adfb69005596da7dc536113a5fd9d75/docs/index.html" target="_blank">1126462</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-30
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
 Rmd
 </td>
 <td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/138a30d72207190854f8a1121a30ae59cdfa0d42/analysis/index.Rmd" target="_blank">138a30d</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/388a8c2cf3a642caae516686cd45bfe3bd68b434/analysis/Apollo.Rmd" target="_blank">388a8c2</a>
 </td>
 <td>
-Emily Baker
+ecbaker7-tamu
 </td>
 <td>
-2024-06-28
+2025-01-16
 </td>
 <td>
-commit
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/94e9d6309b6decb954ef83ea7672e983e76b1e62/docs/index.html" target="_blank">94e9d63</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-27
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/8a621bdf242f76e9ab93716d2c690dd7bfae85d5/analysis/index.Rmd" target="_blank">8a621bd</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-27
-</td>
-<td>
-wflow_publish(c("analysis/index.Rmd", "analysis/week4-notes.Rmd",
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/cf09076aea2b43dc078e5dd422dd3c9a98afaea8/docs/index.html" target="_blank">cf09076</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-27
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/7005d09070d20b22227d3061f593d56c74e70c9e/docs/index.html" target="_blank">7005d09</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-27
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/88603dba75ffe6f0b816ac29a3ab87d155a16918/docs/index.html" target="_blank">88603db</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-26
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/f3078eccfe46e65d340655c24fa9c58dceae5c4f/analysis/index.Rmd" target="_blank">f3078ec</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-26
-</td>
-<td>
-wflow_publish("analysis/index.Rmd")
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/77587d658da71646a07dc8098add22d8efde6c11/docs/index.html" target="_blank">77587d6</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-25
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/597453afcbb8fe78aebafd6dcf2c6f355cb67e67/docs/index.html" target="_blank">597453a</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-25
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/5445e8108158bb4261816e0512b65c16b9dd22e0/docs/index.html" target="_blank">5445e81</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-25
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/9f7e72b218cd60ded470cdab28b5d6d0eaa38fc4/analysis/index.Rmd" target="_blank">9f7e72b</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-25
-</td>
-<td>
-wflow_publish("analysis/index.Rmd")
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/424027bcef629b70896fb7ad29b736f3d2fd65cb/docs/index.html" target="_blank">424027b</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-24
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/bc1d6441cf1f323683c1d6db09f8c7a02602bf6a/analysis/index.Rmd" target="_blank">bc1d644</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-24
-</td>
-<td>
-wflow_publish("analysis/index.Rmd")
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/3617a5257425261e6e17f0b6fb60cffbd98822c4/docs/index.html" target="_blank">3617a52</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-20
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/ee0eb86e4b5a311fdc43fcb7e8f54c5c9fb9962b/docs/index.html" target="_blank">ee0eb86</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-19
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/03e33325bdb3b313898020ae1d25f446bb72c9df/docs/index.html" target="_blank">03e3332</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/f1ee03cbe2bb667668458a9ae79bc01ea8fd346b/docs/index.html" target="_blank">f1ee03c</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-12
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/d4d7d3f3f21d8a0d913c101af043bf936d44dc8d/analysis/index.Rmd" target="_blank">d4d7d3f</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-12
-</td>
-<td>
-wflow_publish("analysis/index.Rmd")
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/af79cb90117cc0fce32f75b2f37557c634610943/docs/index.html" target="_blank">af79cb9</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-11
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/1168c10fa8cdd2eb6e4da95c335a55a0d22fcbf5/analysis/index.Rmd" target="_blank">1168c10</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-11
-</td>
-<td>
-wflow_publish("analysis/index.Rmd")
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/3a269abb4204d35fb7ac7fcd4e567b03823e69f0/docs/index.html" target="_blank">3a269ab</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-11
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/4acdfec4949fa49fbb6cf1993bc2aa12eaa456e7/docs/index.html" target="_blank">4acdfec</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-11
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/e98ae4b3875ee0a0c3a90f1db7eec23c972bbeb8/analysis/index.Rmd" target="_blank">e98ae4b</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-11
-</td>
-<td>
-commit
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/e98ae4b3875ee0a0c3a90f1db7eec23c972bbeb8/docs/index.html" target="_blank">e98ae4b</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-11
-</td>
-<td>
-commit
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/428b264ad87cc068be4acf365fafe5f7fd85bfe2/docs/index.html" target="_blank">428b264</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-11
-</td>
-<td>
-Whole lot of changes
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/5ccac6fd906170250f5ef974ec9063e6311b586d/docs/index.html" target="_blank">5ccac6f</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-11
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/6c2b7462e7beb102bc31fa6bfaeb5043fcbbacfa/docs/index.html" target="_blank">6c2b746</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-07
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/d832578b9cbf455f9a0a40c0727e2798a9ec6710/docs/index.html" target="_blank">d832578</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-06
-</td>
-<td>
-making it pretty
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/468cfe2eaf22cc85dce0adce25cd24fd866905f1/docs/index.html" target="_blank">468cfe2</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-06
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/b0666e3bc9b9a1e35bcb0db252d7c9a923f82ec4/docs/index.html" target="_blank">b0666e3</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-06
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/590e350c5d2faf4d982367502d3f9af88527dc1e/docs/index.html" target="_blank">590e350</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-06
-</td>
-<td>
-trying
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/9b97e1bf6d6e15392665852a918c99aa5e3bd45d/analysis/index.Rmd" target="_blank">9b97e1b</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-06
-</td>
-<td>
-please work finally
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/6297171e08b957ed38bdae62ea55ba28a4e3745c/analysis/index.Rmd" target="_blank">6297171</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-05
-</td>
-<td>
-work please
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/2cc18a5cac4be8d1832d038c00d052f264ea1bfd/analysis/index.Rmd" target="_blank">2cc18a5</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-05
-</td>
-<td>
-tesdting
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/22886736155c7295e670aacd594c5b6187149301/docs/index.html" target="_blank">2288673</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-05
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/0d0a899a11777418fba618a5072e0348cb1a19fb/analysis/index.Rmd" target="_blank">0d0a899</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-05
-</td>
-<td>
-Start workflowr project.
+wflow_publish(c("analysis/augustus.Rmd", "analysis/barkdull.Rmd",
 </td>
 </tr>
 </tbody>
@@ -1370,77 +749,230 @@ Start workflowr project.
 </div>
 </div>
 </div>
-<center>
-<img src="assets/song-header-6.png" width="3000px">
-</center>
-<p><br></p>
-<div class="img-with-text">
-<style>
-p {
-  text-indent: 2em; /* Adjust the value as needed to simulate a tab */
+<div id="what-is-apollo-i5-getting-access-information"
+class="section level2">
+<h2>What is Apollo i5? Getting Access &amp; Information</h2>
+<p>Apollo i5 is a program developed by the USDA used for manual genome
+annotation. Genomes are available by request on the <a
+href="https://i5k.nal.usda.gov/web-apollo-registration">Apollo i5
+website</a>. You must fill out the request form on this website to use
+this software.</p>
+</div>
+<div id="manual-genome-curation" class="section level2">
+<h2>Manual Genome Curation</h2>
+<p>The following steps are compiled from these links:</p>
+<p><a
+href="https://www.slideshare.net/slideshow/genome-curation-using-apollo/53758443">Genome
+Curation Using Apollo</a></p>
+<p><a
+href="https://genomecuration.github.io/genometrain/d-feature-curation-crossing/curated-collection/webapollo/WebApollo_Intro_Moni%5B1%5D.pdf">Web
+Apollo Intro by Monica Munoz-Torres</a></p>
+<p><a
+href="https://genomearchitect.readthedocs.io/en/latest/UsersGuide.html">Apollo
+User’s Guide</a></p>
+<p><a
+href="https://i5k.nal.usda.gov/sites/default/files/presentations/Apollo_webinar_8-18-2021.pdf">Apollo
+Capabilities</a></p>
+<p>All of these links include other resources for more specific cases,
+but these are good for general knowledge of the program. The following
+steps are the general process and usage of Apollo for manual genome
+curation.</p>
+<!-- ### Apollo Interface Breakdown
+[INSERT GUI SCREENSHOT ANNOTATED] -->
+<!-- ### 1. Selecting a Region of Interest -->
+<!-- ### 2. Selecting Appropriate Evidence -->
+<!-- ### 3. Determine if Existing Feature Provides a Reasonable Gene Model -->
+<!-- ### 4. Adjust the Gene Model -->
+<!-- ### 5. Checking your Model -->
+<!-- ### 6. Comment & Finish -->
+</div>
+<div id="process-of-annotation" class="section level2">
+<h2>Process of Annotation</h2>
+<div id="create-a-spreadsheet" class="section level4">
+<h4>1. Create a Spreadsheet</h4>
+<p>I began by creating an Excel spreadsheet / Google Sheet of all of the
+proteins of interest for each species we wanted to annotate. Included
+below is a screenshot of the page for <em>Schistocera Gregaria</em> and
+our proteins of interest: hexamerins, cuticle proteins, juvenile
+hormones, and serpins.</p>
+<p><mark>Each species should have its own page in this spreadsheet
+following this format.</mark> I then took the Orthogroups.txt from our
+run of the Formicidae Molecular Evolution pipeline by Megan Barkdull and
+saved it as a space-delimited file, then added it as a page to our
+spreadsheet.</p>
+</div>
+<div id="necessary-alterations-of-text" class="section level4">
+<h4>2. Necessary alterations of text</h4>
+<ol style="list-style-type: lower-roman">
+<li><p>Replace all periods in the <em>Protein accession</em> column with
+an underscore. For example, XP_049852925.1 becomes XP_049852925_1. I did
+this by copy and pasting this column into a new temporary page, finding
+and replacing all periods with an underscore, and then pasting the
+corrected column back into the original spreadsheet page.</p></li>
+<li><p>Remove all species prefixes. So for example
+<em>Amel_XP_026299083_1</em> becomes <em>XP_026299083_1</em>. I did this
+by searching for {species prefix}_X and replacing with X. So in this
+example, I would search for <em>Amel_X</em> and replace with <em>X</em>.
+Do this for whatever species you’re currently working on.</p></li>
+</ol>
+</div>
+<div
+id="google-sheets-script-to-search-for-orthogroups-genes-of-interest"
+class="section level4">
+<h4>3. Google Sheets Script to Search for Orthogroups &amp; Genes of
+Interest</h4>
+<p>Now that our data is in the correct format, we can begin searching
+our orthogroups and list of genes for overlapping data. More
+specifically, we want to know which genes are in an orthogroup and which
+orthogroups contain our genes of interest. I did this using the
+following Google Sheets script, but this can also easily be done in
+Excel. This script was used on <em>Schistocerca Gregaria</em>, so you
+will need to change the names containg Gregaria accordingly.</p>
+<pre class="r"><code>function colorOrthogroupsByGregaria() {
+  // Open the active spreadsheet
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  
+  // Get the sheets
+  const orthogroupsSheet = spreadsheet.getSheetByName(&quot;Orthogroups&quot;);
+  const gregariaSheet = spreadsheet.getSheetByName(&quot;Gregaria&quot;);
+  
+  // Get the data ranges
+  const orthogroupsData = orthogroupsSheet.getDataRange().getValues();
+  const gregariaData = gregariaSheet.getDataRange().getValues();
+  
+  // Define the color map for Gregaria column F
+  const colorMap = {
+    &quot;Serpin&quot;: &quot;#9bfdff&quot;,    // Turquoise for serpin
+    &quot;Hexamerin&quot;: &quot;#e1c4ff&quot;,  // Light purple for hexamerin
+    &quot;Cuticle Protein&quot;: &quot;#b5b6ff&quot;,     // Indigo for cuticle protein
+    &quot;Juvenile Growth Hormone&quot;: &quot;#fe90ff&quot; // Magenta for juv. growth hormone
+  };
+
+  // Clear previous formatting in Orthogroups
+  orthogroupsSheet.getDataRange().setBackground(null);
+
+  // Iterate through Orthogroups rows
+  for (let oRow = 0; oRow &lt; orthogroupsData.length; oRow++) {
+    const orthogroupsCell = orthogroupsData[oRow][8]; // Cell from column I (zero-based index 8)
+    let matchedColor = null; // Track the matching color
+
+    // Skip empty Orthogroups cells in column I
+    if (!orthogroupsCell) continue;
+
+    // Split the Orthogroups cell into words or tokens
+    const orthogroupsTokens = orthogroupsCell.split(/\s+/); // Split by whitespace
+
+    // Check each token against Gregaria column K
+    for (let gRow = 0; gRow &lt; gregariaData.length; gRow++) {
+      const gregariaTerm = gregariaData[gRow][10]; // Term from column K (zero-based index 10)
+      const category = gregariaData[gRow][5]; // Value from column F in Gregaria (zero-based index 5)
+
+      // Skip empty Gregaria cells in column K
+      if (!gregariaTerm) continue;
+
+      // Check if any token matches the Gregaria term
+      for (let token of orthogroupsTokens) {
+        if (token.includes(gregariaTerm)) {
+          matchedColor = colorMap[category] || null;
+          break; // Exit the innermost loop after finding the first match
+        }
+      }
+
+      if (matchedColor) break; // Exit the Gregaria loop after finding the first match
+    }
+
+    // Apply the matched color to the current row in Orthogroups
+    if (matchedColor) {
+      orthogroupsSheet.getRange(oRow + 1, 1, 1, orthogroupsData[oRow].length)
+        .setBackground(matchedColor);
+    }
+  }
 }
-</style>
-<div class="text">
+
+
+function colorGregariaByOrthogroups() {
+  // Open the active spreadsheet
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  
+  // Get the sheets
+  const orthogroupsSheet = spreadsheet.getSheetByName(&quot;Orthogroups&quot;);
+  const gregariaSheet = spreadsheet.getSheetByName(&quot;Gregaria&quot;);
+  
+  // Get the data ranges
+  const orthogroupsData = orthogroupsSheet.getDataRange().getValues();
+  const gregariaData = gregariaSheet.getDataRange().getValues();
+  
+  // Define colors for Gregaria rows
+  const gregariaMatchColor = &quot;#ADD8E6&quot;; // Light blue for matches
+  const gregariaNoMatchColor = &quot;#FFA07A&quot;; // Light orange for no matches
+
+  // Clear previous formatting in Gregaria
+  gregariaSheet.getDataRange().setBackground(null);
+
+  // Iterate through Gregaria rows
+  gregariaData.forEach((gregariaRow, gregariaIndex) =&gt; {
+    const gregariaTerm = gregariaRow[10]; // Term from column K (zero-based index 10)
+    let found = false; // Track if the term is found
+
+    // Check against Orthogroups rows
+    orthogroupsData.forEach(orthogroupsRow =&gt; {
+      const orthogroupsTerm = orthogroupsRow[8]; // Term from column I (zero-based index 8)
+      
+      if (orthogroupsTerm &amp;&amp; gregariaTerm &amp;&amp; orthogroupsTerm.includes(gregariaTerm)) {
+        found = true;
+      }
+    });
+
+    // Color the Gregaria row based on whether the term was found
+    const gregariaColor = found ? gregariaMatchColor : gregariaNoMatchColor;
+    gregariaSheet.getRange(gregariaIndex + 1, 1, 1, gregariaRow.length)
+      .setBackground(gregariaColor);
+  });
+}</code></pre>
+<br>
 <p>
-This website is dedicated to the work I conduct at the Song Laboratory
-at the Texas A&amp;M University Department of Entomology. Documented on
-this site are all of the projects I have previously or currently am
-working on, along with documentation of pipeline installation, error
-correction, and a glossary of bioinformatics terminology for quick
-reference.
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
 </p>
-<p>
-There are links for almost every software and package used on this site
-if you wish to view the original documentation. For installation and
-execution, I have tried to provide robust instructions but I am limited
-somewhat by the operating systems I use and am familiar with (Windows
-OS, slurm cluster).
-</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.4.2 (2024-10-31)
+Platform: aarch64-apple-darwin20
+Running under: macOS Sequoia 15.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: America/Chicago
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] workflowr_1.7.1
+
+loaded via a namespace (and not attached):
+ [1] vctrs_0.6.5       httr_1.4.7        cli_3.6.3         knitr_1.49       
+ [5] rlang_1.1.4       xfun_0.50         stringi_1.8.4     processx_3.8.5   
+ [9] promises_1.3.2    jsonlite_1.8.9    glue_1.8.0        rprojroot_2.0.4  
+[13] git2r_0.35.0      htmltools_0.5.8.1 httpuv_1.6.15     ps_1.8.1         
+[17] sass_0.4.9        rmarkdown_2.29    jquerylib_0.1.4   tibble_3.2.1     
+[21] evaluate_1.0.3    fastmap_1.2.0     yaml_2.3.10       lifecycle_1.0.4  
+[25] whisker_0.4.1     stringr_1.5.1     compiler_4.4.2    fs_1.6.5         
+[29] pkgconfig_2.0.3   Rcpp_1.0.14       rstudioapi_0.17.1 later_1.4.1      
+[33] digest_0.6.37     R6_2.5.1          pillar_1.10.1     callr_3.7.6      
+[37] magrittr_2.0.3    bslib_0.8.0       tools_4.4.2       cachem_1.1.0     
+[41] getPass_0.2-4    </code></pre>
 </div>
-<p><img src="assets/bug-on-leaf-no-bg.png" alt="Cricket Line Art"></p>
 </div>
-<style>
-.img-with-text {
-  display: flex;
-  align-items: flex-start;
-}
-
-.img-with-text img {
-  margin-left: 15px;
-  max-width: 520px;
-  height: auto;
-}
-
-.img-with-text .text {
-  flex: 3 0 400px;
-  display: flex;
-  flex-direction: column;
-}
-</style>
-<div class="bottom-left-box">
-<p><i> All images are public domain taken from the BioDiversity Heritage
-Library Flickr </i></p>
 </div>
-<style>
-
-.bottom-left-box {
-  position: relative;
-  bottom: 10px;
-  left: 8px;
-  width: 190px; /* Adjust the width as needed */
-  height: 90px;
-  padding: 5px;
-  background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
-  border: 1px solid #ccc; /* Border color */
-  font-size: 10pt; /* Font size */
-  color: #333; /* Text color */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
-}
-
-.bottom-left-box p {
-text-indent: 0;
-}
-</style>
 </div>
 </div>
 </div>
@@ -1463,6 +995,8 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -1495,6 +1029,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
