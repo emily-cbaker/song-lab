@@ -1,0 +1,186 @@
+---
+title: "Apollo i5"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    toc_collapsed: false
+    theme: default
+    css: "theme3.css"
+toc_depth: 1
+number_sections: true
+editor_options:
+  chunk_output_type: console
+---
+
+## What is Apollo i5? Getting Access & Information
+
+Apollo i5 is a program developed by the USDA used for manual genome annotation. Genomes are available by request on the [Apollo i5 website](https://i5k.nal.usda.gov/web-apollo-registration). You must fill out the request form on this website to use this software.
+
+
+## Manual Genome Curation
+
+The following steps are compiled from these links:
+
+[Genome Curation Using Apollo](https://www.slideshare.net/slideshow/genome-curation-using-apollo/53758443)
+
+[Web Apollo Intro by Monica Munoz-Torres](https://genomecuration.github.io/genometrain/d-feature-curation-crossing/curated-collection/webapollo/WebApollo_Intro_Moni[1].pdf)
+
+[Apollo User's Guide](https://genomearchitect.readthedocs.io/en/latest/UsersGuide.html)
+
+[Apollo Capabilities](https://i5k.nal.usda.gov/sites/default/files/presentations/Apollo_webinar_8-18-2021.pdf)
+
+All of these links include other resources for more specific cases, but these are good for general knowledge of the program. The following steps are the general process and usage of Apollo for manual genome curation.
+
+<!-- ### Apollo Interface Breakdown
+[INSERT GUI SCREENSHOT ANNOTATED] -->
+
+
+<!-- ### 1. Selecting a Region of Interest -->
+
+<!-- ### 2. Selecting Appropriate Evidence -->
+
+<!-- ### 3. Determine if Existing Feature Provides a Reasonable Gene Model -->
+
+<!-- ### 4. Adjust the Gene Model -->
+
+<!-- ### 5. Checking your Model -->
+
+<!-- ### 6. Comment & Finish -->
+
+## Process of Annotation
+#### 1. Create a Spreadsheet
+I began by creating an Excel spreadsheet / Google Sheet of all of the proteins of interest for each species we wanted to annotate. Included below is a screenshot of the page for *Schistocera Gregaria* and our proteins of interest: hexamerins, cuticle proteins, juvenile hormones, and serpins.
+
+
+\begin{center}
+![*Schistocerca Gregaria* Spreadsheet Page](assets/excel-orthogroups-scnsht.png)
+\end{center}
+
+ <mark>Each species should have its own page in this spreadsheet following this   format.</mark> I then took the Orthogroups.txt from our run of the Formicidae Molecular Evolution pipeline by Megan Barkdull and saved it as a space-delimited file, then added it as a page to our spreadsheet.
+ 
+ 
+#### 2. Necessary alterations of text
+
+i. Replace all periods in the *Protein accession* column with an underscore. For example, XP_049852925.1 becomes XP_049852925_1. I did this by copy and pasting this column into a new temporary page, finding and replacing all periods with an underscore, and then pasting the corrected column back into the original spreadsheet page.
+  
+ii. Remove all species prefixes. So for example *Amel_XP_026299083_1* becomes *XP_026299083_1*. I did this by searching for {species prefix}_X and replacing with X. So in this example, I would search for *Amel_X* and replace with *X*. Do this for whatever species you're currently working on.
+
+
+#### 3. Google Sheets Script to Search for Orthogroups & Genes of Interest
+
+Now that our data is in the correct format, we can begin searching our orthogroups and list of genes for overlapping data. More specifically, we want to know which genes are in an orthogroup and which orthogroups contain our genes of interest. I did this using the following Google Sheets script, but this can also easily be done in Excel. This script was used on *Schistocerca Gregaria*, so you will need to change the names containg Gregaria accordingly.
+
+```{r google-sheets-script-coloring, eval=FALSE}
+
+function colorOrthogroupsByGregaria() {
+  // Open the active spreadsheet
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  
+  // Get the sheets
+  const orthogroupsSheet = spreadsheet.getSheetByName("Orthogroups");
+  const gregariaSheet = spreadsheet.getSheetByName("Gregaria");
+  
+  // Get the data ranges
+  const orthogroupsData = orthogroupsSheet.getDataRange().getValues();
+  const gregariaData = gregariaSheet.getDataRange().getValues();
+  
+  // Define the color map for Gregaria column F
+  const colorMap = {
+    "Serpin": "#9bfdff",    // Turquoise for serpin
+    "Hexamerin": "#e1c4ff",  // Light purple for hexamerin
+    "Cuticle Protein": "#b5b6ff",     // Indigo for cuticle protein
+    "Juvenile Growth Hormone": "#fe90ff" // Magenta for juv. growth hormone
+  };
+
+  // Clear previous formatting in Orthogroups
+  orthogroupsSheet.getDataRange().setBackground(null);
+
+  // Iterate through Orthogroups rows
+  for (let oRow = 0; oRow < orthogroupsData.length; oRow++) {
+    const orthogroupsCell = orthogroupsData[oRow][8]; // Cell from column I (zero-based index 8)
+    let matchedColor = null; // Track the matching color
+
+    // Skip empty Orthogroups cells in column I
+    if (!orthogroupsCell) continue;
+
+    // Split the Orthogroups cell into words or tokens
+    const orthogroupsTokens = orthogroupsCell.split(/\s+/); // Split by whitespace
+
+    // Check each token against Gregaria column K
+    for (let gRow = 0; gRow < gregariaData.length; gRow++) {
+      const gregariaTerm = gregariaData[gRow][10]; // Term from column K (zero-based index 10)
+      const category = gregariaData[gRow][5]; // Value from column F in Gregaria (zero-based index 5)
+
+      // Skip empty Gregaria cells in column K
+      if (!gregariaTerm) continue;
+
+      // Check if any token matches the Gregaria term
+      for (let token of orthogroupsTokens) {
+        if (token.includes(gregariaTerm)) {
+          matchedColor = colorMap[category] || null;
+          break; // Exit the innermost loop after finding the first match
+        }
+      }
+
+      if (matchedColor) break; // Exit the Gregaria loop after finding the first match
+    }
+
+    // Apply the matched color to the current row in Orthogroups
+    if (matchedColor) {
+      orthogroupsSheet.getRange(oRow + 1, 1, 1, orthogroupsData[oRow].length)
+        .setBackground(matchedColor);
+    }
+  }
+}
+
+
+function colorGregariaByOrthogroups() {
+  // Open the active spreadsheet
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  
+  // Get the sheets
+  const orthogroupsSheet = spreadsheet.getSheetByName("Orthogroups");
+  const gregariaSheet = spreadsheet.getSheetByName("Gregaria");
+  
+  // Get the data ranges
+  const orthogroupsData = orthogroupsSheet.getDataRange().getValues();
+  const gregariaData = gregariaSheet.getDataRange().getValues();
+  
+  // Define colors for Gregaria rows
+  const gregariaMatchColor = "#ADD8E6"; // Light blue for matches
+  const gregariaNoMatchColor = "#FFA07A"; // Light orange for no matches
+
+  // Clear previous formatting in Gregaria
+  gregariaSheet.getDataRange().setBackground(null);
+
+  // Iterate through Gregaria rows
+  gregariaData.forEach((gregariaRow, gregariaIndex) => {
+    const gregariaTerm = gregariaRow[10]; // Term from column K (zero-based index 10)
+    let found = false; // Track if the term is found
+
+    // Check against Orthogroups rows
+    orthogroupsData.forEach(orthogroupsRow => {
+      const orthogroupsTerm = orthogroupsRow[8]; // Term from column I (zero-based index 8)
+      
+      if (orthogroupsTerm && gregariaTerm && orthogroupsTerm.includes(gregariaTerm)) {
+        found = true;
+      }
+    });
+
+    // Color the Gregaria row based on whether the term was found
+    const gregariaColor = found ? gregariaMatchColor : gregariaNoMatchColor;
+    gregariaSheet.getRange(gregariaIndex + 1, 1, 1, gregariaRow.length)
+      .setBackground(gregariaColor);
+  });
+}
+
+```
+
+
+  
+
+
+
+
