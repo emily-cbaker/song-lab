@@ -54,9 +54,8 @@ All of these links include other resources for more specific cases, but these ar
 I began by creating an Excel spreadsheet / Google Sheet of all of the proteins of interest for each species we wanted to annotate. Included below is a screenshot of the page for *Schistocera Gregaria* and our proteins of interest: hexamerins, cuticle proteins, juvenile hormones, and serpins.
 
 
-\begin{center}
-![*Schistocerca Gregaria* Spreadsheet Page](assets/excel-orthogroups-scnsht.png)
-\end{center}
+![](assets/excel-orthogroups-scnsht.png)
+
 
  <mark>Each species should have its own page in this spreadsheet following this   format.</mark> I then took the Orthogroups.txt from our run of the Formicidae Molecular Evolution pipeline by Megan Barkdull and saved it as a space-delimited file, then added it as a page to our spreadsheet.
  
