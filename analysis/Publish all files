@@ -22,5 +22,6 @@ wflow_publish(c(
 "analysis/week12-notes.Rmd",
 "analysis/week14-notes.Rmd",
 "analysis/week16-notes.Rmd",
-"analysis/rep-model-mask.Rmd"
+"analysis/rep-model-mask.Rmd",
+"analysis/Apollo.Rmd"
 ))

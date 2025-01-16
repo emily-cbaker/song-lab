@@ -62,12 +62,15 @@ navbar:
           href: compare-genomes.html
         - text: "FormicidaeMolecularEvolution (OrthoFinder)"
           href: barkdull.html
-        - text: "Annotation Pipelines"
+        - text: "Annotation Tools"
           menu:
+            - text: "Apollo"
+              href: Apollo.html
             - text: "Augustus"
               href: augustus.html
             - text: "Braker"
               href: braker.html
+            
         - text: "RepeatModeler & RepeatMasker"
           href: rep-model-mask.html
 
