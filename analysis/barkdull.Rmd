@@ -86,18 +86,21 @@ This will download all the data you need to run this workflow.
 First we need to download PanDoc in order to update our packages as needed without interference. We do this with the command
 
 ```{r configR, eval=FALSE}
-ml GCC/12.2.0  OpenMPI/4.1.4 R_tamu/4.3.1
+module purge
+module load GCC/13.2.0  OpenMPI/4.1.6 R_tamu/4.3.2
 
-export R_LIBS=$SCRATCH/R_LIBS_USER/
-  
-ml Pandoc/2.13
+export R_LIBS=$SCRATCH/R_LIBS_USER/4.3.2-foss-2023b:$R_LIBS
 ```
 
 
-Then, we need to load the the necessary modules onto your terminal. The command is as follows:
+Then, we need to load the the necessary modules onto your terminal. The commands are as follows:
 
 ```{r ml-R, eval=FALSE}
-R
+rm -rf $HOME/.R*
+rm -rf $SCRATCH/.R*
+rm -rf /path/to/your/FormicidaeMolecularEvolution/.R*
+  
+R --vanilla
 
 library("orthologr")
 library("biomartr")
@@ -410,6 +413,12 @@ module purge
 ```
 
 This will get rid of all previously loaded packages before you reload the ones you need for this script. Not quite sure why this works but it does. 
+
+##### Species on Last Line of .csv File Not Being Processed
+There is a glitch in this pipeline that causes the program to index 1 row short of the actual number of rows. To correct this, I just copy and paste the last line of my data entries on the line right below the "real" entries. This dummy line will correct the indexing issues and in the event it is read, the line will not cause any issues with the data processing. Pictured below is a screenshot of my .csv file with my dummy line highlighted in green. Notice it is a duplicate of the line right above it.
+
+<center><img src="assets/dummy-line.png"></center>
+<center><i><font size="-1.5">Example of .csv with dummy line</font></i></center>
 
 ### Citations
 Megan Barkdull. (2021). mbarkdull/FormicidaeMolecularEvolution: v1.0.0-beta (v1.0.0-beta). Zenodo. [https://doi.org/10.5281/zenodo.5668329](https://doi.org/10.5281/zenodo.5668329)
