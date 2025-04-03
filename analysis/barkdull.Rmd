@@ -161,7 +161,7 @@ For this next step we will need to alter one of Barkdull's files with some of ou
     #SBATCH --cpus-per-task=4       #Request 8 task
     #SBATCH --mem=20G              #Request 50GB per node
 
-    ml GCC/10.2.0 OpenMPI/4.0.5 TransDecoder/5.5.0 Biopython/1.78
+ml GCC/12.3.0 OpenMPI/4.1.5 TransDecoder/5.7.1 Biopython/1.83
     
   ```
 
