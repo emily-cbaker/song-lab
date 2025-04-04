@@ -24,6 +24,9 @@ On her GitHub, Barkdull provides a flowchart that summarizes the process of this
 <center><i><font size="-1.5">Simplified FormicidaeMolecularEvolution Pipeline Flowchart</font></i></center>
 
 ### Installation and Running 
+
+<mark> Note: This procedure has been updated to run on the TAMU Grace cluster following the March 2025 update to the Grace OS.</mark>
+
 #### Clone the GitHub repository
 For both local and cluster installation, you just need to clone Barkdull's GitHub repository into your own environment using the command 
 
@@ -388,9 +391,8 @@ write.table(final_orthotable, file = "data/orthologs/Orthogroups_genesprotein_11
 We can run this script in the main directory using the following commands:
 
 ```{r runR, eval=FALSE}
-ml GCC/12.2.0  OpenMPI/4.1.4 R_tamu/4.3.1
-
-export R_LIBS=$SCRATCH/R_LIBS_USER/ # Can skip reloading these if still present from previous steps
+module purge
+module load GCC/13.2.0  OpenMPI/4.1.6 R_tamu/4.3.2
 
 Rscript clean-table.R
 ```
