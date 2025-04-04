@@ -144,10 +144,12 @@ For this next step we will need to alter one of Barkdull's files with some of ou
   ```{r add-datatranslating-lines, eval=FALSE}
        # Now we can run Transdecoder on the cleaned file:
     echo "First, attempting TransDecoder run on $cleanName"
-    ml GCC/10.2.0 OpenMPI/4.0.5 TransDecoder/5.5.0
+ml GCC/12.3.0 OpenMPI/4.1.5 TransDecoder/5.7.1 Biopython/1.83
     TransDecoder.LongOrfs -t $cleanName
     TransDecoder.Predict -t $cleanName --single_best_only
   ```
+      
+      
       
   iv) Replace the header in *DataTranslating_modif* with the following lines
   ```{r replace-header, eval=FALSE}
@@ -197,9 +199,8 @@ Then to run OrthoFinder on the Grace cluster we will create a file within the *s
 #SBATCH --cpus-per-task=4       #Request 1 task
 #SBATCH --mem=30G              #Request 100GB per node
 
-ml iccifort/2019.5.281  impi/2018.5.288 OrthoFinder/2.3.11-Python-3.7.4 
-ml IQ-TREE/1.6.12 FastTree/2.1.11
-ml MAFFT/7.453-with-extensions
+ml purge
+ml GCC/12.3.0 OpenMPI/4.1.5 OrthoFinder/2.5.5 IQ-TREE/2.3.6 FastTree/2.1.11 MAFFT/7.520-with-extensions
 
 orthofinder -S diamond -T iqtree -A mafft -I 5 -t 32 -a 4 -M msa -f ${file path to 5_OrthoFinder/fasta} -p ${file path to LocustsGenomeEvolution/tmp}
 
@@ -219,13 +220,6 @@ orthofinder -S diamond -T iqtree -A mafft -I 5 -t 32 -a 4 -M msa -f ${file path 
   -t 32: Sets the number of threads to 32.
   
 </details>
-
-Now we want to run OrthoFinder using BLAST to improve accuracy (around 2% increase). To load this we use the command
-```{r ortho-with-BLAST, eval=FALSE}
-
-ml GCC/8.2.0-2.31.1  OpenMPI/3.1.3 iccifort/2019.5.281  impi/2018.5.288 BLAST+/2.9.0
-
-```
 
 and then we can run our slurm script using 
 
