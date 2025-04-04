@@ -571,15 +571,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreebd46dec2e161dba43fbd1b68b483afbd9616154ftargetblankbd46deca">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree3f12f313d9354f577910a024724e3f1f6fb18e36targetblank3f12f31a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/bd46dec2e161dba43fbd1b68b483afbd9616154f" target="_blank">bd46dec</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/3f12f313d9354f577910a024724e3f1f6fb18e36" target="_blank">3f12f31</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreebd46dec2e161dba43fbd1b68b483afbd9616154ftargetblankbd46deca"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree3f12f313d9354f577910a024724e3f1f6fb18e36targetblank3f12f31a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -589,7 +589,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/bd46dec2e161dba43fbd1b68b483afbd9616154f" target="_blank">bd46dec</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/3f12f313d9354f577910a024724e3f1f6fb18e36" target="_blank">3f12f31</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -651,6 +651,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/3f12f313d9354f577910a024724e3f1f6fb18e36/analysis/barkdull.Rmd" target="_blank">3f12f31</a>
+</td>
+<td>
+ecbaker7-tamu
+</td>
+<td>
+2025-04-04
+</td>
+<td>
+wflow_publish("analysis/barkdull.rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/a7cc4bea11dff1456e876e14578ae9f008c69a3b/docs/barkdull.html" target="_blank">a7cc4be</a>
+</td>
+<td>
+ecbaker7-tamu
+</td>
+<td>
+2025-04-04
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1262,6 +1296,8 @@ Flowchart</font></i>
 </div>
 <div id="installation-and-running" class="section level3">
 <h3>Installation and Running</h3>
+<p><mark> Note: This procedure has been updated to run on the TAMU Grace
+cluster following the March 2025 update to the Grace OS.</mark></p>
 <div id="clone-the-github-repository" class="section level4">
 <h4>Clone the GitHub repository</h4>
 <p>For both local and cluster installation, you just need to clone
@@ -1607,9 +1643,8 @@ final_orthotable &lt;- left_join(transformed_orthogroup, proteingeneid, by = &qu
 write.table(final_orthotable, file = &quot;data/orthologs/Orthogroups_genesprotein_11species_May2024.csv&quot;, sep = &quot;,&quot;, quote = FALSE, row.names = FALSE)</code></pre>
 <p>We can run this script in the main directory using the following
 commands:</p>
-<pre class="r"><code>ml GCC/12.2.0  OpenMPI/4.1.4 R_tamu/4.3.1
-
-export R_LIBS=$SCRATCH/R_LIBS_USER/ # Can skip reloading these if still present from previous steps
+<pre class="r"><code>module purge
+module load GCC/13.2.0  OpenMPI/4.1.6 R_tamu/4.3.2
 
 Rscript clean-table.R</code></pre>
 <p>Finally, we have finished and gotten a table of all species and their
