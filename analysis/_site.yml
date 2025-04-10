@@ -42,7 +42,7 @@ navbar:
     - text: "Projects"
       icon: fa-microscope
       menu:
-        - text: "Comparative Genomics of Large Orthoptera Genomes"
+        - text: "Comparative Genomics of Schistocerca gregaria"
           href: orthop-genomes-project.html
         - text: "Comparative Genomics of Mormon Cricket subgroups -- UNDER CONSTRUCTION"
           href:
