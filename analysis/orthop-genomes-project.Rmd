@@ -9,14 +9,11 @@ editor_options:
 ---
 ## {.tabset}
 
-### Duplication of Previous Analysis
+### Initial Analysis 
 
 For this part, I re-ran OrthoFinder with the data Maeva used [here](https://maevatecher.github.io/locust-comparative-genomics/2_orthologs-prediction.html). My results are outlined in this table:
 
 ![](assets/UpsetR-initial-plot.png)
-
-
-### Initial Analysis 
 
 ```{r RefSef info, echo=FALSE, message=FALSE, warning =FALSE}
 library(knitr)
@@ -482,3 +479,24 @@ kable(data, "html", escape = FALSE, caption = "") %>%
 
   add_header_above(c(" " = 1, "Reference & Outgroup Species Information" = 8))
 ```
+
+
+### Synteny Analysis
+
+To begin synteny analysis, I ran GENESPACE using 3 swarming *Schistocerca* species (including *S. gregaria*) and 1 non-swarming. The results are as follows:
+
+![](assets/synteny-plot-trial.png)
+
+I am currently working with the TAMU HPRC team to configure this pipeline in order to run an analysis with all 6 *Schistocerca* genomes as well as our outgroups.
+
+### Proteomic Analysis
+
+Through our orthology analysis, we found an uncharacterized hub gene in *S. gregaria* that produced a protein called zona pellucid domain containing miniature (ZPDCM). This protein is orthologous to one found in *D. melanogaster* called m miniature. In *D. melanogaster*, m miniature is involved in the regulation of wing development. In *S. gregaria* ZPDCM is upregulated in gregarious individuals, but in the head rather than the thorax. Furthermore, this protein is found in the other *Schistocerca* species, but exhibits similar expression patterns in the 2 other swarming species, *S. cancellata* and *S. piceifrons*. The predicted model using AlphaFold is pictured below, as well as an alignment with the ortholgous protein from *D. melanogaster*.
+
+![](assets/ZPDCM-alphafold.png)
+
+![](assets/alphafold-key.png)
+
+![](assets/ZPDCM-alignment-ortho.png)
+
+
