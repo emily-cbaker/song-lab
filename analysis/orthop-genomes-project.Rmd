@@ -1,5 +1,5 @@
 ---
-title: "Comparative Genomics of Large Orthoptera Genomes "
+title: "Comparative Genomics of Schistocerca gregaria"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
