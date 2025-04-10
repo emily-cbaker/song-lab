@@ -63,6 +63,8 @@ p {
 
 ### Installation & Running
 
+<mark> This process is currently deprecated under te new TMAU Grace update (March 2025). I am currently working with the HPRC team to update these instructions.</mark>
+
 #### Install in a Conda Environment
 
 These instructions are for installing GENESPACE within a conda environment on the TAMU Grace cluster.
