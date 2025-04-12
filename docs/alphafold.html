@@ -11,7 +11,7 @@
 
 
 
-<title>Progress &amp; Notes: 9/30 - 10/4</title>
+<title>AlphaFold</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -419,7 +419,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Progress &amp; Notes: 9/30 - 10/4</h1>
+<h1 class="title toc-ignore">AlphaFold</h1>
 
 </div>
 
@@ -552,9 +552,9 @@ have uncommitted changes.
 <div id="versions" class="tab-pane fade">
 <p>
 These are the previous versions of the repository in which changes were
-made to the R Markdown (<code>analysis/week16-notes.Rmd</code>) and HTML
-(<code>docs/week16-notes.html</code>) files. If you’ve configured a
-remote Git repository (see <code>?wflow_git_remote</code>), click on the
+made to the R Markdown (<code>analysis/alphafold.Rmd</code>) and HTML
+(<code>docs/alphafold.html</code>) files. If you’ve configured a remote
+Git repository (see <code>?wflow_git_remote</code>), click on the
 hyperlinks in the table below to view the files as they were in that
 past version.
 </p>
@@ -582,104 +582,19 @@ Message
 <tbody>
 <tr>
 <td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/63d1ad06520e7f288ebaa6562d63fe2865527bf7/docs/week16-notes.html" target="_blank">63d1ad0</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-04-10
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/aaa78c46da9d439cbb501e9591ecc971e6283817/docs/week16-notes.html" target="_blank">aaa78c4</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-01-16
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/a9233f82b9e3a659c6612c7f6f8279fb2e79e21d/docs/week16-notes.html" target="_blank">a9233f8</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-12-16
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/b96dd10e745964b9491094cb342a421b6affab80/docs/week16-notes.html" target="_blank">b96dd10</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-10-01
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/4eb9aa3134172a5ef9ed9e2c6a44620295afa211/docs/week16-notes.html" target="_blank">4eb9aa3</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-10-01
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
 Rmd
 </td>
 <td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/6b7cd9f268e03ea6dd18d352767bf2009be682bf/analysis/week16-notes.Rmd" target="_blank">6b7cd9f</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/b2b35b2d503db89b116e8155fd40983daf557fbf/analysis/alphafold.Rmd" target="_blank">b2b35b2</a>
 </td>
 <td>
-Emily Baker
+ecbaker7-tamu
 </td>
 <td>
-2024-10-01
+2025-04-11
 </td>
 <td>
-wflow_publish("analysis/week16-notes.Rmd")
+wflow_publish(c("analysis/alphafold.Rmd", "analysis/Apollo.Rmd",
 </td>
 </tr>
 </tbody>
@@ -689,13 +604,88 @@ wflow_publish("analysis/week16-notes.Rmd")
 </div>
 </div>
 </div>
-<p>10/1 : NCBI has finally sent over the missing protein file for the
-Colorado <em>Anabrus Simplex</em>, so I have begun running OrthoFinder
-on it as well. The Idaho genome is almost finished going through
-OrthoFinder as well, I just need to submit the 5th batch job of
-Barkdull’s pipeline to Grace. This step has been delayed because every
-time I try to submit the job, the cluster is overloaded and rejects
-it.</p>
+<div id="in-silico-protein-structure-prediction"
+class="section level2 tabset">
+<h2 class="tabset">In-silico Protein Structure Prediction</h2>
+<div id="what-is-alphafold" class="section level3">
+<h3>What is AlphaFold?</h3>
+<p>AlphaFold is a software created by Google DeepMind that predicts
+protein structure based solely off of the primary structure of the
+protein (amino acid sequence). Additionally, you may predict multi-mer
+structures and proteins with the addition of certain ligands available
+in the AlphaFold data set.</p>
+<p>Currently, the third release of the program, aptly anmed AlphaFold3,
+is the latest edition.</p>
+<div id="limitations" class="section level4">
+<h4>Limitations</h4>
+<p>As of April 2025, the daily limit for the number of jobs per account
+is 30. If you require a higher threshhold of jobs, you will have to
+obtain a contract with DeepMind for this level of access. However, 30
+jobs is plenty for a large portion of researchers.</p>
+<p>One of AlphaFold’s biggest limitations is the software’s
+unreliability in predicting highly dynamic regions of a protein.
+Commonly, when you put in a protein with large areas of dynamic
+activity, AlphaFold will tend to force the structure into an alpha-helix
+shape. I tend to see it in my analysis when trying to model a protein
+with some sort of anchoring mechanism, as these regions are inherently
+dynamic.</p>
+<p>This is of less concern when not working with proteins with majority
+highly dynamic structures, but it is certainly a property to be aware
+of.</p>
+</div>
+</div>
+<div id="how-to-use" class="section level3">
+<h3>How to Use</h3>
+<p>The main function of AlphaFold is the prediction of protein
+structures. To perform this prediction, simply visit the website <a
+href="alphafoldserver.com">alphafoldserver.com</a> and copy-paste your
+protein’s sequence into the interface provided.</p>
+<p>This run will produce 2 figures: a 3-D prediction color-coded by
+pIDTT scores and a pAE graph. Interoretation 2 graphs are discussed
+under the <em>Analysis of Predictions</em> tab of this page.</p>
+</div>
+<div id="analysis-of-predictions" class="section level3">
+<h3>Analysis of Predictions</h3>
+<div id="piddt" class="section level4">
+<h4>pIDDT</h4>
+<p>The main figure that AlphaFold produces is a generated image of the
+predicted structure, along with color-coordinated scores of confidence
+called pIDDT scores. Dark blue indicated a very high pIDDT score, light
+blue a moderately high score, yellow is low, and orange is extremely
+low.</p>
+<p>The pIDDT score indicates AlphaFold’s confidence in its generation of
+the protein’s structure. In the example below, you can see region of
+high certainty within the center of the protein, but lower certainty
+along the alpha-heix that is along the back part of the loop extended
+out from the main structure.</p>
+<center>
+<p><img src="assets/alphafold-ex-pred.png" width="600" /></p>
+<p><img src="assets/alphafold-key.png" width="600" /></p>
+</center>
+</div>
+<div id="pae-plots" class="section level4">
+<h4>pAE Plots</h4>
+<p>The pAE plots produced by AlphaFold indicate the model’s confidence
+that of the relative position of a given region of the protein, in
+reference to the rest of the structure. Along the x- and y-axes we have
+the nucleotide bases of the protein from start to end. The intersection
+of 2 points indicates AlphaFold’s certainty of those 2 regions positions
+relative to each other.</p>
+This plot is important because there are many groups extending off of
+the main structure of the protein, and these groups can interact and
+cause the protein to change shape.
+<center>
+<img src="assets/alphafold-ex-pAE.png" width="500" />
+</center>
+<p>Commonly, regions that are further from each other have lower scores
+of certainty, and region close together score highly. Notice the dark
+line going from the top left corner of the graph to the bottom right.
+This is the relative position of each bases’ position relative to itself
+(which is always certain), so this dark green line should
+<em>always</em> be in the pAE plot.</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
