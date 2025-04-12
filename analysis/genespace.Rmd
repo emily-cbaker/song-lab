@@ -59,58 +59,32 @@ p {
 </style>
 
 
-
-
 ### Installation & Running
 
-<mark> This process is currently deprecated under te new TMAU Grace update (March 2025). I am currently working with the HPRC team to update these instructions.</mark>
+<mark> This page has been updated to run on the Grace cluster following the March 2025 update to the cluster.</mark>
 
-#### Install in a Conda Environment
+#### Load packages & Prepare the R environment
 
 These instructions are for installing GENESPACE within a conda environment on the TAMU Grace cluster.
 
-1.Install OrthoFinder by setting
-up a conda environment via the procedure described [here](https://hprc.tamu.edu/kb/Software/ANACONDA/)
-
-After you've set up a conda environment, you should be able to install
-orthofinder using the following command:
-
-```{r, eval=FALSE}
-conda install -c bioconda orthofinder
-```
-
-2. Install MCScanX using the following commands in your scratch
-directory:
-
-```{r, eval=FALSE}
-git clone https://github.com/wyp1125/MCScanX
-cd MCScanX
-make
-```
-
-3. Finally, to install GENESPACE itself, you first need to load R and specify
+To install GENESPACE itself, you first need to load R and specify
 path for local packages as described [here](https://hprc.tamu.edu/kb/Software/R-tamu/)
 
 Here is an example of how to install R:
 
 ```{r, eval=FALSE}
-module load GCC/12.2.0
-module load OpenMPI/4.1.4
-module load R_tamu/4.3.1
+ml GCC/12.3.0
+ml OpenMPI/4.1.5
+ml R_tamu/4.3.2
+ml OrthoFinder/2.5.5
+ml MCScanX/2024.12.19
+export R_LIBS=$SCRATCH/R_LIBS_USER/4.3.2-foss-2023a:$R_LIBS
+```
 
-mkdir $SCRATCH/R_LIBS_USER/
-export R_LIBS=$SCRATCH/R_LIBS_USER/
-  ```
+3.  After you have installed R, run the following command in the R terminal:
 
-4. After you have installed R, run the following command in the conda environment
-with orthofinder installed:
-
-  ```{r, eval=FALSE}
-R
-
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install(c("Biostrings", "rtracklayer"))
+```{r, eval=FALSE}
+R # Launches R terminal 
 
 if (!requireNamespace("devtools", quietly = TRUE))
     install.packages("devtools")
@@ -121,71 +95,46 @@ devtools::install_github("jtlovell/GENESPACE")
 ```{r, eval=FALSE}
 library(GENESPACE)
 ```
-If no error message appears, then GENESPACE has been installed correctly.
+If no error message appears, then GENESPACE has been installed correctly. After this step, you may exit the R terminal with the command 
 
-#### Run a Test Case
+```{r quit-r, eval=FALSE}
+q()
+```
 
-The following commands can be edited afterwards to run other data, this is just the steps to create the example Riparian plot on the GENESPACE GitHub.
+#### Running with your data
 
-The code provided below downloads the files, unzips them, check that they're formatted correctly, and then runs GENESPACE in preparation for your analysis. You can remove the downloading parts of the script if yuo already have the data downloaded, just make sure your directories are set up correctly. If you look under [section 5.2 here](https://htmlpreview.github.io/?https://github.com/jtlovell/tutorials/blob/main/genespaceGuide.html) it will show the file structure you need to follow.
+The code provided below downloads the files, unzips them, check that they're formatted correctly, and then runs the entire GENESPACE pipeline, including OrthoFinder and the production of all plots available in the GENESPACE program. You can remove the downloading parts of the script if you already have the data downloaded, just make sure your directories are set up correctly. If you look under [section 5.2 here](https://htmlpreview.github.io/?https://github.com/jtlovell/tutorials/blob/main/genespaceGuide.html) it will show the file structure you need to follow.
 
 1. Create a file called *genespace-script.R* and copy and paste the following code into it:
 
 ```{r genespace-script, eval=FALSE}
 
-#####################  CHANGE THESE TO YOUR DIRECTORIES  ####################### 
 
-genomeRepo <- "~/path/to/store/rawGenomes"
-wd <- "~/path/to/genespace/workingDirectory"
-path2mcscanx <- "~/path/to/MCScanX/"
+library(GENESPACE)
 
-################################################################################
+genomeRepo <- "Path/to/genome/folder"
+wd <- "Path/to/working/directory"
+path2mcscanx <- "/sw/eb/sw/MCScanX/2024.12.19-foss-2023a/bin/" #If running on Grace, leave this alone. This will be the path to MCScanX after loading the module.
 
-
+genomes2run <- c("species_1", "species_2", ...)
 
 ####################  CHANGE THESE TO YOUR GENOME URLS  ########################
 
+# This script is meant to automatically download your genomes from the NCBI website. For each species, copy and paste the part of the URL following GCF and then duplication the GCF number for the species. 
+
+#For example, the URL for Schistocerca gregaria is https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/023/897/955/GCF_023897955.1_iqSchGreg1.2/, but to download the information in this script, I would enter 023/897/955/GCF_023897955.1_iqSchGreg1.2/GCF_023897955.1_iqSchGreg1.2/ 
+
 urls <- c(
-  human ="000/001/405/GCF_000001405.40_GRCh38.p14/GCF_000001405.40_GRCh38.p14_",
-  mouse = "000/001/635/GCF_000001635.27_GRCm39/GCF_000001635.27_GRCm39_",
-  platypus = "004/115/215/GCF_004115215.2_mOrnAna1.pri.v4/GCF_004115215.2_mOrnAna1.pri.v4_",
-  chicken = "016/699/485/GCF_016699485.2_bGalGal1.mat.broiler.GRCg7b/GCF_016699485.2_bGalGal1.mat.broiler.GRCg7b_",
-  sandLizard = "009/819/535/GCF_009819535.1_rLacAgi1.pri/GCF_009819535.1_rLacAgi1.pri_")
+  species_1 ="URL/formatted/for/species_1",
+  species_2 = "URL/formatted/for/species_2", ...
+  )
 
-################################################################################
-
-
-
-
-##############################  LEAVE THIS ALONE  ##############################
-
-genomes2run <- names(urls)
-urls <- file.path("https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF", urls)
-translatedCDS <- sprintf("%stranslated_cds.faa.gz", urls)
-geneGff <- sprintf("%sgenomic.gff.gz", urls)
-
-names(translatedCDS) <- genomes2run
-names(geneGff) <- genomes2run
-writeDirs <- file.path(genomeRepo, genomes2run)
-names(writeDirs) <- genomes2run
-for(i in genomes2run){
-  print(i)
-  if(!dir.exists(writeDirs[i]))
-    dir.create(writeDirs[i])
-  download.file(
-    url = geneGff[i], 
-    destfile = file.path(writeDirs[i], basename(geneGff[i])))
-  download.file(
-    url = translatedCDS[i], 
-    destfile = file.path(writeDirs[i], basename(translatedCDS[i])))
-}
 ################################################################################
 
 
 
 ##########################  CHANGE TO YOUR GENOME NAMES  #######################
 
-genomes2run <- c("human", "mouse", "platypus", "chicken", "sandLizard")
 parsedPaths <- parse_annotations(
   rawGenomeRepo = genomeRepo,
   genomeDirs = genomes2run,
@@ -193,27 +142,20 @@ parsedPaths <- parse_annotations(
   presets = "ncbi",
   genespaceWd = wd)
 
-################################################################################
 
-
-
-# Check if input data is okay
+# This command prepares the pipeline to run the GENESPACE analysis
 gpar <- init_genespace(
-  wd = wd,
-  path2mcscanx = path2mcscanx)
+    wd = wd,
+    path2mcscanx = path2mcscanx,
+    rawOrthofinderDir = "/Path/to/OrthoFinder/Run" # This line is optional, it can just direct your GENESPACE run to take data from a previous OrthoFinder run. If you do not want to do this, simply delete this line & GENESPACE will automaitcally run OrthoFinder for you.
+    )
 
-
-# Run GENESPACE
-out <- run_genespace(gpar, overwrite = T)
-
-### INSERT DESIRED FUNCTIONS HERE ###
-
-
+out <- run_genespace(gpar) # This command then runs GENESPACE and produces all plots available on the GENESPACE pipeline
 ```
 
 2. You can then run this using the command
 ```{r, eval=FALSE}
-source("genespace-script.R")
+Rscript genespace-script.R
 ```
 
 
@@ -221,9 +163,6 @@ source("genespace-script.R")
 ### Visualization Tools
 
 #### Riparian Plots
-<center>
-![](assets/riparian-example.png){width=400px}
-</center>
 
 Riparian plots are used to visualize synteny between 2 or more species. The command to create these plots in GENESPACE is 
 
@@ -234,10 +173,50 @@ ripd <- plot_riparian(
   useRegions = FALSE)
 ```
 
-#### Dotplots
+This code produces a graph that looks like this: 
+
 <center>
-![](assets/dotplots.png){width=600px}
+![](assets/riparian-example.png)
 </center>
+
+##### Customizing Riparian Plots
+
+We can also generate riparian plots for regions of interest using the following commands:
+
+To plot against the whole genome:
+
+```{r plots-of-interest, eval = FALSE}
+roibed <- roi[,c("genome", "chr")]
+roibed$color <- c("pink", "cyan", "green")
+ripd <- plot_riparian(
+  gsParam = out, 
+  useRegions = FALSE, 
+  highlightBed = roibed)
+```
+
+This generates a plot that looks like this:
+
+![](assets/riparian-whole-genome-regions-of-interest.png)
+
+To plot against only the regions of interest:
+
+```{r, eval=FALSE}
+
+ripd <- plot_riparian(
+  gsParam = out,  
+  useRegions = FALSE,
+  highlightBed = roibed, 
+  backgroundColor = NULL)
+
+```
+
+This generates a plot that looks like this:
+
+![](assets/riparian-only-regions-of-interest.png)
+
+
+#### Dotplots
+
 
 Dot plots are used to visualize global pattern of synteny between a pair of genomes. The following command produces 3 dot plots: (1) All hits above a score threshold, (2) All hits where the query and target genomes are in the same orthogroup, and (3) Syntenic anchor hits colored by syntenic block ID. The command to do this is
 
@@ -248,7 +227,11 @@ hits <- read_allBlast(
 ggdotplot(hits = hits, type = "all", verbose = FALSE)
 ```
 
+This generates a plot that looks like this:
 
+![](assets/dotplots.png)
+
+<center> Image credits: Lovell et al. </center>
 
 
 
