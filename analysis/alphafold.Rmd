@@ -20,7 +20,7 @@ editor_options:
 
 AlphaFold is a software created by Google DeepMind that predicts protein structure based solely off of the primary structure of the protein (amino acid sequence). Additionally, you may predict multi-mer structures and proteins with the addition of certain ligands available in the AlphaFold data set. 
 
-Currently, the third release of the program, aptly anmed AlphaFold3, is the latest edition.
+Currently, the third release of the program, aptly named AlphaFold3, is the latest edition. You may view the paper, published in the journal *Nature*, [here](https://www.nature.com/articles/s41586-024-07487-w).
 
 #### Limitations
 As of April 2025, the daily limit for the number of jobs per account is 30. If you require a higher threshhold of jobs, you will have to obtain a contract with DeepMind for this level of access. However, 30 jobs is plenty for a large portion of researchers.
@@ -31,16 +31,38 @@ This is of less concern when not working with proteins with majority highly dyna
 
 ### How to Use
 
-The main function of AlphaFold is the prediction of protein structures. To perform this prediction, simply visit the website [alphafoldserver.com](alphafoldserver.com) and copy-paste your protein's sequence into the interface provided. 
+The main function of AlphaFold is the prediction of protein structures. To perform this prediction, simply visit the website [alphafoldserver.com](alphafoldserver.com) and copy-paste your protein's sequence into the interface provided. Below is an image of this interface when you first enter the website:
+<center>
+![](assets/alphafold-gui-empty.png){width=600px}
+</center>
+and once you enter your protein sequence is should look like this:
+<center>
+![](assets/alphafold-GUI.png){width=600px}
+</center>
 
-This run will produce 2 figures: a 3-D prediction color-coded by pIDTT scores and a pAE graph. Interoretation 2 graphs are discussed under the *Analysis of Predictions* tab of this page.
+Above the space where you enter your protein sequence, you will see 2 boxes offering specifications of your AlphaFold run.  
+
+The topmost box is labeled "Entity type". This allows you to select from 5 options: Protein, DNA, RNA, Ligand, or Ion. Select whichever best describes the structure you're trying to predict.  
+
+The middle box is labeled "Copies". This allows you to produce multiple copies of your entity for the generation of structures such as dimers and multimers.  
+
+You may also add multiple proteins to one run by adding multiple sequences using the "Add entity" option below your previously-entered sequence.  
+
+Once you've specified all necessary steps for your run, you will hit either "Save job" if you would like to run it at a later date, or "Continue and preview job" if you are ready to run the job. Once you select continue and preview, a pop-up will appear:
+<center>
+![](assets/alphafold-GUI-submit.png){width=600px}
+</center>
+
+You should change your job name to something meaningful, as AlphaFold will automatically name it using the date and time of the run submission. Additionally, since AlphaFold is a predictive model, it may generate differing results between runs. If you wish to be able to reproduce identical results to your run, add a seed to your run. This will allow this run to be replicable. Once you're ready, hit "Confirm and submit job."
+
+This run will produce 2 figures: a 3-D prediction color-coded by pIDTT scores and a pAE graph. Interpretation of these 2 graphs are discussed under the *Analysis of Predictions* tab of this page.
 
 ### Analysis of Predictions
 
-#### pIDDT
-The main figure that AlphaFold produces is a generated image of the predicted structure, along with color-coordinated scores of confidence called pIDDT scores. Dark blue indicated a very high pIDDT score, light blue a moderately high score, yellow is low, and orange is extremely low. 
+#### pLDDT
+The main figure that AlphaFold produces is a generated image of the predicted structure, along with color-coordinated scores of confidence called predicted local distance difference test (pLDDT) scores. Dark blue indicated a very high pLDDT score, light blue a moderately high score, yellow is low, and orange is extremely low. 
 
-The pIDDT score indicates AlphaFold's confidence in its generation of the protein's structure. In the example below, you can see region of high certainty within the center of the protein, but lower certainty along the alpha-heix that is along the back part of the loop extended out from the main structure. 
+The pLDDT score gives an estimate of how well AlphaFold's predicted strutcure would agree with an experimentally-derived structure. In the example below, you can see region of high certainty within the center of the protein, but lower certainty along the alpha-heix that is along the back part of the loop extended out from the main structure. 
 
 <center>
 ![](assets/alphafold-ex-pred.png){width=600px}
@@ -51,10 +73,11 @@ The pIDDT score indicates AlphaFold's confidence in its generation of the protei
 
 #### pAE Plots
 
-The pAE plots produced by AlphaFold indicate the model's confidence that of the relative position of a given region of the protein, in reference to the rest of the structure. Along the x- and y-axes we have the nucleotide bases of the protein from start to end. The intersection of 2 points indicates AlphaFold's certainty of those 2 regions positions relative to each other.
+The predicted aligned error (pAE) plots produced by AlphaFold indicate the model's confidence that of the relative position of 2 residues within the structure. Along the x- and y-axes we have the nucleotide bases of the protein from start to end. The intersection of 2 points indicates AlphaFold's certainty of those 2 regions positions relative to each other.
 
 This plot is important because there are many groups extending off of the main structure of the protein, and these groups can interact and cause the protein to change shape.
 <center>
   ![](assets/alphafold-ex-pAE.png){width=500px}
 </center>
-  Commonly, regions that are further from each other have lower scores of certainty, and region close together score highly. Notice the dark line going from the top left corner of the graph to the bottom right. This is the relative position of each bases' position relative to itself (which is always certain), so this dark green line should *always* be in the pAE plot.
+
+  Commonly, regions that are further from each other have lower scores of certainty, and regions that are close together score highly. Notice the dark line going from the top left corner of the graph to the bottom right. This is the relative position of each bases' position relative to itself (which is always certain), so this dark green line will *always* be in the pAE plot.

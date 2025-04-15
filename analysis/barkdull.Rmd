@@ -416,5 +416,33 @@ There is a glitch in this pipeline that causes the program to index 1 row short 
 <center><img src="assets/dummy-line.png"></center>
 <center><i><font size="-1.5">Example of .csv with dummy line</font></i></center>
 
+##### Species Tree Inference Failed
+David Emms says that sometimes when running OrthoFinder with IQ-Tree, it will randomly throw an error when in the tree inference step. The way to correct this is to manually root the tree using the following script:
+
+
+```{r reroot-tree, eval=FALSE}
+
+#!/bin/bash
+
+##NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=manual-root-tree-orthofinder         #Set the job name to "JobExample4"
+#SBATCH --time=06:00:00         #Set the wall clock limit to 1hr and 30min
+#SBATCH --ntasks=2              #Request 1 task
+#SBATCH --cpus-per-task=4       #Request 1 task
+#SBATCH --mem=30G              #Request 100GB per node
+
+ml purge
+ml GCC/12.3.0 OpenMPI/4.1.5 OrthoFinder/2.5.5 IQ-TREE/2.3.6 FastTree/2.1.11 MAFFT/7.520-with-extensions
+
+iqtree2 -s /Path/to/5_OrthoFinder/fasta/OrthoFinder/Results_{DATE}/WorkingDirectory/Alignments_ids/SpeciesTreeAlignment.fa -bb 1000 -pre /Path/to/5_OrthoFinder/fasta/OrthoFinder/Results_{DATE}/WorkingDirectory/Alignments_ids/SpeciesTree -safe -nt AUTO
+
+python convert_orthofinder_tree_ids /Path/to/5_OrthoFinder/fasta/OrthoFinder/Results_{DATE}/WorkingDirectory/Alignments_ids/SpeciesTree.treefile /Path/to/5_OrthoFinder/fasta/OrthoFinder/Results_{DATE}/WorkingDirectory/SpeciesIDs.txt
+
+python orthofinder -ft //Path/to/5_OrthoFinder/fasta/OrthoFinder/Results_{DATE} -s SpeciesTreeRooted.txt
+
+```
+
+This will pick up from where your run quit, root the tree, and then run OrthoFinder with the tree generated.
+
 ### Citations
 Megan Barkdull. (2021). mbarkdull/FormicidaeMolecularEvolution: v1.0.0-beta (v1.0.0-beta). Zenodo. [https://doi.org/10.5281/zenodo.5668329](https://doi.org/10.5281/zenodo.5668329)

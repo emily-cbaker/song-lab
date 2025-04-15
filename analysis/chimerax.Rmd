@@ -1,5 +1,5 @@
 ---
-title: "Chimera X"
+title: "ChimeraX"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
@@ -16,6 +16,15 @@ editor_options:
 
 ## Protein Alignment & Analysis{.tabset}
 
-### What is Chimera X?
+### What is ChimeraX?
+
+ChimeraX is a "next generation molecular visualization program" developed by researchers at the University of California San Francisco. This program is free to use except for commercial purposes. You may view more about the program on the UCSF ChimeraX website [here](https://www.cgl.ucsf.edu/chimerax/).
 
 ### How to use with AlphaFold predictions
+
+Upon the completion of an AlphaFold run, you will be met with this screen:
+<center>
+![](assets/alphafold-run-finished.png){width=500px}
+</center>
+
+To load these results into ChimeraX, hit the download button. This will download a .zip file containing 5 .json files for data, 5 .cif files, 5 .json files for summary of confidences, a .json for the job request, and one file for the terms of use. 
