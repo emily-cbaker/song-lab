@@ -1,8 +1,11 @@
 wflow_publish(c(
+"analysis/alphafold.Rmd",
+"analysis/Apollo.Rmd",
 "analysis/augustus.Rmd",
 "analysis/barkdull.Rmd",
 "analysis/braker.Rmd",
 "analysis/cafe5.Rmd",
+"analysis/chimerax.Rmd",
 "analysis/compare-genomes.Rmd",
 "analysis/definitions.Rmd",
 "analysis/genespace.Rmd",
@@ -10,6 +13,7 @@ wflow_publish(c(
 "analysis/mlc.Rmd",
 "analysis/orthop-genomes-project.Rmd",
 "analysis/pop-genomics-morm-crick.Rmd",
+"analysis/psmc.Rmd",
 "analysis/toga.Rmd",
 "analysis/week1-notes.Rmd",
 "analysis/week2-notes.Rmd",
@@ -22,6 +26,5 @@ wflow_publish(c(
 "analysis/week12-notes.Rmd",
 "analysis/week14-notes.Rmd",
 "analysis/week16-notes.Rmd",
-"analysis/rep-model-mask.Rmd",
-"analysis/Apollo.Rmd"
+"analysis/rep-model-mask.Rmd"
 ))

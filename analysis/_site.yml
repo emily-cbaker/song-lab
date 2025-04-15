@@ -73,6 +73,13 @@ navbar:
             
         - text: "RepeatModeler & RepeatMasker"
           href: rep-model-mask.html
+          
+        - text: "Proteomics"
+          menu:
+            - text: "AlphaFold"
+              href: alphafold.html
+            - text: "Chimera X"
+              href: chimerax.html
 
     - text: "Reference"
       icon: fa-book-open-reader
