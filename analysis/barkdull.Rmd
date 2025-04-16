@@ -196,11 +196,11 @@ Then to run OrthoFinder on the Grace cluster we will create a file within the *s
 #!/bin/bash
 
 ##NECESSARY JOB SPECIFICATIONS
-#SBATCH --job-name=orthofinder1         #Set the job name to "JobExample4"
-#SBATCH --time=06:00:00         #Set the wall clock limit to 1hr and 30min
-#SBATCH --ntasks=2              #Request 1 task
-#SBATCH --cpus-per-task=4       #Request 1 task
-#SBATCH --mem=30G              #Request 100GB per node
+#SBATCH --job-name=orthofinder         #Set the job name to "orthofinder"
+#SBATCH --time=06:00:00         #Set the wall clock limit to 6 hours
+#SBATCH --ntasks=2              #Request 2 task
+#SBATCH --cpus-per-task=4       #Request 4 task
+#SBATCH --mem=30G              #Request 30GB per node
 
 ml purge
 ml GCC/12.3.0 OpenMPI/4.1.5 OrthoFinder/2.5.5 IQ-TREE/2.3.6 FastTree/2.1.11 MAFFT/7.520-with-extensions
@@ -417,7 +417,7 @@ There is a glitch in this pipeline that causes the program to index 1 row short 
 <center><i><font size="-1.5">Example of .csv with dummy line</font></i></center>
 
 ##### Species Tree Inference Failed
-David Emms says that sometimes when running OrthoFinder with IQ-Tree, it will randomly throw an error when in the tree inference step. The way to correct this is to manually root the tree using the following script:
+David Emms says that sometimes when running OrthoFinder with IQ-Tree, it will randomly throw an error when in the tree inference step. The way to correct this is to manually root the tree using the following script (adapted to run on Grace from David Emms' comment [here](https://github.com/davidemms/OrthoFinder/issues/624#issuecomment-929088084)):
 
 
 ```{r reroot-tree, eval=FALSE}
@@ -425,11 +425,11 @@ David Emms says that sometimes when running OrthoFinder with IQ-Tree, it will ra
 #!/bin/bash
 
 ##NECESSARY JOB SPECIFICATIONS
-#SBATCH --job-name=manual-root-tree-orthofinder         #Set the job name to "JobExample4"
-#SBATCH --time=06:00:00         #Set the wall clock limit to 1hr and 30min
-#SBATCH --ntasks=2              #Request 1 task
-#SBATCH --cpus-per-task=4       #Request 1 task
-#SBATCH --mem=30G              #Request 100GB per node
+#SBATCH --job-name=manual-root-tree-orthofinder         #Set the job name to "manual-root-tree-orthofinder"
+#SBATCH --time=7-00:00:00         #Set the wall clock limit to 7 days
+#SBATCH --ntasks=2              #Request 2 task
+#SBATCH --cpus-per-task=4       #Request 4 task
+#SBATCH --mem=30G              #Request 30GB per node
 
 ml purge
 ml GCC/12.3.0 OpenMPI/4.1.5 OrthoFinder/2.5.5 IQ-TREE/2.3.6 FastTree/2.1.11 MAFFT/7.520-with-extensions
@@ -442,7 +442,7 @@ python orthofinder -ft //Path/to/5_OrthoFinder/fasta/OrthoFinder/Results_{DATE} 
 
 ```
 
-This will pick up from where your run quit, root the tree, and then run OrthoFinder with the tree generated.
+This will pick up from where your run quit, root the tree, and then run OrthoFinder with the tree generated. <mark> Note: This will take longer than a regular OrthoFinder run</mark>
 
 ### Citations
 Megan Barkdull. (2021). mbarkdull/FormicidaeMolecularEvolution: v1.0.0-beta (v1.0.0-beta). Zenodo. [https://doi.org/10.5281/zenodo.5668329](https://doi.org/10.5281/zenodo.5668329)
