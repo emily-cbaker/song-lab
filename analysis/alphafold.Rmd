@@ -57,6 +57,10 @@ You should change your job name to something meaningful, as AlphaFold will autom
 
 This run will produce 2 figures: a 3-D prediction color-coded by pIDTT scores and a pAE graph. Interpretation of these 2 graphs are discussed under the *Analysis of Predictions* tab of this page.
 
+#### Downloading Results
+
+By hitting the download button above your AlphaFold run, your browser will download a .zip file. this file contains 5 .json files for data, 5 .cif files, 5 .json files for summary of confidences, a .json for the job request, and one file for the terms of use. For each run, AlphaFold generates 5 predictions that show 5 different configurations of your protein. Additionally, the labeling of the models follows zero-based indexing, so the first model is labeled YourRunName_model_0. 
+
 ### Analysis of Predictions
 
 #### pLDDT

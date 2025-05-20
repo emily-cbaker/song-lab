@@ -417,7 +417,7 @@ There is a glitch in this pipeline that causes the program to index 1 row short 
 <center><i><font size="-1.5">Example of .csv with dummy line</font></i></center>
 
 ##### Species Tree Inference Failed
-David Emms says that sometimes when running OrthoFinder with IQ-Tree, it will randomly throw an error when in the tree inference step. The way to correct this is to manually root the tree using the following script (adapted to run on Grace from David Emms' comment [here](https://github.com/davidemms/OrthoFinder/issues/624#issuecomment-929088084)):
+David Emms says that sometimes when running OrthoFinder with IQ-Tree, it will randomly throw an error when in the tree inference step. The way to correct this is to manually root the tree using the following script (adapted to run on Grace from David Emms' comment [here](https://github.com/davidemms/OrthoFinder/issues/624#issuecomment-929088084) with the help of Thang Ha from the HPRC help desk):
 
 
 ```{r reroot-tree, eval=FALSE}

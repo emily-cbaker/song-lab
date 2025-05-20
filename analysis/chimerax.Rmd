@@ -20,11 +20,69 @@ editor_options:
 
 ChimeraX is a "next generation molecular visualization program" developed by researchers at the University of California San Francisco. This program is free to use except for commercial purposes. You may view more about the program on the UCSF ChimeraX website [here](https://www.cgl.ucsf.edu/chimerax/).
 
-### How to use with AlphaFold predictions
+### Tutorial: How to use with AlphaFold predictions 
 
-Upon the completion of an AlphaFold run, you will be met with this screen:
+If you would like to follow along with this tutorial, copy and paste the following protein sequence (CMP-sialic acid synthase) for your AlphaFold run:
+
+```{r csas-mono-seq, eval=FALSE}
+MIKLKPATFLILLVFLFETGCTENCLSNDIHALILARGGSKGIKLKNLAEIGGSSLLARTIMTIKNSTCFRHIWVSTDDKRIAIEAQKYGAIIHHRPEKFARDDTPSLHAISEFLDVHRSIHDFALFQCTSVFLKTKYIQEAVRKFESHDCVFAAKRSHYLRWKVVDGELMPAEFDLSARPRRQDWQGDIVETGMFYFSRRKLVDSGLLQNNRCSVVEIDAKDSLEIDSSHDLTLAKYILSSETKTEL
+```
+
+Upon the completion of your run, you will be met with this screen:
 <center>
-![](assets/alphafold-run-finished.png){width=500px}
+![](assets/csas-mono-run.png){width=500px}
 </center>
+<br>
 
-To load these results into ChimeraX, hit the download button. This will download a .zip file containing 5 .json files for data, 5 .cif files, 5 .json files for summary of confidences, a .json for the job request, and one file for the terms of use. 
+To load these results into ChimeraX, hit the download button. This will download a .zip file containing all the information you will need to load your protein into ChimeraX (you can read more about this file and what it contains [here](alphafold.html) under the "How to Use" tab). 
+
+Launch your ChimeraX program. Upon launch, you will be met with this screen:
+
+<center>
+![](assets/chimeraX-launch-screen.png){width=600px}
+</center>
+<br>
+
+Select the "Open" button in the top left-hand corner of the window
+
+<center>
+![](assets/chiX-open.png){width=600px}
+</center>
+<br>
+
+This will prompt you to select a file to upload from your file explorer. Navigate to where your AlphaFold run folder is stored (make sure to unzip it first) and select the folder. 
+
+<center>
+![](assets/chiX-folder.png){width=600px}
+</center>
+<br>
+
+Then, choose which run you want to upload. Generally, choosing the first run is sufficient for general analysis. 
+
+<center>
+![](assets/chiX-file.png){width=600px}
+</center>
+<br>
+
+Hit open and upload the file. Upon uploading, your screen will look like this:
+
+<center>
+![](assets/chiX-prot.png){width=600px}
+</center>
+<br>
+
+And there's your protein! Now let's try aligning our predicted structure with the known structure of this protein. In the command line of your ChimeraX window, type in "open 1qwj". This will add the structure of a known ortholog of CSAS, Murine CMP-5-N-Acetylneuraminic Acid Synthetase in *Mus musculus*.
+
+<center>
+![](assets/csas-1qwj.png){width=600px}
+</center>
+<br>
+
+Navigate to the toolbar at the top of your screen. If you're on a Mac, it will be at the very top of your computer's screen, and if you're on a Windows it will be at the top of your ChimeraX window. Select Tools > Structure Analysis > Matchmaker. This will align the 2 structures to each other and provide a RMSD score for the alignment. 
+
+<center>
+![](assets/csas-aign.png){width=600px}
+</center>
+<br>
+Now notice that our CSAS protein is part of a larger multi-mer complex in the 1qwj 
+

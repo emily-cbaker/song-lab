@@ -61,16 +61,14 @@ p {
 
 ### Installation & Running
 
-<mark> This page has been updated to run on the Grace cluster following the March 2025 update to the cluster.</mark>
+<mark> This page has been updated to run on the Grace cluster following the March 2025 update, as well as the new GENESPACE 1.4 workflow.</mark>
 
 #### Load packages & Prepare the R environment
 
 These instructions are for installing GENESPACE within a conda environment on the TAMU Grace cluster.
 
-To install GENESPACE itself, you first need to load R and specify
+**1.**To install GENESPACE itself, you first need to load R and specify
 path for local packages as described [here](https://hprc.tamu.edu/kb/Software/R-tamu/)
-
-Here is an example of how to install R:
 
 ```{r, eval=FALSE}
 ml GCC/12.3.0
@@ -81,7 +79,7 @@ ml MCScanX/2024.12.19
 export R_LIBS=$SCRATCH/R_LIBS_USER/4.3.2-foss-2023a:$R_LIBS
 ```
 
-3.  After you have installed R, run the following command in the R terminal:
+**2.**  After you have installed R, run the following command in the R terminal:
 
 ```{r, eval=FALSE}
 R # Launches R terminal 
@@ -91,7 +89,7 @@ if (!requireNamespace("devtools", quietly = TRUE))
 devtools::install_github("jtlovell/GENESPACE")
 ```
 
-5. Verify that GENESPACE have been installed by running
+**3.** Verify that GENESPACE have been installed by running
 ```{r, eval=FALSE}
 library(GENESPACE)
 ```
@@ -101,39 +99,48 @@ If no error message appears, then GENESPACE has been installed correctly. After 
 q()
 ```
 
+<br>
+<hr style="border:2px solid lightgray">
+
 #### Running with your data
 
-The code provided below downloads the files, unzips them, check that they're formatted correctly, and then runs the entire GENESPACE pipeline, including OrthoFinder and the production of all plots available in the GENESPACE program. You can remove the downloading parts of the script if you already have the data downloaded, just make sure your directories are set up correctly. If you look under [section 5.2 here](https://htmlpreview.github.io/?https://github.com/jtlovell/tutorials/blob/main/genespaceGuide.html) it will show the file structure you need to follow.
+The code provided below is meant to generate GENESPACE results from a previous OrthoFinder run. Slight modifications can be made to run OrthoFinder within the GENESPACE pipeline. 
 
-1. Create a file called *genespace-script.R* and copy and paste the following code into it:
+**1.** Create the genome repository
+
+GENESPACE expects a directory called the "genomeRepo" with a specific file structure for each species as follows:
+
+```{ascii}
+└── genomeRepo
+    └── species_gene_id
+        ├── species_gene_id_genomic_gff.gz
+        └── species_gene_id_translated_cds.faa.gz
+```
+
+You must create a folder under the genomeRepo for each species you want to run GENESPACE on and **be sure to name the folder the *same* as the gene id you assigned to the species in OrthoFinder!**
+
+
+**2.** Create a file called *genespace-script.R* and copy and paste the following code into it:
 
 ```{r genespace-script, eval=FALSE}
 
 
 library(GENESPACE)
 
-genomeRepo <- "Path/to/genome/folder"
-wd <- "Path/to/working/directory"
-path2mcscanx <- "/sw/eb/sw/MCScanX/2024.12.19-foss-2023a/bin/" #If running on Grace, leave this alone. This will be the path to MCScanX after loading the module.
 
-genomes2run <- c("species_1", "species_2", ...)
+library(GENESPACE)
 
-####################  CHANGE THESE TO YOUR GENOME URLS  ########################
+genomeRepo <- "/scratch/group/songlab/emily/comparative-genomics/genespace/mormon-ID/genomeRepo"
+wd <- "/scratch/group/songlab/emily/comparative-genomics/SCMB/5_OrthoFinder/fasta/genespace"
+path2mcscanx <- "/sw/eb/sw/MCScanX/2024.12.19-foss-2023a/bin/"
 
-# This script is meant to automatically download your genomes from the NCBI website. For each species, copy and paste the part of the URL following GCF and then duplication the GCF number for the species. 
+##########################  CHANGE TO YOUR GENOME NAMES  ####################### 
 
-#For example, the URL for Schistocerca gregaria is https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/023/897/955/GCF_023897955.1_iqSchGreg1.2/, but to download the information in this script, I would enter 023/897/955/GCF_023897955.1_iqSchGreg1.2/GCF_023897955.1_iqSchGreg1.2/ 
-
-urls <- c(
-  species_1 ="URL/formatted/for/species_1",
-  species_2 = "URL/formatted/for/species_2", ...
-  )
+genomes2run <- c("Sgreg", "Scanc", "Samer", "Snite", "Spice", "Sscub", "Csecu", "Brsri", "Amel", "Sinvi", "Apisu", "Dmela", "Ansimp")
 
 ################################################################################
 
 
-
-##########################  CHANGE TO YOUR GENOME NAMES  #######################
 
 parsedPaths <- parse_annotations(
   rawGenomeRepo = genomeRepo,
@@ -143,21 +150,24 @@ parsedPaths <- parse_annotations(
   genespaceWd = wd)
 
 
-# This command prepares the pipeline to run the GENESPACE analysis
+
 gpar <- init_genespace(
     wd = wd,
     path2mcscanx = path2mcscanx,
-    rawOrthofinderDir = "/Path/to/OrthoFinder/Run" # This line is optional, it can just direct your GENESPACE run to take data from a previous OrthoFinder run. If you do not want to do this, simply delete this line & GENESPACE will automaitcally run OrthoFinder for you.
-    )
+    rawOrthofinderDir = "/Path/to/OrthoFinder/run") # Note: If you do not have a previous OrthoFinder run you want to run GENESPACE on, 
+                                                    # just leave this option and only include the wd and path2mcscanx options and 
+                                                    # GENESPACE will automatically run OrthoFinder for you
 
-out <- run_genespace(gpar) # This command then runs GENESPACE and produces all plots available on the GENESPACE pipeline
+out <- run_genespace(gpar)
+
 ```
 
-2. You can then run this using the command
+**3.** You can then run this using the command
 ```{r, eval=FALSE}
 Rscript genespace-script.R
 ```
 
+This generates the riparian and dot plots from the GENESPACE pipeline.
 
 
 ### Visualization Tools
