@@ -448,7 +448,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2025-04-15
+<strong>Last updated:</strong> 2025-05-20
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -579,15 +579,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreea302b2806831239bbdea852edd453c41d6b89408targetblanka302b28a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree638b4d2eb0c93f48a1f1679f39b19dd83557ada3targetblank638b4d2a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/a302b2806831239bbdea852edd453c41d6b89408" target="_blank">a302b28</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/638b4d2eb0c93f48a1f1679f39b19dd83557ada3" target="_blank">638b4d2</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreea302b2806831239bbdea852edd453c41d6b89408targetblanka302b28a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree638b4d2eb0c93f48a1f1679f39b19dd83557ada3targetblank638b4d2a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -597,7 +597,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/a302b2806831239bbdea852edd453c41d6b89408" target="_blank">a302b28</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/638b4d2eb0c93f48a1f1679f39b19dd83557ada3" target="_blank">638b4d2</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -616,10 +616,6 @@ Ignored files:
     Ignored:    .RData
     Ignored:    .Rhistory
     Ignored:    analysis/.DS_Store
-
-Unstaged changes:
-    Modified:   analysis/Publish all files
-    Modified:   analysis/_site.yml
 
 </code></pre>
 <p>
@@ -664,6 +660,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/638b4d2eb0c93f48a1f1679f39b19dd83557ada3/analysis/genespace.Rmd" target="_blank">638b4d2</a>
+</td>
+<td>
+ecbaker7-tamu
+</td>
+<td>
+2025-05-20
+</td>
+<td>
+wflow_publish(c("analysis/alphafold.Rmd", "analysis/Apollo.Rmd",
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/ad2ac0606d6ada9812f82d214d88171a2d69673a/docs/genespace.html" target="_blank">ad2ac06</a>
+</td>
+<td>
+ecbaker7-tamu
+</td>
+<td>
+2025-04-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -1047,78 +1077,73 @@ and gene copy number variation across multiple genomes </i></p>
 <div id="installation-running" class="section level3">
 <h3>Installation &amp; Running</h3>
 <p><mark> This page has been updated to run on the Grace cluster
-following the March 2025 update to the cluster.</mark></p>
+following the March 2025 update, as well as the new GENESPACE 1.4
+workflow.</mark></p>
 <div id="load-packages-prepare-the-r-environment"
 class="section level4">
 <h4>Load packages &amp; Prepare the R environment</h4>
 <p>These instructions are for installing GENESPACE within a conda
 environment on the TAMU Grace cluster.</p>
-<p>To install GENESPACE itself, you first need to load R and specify
-path for local packages as described <a
+<p><strong>1.</strong>To install GENESPACE itself, you first need to
+load R and specify path for local packages as described <a
 href="https://hprc.tamu.edu/kb/Software/R-tamu/">here</a></p>
-<p>Here is an example of how to install R:</p>
 <pre class="r"><code>ml GCC/12.3.0
 ml OpenMPI/4.1.5
 ml R_tamu/4.3.2
 ml OrthoFinder/2.5.5
 ml MCScanX/2024.12.19
 export R_LIBS=$SCRATCH/R_LIBS_USER/4.3.2-foss-2023a:$R_LIBS</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>After you have installed R, run the following command in the R
-terminal:</li>
-</ol>
+<p><strong>2.</strong> After you have installed R, run the following
+command in the R terminal:</p>
 <pre class="r"><code>R # Launches R terminal 
 
 if (!requireNamespace(&quot;devtools&quot;, quietly = TRUE))
     install.packages(&quot;devtools&quot;)
 devtools::install_github(&quot;jtlovell/GENESPACE&quot;)</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Verify that GENESPACE have been installed by running</li>
-</ol>
+<p><strong>3.</strong> Verify that GENESPACE have been installed by
+running</p>
 <pre class="r"><code>library(GENESPACE)</code></pre>
 <p>If no error message appears, then GENESPACE has been installed
 correctly. After this step, you may exit the R terminal with the
 command</p>
 <pre class="r"><code>q()</code></pre>
+<br>
+<hr style="border:2px solid lightgray">
 </div>
 <div id="running-with-your-data" class="section level4">
 <h4>Running with your data</h4>
-<p>The code provided below downloads the files, unzips them, check that
-they’re formatted correctly, and then runs the entire GENESPACE
-pipeline, including OrthoFinder and the production of all plots
-available in the GENESPACE program. You can remove the downloading parts
-of the script if you already have the data downloaded, just make sure
-your directories are set up correctly. If you look under <a
-href="https://htmlpreview.github.io/?https://github.com/jtlovell/tutorials/blob/main/genespaceGuide.html">section
-5.2 here</a> it will show the file structure you need to follow.</p>
-<ol style="list-style-type: decimal">
-<li>Create a file called <em>genespace-script.R</em> and copy and paste
-the following code into it:</li>
-</ol>
+<p>The code provided below is meant to generate GENESPACE results from a
+previous OrthoFinder run. Slight modifications can be made to run
+OrthoFinder within the GENESPACE pipeline.</p>
+<p><strong>1.</strong> Create the genome repository</p>
+<p>GENESPACE expects a directory called the “genomeRepo” with a specific
+file structure for each species as follows:</p>
+<pre class="ascii"><code>└── genomeRepo
+    └── species_gene_id
+        ├── species_gene_id_genomic_gff.gz
+        └── species_gene_id_translated_cds.faa.gz</code></pre>
+<p>You must create a folder under the genomeRepo for each species you
+want to run GENESPACE on and <strong>be sure to name the folder the
+<em>same</em> as the gene id you assigned to the species in
+OrthoFinder!</strong></p>
+<p><strong>2.</strong> Create a file called <em>genespace-script.R</em>
+and copy and paste the following code into it:</p>
 <pre class="r"><code>library(GENESPACE)
 
-genomeRepo &lt;- &quot;Path/to/genome/folder&quot;
-wd &lt;- &quot;Path/to/working/directory&quot;
-path2mcscanx &lt;- &quot;/sw/eb/sw/MCScanX/2024.12.19-foss-2023a/bin/&quot; #If running on Grace, leave this alone. This will be the path to MCScanX after loading the module.
 
-genomes2run &lt;- c(&quot;species_1&quot;, &quot;species_2&quot;, ...)
+library(GENESPACE)
 
-####################  CHANGE THESE TO YOUR GENOME URLS  ########################
+genomeRepo &lt;- &quot;/scratch/group/songlab/emily/comparative-genomics/genespace/mormon-ID/genomeRepo&quot;
+wd &lt;- &quot;/scratch/group/songlab/emily/comparative-genomics/SCMB/5_OrthoFinder/fasta/genespace&quot;
+path2mcscanx &lt;- &quot;/sw/eb/sw/MCScanX/2024.12.19-foss-2023a/bin/&quot;
 
-# This script is meant to automatically download your genomes from the NCBI website. For each species, copy and paste the part of the URL following GCF and then duplication the GCF number for the species. 
+##########################  CHANGE TO YOUR GENOME NAMES  ####################### 
 
-#For example, the URL for Schistocerca gregaria is https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/023/897/955/GCF_023897955.1_iqSchGreg1.2/, but to download the information in this script, I would enter 023/897/955/GCF_023897955.1_iqSchGreg1.2/GCF_023897955.1_iqSchGreg1.2/ 
-
-urls &lt;- c(
-  species_1 =&quot;URL/formatted/for/species_1&quot;,
-  species_2 = &quot;URL/formatted/for/species_2&quot;, ...
-  )
+genomes2run &lt;- c(&quot;Sgreg&quot;, &quot;Scanc&quot;, &quot;Samer&quot;, &quot;Snite&quot;, &quot;Spice&quot;, &quot;Sscub&quot;, &quot;Csecu&quot;, &quot;Brsri&quot;, &quot;Amel&quot;, &quot;Sinvi&quot;, &quot;Apisu&quot;, &quot;Dmela&quot;, &quot;Ansimp&quot;)
 
 ################################################################################
 
 
-
-##########################  CHANGE TO YOUR GENOME NAMES  #######################
 
 parsedPaths &lt;- parse_annotations(
   rawGenomeRepo = genomeRepo,
@@ -1128,18 +1153,19 @@ parsedPaths &lt;- parse_annotations(
   genespaceWd = wd)
 
 
-# This command prepares the pipeline to run the GENESPACE analysis
+
 gpar &lt;- init_genespace(
     wd = wd,
     path2mcscanx = path2mcscanx,
-    rawOrthofinderDir = &quot;/Path/to/OrthoFinder/Run&quot; # This line is optional, it can just direct your GENESPACE run to take data from a previous OrthoFinder run. If you do not want to do this, simply delete this line &amp; GENESPACE will automaitcally run OrthoFinder for you.
-    )
+    rawOrthofinderDir = &quot;/Path/to/OrthoFinder/run&quot;) # Note: If you do not have a previous OrthoFinder run you want to run GENESPACE on, 
+                                                    # just leave this option and only include the wd and path2mcscanx options and 
+                                                    # GENESPACE will automatically run OrthoFinder for you
 
-out &lt;- run_genespace(gpar) # This command then runs GENESPACE and produces all plots available on the GENESPACE pipeline</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>You can then run this using the command</li>
-</ol>
+out &lt;- run_genespace(gpar)</code></pre>
+<p><strong>3.</strong> You can then run this using the command</p>
 <pre class="r"><code>Rscript genespace-script.R</code></pre>
+<p>This generates the riparian and dot plots from the GENESPACE
+pipeline.</p>
 </div>
 </div>
 <div id="visualization-tools" class="section level3">
@@ -1237,15 +1263,15 @@ other attached packages:
 [1] workflowr_1.7.1
 
 loaded via a namespace (and not attached):
- [1] vctrs_0.6.5       httr_1.4.7        cli_3.6.4         knitr_1.49       
- [5] rlang_1.1.5       xfun_0.51         stringi_1.8.4     processx_3.8.5   
- [9] promises_1.3.2    jsonlite_1.8.9    glue_1.8.0        rprojroot_2.0.4  
-[13] git2r_0.35.0      htmltools_0.5.8.1 httpuv_1.6.15     ps_1.8.1         
-[17] sass_0.4.9        rmarkdown_2.29    jquerylib_0.1.4   tibble_3.2.1     
+ [1] vctrs_0.6.5       httr_1.4.7        cli_3.6.4         knitr_1.50       
+ [5] rlang_1.1.6       xfun_0.52         stringi_1.8.7     processx_3.8.6   
+ [9] promises_1.3.2    jsonlite_2.0.0    glue_1.8.0        rprojroot_2.0.4  
+[13] git2r_0.36.2      htmltools_0.5.8.1 httpuv_1.6.16     ps_1.9.1         
+[17] sass_0.4.10       rmarkdown_2.29    jquerylib_0.1.4   tibble_3.2.1     
 [21] evaluate_1.0.3    fastmap_1.2.0     yaml_2.3.10       lifecycle_1.0.4  
-[25] whisker_0.4.1     stringr_1.5.1     compiler_4.4.2    fs_1.6.5         
-[29] pkgconfig_2.0.3   Rcpp_1.0.14       rstudioapi_0.17.1 later_1.4.1      
-[33] digest_0.6.37     R6_2.6.1          pillar_1.10.1     callr_3.7.6      
+[25] whisker_0.4.1     stringr_1.5.1     compiler_4.4.2    fs_1.6.6         
+[29] pkgconfig_2.0.3   Rcpp_1.0.14       rstudioapi_0.17.1 later_1.4.2      
+[33] digest_0.6.37     R6_2.6.1          pillar_1.10.2     callr_3.7.6      
 [37] magrittr_2.0.3    bslib_0.9.0       tools_4.4.2       cachem_1.1.0     
 [41] getPass_0.2-4    </code></pre>
 </div>
