@@ -58,8 +58,6 @@ navbar:
               href: mlc.html
         - text: "GENESPACE"
           href: genespace.html
-        - text: "Compare_Genomes"
-          href: compare-genomes.html
         - text: "FormicidaeMolecularEvolution (OrthoFinder)"
           href: barkdull.html
         - text: "Annotation Tools"
