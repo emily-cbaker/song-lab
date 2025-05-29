@@ -1,0 +1,143 @@
+---
+title: "Linux and Slurm Commands"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    toc_collapsed: false
+    theme: default
+    css: "theme3.css"
+toc_depth: 1
+number_sections: true
+editor_options:
+  chunk_output_type: console
+---
+
+#### Show queue
+Show queue for a user: 
+
+```{r,eval=FALSE}
+squeue --{USER}
+```
+    
+Show your queue: 
+```{r,eval=FALSE}  
+squeue --me
+```
+
+#### Show the elapsed time of a job
+
+```{r,eval=FALSE}
+sacct -j {JOBID} --format=Elapsed
+```
+
+or if you don't know the job ID, use the following:
+
+```{r,eval=FALSE}
+sacct --format=JobID,JobName,State,Elapsed
+```
+    
+#### Job not launching? Check for scheduled system maintenence
+```{r,eval=FALSE}
+maintenance
+```
+    
+#### Copy a file or directory
+For a file:
+```{r,eval=FALSE}    
+cp FILENAME file/path/to/copy/location/
+```
+
+For an entire directory
+```{r,eval=FALSE}
+cp DIRECTORY file/path/to/copy/location/
+```
+
+For all files in a directory
+```{r,eval=FALSE}
+cp DIRECTORY/ file/path/to/copy/location/
+```
+    
+Note, the file paths can be relative or absolute.
+
+#### List all files in a directory
+```{r,eval=FALSE}
+ls
+```
+Optional flags:
+
+```{r ls-flag-table, echo=FALSE, message=FALSE, warning =FALSE}
+library(knitr)
+library(kableExtra)
+
+# Data for the table
+data <- data.frame(
+  Flag = c("-l", 
+           "-n",
+           "-F",
+           "-a",
+           "-S",
+           "-t",
+           "-lh"),
+  
+  Function = c("Displays the mode, number of links, owner, group, size (in bytes), and time of last modification for each file.",
+               "Displays the same information as the -l flag, except that the -n flag displays the user and the group IDs instead of the user and group names.",
+               "This command appends a file classification glyph to the end of the name. It shows / for directories, * for executables, => for network files, and @ for symbolic links",
+               "Shows all files, including hidden ones",
+               "List files in descending order of size",
+               "List files in descending order of time (newest first)",
+               "Displays the mode, number of links, owner, group, size (in kilobytes), and time of last modification for each file.")
+
+)
+ 
+# Species info table
+kable(data, "html", escape = FALSE, caption = "") %>%
+  
+  kable_styling() %>%
+  
+  scroll_box(width="825px", height="300px")%>%
+  
+ # row_spec(0, bold = TRUE, background = "#bfa2b0") %>%
+
+  add_header_above(c(" " = 1, "ls Flag Options" = 1))
+```
+
+#### Create a file or directory
+For a file
+
+```{r,eval=FALSE}
+touch FILENAME
+```
+    
+For a directory
+```{r,eval=FALSE}
+mkdir DIRECTORYNAME
+```
+
+#### Delete a file or directory
+For a file
+```{r,eval=FALSE}
+rm FILENAME
+```
+For an empty directory
+```{r,eval=FALSE}
+rmdir DIRECTORYNAME
+```
+    
+For a non-empty directory
+```{r,eval=FALSE}
+    rm -r *               # Empties the directory
+    rmdir DIRECTORYNAME   # Deletes the directory
+```
+
+#### Run a file in the terminal (NOT on the HPC)
+```{r,eval=FALSE}
+./FILENAME
+```
+
+### Run a file on the HPC
+```{r,eval=FALSE}
+sbatch FILENAME
+```
+

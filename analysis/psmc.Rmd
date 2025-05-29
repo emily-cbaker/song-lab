@@ -14,18 +14,216 @@ editor_options:
   chunk_output_type: console
 ---
 
+<!-- This code gets rid of the auto-indent -->
+<style>
+/* Reset margin/padding/indentation for text elements, but NOT code blocks */
+body, p, h1, h2, h3, h4, h5, h6, ol, ul, li, blockquote {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  text-indent: 0 !important;
+}
+</style>
+
+
 ### Population Size History Inference {.tabset}
 
 #### What is PSMC?
 
+#### Data Downloading
+
 #### Installation & Running
 
-First, you must map the HiC reads back to the original genome using BWA. We do this using the following procedure:
+In the drop down below the full script to run the entire pipeline in one slurm script is available. Below this, each step is broken down for informational and troubleshooting purposes. You can run this procedure step-by-step or all in one script, but for the first run I would recommend doing a step-by-step run as it simplifies troubleshooting and familiarizes you with the procedure.
 
-```{r BWA-align-HiC, eval = FALSE}
+<details>
+  <summary>Full PSMC Script</summary>
+```{r, eval=FALSE}
+#!/bin/bash
 
+##NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=PSMC      	  			# Set the job name to "PSMC"
+#SBATCH --time=7-00:00:00         			# Set the wall clock limit to 7 dyas
+#SBATCH --ntasks=1             	  			# Request 1 task
+#SBATCH --cpus-per-task=8         			# Request 8 cpus
+#SBATCH --mem=30G                 			# Request 30GB per node
+#SBATCH --mail-type=ALL						# Email updates for all steps
+#SBATCH --mail-user=ecbaker7@tamu.edu		# Email to this address
+#SBATCH --output=stdout.%x.%j				# Name stdout file with run name and job Id
+#SBATCH --error=stderr.%x.%j				# Name stderr file with run name and job Id
+
+# Align with BWA
 module purge 
+ml GCC/13.2.0 BWA/0.7.18 SAMtools/1.19.2 
 
-ml GCCcore/13.2.0 BWA/0.7.18
+bwa index -p Sgregaria GCF_023897955.1_iqSchGreg1.2_genomic.fa
+
+# assuming you have 8 threads, not that this .sam file will be huge, and we'll remove it at the end
+for base in SRR14493061 ERR4330683 ERR4399085 ERR4403844 ERR4405437 ERR4398700 ERR4398601 ERR4352167 ERR4332838 ERR4332226 ERR4329498
+do
+  bwa mem -t 8 Sgregaria ${base}_1.fastq.gz ${base}_2.fastq.gz > ${base}.sam
+done
+
+# convert all .sam to .bam
+
+for base in SRR14493061 ERR4330683 ERR4399085 ERR4403844 ERR4405437 ERR4398700 ERR4398601 ERR4352167 ERR4332838 ERR4332226 ERR4329498
+do
+  samtools view -S -b ${base}.sam > ${base}.bam
+done
+
+# Merge all .bam files into one
+samtools merge unsorted_alignment.bam *.bam
+
+# Sort .bam file
+module purge
+module load picard/2.25.1-Java-11 
+
+java -jar $EBROOTPICARD/picard.jar SortSam \
+      INPUT=unsorted_alignment.bam \
+      OUTPUT=sorted.bam \
+      SORT_ORDER=coordinate
+
+# Generate consensus fastq for PSMC
+module purge
+ml GCC/13.2.0 BCFtools/1.19
+
+bcftools mpileup -Q 20 -q 20 -f GCF_023897955.1_iqSchGreg1.2_genomic.fa \
+    sorted.bam --threads 8 | \
+    bcftools call -c --threads 8 | \
+    vcfutils.pl vcf2fq -d 1 -D 100 -Q 20 > variant_consensus.fq
+  
+```
+</details> 
+        
+  
+**1.** First, you must map the HiC reads back to the original genome using BWA. Doing this step on the *S. gregaria* genome (8.3 Gb) took around 7-10 days. We do this using the following procedure:
+  
+```{r BWA-align-HiC, eval = FALSE}
+#!/bin/bash
+
+##NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=create-unsorted-alignment        # Set the job name to "create-unsorted-alignment"
+#SBATCH --time=7-00:00:00                           # Set the wall clock limit to 7 days
+#SBATCH --ntasks=1                                  # Request 1 task
+#SBATCH --cpus-per-task=8                           # Request 8 cpus
+#SBATCH --mem=30G                                   # Request 30GB per node
+#SBATCH --mail-type=ALL						                  # Email updates for all steps
+#SBATCH --mail-user=user@mail.edu		                # Email to this address
+#SBATCH --output=stdout.%x.%j                       # Name stdout file after job name and ID
+#SBATCH --error=stderr.%x.%j                        # Name stderr file after job name and ID
+
+# Align with BWA
+module purge 
+ml GCC/13.2.0 BWA/0.7.18 SAMtools/1.19.2 
+
+bwa index -p Sgregaria GCF_023897955.1_iqSchGreg1.2_genomic.fa
+
+# assuming you have 8 threads, not that this .sam file will be huge, and we'll remove it at the end
+for base in SRR14493061 ERR4330683 ERR4399085 ERR4403844 ERR4405437 ERR4398700 ERR4398601 ERR4352167 ERR4332838 ERR4332226 ERR4329498
+do
+  bwa mem -t 8 Sgregaria ${base}_1.fastq.gz ${base}_2.fastq.gz > ${base}.sam
+done
+
+# convert all .sam to .bam
+
+for base in SRR14493061 ERR4330683 ERR4399085 ERR4403844 ERR4405437 ERR4398700 ERR4398601 ERR4352167 ERR4332838 ERR4332226 ERR4329498
+do
+  samtools view -S -b ${base}.sam > ${base}.bam
+done
+
+# Merge all .bam files into one
+samtools merge unsorted_alignment.bam *.bam
+
+```
+
+**2.** Sort the unsorted .bam file
+```{r, eval=FALSE}
+
+#!/bin/bash
+
+##NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=sort-alignment                   # Set the job name to "sort-alignment"
+#SBATCH --time=1-00:00:00                           # Set the wall clock limit to 1 day
+#SBATCH --ntasks=1                                  # Request 1 task
+#SBATCH --cpus-per-task=8                           # Request 8 cpus
+#SBATCH --mem=30G                                   # Request 30GB per node
+#SBATCH --mail-type=ALL						                  # Email updates for all steps
+#SBATCH --mail-user=user@mail.edu		                # Email to this address
+#SBATCH --output=stdout.%x.%j                       # Name stdout file after job name and ID
+#SBATCH --error=stderr.%x.%j                        # Name stderr file after job name and ID
+
+# sort the .bam file
+module purge
+module load picard/2.25.1-Java-11 
+
+java -jar $EBROOTPICARD/picard.jar SortSam \
+      INPUT=unsorted_alignment.bam \
+      OUTPUT=sorted.bam \
+      SORT_ORDER=coordinate
+
+```
+
+**3.** Generate a variant consensus file from the sorted .bam file
+```{r, eval=FALSE}
+
+#!/bin/bash
+
+##NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=create-var-con                   # Set the job name to "create-var-con"
+#SBATCH --time=2-00:00:00                           # Set the wall clock limit to 2 days
+#SBATCH --ntasks=1                                  # Request 1 task
+#SBATCH --cpus-per-task=8                           # Request 8 cpus
+#SBATCH --mem=30G                                   # Request 30GB per node
+#SBATCH --mail-type=ALL						                  # Email updates for all steps
+#SBATCH --mail-user=user@mail.edu		                # Email to this address
+#SBATCH --output=stdout.%x.%j                       # Name stdout file after job name and ID
+#SBATCH --error=stderr.%x.%j                        # Name stderr file after job name and ID
+
+
+module purge
+ml GCC/13.2.0 BCFtools/1.19
+
+# Generate consensus fastq for PSMC
+bcftools mpileup -Q 20 -q 20 -f GCF_023897955.1_iqSchGreg1.2_genomic.fa \
+    sorted.bam --threads 8 | \
+    bcftools call -c --threads 8 | \
+    vcfutils.pl vcf2fq -d 1 -D 100 -Q 20 > variant_consensus.fq
+```
+
+**4.** Generate PSMC results
+```{r, eval=FALSE}
+
+#!/bin/bash
+
+##NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=psmc-input-and-plot              # Set the job name to "psmc-input-and-plot"
+#SBATCH --time=7-00:00:00                           # Set the wall clock limit to 7 days
+#SBATCH --ntasks=1                                  # Request 1 task
+#SBATCH --cpus-per-task=8                           # Request 8 cpus
+#SBATCH --mem=30G                                   # Request 30GB per node
+#SBATCH --mail-type=ALL						                  # Email updates for all steps
+#SBATCH --mail-user=user@mail.edu		                # Email to this address
+#SBATCH --output=stdout.%x.%j                       # Name stdout file after job name and ID
+#SBATCH --error=stderr.%x.%j                        # Name stderr file after job name and ID
+
+module purge
+ml GCC/13.2.0 psmc/0.6.5_20221121
+
+# Split FASTQ file (1M reads = 4M lines)
+mkdir -p split_fq
+split -l 4000000 variant_consensus.fq split_fq/part_
+
+# Convert each part to PSMCFA
+mkdir -p split_psmcfa
+for file in split_fq/part_*; do
+    fq2psmcfa -q20 "$file" > "split_psmcfa/${file##*/}.psmcfa"
+done
+
+# Merge all parts into one .psmcfa file
+cat split_psmcfa/*.psmcfa > psmc_input.psmcfa
+
+# Plot PSMC
+psmc_plot.pl -p -g 2.2 -u 0.00000000506 bootstrapped_plot sample_combined.psmc
+
+ps2pdf bootstrapped_plot.eps bootstrapped_plot.pdf
 
 ```
