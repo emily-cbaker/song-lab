@@ -11,7 +11,7 @@
 
 
 
-<title>Progress &amp; Notes: 6/10-6/14</title>
+<title>Linux and Slurm Commands</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,9 +29,14 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
 
@@ -232,6 +237,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -239,6 +307,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -419,7 +497,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Progress &amp; Notes: 6/10-6/14</h1>
+<h1 class="title toc-ignore">Linux and Slurm Commands</h1>
 
 </div>
 
@@ -636,9 +714,9 @@ have uncommitted changes.
 <div id="versions" class="tab-pane fade">
 <p>
 These are the previous versions of the repository in which changes were
-made to the R Markdown (<code>analysis/week2-notes.Rmd</code>) and HTML
-(<code>docs/week2-notes.html</code>) files. If you’ve configured a
-remote Git repository (see <code>?wflow_git_remote</code>), click on the
+made to the R Markdown (<code>analysis/slurm-comm.Rmd</code>) and HTML
+(<code>docs/slurm-comm.html</code>) files. If you’ve configured a remote
+Git repository (see <code>?wflow_git_remote</code>), click on the
 hyperlinks in the table below to view the files as they were in that
 past version.
 </p>
@@ -666,580 +744,19 @@ Message
 <tbody>
 <tr>
 <td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/fecf69695ef32ed4f732693ce7fb0749bedc3a3e/docs/week2-notes.html" target="_blank">fecf696</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-05-20
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/9ed28350316f5760a28dc7c92480d718b24a7c5b/docs/week2-notes.html" target="_blank">9ed2835</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-05-20
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/05539da9915300f741c6fda620038213ded63e5b/docs/week2-notes.html" target="_blank">05539da</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-05-20
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/ad2ac0606d6ada9812f82d214d88171a2d69673a/docs/week2-notes.html" target="_blank">ad2ac06</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-04-15
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/729de9688ab12a7636a75643ec35e40f91cadddd/docs/week2-notes.html" target="_blank">729de96</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-04-11
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/63d1ad06520e7f288ebaa6562d63fe2865527bf7/docs/week2-notes.html" target="_blank">63d1ad0</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-04-10
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/aaa78c46da9d439cbb501e9591ecc971e6283817/docs/week2-notes.html" target="_blank">aaa78c4</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-01-16
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/a9233f82b9e3a659c6612c7f6f8279fb2e79e21d/docs/week2-notes.html" target="_blank">a9233f8</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-12-16
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/b96dd10e745964b9491094cb342a421b6affab80/docs/week2-notes.html" target="_blank">b96dd10</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-10-01
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/3731e9e5fc895d0bb1d501e825e40d8f92ec9e6d/docs/week2-notes.html" target="_blank">3731e9e</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-09-16
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/0c3ed6b76968749b6ad01b7a66f347fc1d7b8be3/docs/week2-notes.html" target="_blank">0c3ed6b</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-09-16
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/79140076f6780bbbd8c216112c863ca77cdafb1a/docs/week2-notes.html" target="_blank">7914007</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-08-26
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/98122725125fb3eac2898505b1869c1b94c26204/docs/week2-notes.html" target="_blank">9812272</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-07-31
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/f2bc75a7088b701660c636f42bc845588b644ad2/docs/week2-notes.html" target="_blank">f2bc75a</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-07-15
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/c93686e4e53271171e03b8c09ccd48906b416205/docs/week2-notes.html" target="_blank">c93686e</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-07-15
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/783cca38f0df082611321d7be930f88510b823c9/docs/week2-notes.html" target="_blank">783cca3</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-07-03
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/521747a727d407e3232e8bdb9db449cef883fc91/docs/week2-notes.html" target="_blank">521747a</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-30
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/a63c7f0272d3280a0f1c552e38b474cae8eea0c4/docs/week2-notes.html" target="_blank">a63c7f0</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-24
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/845a20a417e1ad236d36533e43adda9b0524ac99/docs/week2-notes.html" target="_blank">845a20a</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-14
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
 Rmd
 </td>
 <td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/1d5e2e431bf94a76b37b36ef3d395dbf33189857/analysis/week2-notes.Rmd" target="_blank">1d5e2e4</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/bad660d2129d202252a6bbdfb9916a3446f367fc/analysis/slurm-comm.Rmd" target="_blank">bad660d</a>
 </td>
 <td>
-Emily Baker
+ecbaker7-tamu
 </td>
 <td>
-2024-06-14
+2025-05-29
 </td>
 <td>
-wflow_publish("analysis/week2-notes.Rmd")
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/3ad39af2a1e0bec7dd9d7a627ed2f33b21a4f45b/docs/week2-notes.html" target="_blank">3ad39af</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-13
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/8bc935928c5b2fa4c97dd5975f5b77a7fb58f673/analysis/week2-notes.Rmd" target="_blank">8bc9359</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-13
-</td>
-<td>
-analysis/orthop-genomes-project.Rmd
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/c14ec999b1136604552f95d804565b20df9b6672/docs/week2-notes.html" target="_blank">c14ec99</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-12
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/5a41ea1606b36999f4a905f314ed2a3d013c7050/analysis/week2-notes.Rmd" target="_blank">5a41ea1</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-12
-</td>
-<td>
-wflow_publish("analysis/week2-notes.Rmd")
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/f848c6e2440c9bc15a0601154a526075200ef5de/docs/week2-notes.html" target="_blank">f848c6e</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-12
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/94a70e6915577ca0ddf54556e8a9937b53fd9bd9/analysis/week2-notes.Rmd" target="_blank">94a70e6</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-12
-</td>
-<td>
-wflow_publish("analysis/week2-notes.Rmd")
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/e92f1171a93876382d36b6253416c93b87838035/docs/week2-notes.html" target="_blank">e92f117</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-12
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/21c5e2962675507615026452b749f7dbc1992aaa/docs/week2-notes.html" target="_blank">21c5e29</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-11
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/ba53b78fb14c843a912c0e7ea77d5622757fcef8/docs/week2-notes.html" target="_blank">ba53b78</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-11
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/8b63a856e2e30054f7708c03b3bbfc54d13dcb76/docs/week2-notes.html" target="_blank">8b63a85</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-07
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/8b90fefbda3ab6cf46583eaa14972b5c0f8545fd/docs/week2-notes.html" target="_blank">8b90fef</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-06
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/7958d4e4127335c9bab591afff25755dab412ba4/docs/week2-notes.html" target="_blank">7958d4e</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-06
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/83082c0c41edebcd072209b50b1dbbfc61a20b3d/analysis/week2-notes.Rmd" target="_blank">83082c0</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-06
-</td>
-<td>
-commmit
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/83082c0c41edebcd072209b50b1dbbfc61a20b3d/docs/week2-notes.html" target="_blank">83082c0</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-06
-</td>
-<td>
-commmit
+wflow_publish(c("analysis/alphafold.Rmd", "analysis/Apollo.Rmd",
 </td>
 </tr>
 </tbody>
@@ -1249,89 +766,153 @@ commmit
 </div>
 </div>
 </div>
-<div id="beginning-work-on-toga" class="section level2">
-<h2>Beginning Work on TOGA</h2>
-<p>I have downloaded all dependencies and loaded TOGA on the Grace
-cluster but I received the following Permission Error message given the
-input below:</p>
-<pre class="r"><code>(base) [ecbaker7@c076 toga]$ toga.py test_input/hg38.mm10.chr11.chain test_input/hg38.genCode27.chr11.bed $/toga $/toga --kt --pn test -i supply/hg38.wgEncodeGencodeCompV34.isoforms.txt --nc $/scratch/group/songlab/emily/toga/nextflow_config_files --cb 3,5 --cjn 500 --u12 supply/hg38.U12sites.tsv --ms
-#### Initiating TOGA class ####
-Checking dependencies...
-check if binaries are compiled and libs are installed...
-All dependencies found
-/bin/sh: git: command not found
-Traceback (most recent call last):
-  File &quot;/sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/toga.py&quot;, line 1965, in &lt;module&gt;
-    main()
-  File &quot;/sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/toga.py&quot;, line 1960, in main
-    toga_manager = Toga(args)
-  File &quot;/sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/toga.py&quot;, line 88, in __init__
-    self.nextflow_dir = self.__get_nf_dir(args.nextflow_dir)
-  File &quot;/sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/toga.py&quot;, line 362, in __get_nf_dir
-    os.mkdir(default_dir) if not os.path.isdir(default_dir) else None
-PermissionError: [Errno 13] Permission denied: &#39;/sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/nextflow_logs&#39;</code></pre>
-<p>I have emailed the HPRC help desk and am waiting for their response
-on how to proceed.</p>
-<p>Update: They answered and told me to remove the dollar signs from in
-front of the file paths. I tried this and also downloaded the
-<em>supply</em> folder from the Hiller Lab GitHub in order to have
-access to the U12 data, but neither of these things worked. I am waiting
-on another repsonse from the help desk.</p>
-<p>Final Update: This error has been resolved with the addition of a
-directory for Nextflow to operate from, as well as the –nextflow_dir
-<directory path> flag being added to the end of the command to run TOGA.
-The full documentation is found <a href="toga.html">here</a> under
-troubleshooting.</p>
-<p>I am now having the following problem: I run TOGA and it goes until
-step 2 before it tries to rerun all jobs and then crashes. I then get
-the following message in my .out file:</p>
-<pre class="r"><code>Traceback (most recent call last):
-  File &quot;/var/spool/slurmd/job10522779/slurm_script&quot;, line 19, in &lt;module&gt;
-    from modules.common import parts
-ModuleNotFoundError: No module named &#39;modules&#39;</code></pre>
-<p>The help desk has been emailed. Jackson tried to run it in a conda
-environment on the cluster, but that didn’t work either.</p>
-<p>Update: This has been corrected by running it through a .sh file, I
-will update the <a href="toga.html">TOGA page</a> to reflect this change
-in the process.</p>
-<p>I am now having the following error:</p>
-<pre class="r"><code>Command executed:
-
-  sbatch .command.run
-
-Command exit status:
-  0
-
-Command output:
-  sbatch: error: (from job_submit) either --ntasks, or --ntasks-per-node, or --nodes should be provided.
-  sbatch: error: Batch job submission failed: Unspecified error
-  
-
-Work dir:
-  /scratch/group/songlab/emily/toga/nextflow_logs/test_chain_feats_at_1718311976/work/16/a70dc9c3f7b04b94a742de26c47b86
-
-Tip: you can try to figure out what&#39;s wrong by changing to the process work dir and showing the script file named `.command.sh`
-
-
-
-Error! Process nextflow /sw/eb/sw/TOGA/2021.12.15-foss-2019b-Python-3.7.4/execute_joblist.nf --joblist /scratch/group/songlab/emily/toga/test/temp/chain_class_jobs_combined -c /scratch/group/songlab/emily/toga/nextflow_config_files/extract_chain_features_config.nf died
-Program finished with exit code 1
-
-Making gene_id: bed_data dict...</code></pre>
-<p>IT believes it may have something to do with my storage on the
-cluster. I moved my largest folder (/home.local) to my scratch directory
-and created a symlink between the 2 folders as per their instructions,
-but this does not seem to have corrected the issue. Waiting on another
-response from IT.</p>
-<div id="friday-update" class="section level3">
-<h3>Friday update</h3>
-<p>I still haven’t gotten TOGA to run on Grace but I have gotten it to
-run on the Mac tower. I am also trying to get the pipeline to convert
-fasta files into the necessary formats to run on the tower, but the
-chain-building is taking a long time and it probably won’t finish
-running today. I have a meeting scheduled with Michael from IT on Monday
-to try and get the Grace Toga pipeline to run and possibly talk about
-updating their TOGA version to the most current.</p>
+<div id="show-queue" class="section level4">
+<h4>Show queue</h4>
+<p>Show queue for a user:</p>
+<pre class="r"><code>squeue --{USER}</code></pre>
+<p>Show your queue:</p>
+<pre class="r"><code>squeue --me</code></pre>
+</div>
+<div id="show-the-elapsed-time-of-a-job" class="section level4">
+<h4>Show the elapsed time of a job</h4>
+<pre class="r"><code>sacct -j {JOBID} --format=Elapsed</code></pre>
+<p>or if you don’t know the job ID, use the following:</p>
+<pre class="r"><code>sacct --format=JobID,JobName,State,Elapsed</code></pre>
+</div>
+<div id="job-not-launching-check-for-scheduled-system-maintenence"
+class="section level4">
+<h4>Job not launching? Check for scheduled system maintenence</h4>
+<pre class="r"><code>maintenance</code></pre>
+</div>
+<div id="copy-a-file-or-directory" class="section level4">
+<h4>Copy a file or directory</h4>
+<p>For a file:</p>
+<pre class="r"><code>cp FILENAME file/path/to/copy/location/</code></pre>
+<p>For an entire directory</p>
+<pre class="r"><code>cp DIRECTORY file/path/to/copy/location/</code></pre>
+<p>For all files in a directory</p>
+<pre class="r"><code>cp DIRECTORY/ file/path/to/copy/location/</code></pre>
+<p>Note, the file paths can be relative or absolute.</p>
+</div>
+<div id="list-all-files-in-a-directory" class="section level4">
+<h4>List all files in a directory</h4>
+<pre class="r"><code>ls</code></pre>
+<p>Optional flags:</p>
+<div
+style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:825px; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+ls Flag Options
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Flag
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Function
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+-l
+</td>
+<td style="text-align:left;">
+Displays the mode, number of links, owner, group, size (in bytes), and
+time of last modification for each file.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+-n
+</td>
+<td style="text-align:left;">
+Displays the same information as the -l flag, except that the -n flag
+displays the user and the group IDs instead of the user and group names.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+-F
+</td>
+<td style="text-align:left;">
+This command appends a file classification glyph to the end of the name.
+It shows / for directories, * for executables, =&gt; for network files,
+and @ for symbolic links
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+-a
+</td>
+<td style="text-align:left;">
+Shows all files, including hidden ones
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+-S
+</td>
+<td style="text-align:left;">
+List files in descending order of size
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+-t
+</td>
+<td style="text-align:left;">
+List files in descending order of time (newest first)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+-lh
+</td>
+<td style="text-align:left;">
+Displays the mode, number of links, owner, group, size (in kilobytes),
+and time of last modification for each file.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="create-a-file-or-directory" class="section level4">
+<h4>Create a file or directory</h4>
+<p>For a file</p>
+<pre class="r"><code>touch FILENAME</code></pre>
+<p>For a directory</p>
+<pre class="r"><code>mkdir DIRECTORYNAME</code></pre>
+</div>
+<div id="delete-a-file-or-directory" class="section level4">
+<h4>Delete a file or directory</h4>
+<p>For a file</p>
+<pre class="r"><code>rm FILENAME</code></pre>
+<p>For an empty directory</p>
+<pre class="r"><code>rmdir DIRECTORYNAME</code></pre>
+<p>For a non-empty directory</p>
+<pre class="r"><code>    rm -r *               # Empties the directory
+    rmdir DIRECTORYNAME   # Deletes the directory</code></pre>
+</div>
+<div id="run-a-file-in-the-terminal-not-on-the-hpc"
+class="section level4">
+<h4>Run a file in the terminal (NOT on the HPC)</h4>
+<pre class="r"><code>./FILENAME</code></pre>
+</div>
+<div id="run-a-file-on-the-hpc" class="section level3">
+<h3>Run a file on the HPC</h3>
+<pre class="r"><code>sbatch FILENAME</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1359,21 +940,21 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] workflowr_1.7.1
+[1] kableExtra_1.4.0 knitr_1.50       workflowr_1.7.1 
 
 loaded via a namespace (and not attached):
- [1] vctrs_0.6.5       httr_1.4.7        cli_3.6.4         knitr_1.50       
- [5] rlang_1.1.6       xfun_0.52         stringi_1.8.7     processx_3.8.6   
- [9] promises_1.3.2    jsonlite_2.0.0    glue_1.8.0        rprojroot_2.0.4  
-[13] git2r_0.36.2      htmltools_0.5.8.1 httpuv_1.6.16     ps_1.9.1         
-[17] sass_0.4.10       rmarkdown_2.29    jquerylib_0.1.4   tibble_3.2.1     
-[21] evaluate_1.0.3    fastmap_1.2.0     yaml_2.3.10       lifecycle_1.0.4  
-[25] whisker_0.4.1     stringr_1.5.1     compiler_4.4.2    fs_1.6.6         
-[29] pkgconfig_2.0.3   Rcpp_1.0.14       rstudioapi_0.17.1 later_1.4.2      
-[33] digest_0.6.37     R6_2.6.1          pillar_1.10.2     callr_3.7.6      
-[37] magrittr_2.0.3    bslib_0.9.0       tools_4.4.2       cachem_1.1.0     
-[41] getPass_0.2-4    </code></pre>
-</div>
+ [1] jsonlite_2.0.0    compiler_4.4.2    promises_1.3.2    Rcpp_1.0.14      
+ [5] xml2_1.3.8        stringr_1.5.1     git2r_0.36.2      callr_3.7.6      
+ [9] later_1.4.2       jquerylib_0.1.4   systemfonts_1.2.2 scales_1.3.0     
+[13] yaml_2.3.10       fastmap_1.2.0     R6_2.6.1          tibble_3.2.1     
+[17] munsell_0.5.1     rprojroot_2.0.4   svglite_2.1.3     bslib_0.9.0      
+[21] pillar_1.10.2     rlang_1.1.6       cachem_1.1.0      stringi_1.8.7    
+[25] httpuv_1.6.16     xfun_0.52         getPass_0.2-4     fs_1.6.6         
+[29] sass_0.4.10       viridisLite_0.4.2 cli_3.6.4         magrittr_2.0.3   
+[33] ps_1.9.1          digest_0.6.37     processx_3.8.6    rstudioapi_0.17.1
+[37] lifecycle_1.0.4   vctrs_0.6.5       evaluate_1.0.3    glue_1.8.0       
+[41] whisker_0.4.1     colorspace_2.1-1  rmarkdown_2.29    httr_1.4.7       
+[45] tools_4.4.2       pkgconfig_2.0.3   htmltools_0.5.8.1</code></pre>
 </div>
 </div>
 </div>
@@ -1398,6 +979,8 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -1430,6 +1013,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -400,6 +400,9 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="slurm-comm.html">Linux and Slurm Commands</a>
+    </li>
+    <li>
       <a href="definitions.html">Glossary of Terminology</a>
     </li>
   </ul>
@@ -446,7 +449,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2025-05-20
+<strong>Last updated:</strong> 2025-05-29
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -577,15 +580,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreee1cc7519ede9a8384411f4e4dc97082287710426targetblanke1cc751a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreebad660d2129d202252a6bbdfb9916a3446f367fctargetblankbad660da">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/e1cc7519ede9a8384411f4e4dc97082287710426" target="_blank">e1cc751</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/bad660d2129d202252a6bbdfb9916a3446f367fc" target="_blank">bad660d</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreee1cc7519ede9a8384411f4e4dc97082287710426targetblanke1cc751a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreebad660d2129d202252a6bbdfb9916a3446f367fctargetblankbad660da"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -595,7 +598,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/e1cc7519ede9a8384411f4e4dc97082287710426" target="_blank">e1cc751</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/bad660d2129d202252a6bbdfb9916a3446f367fc" target="_blank">bad660d</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -616,6 +619,7 @@ Ignored files:
     Ignored:    analysis/.DS_Store
 
 Unstaged changes:
+    Modified:   analysis/Publish all files
     Modified:   analysis/_site.yml
 
 </code></pre>
@@ -660,6 +664,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ecbaker7-tamu/song-lab/blob/bad660d2129d202252a6bbdfb9916a3446f367fc/analysis/psmc.Rmd" target="_blank">bad660d</a>
+</td>
+<td>
+ecbaker7-tamu
+</td>
+<td>
+2025-05-29
+</td>
+<td>
+wflow_publish(c("analysis/alphafold.Rmd", "analysis/Apollo.Rmd",
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/fecf69695ef32ed4f732693ce7fb0749bedc3a3e/docs/psmc.html" target="_blank">fecf696</a>
+</td>
+<td>
+ecbaker7-tamu
+</td>
+<td>
+2025-05-20
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -769,19 +807,207 @@ Update Barkdull
 </div>
 </div>
 </div>
+<!-- This code gets rid of the auto-indent -->
+<style>
+/* Reset margin/padding/indentation for text elements, but NOT code blocks */
+body, p, h1, h2, h3, h4, h5, h6, ol, ul, li, blockquote {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  text-indent: 0 !important;
+}
+</style>
 <div id="population-size-history-inference"
 class="section level3 tabset">
 <h3 class="tabset">Population Size History Inference</h3>
 <div id="what-is-psmc" class="section level4">
 <h4>What is PSMC?</h4>
 </div>
+<div id="data-downloading" class="section level4">
+<h4>Data Downloading</h4>
+</div>
 <div id="installation-running" class="section level4">
 <h4>Installation &amp; Running</h4>
-<p>First, you must map the HiC reads back to the original genome using
-BWA. We do this using the following procedure:</p>
-<pre class="r"><code>module purge 
+<p>In the drop down below the full script to run the entire pipeline in
+one slurm script is available. Below this, each step is broken down for
+informational and troubleshooting purposes. You can run this procedure
+step-by-step or all in one script, but for the first run I would
+recommend doing a step-by-step run as it simplifies troubleshooting and
+familiarizes you with the procedure.</p>
+<details>
+<summary>
+Full PSMC Script
+</summary>
+<pre class="r"><code>#!/bin/bash
 
-ml GCCcore/13.2.0 BWA/0.7.18</code></pre>
+##NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=PSMC                     # Set the job name to &quot;PSMC&quot;
+#SBATCH --time=7-00:00:00                   # Set the wall clock limit to 7 dyas
+#SBATCH --ntasks=1                          # Request 1 task
+#SBATCH --cpus-per-task=8                   # Request 8 cpus
+#SBATCH --mem=30G                           # Request 30GB per node
+#SBATCH --mail-type=ALL                     # Email updates for all steps
+#SBATCH --mail-user=ecbaker7@tamu.edu       # Email to this address
+#SBATCH --output=stdout.%x.%j               # Name stdout file with run name and job Id
+#SBATCH --error=stderr.%x.%j                # Name stderr file with run name and job Id
+
+# Align with BWA
+module purge 
+ml GCC/13.2.0 BWA/0.7.18 SAMtools/1.19.2 
+
+bwa index -p Sgregaria GCF_023897955.1_iqSchGreg1.2_genomic.fa
+
+# assuming you have 8 threads, not that this .sam file will be huge, and we&#39;ll remove it at the end
+for base in SRR14493061 ERR4330683 ERR4399085 ERR4403844 ERR4405437 ERR4398700 ERR4398601 ERR4352167 ERR4332838 ERR4332226 ERR4329498
+do
+  bwa mem -t 8 Sgregaria ${base}_1.fastq.gz ${base}_2.fastq.gz &gt; ${base}.sam
+done
+
+# convert all .sam to .bam
+
+for base in SRR14493061 ERR4330683 ERR4399085 ERR4403844 ERR4405437 ERR4398700 ERR4398601 ERR4352167 ERR4332838 ERR4332226 ERR4329498
+do
+  samtools view -S -b ${base}.sam &gt; ${base}.bam
+done
+
+# Merge all .bam files into one
+samtools merge unsorted_alignment.bam *.bam
+
+# Sort .bam file
+module purge
+module load picard/2.25.1-Java-11 
+
+java -jar $EBROOTPICARD/picard.jar SortSam \
+      INPUT=unsorted_alignment.bam \
+      OUTPUT=sorted.bam \
+      SORT_ORDER=coordinate
+
+# Generate consensus fastq for PSMC
+module purge
+ml GCC/13.2.0 BCFtools/1.19
+
+bcftools mpileup -Q 20 -q 20 -f GCF_023897955.1_iqSchGreg1.2_genomic.fa \
+    sorted.bam --threads 8 | \
+    bcftools call -c --threads 8 | \
+    vcfutils.pl vcf2fq -d 1 -D 100 -Q 20 &gt; variant_consensus.fq</code></pre>
+</details>
+<p><strong>1.</strong> First, you must map the HiC reads back to the
+original genome using BWA. Doing this step on the <em>S. gregaria</em>
+genome (8.3 Gb) took around 7-10 days. We do this using the following
+procedure:</p>
+<pre class="r"><code>#!/bin/bash
+
+##NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=create-unsorted-alignment        # Set the job name to &quot;create-unsorted-alignment&quot;
+#SBATCH --time=7-00:00:00                           # Set the wall clock limit to 7 days
+#SBATCH --ntasks=1                                  # Request 1 task
+#SBATCH --cpus-per-task=8                           # Request 8 cpus
+#SBATCH --mem=30G                                   # Request 30GB per node
+#SBATCH --mail-type=ALL                                       # Email updates for all steps
+#SBATCH --mail-user=user@mail.edu                       # Email to this address
+#SBATCH --output=stdout.%x.%j                       # Name stdout file after job name and ID
+#SBATCH --error=stderr.%x.%j                        # Name stderr file after job name and ID
+
+# Align with BWA
+module purge 
+ml GCC/13.2.0 BWA/0.7.18 SAMtools/1.19.2 
+
+bwa index -p Sgregaria GCF_023897955.1_iqSchGreg1.2_genomic.fa
+
+# assuming you have 8 threads, not that this .sam file will be huge, and we&#39;ll remove it at the end
+for base in SRR14493061 ERR4330683 ERR4399085 ERR4403844 ERR4405437 ERR4398700 ERR4398601 ERR4352167 ERR4332838 ERR4332226 ERR4329498
+do
+  bwa mem -t 8 Sgregaria ${base}_1.fastq.gz ${base}_2.fastq.gz &gt; ${base}.sam
+done
+
+# convert all .sam to .bam
+
+for base in SRR14493061 ERR4330683 ERR4399085 ERR4403844 ERR4405437 ERR4398700 ERR4398601 ERR4352167 ERR4332838 ERR4332226 ERR4329498
+do
+  samtools view -S -b ${base}.sam &gt; ${base}.bam
+done
+
+# Merge all .bam files into one
+samtools merge unsorted_alignment.bam *.bam</code></pre>
+<p><strong>2.</strong> Sort the unsorted .bam file</p>
+<pre class="r"><code>#!/bin/bash
+
+##NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=sort-alignment                   # Set the job name to &quot;sort-alignment&quot;
+#SBATCH --time=1-00:00:00                           # Set the wall clock limit to 1 day
+#SBATCH --ntasks=1                                  # Request 1 task
+#SBATCH --cpus-per-task=8                           # Request 8 cpus
+#SBATCH --mem=30G                                   # Request 30GB per node
+#SBATCH --mail-type=ALL                                       # Email updates for all steps
+#SBATCH --mail-user=user@mail.edu                       # Email to this address
+#SBATCH --output=stdout.%x.%j                       # Name stdout file after job name and ID
+#SBATCH --error=stderr.%x.%j                        # Name stderr file after job name and ID
+
+# sort the .bam file
+module purge
+module load picard/2.25.1-Java-11 
+
+java -jar $EBROOTPICARD/picard.jar SortSam \
+      INPUT=unsorted_alignment.bam \
+      OUTPUT=sorted.bam \
+      SORT_ORDER=coordinate</code></pre>
+<p><strong>3.</strong> Generate a variant consensus file from the sorted
+.bam file</p>
+<pre class="r"><code>#!/bin/bash
+
+##NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=create-var-con                   # Set the job name to &quot;create-var-con&quot;
+#SBATCH --time=2-00:00:00                           # Set the wall clock limit to 2 days
+#SBATCH --ntasks=1                                  # Request 1 task
+#SBATCH --cpus-per-task=8                           # Request 8 cpus
+#SBATCH --mem=30G                                   # Request 30GB per node
+#SBATCH --mail-type=ALL                                       # Email updates for all steps
+#SBATCH --mail-user=user@mail.edu                       # Email to this address
+#SBATCH --output=stdout.%x.%j                       # Name stdout file after job name and ID
+#SBATCH --error=stderr.%x.%j                        # Name stderr file after job name and ID
+
+
+module purge
+ml GCC/13.2.0 BCFtools/1.19
+
+# Generate consensus fastq for PSMC
+bcftools mpileup -Q 20 -q 20 -f GCF_023897955.1_iqSchGreg1.2_genomic.fa \
+    sorted.bam --threads 8 | \
+    bcftools call -c --threads 8 | \
+    vcfutils.pl vcf2fq -d 1 -D 100 -Q 20 &gt; variant_consensus.fq</code></pre>
+<p><strong>4.</strong> Generate PSMC results</p>
+<pre class="r"><code>#!/bin/bash
+
+##NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=psmc-input-and-plot              # Set the job name to &quot;psmc-input-and-plot&quot;
+#SBATCH --time=7-00:00:00                           # Set the wall clock limit to 7 days
+#SBATCH --ntasks=1                                  # Request 1 task
+#SBATCH --cpus-per-task=8                           # Request 8 cpus
+#SBATCH --mem=30G                                   # Request 30GB per node
+#SBATCH --mail-type=ALL                                       # Email updates for all steps
+#SBATCH --mail-user=user@mail.edu                       # Email to this address
+#SBATCH --output=stdout.%x.%j                       # Name stdout file after job name and ID
+#SBATCH --error=stderr.%x.%j                        # Name stderr file after job name and ID
+
+module purge
+ml GCC/13.2.0 psmc/0.6.5_20221121
+
+# Split FASTQ file (1M reads = 4M lines)
+mkdir -p split_fq
+split -l 4000000 variant_consensus.fq split_fq/part_
+
+# Convert each part to PSMCFA
+mkdir -p split_psmcfa
+for file in split_fq/part_*; do
+    fq2psmcfa -q20 &quot;$file&quot; &gt; &quot;split_psmcfa/${file##*/}.psmcfa&quot;
+done
+
+# Merge all parts into one .psmcfa file
+cat split_psmcfa/*.psmcfa &gt; psmc_input.psmcfa
+
+# Plot PSMC
+psmc_plot.pl -p -g 2.2 -u 0.00000000506 bootstrapped_plot sample_combined.psmc
+
+ps2pdf bootstrapped_plot.eps bootstrapped_plot.pdf</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
