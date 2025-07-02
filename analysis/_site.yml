@@ -6,39 +6,6 @@ navbar:
   icon: fa-home
   type: inverse
   left:
-    - text: "Notes"
-      icon: fa-note-sticky
-      menu:
-        - text: "June"
-          menu:
-          - text: "6/4 - 6/7"
-            href: week1-notes.html
-          - text: "6/10 - 6/14"
-            href: week2-notes.html
-          - text: "6/17 - 6/21"
-            href: week3-notes.html
-          - text: "6/24 - 6/28"
-            href: week4-notes.html
-        - text: "July"
-          menu:
-            - text: "6/31 - 7/5"
-              href: week5-notes.html
-            - text: "7/8 - 7/12"
-              href: week6-notes.html
-            - text: "7/15 - 7/19"
-              href: week7-notes.html
-            - text: "7/29 - 8/2"
-              href: week9-notes.html
-        - text: "August"
-          menu:
-            - text: "8/19 - 8/30"
-              href: week12-notes.html
-        - text: "September"
-          menu:
-            - text: "9/9 - 9/20"
-              href: week14-notes.html
-            - text: "9/30 - 10/4"
-              href: week16-notes.html
     - text: "Projects"
       icon: fa-microscope
       menu:
