@@ -14,6 +14,8 @@ wflow_publish(c(
 "analysis/orthop-genomes-project.Rmd",
 "analysis/pop-genomics-morm-crick.Rmd",
 "analysis/psmc.Rmd",
+"analysis/rep-model-mask.Rmd",
+"analysis/slurm-comm.Rmd",
 "analysis/toga.Rmd",
 "analysis/week1-notes.Rmd",
 "analysis/week2-notes.Rmd",
@@ -25,6 +27,5 @@ wflow_publish(c(
 "analysis/week9-notes.Rmd",
 "analysis/week12-notes.Rmd",
 "analysis/week14-notes.Rmd",
-"analysis/week16-notes.Rmd",
-"analysis/rep-model-mask.Rmd"
+"analysis/week16-notes.Rmd"
 ))

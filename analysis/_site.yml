@@ -82,6 +82,8 @@ navbar:
     - text: "Reference"
       icon: fa-book-open-reader
       menu:
+        - text: "Linux and Slurm Commands"
+          href: slurm-comm.html
         - text: "Glossary of Terminology"
           href: definitions.html
 output:

@@ -13,228 +13,236 @@ number_sections: true
 editor_options:
   chunk_output_type: console
 ---
-
+## Identifying and Processing Repeat Content
 <!-- ## What is RepeatModeler & RepeatMasker? -->
 
-## Step 0: File & Directory Creation
+## Script
 
-### Directories
+To run both Repeat Modeler and Masker, we used the following script created by Amanda Stahlke at Colorado Mesa University. 
 
-Now we must create the necessary directories for this pipeline to function.
+```{r, eval=FALSE}
 
-#### Working Directory
+#!/bin/bash
+#SBATCH --job-name=Repeat-SPECIES
+#SBATCH --time=7-00:00:00
+#SBATCH --nodes=1          # max 64 nodes for partition long
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=48
+#SBATCH --mem=360G
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=user@mail.com
+#SBATCH --output=stdout.%x.%j
+#SBATCH --error=stderr.%x.%j
 
-Create a new directory in your scratch folder (for example, you could put it in the following file path: scratch/user/YOUR_USERNAME/PROJECT_NAME). Call this new directory *rep-model-mask*. This is where you will add in the files we will create later.
+ASM={Genome File Suffix}_genomic.fa
+NM={Genome Name}
 
-#### Genome Directory
+module purge
+module load GCC/12.3.0 OpenMPI/4.1.5 RepeatModeler/2.0.6
 
-Create a directory in your scratch directory called *genomes*. This is where we will store our data for the repeat modeler and repeat masker runs.
+printf "Built repeatmodler2 database on $ASM to build de novo custom library called $NM \n"
+BuildDatabase -name $NM $ASM 
+printf "Ran repeatmodler2 with LTRStruct on $ASM for  de novo custom library called $NM \n"
+RepeatModeler -threads 40 -LTRStruct -database $NM 
 
-### Files
+module purge
+module load GCC/11.3.0 OpenMPI/4.1.4 RepeatMasker/4.1.4
 
-The main problem with the currently available RepeatModeler and RepeatMasker software is that they create thousands of large "intermediary" files that do not get deleted once the pipeline is finished running. Devon J. Boland from the Texas A&M Institute of Genome Sciences and Society (TIGSS) developed this SnakeMake pipeline that automatically deletes these files, freeing up storage after the process has completed its run. To run this pipeline you will need to create the following 3 files:
-
-#### i) Snakefile
-  Create the file "Snakefile" in your rep-model-mask directory and copy and paste the below code into it.<mark> You will need to change lines 8 and 9 to the file paths of the work and genome folders you created in your scratch directory (see Step 0: Directories).</mark>
-  
-    ### =================================================================
-    ### GENOME REPEAT MASKING PIPELINE (v. DECEMBER 2024)
-    ### Project: Comparative Genomics Of Locusts
-    ### Devon J. Boland, <devonjboland@tamu.edu>
-    ### =================================================================
-    
-    ### SET DIRECTORY PATHS FOR REFERENCE AND OUTPUT DATA
-    WORKDir = "/scratch/user/devonjboland/BPRI/Genomes/RepeatMasking"
-    GENOMEDir = "/scratch/user/devonjboland/BPRI/Genomes"
-    
-    # For local testing
-    #WORKDir = "/Users/devonjboland/Documents/TIGSS/Maeva_TECHER_SongLab/Repeat_Masking/SnakeMake"
-    #GENOMEDir = "/Users/devonjboland/Documents/TIGSS/Maeva_TECHER_SongLab/Repeat_Masking/SnakeMake/Genomes"
-    
-    ### SET SAMPLES LIST
-    INSECTS, = glob_wildcards(GENOMEDir + "/{insect}.fa")
-    
-    ### SET PATHS FOR STATIC FILES
-    TRFSif = "/scratch/user/devonjboland/SIFs/trf_4.09.1--h031d066_4.sif"
-    
-    # SET PSEUDO-RULE
-    
-    rule all:
-            input:
-                    ###   GENERATING TRANSCRIPT MAPPING AND READS COUNTS
-                    expand(WORKDir + "/{insect}/{insect}.fa.2.7.7.80.10.50.500.mask.masked", insect = INSECTS)
-    
-    ### =================================================================
-    ###  Build TE Family Database Using RepeatModeler
-    ### =================================================================
-    
-    rule repeat_modeler:
-            input:
-                    genome = GENOMEDir + "/{insect}.fa"
-            threads: 48
-            params:
-                    genome_loc = GENOMEDir,
-                    work_dir = WORKDir + "/{insect}",
-                    short_name = "{insect}"
-            output:
-                    rm_lib = WORKDir + "/{insect}/{insect}-families.fa"
-            shell:
-                    """
-                    set -euxo pipefail
-                    ml purge
-                    ml GCC/12.3.0  OpenMPI/4.1.5 RepeatModeler/2.0.6
-    
-                    cp {input.genome} $TMPDIR
-                    cd $TMPDIR
-    
-                    # Create Blastn database of genome
-                    BuildDatabase -name {params.short_name} {params.short_name}.fa
-    
-                    # Execute Repeat Modeler
-                    RepeatModeler -database {params.short_name} -threads {threads} -LTRStruct
-                    mv {params.short_name}* {params.work_dir}
-                    mv {params.short_name}.fa {params.work_dir}
-                    cd ${params.work_dir}
-                    ml purge
-    
-                    """
-    
-    
-    ### =================================================================
-    ###  Identify Tandem Repeats Using TRF
-    ### =================================================================
-    
-    rule run_trf:
-            params:
-                    genome = WORKDir + "/{insect}/{insect}.fa",
-                    work_dir = WORKDir + "/{insect}",
-                    sif = TRFSif
-            output:
-                    masked_trf = WORKDir + "/{insect}/{insect}.fa.2.7.7.80.10.50.500.mask"
-            shell:
-                    """
-                    ml purge
-                    cd {params.work_dir}
-                    singularity exec {params.sif} trf {params.genome} 2 7 7 80 10 50 500 -f -d -m -h
-    
-                    """
-    
-    ### =================================================================
-    ###  Mask TEs Using RepeatMasker on TRF Output with RM Input
-    ### =================================================================
-    
-    rule repeat_masker:
-            input:
-                    genome_trf = WORKDir + "/{insect}/{insect}.fa.2.7.7.80.10.50.500.mask",
-                    rm_lib = WORKDir + "/{insect}/{insect}-families.fa"
-            threads: 48
-            output:
-                    final_mask = WORKDir + "/{insect}/{insect}.fa.2.7.7.80.10.50.500.mask.masked"
-            shell:
-                    """
-                    set -euxo pipefail
-                    ml purge
-                    ml GCC/11.3.0  OpenMPI/4.1.4 RepeatMasker/4.1.4
-    
-                    RepeatMasker -lib {input.rm_lib} --pa ${threads} {input.genome_trf}
-    
-                    ml purge
-                    """
-
-
-#### ii) snakefile.slurm
-  Create the file "snakefile.slurm" in your rep-model-mask directory and copy and paste the following code into it. This file specifies that the cluster should send a notification when any updates occurring the job process (job begin or end, next stage, job canceled, etc.) to the specified email. <mark> You will need to edit line 10 to email notifications to the appropriate email address. If you do not wish to receive the email updates, you can delete lines 9 and 10.</mark>
-    
-    #!/bin/bash
-    #SBATCH --job-name=snakemake-master
-    #SBATCH --time="7-00:00:00"
-    #SBATCH --mem=100GB
-    #SBATCH --cpus-per-task=1
-    #SBATCH --ntasks=1
-    
-    ## OPTIONAL ##
-    #SBATCH --mail-type=ALL              #Send email on all job events
-    #SBATCH --mail-user=USEREMAIL@tamu.edu    #Send all emails
-    
-    ml GCC/12.2.0  OpenMPI/4.1.4 snakemake/7.32.3
-    
-    snakemake --latency-wait 1000 \
-    --restart-times 1 \
-    -j 30 -p \
-    --max-jobs-per-second 1 \
-    --cluster-config cluster.json \
-    --cluster "sbatch -p {cluster.partition} --ntasks {cluster.ntasks} --cpus-per-task {cluster.cpus-per-task} -t {cluster.time} --mem {cluster.mem} --output {cluster.output} --error {cluster.error}" \
-    --rerun-incomplete \
-    --notemp \
-    --nolock
-
-
-#### iii) cluster.json
-  Create a file called "cluster.json" in your rep-model-mask directory and copy and paste the following code into it. This file provides specifications for how the cluster should allocate memory and name the output files based on what task is being run. <mark> You do not need to edit any lines of code in this file prior to submitting the job. </mark>
-    
-    {
-    "__default__" :
-    {
-        "cpus-per-task" : 12,
-        "partition" : "medium",
-        "ntasks": 1,
-        "mem" : "40G",
-        "time": "1-00:00:00",
-        "out": "%j.out.txt"
-    },
-    "repeat_modeler":
-    {
-        "cpus-per-task" : 48,
-        "partition" : "long",
-        "ntasks": 1,
-        "mem" : "320G",
-        "time": "7-00:00:00",
-        "output": "repeat_modeler.%j.stdout.txt",
-        "error": "repeat_modeler.%j.stderr.txt"
-    },
-    "run_trf":
-    {
-        "cpus-per-task" : 48,
-        "partition" : "long",
-        "ntasks": 1,
-        "mem" : "320G",
-        "time": "3-00:00:00",
-        "output": "run_trf.%j.stdout.txt",
-        "error": "run_trf.%j.stderr.txt"
-    },
-    "repeat_masker":
-    {
-        "cpus-per-task" : 48,
-        "partition" : "long",
-        "ntasks": 1,
-        "mem" : "320G",
-        "time": "7-00:00:00",
-        "output": "repeat_masker.%j.stdout.txt",
-        "error": "repeat_masker.%j.stderr.txt"
-    }
-    }
-
-
-
-
-## Step 1: Repeat Modeler
-
-First we will run RepeatModeler on our genome of choice using the following code to submit the job to the cluster
-
-```{r rep-mask-submit, eval=FALSE}
-
-sbatch snakemake.slurm repeat_modeler
+printf "Running RepeatMasker on $ASM"
+RepeatMasker -pa 40 -a -gff -lib ${NM}-families.fa -dir denovo2 $ASM
 
 ```
 
-This job will launch jobs to run in parallel, so don't be alarmed if you see more jobs running than you've submitted.
+Please note the use of the *-a* flag, which is used to generate an alignment file during the masking process. This is important for generating the Kimura plots mentioned later on this page
 
-## Step 2: Repeat Masker
+## Downstream Analysis
+### Visualizing Repeat Content
+#### For a single genome
 
-Run RepeatMasker using the command
+![](assets/SchCanc_Kimura.png)
 
-```{r rep-model-submit, eval=FALSE}
+To generate a kimura repeat content plot like the one above, first you must run the script included in the RepeatMasker module called *calcDivergenceFromAlign.pl*. I did this using the script below on the TAMU Grace Cluster
 
-sbatch snakemake.slurm repeat_masker
+```{r, eval=FALSE}
+
+#!/bin/bash
+#SBATCH --job-name=Generate-Dist
+#SBATCH --time=03:00:00
+#SBATCH --nodes=1          # max 64 nodes for partition long
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=48
+#SBATCH --mem=360G
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=user@mail.com
+#SBATCH --output=stdout.%x.%j
+#SBATCH --error=stderr.%x.%j
+
+module purge
+module load GCC/11.3.0 OpenMPI/4.1.4 RepeatMasker/4.1.4
+
+/sw/eb/sw/RepeatMasker/4.1.4-foss-2022a/util/calcDivergenceFromAlign.pl -s {SpeciesName}.distance {SpeciesName}_genomic.fa.align
+
+```
+
+This will generate a file with a *.distance* suffix. I find it easier to just download this file and generate the figure locally, as we will need to edit this file as well. When you open your *species.distance* file you should see something like in the block below:
+
+```{r, eval=FALSE, attr.source='.numberLines'}
+Jukes/Cantor and Kimura subsitution levels adjusted for CpG sites
+=================================================================
+File: GCF_023864275.1_iqSchCanc2.1_genomic.fa.align
+Weighted average Kimura divergence for each repeat family
+Class	Repeat	absLen	wellCharLen	Kimura%
+-----	------	------	-----------	-------
+DNA	rnd-4_family-3901	2850838	2828840	9.37
+DNA	rnd-5_family-7626	384874	375022	18.86
+DNA/Academ-1	rnd-5_family-132	136309	134796	21.75
+⋮
+LINE	rnd-4_family-267	2208155	2149395	32.22
+LINE	rnd-4_family-268	243936	240416	20.67
+LINE	rnd-5_family-1066	674334	658113	22.96
+⋮
+LTR/Copia	rnd-5_family-1055	766978	760738	15.83
+LTR/Copia	rnd-5_family-1977	149895	146399	25.27
+⋮
+RC/Helitron	rnd-4_family-1433	1591130	1508796	17.81
+RC/Helitron	rnd-4_family-1977	1352003	1334534	17.66
+⋮
+Simple_repeat	combined	45799202	45402746	----
+Unknown	rnd-1_family-1	141049217	140819533	5.19
+⋮
+tRNA	rnd-5_family-26180	476868	476755	3.98
+tRNA	rnd-5_family-5841	2251189	2236163	10.50
+
+
+Coverage for each repeat class and divergence (Kimura)
+Div DNA DNA/Academ-1 ... LINE LINE/CR1 ... LTR/Copia ... RC/Helitron Simple_repeat Unknown tRNA
+0 290 2240 223288 ... 214984 707342 328 ... 6524  711 0 56168370 340641 
+⋮
+```
+
+But much, much larger. Copy and paste from where it starts with "Div", below the header for the Kimura scores. Create a new file named {SpeciesSuffix}.distance and copy and paste the text to this file. It should look like this:
+
+```{r, eval=FALSE}
+Div DNA DNA/Academ-1 ... LINE LINE/CR1 ... LTR/Copia ... RC/Helitron Simple_repeat Unknown tRNA
+0 290 2240 223288 ... 214984 707342 328 ... 6524  711 0 56168370 340641 
+⋮
+```
+
+Now we're ready to create our Kimura plot. Create a new R file called *kimura-plot-single-genome.r* and copy and paste the following code into it:
+
+```{r, eval=FALSE}
+
+# ------------------------------------------------------------------------------------------------ #
+# Repeat annotation summary
+#
+# Simple figure to summarise repeat families within each genome assembly
+
+# ------------------------------------------------------------------------------------------------ #
+# Libraries
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(magrittr)
+  library(here)
+  library(scales)
+  library(ragg)
+  library(readr)
+})
+
+# ------------------------------------------------------------------------------------------------ #
+
+# ------------------- Edit for your species ------------------------------------------------- #
+
+size = 8500000000 # Total genome size
+sample_name = "Schistocerca cancellata"
+file <- "song_assembly/SchCanc.distance"
+
+# ------------------------------------------------------------------------------------------------ #
+
+genome_sizes <- tibble(sample = sample_name, size = size)
+pal <- colorRampPalette(RColorBrewer::brewer.pal(n = 7, 'Set3')) # Set color pallette
+header <- read_lines(file=file, n_max=1)
+
+df.kimura <- read_table(file, col_types = cols(.default = col_double())) # Read in data (1 species)
+df.kimura <- df.kimura[, -ncol(df.kimura)] %>% # Remove last column created from whitespace on EOL
+  mutate(sample = sample_name) %>% # Add in col for sample name, unnecessary?
+  left_join(genome_sizes, by = "sample") %>% # Join df.kimura with genome.sizes by sample
+   pivot_longer(cols = -c(sample, size, Div), names_to = "repeat_type", values_to = "value")  %>%# Make the width of the column the height
+   separate(col = repeat_type, into = c("Family", "Sub-family"), sep = "/")  %>% # Seperate Family and Sub-family by "/"
+   mutate(`Sub-family` = ifelse(is.na(`Sub-family`), Family, `Sub-family`)) %>% # If sub-family empty, put Family name
+  mutate(
+    percentage = (value/size) * 100 # calculate percentage composition of genome
+    ) %>%
+    mutate(`Sub-family` = ifelse(is.na(`Sub-family`), Family, `Sub-family`))
+
+tmp <- df.kimura |>
+  filter(!is.na(value), !str_detect(Family, '\\?')) |>
+  group_by(sample, Div, Family) |>
+  mutate(total_family = sum(value), percentage_family = (total_family/size) * 100) |>
+  select(sample, Div, Family, percentage_family) |>
+  ungroup() |>
+  distinct()
+
+tmp_filtered <- tmp |> filter(percentage_family > 0.01)
+ # Plotting
+kimura.gg <- ggplot(tmp_filtered, aes(x = Div, y = percentage_family, fill = Family)) +
+  geom_bar(position = "stack", stat = "identity", alpha = 0.6) +
+  scale_fill_manual( # associate colors with family names
+    values = c(
+      DNA = '#4eaf49',
+      LINE = '#984f9f',
+      LTR = '#397fb9',
+      MITE = '#f7941d',
+      Unknown = '#737e76'
+    ),
+    labels = c(
+      DNA = "DNA",
+      LINE = "LINEs",
+      LTR = "LTRs",
+      MITE = "MITEs",
+      Unknown = "Unknown Repeats"
+    )  ) +
+  labs(
+    x = '\nKimura substitution level',
+    y = 'Genome percentage\n',
+    fill = '\n'
+  ) +
+  scale_y_continuous(labels = scales::label_number(suffix = '%')) +
+  scale_x_continuous(
+    breaks = seq(0, 50, 5),
+    limits = c(0, 55),
+    expand = c(0, 0)
+  ) +
+  coord_cartesian(xlim = c(0, 51)) +
+  theme_minimal() +
+  theme(
+    axis.title = element_text(size = 20, face = 'bold'),
+    axis.text = element_text(size = 18),
+    legend.position = 'right',
+    legend.title = element_text(size = 18),
+    legend.text = element_text(size = 18),
+    strip.text = element_text(size = 20, face = 'bold.italic')
+  ) +
+  facet_wrap(~sample, nrow = 4)
+
+# Save plot
+pdf(
+  file = paste0(sample_name, "-kimura.pdf"),
+  width = 12,
+  height = 9
+)
+print(kimura.gg)
+invisible(dev.off())
+```
+
+
+#### For multiple genomes (stacked)
+
+![](assets/stacked-kimura.png)
+
+Follow the same procedure for each *.distance* file as described in the single-genome process. The only difference in this procedure is the script we will run to create the Kimura plots. Create a new R script called *kimura-plot-mult-genomes.R* and copy and paste the following script into it:
+
+```{r, eval=FALSE}
+
+COMING SOON
 
 ```
