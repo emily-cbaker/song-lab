@@ -439,7 +439,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -450,8 +450,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -460,13 +460,13 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2025-07-02
+<strong>Last updated:</strong> 2025-07-03
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>song-lab/</code> <span
@@ -489,18 +489,21 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
@@ -591,15 +594,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreebf7765b893698fba805f5c3263c00881f04c8413targetblankbf7765ba">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreeeb41d80e797e0c21e97cf8322df06d5a6cb56aedtargetblankeb41d80a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/bf7765b893698fba805f5c3263c00881f04c8413" target="_blank">bf7765b</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/eb41d80e797e0c21e97cf8322df06d5a6cb56aed" target="_blank">eb41d80</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreebf7765b893698fba805f5c3263c00881f04c8413targetblankbf7765ba"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreeeb41d80e797e0c21e97cf8322df06d5a6cb56aedtargetblankeb41d80a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -609,7 +612,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/bf7765b893698fba805f5c3263c00881f04c8413" target="_blank">bf7765b</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/eb41d80e797e0c21e97cf8322df06d5a6cb56aed" target="_blank">eb41d80</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -630,8 +633,7 @@ Ignored files:
     Ignored:    analysis/.DS_Store
 
 Unstaged changes:
-    Modified:   analysis/Publish all files
-    Modified:   analysis/_site.yml
+    Modified:   analysis/rep-model-mask.Rmd
 
 </code></pre>
 <p>
@@ -676,6 +678,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/4e146c4576f9c498f75eb81aa9193b039c9d4fcc/docs/rep-model-mask.html" target="_blank">4e146c4</a>
+</td>
+<td>
+ecbaker7-tamu
+</td>
+<td>
+2025-07-02
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1116,7 +1135,8 @@ class="section level2">
 <div id="script" class="section level2">
 <h2>Script</h2>
 <p>To run both Repeat Modeler and Masker, we used the following script
-created by Amanda Stahlke at Colorado Mesa University.</p>
+created by Amanda Stahlke at Colorado Mesa University, modified to run
+on the TAMU Grace cluster.</p>
 <pre class="r"><code>#!/bin/bash
 #SBATCH --job-name=Repeat-SPECIES
 #SBATCH --time=7-00:00:00
@@ -1331,7 +1351,121 @@ described in the single-genome process. The only difference in this
 procedure is the script we will run to create the Kimura plots. Create a
 new R script called <em>kimura-plot-mult-genomes.R</em> and copy and
 paste the following script into it:</p>
-<pre class="r"><code>COMING SOON</code></pre>
+<pre class="r"><code># ------------------------------------------------------------------------------------------------ #
+# Repeat annotation summary
+#
+# Simple figure to summarise repeat families within each genome assembly
+
+# ------------------------------------------------------------------------------------------------ #
+# Librariesx
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(magrittr)
+  library(here)
+  library(scales)
+  library(ragg)
+})
+
+# ------------------------------------------------ EDIT HERE ---------------------------------------------------- #
+# genome sizes
+genome.sizes &lt;- tibble(
+  sample = c(&#39;Schistocerca piceifrons&#39;, &#39;Schistocerca cancellata&#39;, &#39;Schistocerca nitens&#39;, &#39;Schistocerca serialis cubense&#39;, &#39;Anabrus simplex - Idaho&#39;, &#39;Anabrus simplex - Colorado&#39;),
+  size = c(8700000000, 8500000000, 8800000000, 9100000000, 6400000000, 6900000000)
+)
+
+pal &lt;- colorRampPalette(RColorBrewer::brewer.pal(n = 7, &#39;Set3&#39;))
+
+# ---------------------------------------------------------------------------------------------------------------- #
+# Kimura divergence tables
+df.kimura &lt;- fs::dir_ls(
+  path = &#39;song_assembly&#39;, # &lt;----------------------------- EDIT HERE
+  glob = &#39;*distance&#39;,
+  recurse = TRUE
+) |&gt;
+  map(read_delim, delim = &#39; &#39;, col_names = TRUE, col_types = cols()) |&gt;
+  list_rbind(names_to = &#39;sample&#39;) |&gt;
+  mutate( # ------------------------------------------------ EDIT HERE -------------------------------------------- #
+    sample = case_when(
+      sample == &#39;song_assembly/SchPice.distance&#39; ~ &#39;Schistocerca piceifrons&#39;,
+      sample == &#39;song_assembly/SchCanc.distance&#39; ~ &#39;Schistocera cancellata&#39;,
+      sample == &#39;song_assembly/SchNite.distance&#39; ~ &#39;Schistocerca nitens&#39;,
+      sample == &#39;song_assembly/SchSeri.distance&#39; ~ &#39;Schistocerca serialis cubense&#39;,
+      sample == &#39;song_assembly/AnsimpID.distance&#39; ~ &#39;Anabrus simplex - Idaho&#39;,
+      sample == &#39;song_assembly/AnsimpCO.distance&#39; ~ &#39;Anabrus simplex - Colorado&#39;,
+      .default = sample
+    )
+  ) |&gt;
+  select(-starts_with(&#39;...&#39;)) |&gt;
+  (\(x) pivot_longer(data = x, names_to = &#39;repeat_type&#39;, values_to = &#39;value&#39;, cols = 3:ncol(x)))() |&gt;
+  left_join(genome.sizes, by = &quot;sample&quot;)|&gt;
+  mutate(
+    percentage = (value/size) * 100,
+    sample = factor(sample, levels = c(&#39;Schistocerca piceifrons&#39;, &#39;Schistocerca cancellata&#39;, &#39;Schistocerca nitens&#39;, &#39;Schistocerca serialis cubense&#39;, &#39;Anabrus simplex - Idaho&#39;, &#39;Anabrus simplex - Colorado&#39;))
+    ) |&gt; # -------------------------------------------------------------------------------------------------------- #
+  separate(col = repeat_type, into = c(&#39;Family&#39;, &#39;Sub-family&#39;), sep = &#39;/&#39;) |&gt;
+  mutate(`Sub-family` = ifelse(is.na(`Sub-family`), Family, `Sub-family`))
+
+# Temporary while I re-run repeat masker with repbase
+tmp &lt;- df.kimura |&gt;
+  filter(!is.na(value), !str_detect(Family, &#39;\\?&#39;)) |&gt;
+  group_by(sample, Div, Family) |&gt;
+  mutate(total_family = sum(value), percentage_family = (total_family/size) * 100) |&gt;
+  select(sample, Div, Family, percentage_family) |&gt;
+  ungroup() |&gt;
+  distinct()
+
+# ------------------------------------------------------------------------------------------------ #
+# Plot divergence plots
+kimura.gg &lt;- tmp |&gt;
+  filter(percentage_family &gt; 0.01) |&gt;
+  ggplot(aes(x = Div, y = percentage_family, fill = Family)) +
+  geom_bar(position = &quot;stack&quot;, stat = &quot;identity&quot;, alpha = 0.6) +
+  scale_fill_manual( # associate colors with family names
+    values = c(
+      DNA = &#39;#4eaf49&#39;,
+      LINE = &#39;#984f9f&#39;,
+      LTR = &#39;#397fb9&#39;,
+      MITE = &#39;#f7941d&#39;,
+      Unknown = &#39;#737e76&#39;
+    ),
+    labels = c(
+      DNA = &quot;DNA&quot;,
+      LINE = &quot;LINEs&quot;,
+      LTR = &quot;LTRs&quot;,
+      MITE = &quot;MITEs&quot;,
+      Unknown = &quot;Unknown Repeats&quot;
+    )  ) +
+  labs(
+    x = &#39;\nKimura substitution level&#39;,
+    y = &#39;Genome percentage\n&#39;,
+    fill = &#39;\n&#39;
+  ) +
+  scale_y_continuous(labels = label_number(suffix = &#39;%&#39;)) +
+  scale_x_continuous(
+    breaks = seq(0, 50, 5),
+    limits = c(0, 55),
+    expand = c(0,0)
+  ) +
+  coord_cartesian(xlim = c(0, 51)) +
+  theme_minimal() +
+  theme(
+    axis.title = element_text(size = 20, face = &#39;bold&#39;),
+    axis.text = element_text(size = 18),
+    legend.position = &#39;bottom&#39;,
+    legend.title = element_text(size = 18),
+    legend.text = element_text(size = 18),
+    strip.text = element_text(size = 20, face = &#39;bold.italic&#39;)
+  ) +
+  facet_wrap(~sample, nrow = 4)
+
+# Save PNG
+pdf(
+  file = here(&#39;multigenome-kimura.pdf&#39;),
+  width = 20,
+  height = 10
+)
+print(kimura.gg)
+invisible(dev.off())</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1358,21 +1492,17 @@ tzcode source: internal
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
-other attached packages:
-[1] workflowr_1.7.1
-
 loaded via a namespace (and not attached):
- [1] vctrs_0.6.5       httr_1.4.7        cli_3.6.4         knitr_1.50       
- [5] rlang_1.1.6       xfun_0.52         stringi_1.8.7     processx_3.8.6   
- [9] promises_1.3.2    jsonlite_2.0.0    glue_1.8.0        rprojroot_2.0.4  
-[13] git2r_0.36.2      htmltools_0.5.8.1 httpuv_1.6.16     ps_1.9.1         
-[17] sass_0.4.10       rmarkdown_2.29    jquerylib_0.1.4   tibble_3.2.1     
-[21] evaluate_1.0.3    fastmap_1.2.0     yaml_2.3.10       lifecycle_1.0.4  
-[25] whisker_0.4.1     stringr_1.5.1     compiler_4.4.2    fs_1.6.6         
-[29] pkgconfig_2.0.3   Rcpp_1.0.14       rstudioapi_0.17.1 later_1.4.2      
-[33] digest_0.6.37     R6_2.6.1          pillar_1.10.2     callr_3.7.6      
-[37] magrittr_2.0.3    bslib_0.9.0       tools_4.4.2       cachem_1.1.0     
-[41] getPass_0.2-4    </code></pre>
+ [1] vctrs_0.6.5       cli_3.6.4         knitr_1.50        rlang_1.1.6      
+ [5] xfun_0.52         stringi_1.8.7     promises_1.3.2    jsonlite_2.0.0   
+ [9] workflowr_1.7.1   glue_1.8.0        rprojroot_2.0.4   git2r_0.36.2     
+[13] htmltools_0.5.8.1 httpuv_1.6.16     sass_0.4.10       rmarkdown_2.29   
+[17] evaluate_1.0.3    jquerylib_0.1.4   tibble_3.2.1      fastmap_1.2.0    
+[21] yaml_2.3.10       lifecycle_1.0.4   whisker_0.4.1     stringr_1.5.1    
+[25] compiler_4.4.2    fs_1.6.6          Rcpp_1.0.14       pkgconfig_2.0.3  
+[29] rstudioapi_0.17.1 later_1.4.2       digest_0.6.37     R6_2.6.1         
+[33] pillar_1.10.2     magrittr_2.0.3    bslib_0.9.0       tools_4.4.2      
+[37] cachem_1.1.0     </code></pre>
 </div>
 </div>
 </div>
