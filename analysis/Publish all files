@@ -10,6 +10,7 @@ wflow_publish(c(
 "analysis/definitions.Rmd",
 "analysis/genespace.Rmd",
 "analysis/index.Rmd",
+"analysis/kimura.Rmd",
 "analysis/mlc.Rmd",
 "analysis/orthop-genomes-project.Rmd",
 "analysis/pop-genomics-morm-crick.Rmd",

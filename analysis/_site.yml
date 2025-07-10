@@ -14,28 +14,11 @@ navbar:
         - text: "Comparative Genomics of Mormon Cricket subgroups -- UNDER CONSTRUCTION"
           href:
 
-    - text: "Program Information"
+    - text: "Workflows"
       icon: fa-code
       menu:
-        - text: "TOGA & Related Pipelines"
-          menu:
-            - text: "TOGA"
-              href: toga.html
-            - text: "make_lastz_chains"
-              href: mlc.html
-        - text: "GENESPACE"
-          href: genespace.html
-        - text: "FormicidaeMolecularEvolution (OrthoFinder)"
+        - text: "FormicidaeMolecularEvolution - OrthoFinder Workflow for Longest Isoform"
           href: barkdull.html
-        - text: "Annotation Tools"
-          menu:
-            - text: "Apollo"
-              href: Apollo.html
-            - text: "Augustus"
-              href: augustus.html
-            - text: "Braker"
-              href: braker.html
-            
         - text: "RepeatModeler & RepeatMasker"
           href: rep-model-mask.html
           
@@ -46,6 +29,14 @@ navbar:
             - text: "Chimera X"
               href: chimerax.html
 
+    - text: "Visualization"
+      icon: fa-palette
+      menu:
+        - text: "Kimura Plots (Repeat Content)"
+          href: kimura.html
+        - text: "GENESPACE (Synteny)"
+          href: genespace.html
+          
     - text: "Reference"
       icon: fa-book-open-reader
       menu:
