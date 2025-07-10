@@ -28,52 +28,65 @@ body, p, h1, h2, h3, h4, h5, h6, ol, ul, li, blockquote {
 ### Population Size History Inference {.tabset}
 
 #### What is PSMC?
+<center>
+![](assets/gregaria_bootstrapped_plot.png){width=70%}
+</center>
 
-#### Data Downloading
+The Pairwise Sequentially Markovian Coalescent Model (PSMC) is a model that infers a species' population history using HiC data from the species in question. This process is motivated by "Coalescence Theory", which is a statistical theory that relates the size of a population to the coalescence times in the genealogy of sampled individuals (Mather et al.). This is done by mapping HiC reads back to the genome and searching for loci splits via variant calling and bootstrapping results to create a coalescence model. 
+
+[Download HiC Data from NCBI](https://www.ncbi.nlm.nih.gov/sra)
 
 #### Installation & Running
 
 In the drop down below the full script to run the entire pipeline in one slurm script is available. Below this, each step is broken down for informational and troubleshooting purposes. You can run this procedure step-by-step or all in one script, but for the first run I would recommend doing a step-by-step run as it simplifies troubleshooting and familiarizes you with the procedure.
 
 <details>
-  <summary>Full PSMC Script</summary>
+  <summary><b>Full PSMC Script</b></summary>
 ```{r, eval=FALSE}
 #!/bin/bash
 
 ##NECESSARY JOB SPECIFICATIONS
-#SBATCH --job-name=PSMC      	  			# Set the job name to "PSMC"
+#SBATCH --job-name=PSMC-SPECIES      	  # Set the job name to "PSMC-SPECIES" (change to your species name)
 #SBATCH --time=7-00:00:00         			# Set the wall clock limit to 7 dyas
 #SBATCH --ntasks=1             	  			# Request 1 task
 #SBATCH --cpus-per-task=8         			# Request 8 cpus
 #SBATCH --mem=30G                 			# Request 30GB per node
-#SBATCH --mail-type=ALL						# Email updates for all steps
-#SBATCH --mail-user=ecbaker7@tamu.edu		# Email to this address
-#SBATCH --output=stdout.%x.%j				# Name stdout file with run name and job Id
-#SBATCH --error=stderr.%x.%j				# Name stderr file with run name and job Id
+#SBATCH --mail-type=ALL						      # Email updates for all steps
+#SBATCH --mail-user=user@@mail.com		  # Email to this address
+#SBATCH --output=stdout.%x.%j				    # Name stdout file with run name and job Id
+#SBATCH --error=stderr.%x.%j				    # Name stderr file with run name and job Id
 
-# Align with BWA
+
+########################### STEP 0: CHANGE THESE TO YOUR DATA #########################
+
+SPECIES_NAME_ABBR = "Sgregaria"
+SRR_NUM = "SRR17149718"
+GENOME_FILE = "GCF_023897955.1_iqSchGreg1.2_genomic.fa"
+
+#######################################################################################
+
+
+
+################################ STEP 1: Align with BWA ###############################
 module purge 
 ml GCC/13.2.0 BWA/0.7.18 SAMtools/1.19.2 
 
-bwa index -p Sgregaria GCF_023897955.1_iqSchGreg1.2_genomic.fa
+bwa index -p "${SPECIES_NAME_ABBR}" "${GENOME_FILE}"
 
 # assuming you have 8 threads, not that this .sam file will be huge, and we'll remove it at the end
-for base in SRR14493061 ERR4330683 ERR4399085 ERR4403844 ERR4405437 ERR4398700 ERR4398601 ERR4352167 ERR4332838 ERR4332226 ERR4329498
-do
-  bwa mem -t 8 Sgregaria ${base}_1.fastq.gz ${base}_2.fastq.gz > ${base}.sam
-done
+bwa mem -t 8 {SPECIES_NAME_ABBR.} "${SRR_NUM}_1.fastq.gz" "${SRR_NUM}_2.fastq.gz" > ${base}.sam
 
 # convert all .sam to .bam
-
-for base in SRR14493061 ERR4330683 ERR4399085 ERR4403844 ERR4405437 ERR4398700 ERR4398601 ERR4352167 ERR4332838 ERR4332226 ERR4329498
-do
-  samtools view -S -b ${base}.sam > ${base}.bam
-done
+samtools view -S -b "${SRR_NUM}.sam" > unsorted_alignment.bam
 
 # Merge all .bam files into one
 samtools merge unsorted_alignment.bam *.bam
 
-# Sort .bam file
+#######################################################################################
+
+
+
+################################ STEP 2: Sort .bam file ###############################
 module purge
 module load picard/2.25.1-Java-11 
 
@@ -82,7 +95,11 @@ java -jar $EBROOTPICARD/picard.jar SortSam \
       OUTPUT=sorted.bam \
       SORT_ORDER=coordinate
 
-# Generate consensus fastq for PSMC
+#######################################################################################
+
+
+
+################### STEP 3: Generate variant consensus fastq for PSMC #################
 module purge
 ml GCC/13.2.0 BCFtools/1.19
 
@@ -90,66 +107,79 @@ bcftools mpileup -Q 20 -q 20 -f GCF_023897955.1_iqSchGreg1.2_genomic.fa \
     sorted.bam --threads 8 | \
     bcftools call -c --threads 8 | \
     vcfutils.pl vcf2fq -d 1 -D 100 -Q 20 > variant_consensus.fq
+
+module purge
+ml GCC/13.2.0 psmc/0.6.5_20221121 parallel/20240322 gnuplot/6.0.1 texlive/20230313
+
+#######################################################################################
+
+
+
+######################### STEP 4: Generate PSMC analysis & plot #######################
+# Convert .fq to .psmcfa
+fq2psmcfa variant_consensus.fq > psmc_input.psmcfa
+
+# Generate PSMC results
+psmc -N25 -t15 -r5 -p "4+25*2+4+6" -o sample.psmc psmc_input.psmcfa
+
+mkdir boot
+
+# Bootstrap results and plot 
+parallel 'psmc -N25 -t10 -r5 -b -p "8*1+30*2+4+6" \
+	-o $SLURM_SUBMIT_DIR/boot/sample_r{}.psmc $SLURM_SUBMIT_DIR/psmc_input.psmcfa' \
+	::: $(seq 50)
+
+cat sample.psmc boot/sample_r*.psmc > sample_combined.psmc
+
+psmc_plot.pl -p -g 2.2 -u 0.00000000506 bootstrapped_plot  sample_combined.psmc
+
+
+#######################################################################################
   
 ```
 </details> 
         
   
-**1.** First, you must map the HiC reads back to the original genome using BWA. Doing this step on the *S. gregaria* genome (8.3 Gb) took around 7-10 days. We do this using the following procedure:
+**1.** First, you must map the HiC reads back to the original genome using BWA. Doing this step on the (enormous) *S. gregaria* genome (8.3 Gb) took around 1-2 days. We do this using the following procedure:
   
 ```{r BWA-align-HiC, eval = FALSE}
 #!/bin/bash
 
 ##NECESSARY JOB SPECIFICATIONS
-#SBATCH --job-name=create-unsorted-alignment        # Set the job name to "create-unsorted-alignment"
-#SBATCH --time=7-00:00:00                           # Set the wall clock limit to 7 days
-#SBATCH --ntasks=1                                  # Request 1 task
-#SBATCH --cpus-per-task=8                           # Request 8 cpus
-#SBATCH --mem=30G                                   # Request 30GB per node
-#SBATCH --mail-type=ALL						                  # Email updates for all steps
-#SBATCH --mail-user=user@mail.edu		                # Email to this address
-#SBATCH --output=stdout.%x.%j                       # Name stdout file after job name and ID
-#SBATCH --error=stderr.%x.%j                        # Name stderr file after job name and ID
+#SBATCH --job-name=create-unsorted-alignment        #Set the job name to "psmc-referencegenome"
+#SBATCH --time=3-00:00:00         #Set the wall clock limit to 2 hours
+#SBATCH --ntasks=1             #Request 1 task
+#SBATCH --cpus-per-task=8       #Request 8 cpus
+#SBATCH --mem=30G              #Request 30GB per node
+#SBATCH --output=stdout.%x.%j
+#SBATCH --error=stderr.%x.%j
 
 # Align with BWA
 module purge 
 ml GCC/13.2.0 BWA/0.7.18 SAMtools/1.19.2 
 
-bwa index -p Sgregaria GCF_023897955.1_iqSchGreg1.2_genomic.fa
-
+# bwa index -p Sgregaria GCF_023897955.1_iqSchGreg1.2_genomic.fa
 # assuming you have 8 threads, not that this .sam file will be huge, and we'll remove it at the end
-for base in SRR14493061 ERR4330683 ERR4399085 ERR4403844 ERR4405437 ERR4398700 ERR4398601 ERR4352167 ERR4332838 ERR4332226 ERR4329498
-do
-  bwa mem -t 8 Sgregaria ${base}_1.fastq.gz ${base}_2.fastq.gz > ${base}.sam
-done
 
-# convert all .sam to .bam
+bwa mem -t 8 Sgregaria SRR17149718_1.fastq SRR17149718_2.fastq > SRR17149718.sam
 
-for base in SRR14493061 ERR4330683 ERR4399085 ERR4403844 ERR4405437 ERR4398700 ERR4398601 ERR4352167 ERR4332838 ERR4332226 ERR4329498
-do
-  samtools view -S -b ${base}.sam > ${base}.bam
-done
-
-# Merge all .bam files into one
-samtools merge unsorted_alignment.bam *.bam
+# convert .sam to .bam
+samtools view -S -b SRR17149718.sam > unsorted_alignment.bam
 
 ```
 
 **2.** Sort the unsorted .bam file
 ```{r, eval=FALSE}
 
-#!/bin/bash
-
 ##NECESSARY JOB SPECIFICATIONS
-#SBATCH --job-name=sort-alignment                   # Set the job name to "sort-alignment"
-#SBATCH --time=1-00:00:00                           # Set the wall clock limit to 1 day
-#SBATCH --ntasks=1                                  # Request 1 task
-#SBATCH --cpus-per-task=8                           # Request 8 cpus
-#SBATCH --mem=30G                                   # Request 30GB per node
-#SBATCH --mail-type=ALL						                  # Email updates for all steps
-#SBATCH --mail-user=user@mail.edu		                # Email to this address
-#SBATCH --output=stdout.%x.%j                       # Name stdout file after job name and ID
-#SBATCH --error=stderr.%x.%j                        # Name stderr file after job name and ID
+#SBATCH --job-name=sort-alignment        #Set the job name to "psmc-referencegenome"
+#SBATCH --time=1-00:00:00         #Set the wall clock limit to 2 hours
+#SBATCH --ntasks=1             #Request 1 task
+#SBATCH --cpus-per-task=8       #Request 8 cpus
+#SBATCH --mem=30G              #Request 30GB per node
+#SBATCH --output=stdout.%x.%j
+#SBATCH --error=stderr.%x.%j
+
 
 # sort the .bam file
 module purge
@@ -196,7 +226,7 @@ bcftools mpileup -Q 20 -q 20 -f GCF_023897955.1_iqSchGreg1.2_genomic.fa \
 
 ##NECESSARY JOB SPECIFICATIONS
 #SBATCH --job-name=psmc-input-and-plot
-#SBATCH --time=7-00:00:00
+#SBATCH --time=4-00:00:00
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=120G
@@ -225,3 +255,10 @@ cat sample.psmc boot/sample_r*.psmc > sample_combined.psmc
 
 psmc_plot.pl -p -g 2.2 -u 0.00000000506 bootstrapped_plot  sample_combined.psmc
 ```
+
+
+#### Citations
+
+Mather, Niklas, et al. “A Practical Introduction to Sequentially Markovian Coalescent Methods for Estimating Demographic History From Genomic Data.” Ecology and Evolution, vol. 10, no. 1, Dec. 2019, pp. 579–89, doi:10.1002/ece3.5888.
+
+Unm-Carc. “QuickBytes/psmc_quickbyte.md at Master · UNM-CARC/QuickBytes.” GitHub, github.com/UNM-CARC/QuickBytes/blob/master/psmc_quickbyte.md.
