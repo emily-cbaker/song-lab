@@ -21,7 +21,8 @@ navbar:
           href: barkdull.html
         - text: "RepeatModeler & RepeatMasker"
           href: rep-model-mask.html
-          
+        - text: "PSMC Model Analysis"
+          href: psmc.html
         - text: "Proteomics"
           menu:
             - text: "AlphaFold"
