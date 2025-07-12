@@ -502,7 +502,6 @@ Through our orthology analysis, we found an uncharacterized hub gene in *S. greg
 ### Repeat Content Analysis
 
 To visualize the repeat content of our genomes for this project, I used created Kimura plots for each species using a script by A.J. Ludington that can be found [here](https://github.com/a-lud/sea-snake-selection/blob/main/figures/scripts/kimura-plot.R). I have developed this script to be more user-friendly and easier to adapt for other data. Additionally, our data necessitated some changes to the layout of the figures, so those details are also included in the altered script. That altered script can be found [here](kimura.html). Here are the plots I obtained for each species:
-
 <center>
 ![](assets/stacked-kimura.png)
 
@@ -511,9 +510,7 @@ To visualize the repeat content of our genomes for this project, I used created 
 I ran PSMC analysis for each *Schistocerca* genome used in this project using the process outlined [here](psmc.html). My results are below:
 
 <center>
-
 <img src="assets/psmc/gregaria_bootstrapped_plot.png" style="width: 600px">
-
 <img src="assets/psmc/piceifrons_bootstrapped_plot.png" style="width: 600px">
-  
+<img src="assets/psmc/americana_bootstrapped_plot.png" style="width: 600px">
 </center>

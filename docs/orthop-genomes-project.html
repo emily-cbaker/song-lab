@@ -358,7 +358,7 @@ gregaria</h1>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -369,8 +369,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -383,9 +383,9 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>song-lab/</code> <span
@@ -408,18 +408,21 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
@@ -510,15 +513,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreec9a13b52d09f5b1ebb5643266c1580673a143a42targetblankc9a13b5a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree97c5e6ce376a27871cdc61b162a81d1d314c3409targetblank97c5e6ca">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/c9a13b52d09f5b1ebb5643266c1580673a143a42" target="_blank">c9a13b5</a>
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/97c5e6ce376a27871cdc61b162a81d1d314c3409" target="_blank">97c5e6c</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtreec9a13b52d09f5b1ebb5643266c1580673a143a42targetblankc9a13b5a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree97c5e6ce376a27871cdc61b162a81d1d314c3409targetblank97c5e6ca"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -528,7 +531,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/c9a13b52d09f5b1ebb5643266c1580673a143a42" target="_blank">c9a13b5</a>.
+<a href="https://github.com/ecbaker7-tamu/song-lab/tree/97c5e6ce376a27871cdc61b162a81d1d314c3409" target="_blank">97c5e6c</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -547,6 +550,9 @@ Ignored files:
     Ignored:    .RData
     Ignored:    .Rhistory
     Ignored:    analysis/.DS_Store
+
+Unstaged changes:
+    Modified:   analysis/orthop-genomes-project.Rmd
 
 </code></pre>
 <p>
@@ -592,6 +598,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/97c5e6ce376a27871cdc61b162a81d1d314c3409/docs/orthop-genomes-project.html" target="_blank">97c5e6c</a>
+</td>
+<td>
+ecbaker7-tamu
+</td>
+<td>
+2025-07-11
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -3865,16 +3888,16 @@ ortholgous protein from <em>D. melanogaster</em>.</p>
 </div>
 <div id="repeat-content-analysis" class="section level3">
 <h3>Repeat Content Analysis</h3>
-<p>To visualize the repeat content of our genomes for this project, I
-used created Kimura plots for each species using a script by A.J.
-Ludington that can be found <a
+To visualize the repeat content of our genomes for this project, I used
+created Kimura plots for each species using a script by A.J. Ludington
+that can be found <a
 href="https://github.com/a-lud/sea-snake-selection/blob/main/figures/scripts/kimura-plot.R">here</a>.
 I have developed this script to be more user-friendly and easier to
 adapt for other data. Additionally, our data necessitated some changes
 to the layout of the figures, so those details are also included in the
 altered script. That altered script can be found <a
 href="kimura.html">here</a>. Here are the plots I obtained for each
-species:</p>
+species:
 <center>
 <p><img src="assets/stacked-kimura.png" /></p>
 </div>
@@ -3884,8 +3907,9 @@ species:</p>
 this project using the process outlined <a href="psmc.html">here</a>. My
 results are below:</p>
 <center>
-<p><img src="assets/psmc/gregaria_bootstrapped_plot.png" style="width: 600px"></p>
-<p><img src="assets/psmc/piceifrons_bootstrapped_plot.png" style="width: 600px"></p>
+<img src="assets/psmc/gregaria_bootstrapped_plot.png" style="width: 600px">
+<img src="assets/psmc/piceifrons_bootstrapped_plot.png" style="width: 600px">
+<img src="assets/psmc/americana_bootstrapped_plot.png" style="width: 600px">
 </center>
 <br>
 <p>
@@ -3914,21 +3938,20 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] kableExtra_1.4.0 knitr_1.50       workflowr_1.7.1 
+[1] kableExtra_1.4.0 knitr_1.50      
 
 loaded via a namespace (and not attached):
  [1] jsonlite_2.0.0    compiler_4.4.2    promises_1.3.2    Rcpp_1.0.14      
- [5] xml2_1.3.8        stringr_1.5.1     git2r_0.36.2      callr_3.7.6      
- [9] later_1.4.2       jquerylib_0.1.4   systemfonts_1.2.2 scales_1.3.0     
-[13] yaml_2.3.10       fastmap_1.2.0     R6_2.6.1          tibble_3.2.1     
+ [5] xml2_1.3.8        stringr_1.5.1     git2r_0.36.2      later_1.4.2      
+ [9] jquerylib_0.1.4   systemfonts_1.2.2 scales_1.3.0      yaml_2.3.10      
+[13] fastmap_1.2.0     R6_2.6.1          workflowr_1.7.1   tibble_3.2.1     
 [17] munsell_0.5.1     rprojroot_2.0.4   svglite_2.1.3     bslib_0.9.0      
 [21] pillar_1.10.2     rlang_1.1.6       cachem_1.1.0      stringi_1.8.7    
-[25] httpuv_1.6.16     xfun_0.52         getPass_0.2-4     fs_1.6.6         
-[29] sass_0.4.10       viridisLite_0.4.2 cli_3.6.4         magrittr_2.0.3   
-[33] ps_1.9.1          digest_0.6.37     processx_3.8.6    rstudioapi_0.17.1
-[37] lifecycle_1.0.4   vctrs_0.6.5       evaluate_1.0.3    glue_1.8.0       
-[41] whisker_0.4.1     colorspace_2.1-1  rmarkdown_2.29    httr_1.4.7       
-[45] tools_4.4.2       pkgconfig_2.0.3   htmltools_0.5.8.1</code></pre>
+[25] httpuv_1.6.16     xfun_0.52         fs_1.6.6          sass_0.4.10      
+[29] viridisLite_0.4.2 cli_3.6.4         magrittr_2.0.3    digest_0.6.37    
+[33] rstudioapi_0.17.1 lifecycle_1.0.4   vctrs_0.6.5       evaluate_1.0.3   
+[37] glue_1.8.0        whisker_0.4.1     colorspace_2.1-1  rmarkdown_2.29   
+[41] tools_4.4.2       pkgconfig_2.0.3   htmltools_0.5.8.1</code></pre>
 </div>
 </div>
 </div>
