@@ -257,6 +257,64 @@ psmc_plot.pl -p -g 2.2 -u 0.00000000506 bootstrapped_plot  sample_combined.psmc
 ```
 
 
+##### OPTIONAL: Adding a title to your plot
+
+<center>
+<b>[Example of a Titled Plot](orthop-genomes-project.html#psmc-analysis)</b>
+</center>
+
+There is no option to add a plot title in the psmc module, so if you want your plot to be named, you'll have to directly edit the gnuplot file. Search for a file in your PSMC dirctory ending in the extension *.gnuplot* or *.gp*. Then type 
+
+```{r, eval=FALSE}
+nano YOURFILE.gp
+```
+into your terminal to edit the gnuplot file. Then, find where the x and y labels are set. The file layout should look something like this:
+
+```{r, eval=FALSE}
+  set size 1, 0.8;
+  set xran [10000:*];
+  set log x;
+  set format x "10^{%L}";
+  set mxtics 10;
+  set mytics 10;
+  unset grid;
+  set key off;
+  set xtics font "Helvetica,16";
+  set ytics nomirror font "Helvetica,16";
+  set xlab "Years (g=2.2, {/Symbol m}=0.5x10^{-8})" font "Helvetica,16";
+  set t po eps enhance so co "Helvetica,16";
+
+  set yran [0:*];
+  set ylab "Effective population size (x10^4)" font "Helvetica,16";
+  set out "Schistocerca piceifrons.eps";
+  set style line 1 lt 1 lc rgb "#FF0000" lw 4;
+```
+
+and add the line set title "Your Title" below the set x and y label commands. For example, my file looks like this for *Schistocerca piceifrons*:
+
+```{r, eval=FALSE}
+ set size 1, 0.8;
+  set xran [10000:*];
+  set log x;
+  set format x "10^{%L}";
+  set mxtics 10;
+  set mytics 10;
+  unset grid;
+  set key off;
+  set xtics font "Helvetica,16";
+  set ytics nomirror font "Helvetica,16";
+  set xlab "Years (g=2.2, {/Symbol m}=0.5x10^{-8})" font "Helvetica,16";
+  set t po eps enhance so co "Helvetica,16";
+
+  set yran [0:*];
+  set ylab "Effective population size (x10^4)" font "Helvetica,16";
+
+  set title "Schistocerca piceifrons" font "Helvetica-Italic,24";
+
+  set out "Schistocerca piceifrons.eps";
+  set style line 1 lt 1 lc rgb "#FF0000" lw 4;
+
+```
 #### Citations
 
 Mather, Niklas, et al. “A Practical Introduction to Sequentially Markovian Coalescent Methods for Estimating Demographic History From Genomic Data.” Ecology and Evolution, vol. 10, no. 1, Dec. 2019, pp. 579–89, doi:10.1002/ece3.5888.

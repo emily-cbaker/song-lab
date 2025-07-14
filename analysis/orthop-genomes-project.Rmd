@@ -505,7 +505,7 @@ To visualize the repeat content of our genomes for this project, I used created 
 <center>
 ![](assets/stacked-kimura.png)
 
-### PSMC Analysis
+### PSMC Analysis { #psmc-analysis }
 
 I ran PSMC analysis for each *Schistocerca* genome used in this project using the process outlined [here](psmc.html). My results are below:
 
@@ -513,4 +513,7 @@ I ran PSMC analysis for each *Schistocerca* genome used in this project using th
 <img src="assets/psmc/gregaria_bootstrapped_plot.png" style="width: 600px">
 <img src="assets/psmc/piceifrons_bootstrapped_plot.png" style="width: 600px">
 <img src="assets/psmc/americana_bootstrapped_plot.png" style="width: 600px">
+<img src="assets/psmc/seri_bootstrapped_plot.png" style="width: 600px">
+<img src="assets/psmc/nitens_bootstrapped_plot.png" style="width: 600px">
+
 </center>
