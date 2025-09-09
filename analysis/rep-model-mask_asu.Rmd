@@ -1,0 +1,61 @@
+---
+title: "Repeat Modeler and Masker"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: true
+    toc_float: true
+    toc_collapsed: false
+    theme: default
+    css: "theme3.css"
+toc_depth: 1
+number_sections: true
+editor_options:
+  chunk_output_type: console
+---
+## Identifying and Processing Repeat Content
+<!-- ## What is RepeatModeler & RepeatMasker? -->
+
+## Script
+
+To run both Repeat Modeler and Masker, we used the following script created by Amanda Stahlke at Colorado Mesa University, modified to run on the TAMU Grace cluster.
+
+```{r, eval=FALSE}
+
+#!/bin/bash
+#SBATCH --job-name=Repeat-SPECIES
+#SBATCH --time=7-00:00:00
+#SBATCH --nodes=1          # max 64 nodes for partition long
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=48
+#SBATCH --mem=360G
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=user@mail.com
+#SBATCH --output=stdout.%x.%j
+#SBATCH --error=stderr.%x.%j
+
+ASM={Genome File Suffix}_genomic.fa
+NM={Genome Name}
+
+module purge
+module load GCC/12.3.0 openmpi/4.1.5 RepeatModeler/2.0.6
+
+printf "Built repeatmodler2 database on $ASM to build de novo custom library called $NM \n"
+BuildDatabase -name $NM $ASM 
+printf "Ran repeatmodler2 with LTRStruct on $ASM for  de novo custom library called $NM \n"
+RepeatModeler -threads 40 -LTRStruct -database $NM 
+
+module purge
+module load GCC/11.3.0 OpenMPI/4.1.4 RepeatMasker/4.1.4
+
+printf "Running RepeatMasker on $ASM"
+RepeatMasker -pa 40 -a -gff -lib ${NM}-families.fa -dir denovo2 $ASM
+
+```
+
+Please note the use of the *-a* flag, which is used to generate an alignment file during the masking process. This is important for generating the Kimura plots mentioned later on this page
+
+## Visualization 
+
+Plot Kimura scores of individual repeat types for one or more species: [here](kimura.html)
+

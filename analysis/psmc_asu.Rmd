@@ -69,7 +69,7 @@ GENOME_FILE = "GCF_023897955.1_iqSchGreg1.2_genomic.fa"
 
 ################################ STEP 1: Align with BWA ###############################
 module purge 
-ml GCC/13.2.0 BWA/0.7.18 SAMtools/1.19.2 
+ml gcc-13.2.0-gcc-12.1.0 BWA/0.7.18 SAMtools/1.19.2 
 
 bwa index -p "${SPECIES_NAME_ABBR}" "${GENOME_FILE}"
 
@@ -101,7 +101,7 @@ java -jar $EBROOTPICARD/picard.jar SortSam \
 
 ################### STEP 3: Generate variant consensus fastq for PSMC #################
 module purge
-ml GCC/13.2.0 BCFtools/1.19
+ml gcc-13.2.0-gcc-12.1.0 BCFtools/1.19
 
 bcftools mpileup -Q 20 -q 20 -f GCF_023897955.1_iqSchGreg1.2_genomic.fa \
     sorted.bam --threads 8 | \

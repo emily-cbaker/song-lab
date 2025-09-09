@@ -13,16 +13,26 @@ navbar:
           href: orthop-genomes-project.html
         - text: "Comparative Genomics of Mormon Cricket subgroups -- UNDER CONSTRUCTION"
           href:
+        - text: "Ensifera Ear Transcriptomics -- UNDER CONSTRUCTION"
+          href:
 
     - text: "Workflows"
       icon: fa-code
       menu:
-        - text: "FormicidaeMolecularEvolution - OrthoFinder Workflow for Longest Isoform"
-          href: barkdull.html
-        - text: "RepeatModeler & RepeatMasker"
-          href: rep-model-mask.html
-        - text: "PSMC Model Analysis"
-          href: psmc.html
+        - text: "TAMU"
+          - text: "FormicidaeMolecularEvolution - OrthoFinder Workflow for Longest Isoform"
+            href: barkdull.html
+          - text: "RepeatModeler & RepeatMasker"
+            href: rep-model-mask.html
+          - text: "PSMC Model Analysis"
+            href: psmc.html
+        - text: "ASU"
+          - text: "FormicidaeMolecularEvolution - OrthoFinder Workflow for Longest Isoform"
+            href: barkdull_asu.html
+          - text: "RepeatModeler & RepeatMasker"
+            href: rep-model-mask_asu.html
+          - text: "PSMC Model Analysis"
+            href: psmc_asu.html          
         - text: "Proteomics"
           menu:
             - text: "AlphaFold"

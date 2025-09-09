@@ -3,6 +3,7 @@ wflow_publish(c(
 "analysis/Apollo.Rmd",
 "analysis/augustus.Rmd",
 "analysis/barkdull.Rmd",
+"analysis/barkdull_asu.Rmd",
 "analysis/braker.Rmd",
 "analysis/cafe5.Rmd",
 "analysis/chimerax.Rmd",
@@ -15,7 +16,9 @@ wflow_publish(c(
 "analysis/orthop-genomes-project.Rmd",
 "analysis/pop-genomics-morm-crick.Rmd",
 "analysis/psmc.Rmd",
+"analysis/psmc_asu.Rmd",
 "analysis/rep-model-mask.Rmd",
+"analysis/rep-model-mask_asu.Rmd",
 "analysis/slurm-comm.Rmd",
 "analysis/toga.Rmd"
 ))
