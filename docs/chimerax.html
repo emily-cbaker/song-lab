@@ -264,10 +264,9 @@ $(document).ready(function () {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="orthop-genomes-project.html">Comparative Genomics of Schistocerca gregaria</a>
-    </li>
+    <li class="dropdown-header">Comparative Genomics of Schistocerca gregaria -- In prep</li>
     <li class="dropdown-header">Comparative Genomics of Mormon Cricket subgroups -- UNDER CONSTRUCTION</li>
+    <li class="dropdown-header">Ensifera Ear Transcriptomics -- UNDER CONSTRUCTION</li>
   </ul>
 </li>
 <li class="dropdown">
@@ -279,14 +278,34 @@ $(document).ready(function () {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="barkdull.html">FormicidaeMolecularEvolution - OrthoFinder Workflow for Longest Isoform</a>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">TAMU</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="barkdull.html">FormicidaeMolecularEvolution - OrthoFinder Workflow for Longest Isoform</a>
+        </li>
+        <li>
+          <a href="rep-model-mask.html">RepeatModeler &amp; RepeatMasker</a>
+        </li>
+        <li>
+          <a href="psmc.html">PSMC Model Analysis</a>
+        </li>
+      </ul>
     </li>
-    <li>
-      <a href="rep-model-mask.html">RepeatModeler &amp; RepeatMasker</a>
-    </li>
-    <li>
-      <a href="psmc.html">PSMC Model Analysis</a>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">ASU</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="barkdull_asu.html">FormicidaeMolecularEvolution - OrthoFinder Workflow for Longest Isoform</a>
+        </li>
+        <li>
+          <a href="rep-model-mask_asu.html">RepeatModeler &amp; RepeatMasker</a>
+        </li>
+        <li>
+          <a href="psmc_asu.html">PSMC Model Analysis</a>
+        </li>
+        <li class="dropdown-header">Transcriptomics</li>
+      </ul>
     </li>
     <li class="dropdown-submenu">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Proteomics</a>
@@ -376,7 +395,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2025-07-13
+<strong>Last updated:</strong> 2025-09-09
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -507,15 +526,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree84faef785184abdc04b4c5199bf522cad7cd9a89targetblank84faef7a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtree5cedb3d95a698f69039c19ccdb2e1bf63737eca7targetblank5cedb3da">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/84faef785184abdc04b4c5199bf522cad7cd9a89" target="_blank">84faef7</a>
+<a href="https://github.com/emily-cbaker/song-lab/tree/5cedb3d95a698f69039c19ccdb2e1bf63737eca7" target="_blank">5cedb3d</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomecbaker7tamusonglabtree84faef785184abdc04b4c5199bf522cad7cd9a89targetblank84faef7a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtree5cedb3d95a698f69039c19ccdb2e1bf63737eca7targetblank5cedb3da"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -525,7 +544,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/ecbaker7-tamu/song-lab/tree/84faef785184abdc04b4c5199bf522cad7cd9a89" target="_blank">84faef7</a>.
+<a href="https://github.com/emily-cbaker/song-lab/tree/5cedb3d95a698f69039c19ccdb2e1bf63737eca7" target="_blank">5cedb3d</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -544,6 +563,9 @@ Ignored files:
     Ignored:    .RData
     Ignored:    .Rhistory
     Ignored:    analysis/.DS_Store
+
+Unstaged changes:
+    Modified:   analysis/_site.yml
 
 </code></pre>
 <p>
@@ -593,7 +615,24 @@ Message
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/97c5e6ce376a27871cdc61b162a81d1d314c3409/docs/chimerax.html" target="_blank">97c5e6c</a>
+<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/2dff33cea2a8edc040224e29433a47bb56f26835/docs/chimerax.html" target="_blank">2dff33c</a>
+</td>
+<td>
+ecbaker7-tamu
+</td>
+<td>
+2025-07-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/97c5e6ce376a27871cdc61b162a81d1d314c3409/docs/chimerax.html" target="_blank">97c5e6c</a>
 </td>
 <td>
 ecbaker7-tamu
@@ -610,7 +649,7 @@ Build site.
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/a1b980b1cdd4fe50a1a3d6b10949e589e8f1b825/docs/chimerax.html" target="_blank">a1b980b</a>
+<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/a1b980b1cdd4fe50a1a3d6b10949e589e8f1b825/docs/chimerax.html" target="_blank">a1b980b</a>
 </td>
 <td>
 ecbaker7-tamu
@@ -627,7 +666,7 @@ Build site.
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/4e146c4576f9c498f75eb81aa9193b039c9d4fcc/docs/chimerax.html" target="_blank">4e146c4</a>
+<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/4e146c4576f9c498f75eb81aa9193b039c9d4fcc/docs/chimerax.html" target="_blank">4e146c4</a>
 </td>
 <td>
 ecbaker7-tamu
@@ -644,7 +683,7 @@ Build site.
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/7a5615778c5c2cf842b2ae1b8c5969112f4bef73/docs/chimerax.html" target="_blank">7a56157</a>
+<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/7a5615778c5c2cf842b2ae1b8c5969112f4bef73/docs/chimerax.html" target="_blank">7a56157</a>
 </td>
 <td>
 ecbaker7-tamu
@@ -661,7 +700,7 @@ Build site.
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/fecf69695ef32ed4f732693ce7fb0749bedc3a3e/docs/chimerax.html" target="_blank">fecf696</a>
+<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/fecf69695ef32ed4f732693ce7fb0749bedc3a3e/docs/chimerax.html" target="_blank">fecf696</a>
 </td>
 <td>
 ecbaker7-tamu
@@ -678,7 +717,7 @@ Build site.
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/9ed28350316f5760a28dc7c92480d718b24a7c5b/docs/chimerax.html" target="_blank">9ed2835</a>
+<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/9ed28350316f5760a28dc7c92480d718b24a7c5b/docs/chimerax.html" target="_blank">9ed2835</a>
 </td>
 <td>
 ecbaker7-tamu
@@ -695,7 +734,7 @@ Build site.
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/05539da9915300f741c6fda620038213ded63e5b/docs/chimerax.html" target="_blank">05539da</a>
+<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/05539da9915300f741c6fda620038213ded63e5b/docs/chimerax.html" target="_blank">05539da</a>
 </td>
 <td>
 ecbaker7-tamu
@@ -712,7 +751,7 @@ Build site.
 Rmd
 </td>
 <td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/638b4d2eb0c93f48a1f1679f39b19dd83557ada3/analysis/chimerax.Rmd" target="_blank">638b4d2</a>
+<a href="https://github.com/emily-cbaker/song-lab/blob/638b4d2eb0c93f48a1f1679f39b19dd83557ada3/analysis/chimerax.Rmd" target="_blank">638b4d2</a>
 </td>
 <td>
 ecbaker7-tamu
@@ -729,7 +768,7 @@ wflow_publish(c("analysis/alphafold.Rmd", "analysis/Apollo.Rmd",
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/ad2ac0606d6ada9812f82d214d88171a2d69673a/docs/chimerax.html" target="_blank">ad2ac06</a>
+<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/ad2ac0606d6ada9812f82d214d88171a2d69673a/docs/chimerax.html" target="_blank">ad2ac06</a>
 </td>
 <td>
 ecbaker7-tamu
@@ -746,7 +785,7 @@ Build site.
 Rmd
 </td>
 <td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/a302b2806831239bbdea852edd453c41d6b89408/analysis/chimerax.Rmd" target="_blank">a302b28</a>
+<a href="https://github.com/emily-cbaker/song-lab/blob/a302b2806831239bbdea852edd453c41d6b89408/analysis/chimerax.Rmd" target="_blank">a302b28</a>
 </td>
 <td>
 ecbaker7-tamu
@@ -763,7 +802,7 @@ wflow_publish(c("analysis/alphafold.Rmd", "analysis/Apollo.Rmd",
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/ecbaker7-tamu/song-lab/729de9688ab12a7636a75643ec35e40f91cadddd/docs/chimerax.html" target="_blank">729de96</a>
+<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/729de9688ab12a7636a75643ec35e40f91cadddd/docs/chimerax.html" target="_blank">729de96</a>
 </td>
 <td>
 ecbaker7-tamu
@@ -780,7 +819,7 @@ Build site.
 Rmd
 </td>
 <td>
-<a href="https://github.com/ecbaker7-tamu/song-lab/blob/b2b35b2d503db89b116e8155fd40983daf557fbf/analysis/chimerax.Rmd" target="_blank">b2b35b2</a>
+<a href="https://github.com/emily-cbaker/song-lab/blob/b2b35b2d503db89b116e8155fd40983daf557fbf/analysis/chimerax.Rmd" target="_blank">b2b35b2</a>
 </td>
 <td>
 ecbaker7-tamu
@@ -896,7 +935,7 @@ LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlap
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 
-time zone: America/Chicago
+time zone: America/Phoenix
 tzcode source: internal
 
 attached base packages:

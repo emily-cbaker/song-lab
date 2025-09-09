@@ -11,7 +11,7 @@
 
 
 
-<title>make_lastz_chains</title>
+<title>Repeat Modeler and Masker</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -232,6 +235,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -239,6 +305,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -366,7 +442,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">make_lastz_chains</h1>
+<h1 class="title toc-ignore">Repeat Modeler and Masker</h1>
 
 </div>
 
@@ -582,10 +658,11 @@ have uncommitted changes.
 <div id="versions" class="tab-pane fade">
 <p>
 These are the previous versions of the repository in which changes were
-made to the R Markdown (<code>analysis/mlc.Rmd</code>) and HTML
-(<code>docs/mlc.html</code>) files. If you’ve configured a remote Git
-repository (see <code>?wflow_git_remote</code>), click on the hyperlinks
-in the table below to view the files as they were in that past version.
+made to the R Markdown (<code>analysis/rep-model-mask_asu.Rmd</code>)
+and HTML (<code>docs/rep-model-mask_asu.html</code>) files. If you’ve
+configured a remote Git repository (see <code>?wflow_git_remote</code>),
+click on the hyperlinks in the table below to view the files as they
+were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -611,632 +688,19 @@ Message
 <tbody>
 <tr>
 <td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/2dff33cea2a8edc040224e29433a47bb56f26835/docs/mlc.html" target="_blank">2dff33c</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-07-13
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/97c5e6ce376a27871cdc61b162a81d1d314c3409/docs/mlc.html" target="_blank">97c5e6c</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-07-11
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/a1b980b1cdd4fe50a1a3d6b10949e589e8f1b825/docs/mlc.html" target="_blank">a1b980b</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-07-10
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/4e146c4576f9c498f75eb81aa9193b039c9d4fcc/docs/mlc.html" target="_blank">4e146c4</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-07-02
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/7a5615778c5c2cf842b2ae1b8c5969112f4bef73/docs/mlc.html" target="_blank">7a56157</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-05-29
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/fecf69695ef32ed4f732693ce7fb0749bedc3a3e/docs/mlc.html" target="_blank">fecf696</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-05-20
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/9ed28350316f5760a28dc7c92480d718b24a7c5b/docs/mlc.html" target="_blank">9ed2835</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-05-20
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/05539da9915300f741c6fda620038213ded63e5b/docs/mlc.html" target="_blank">05539da</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-05-20
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/ad2ac0606d6ada9812f82d214d88171a2d69673a/docs/mlc.html" target="_blank">ad2ac06</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-04-15
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/729de9688ab12a7636a75643ec35e40f91cadddd/docs/mlc.html" target="_blank">729de96</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-04-11
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/63d1ad06520e7f288ebaa6562d63fe2865527bf7/docs/mlc.html" target="_blank">63d1ad0</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-04-10
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/aaa78c46da9d439cbb501e9591ecc971e6283817/docs/mlc.html" target="_blank">aaa78c4</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-01-16
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/a9233f82b9e3a659c6612c7f6f8279fb2e79e21d/docs/mlc.html" target="_blank">a9233f8</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-12-16
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/b96dd10e745964b9491094cb342a421b6affab80/docs/mlc.html" target="_blank">b96dd10</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-10-01
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/3731e9e5fc895d0bb1d501e825e40d8f92ec9e6d/docs/mlc.html" target="_blank">3731e9e</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-09-16
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/0c3ed6b76968749b6ad01b7a66f347fc1d7b8be3/docs/mlc.html" target="_blank">0c3ed6b</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-09-16
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/79140076f6780bbbd8c216112c863ca77cdafb1a/docs/mlc.html" target="_blank">7914007</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-08-26
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/98122725125fb3eac2898505b1869c1b94c26204/docs/mlc.html" target="_blank">9812272</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-07-31
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/f2bc75a7088b701660c636f42bc845588b644ad2/docs/mlc.html" target="_blank">f2bc75a</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-07-15
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/c93686e4e53271171e03b8c09ccd48906b416205/docs/mlc.html" target="_blank">c93686e</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-07-15
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
 Rmd
 </td>
 <td>
-<a href="https://github.com/emily-cbaker/song-lab/blob/9a95e4e4daf346e551af00fb5642b117cba37e1e/analysis/mlc.Rmd" target="_blank">9a95e4e</a>
+<a href="https://github.com/emily-cbaker/song-lab/blob/959b8210675c3b5a73bb951298a634887878f34c/analysis/rep-model-mask_asu.Rmd" target="_blank">959b821</a>
 </td>
 <td>
-Emily Baker
+ecbaker7-tamu
 </td>
 <td>
-2024-07-15
+2025-09-09
 </td>
 <td>
-wflow_publish(c("analysis/cafe5.Rmd", "analysis/augustus.Rmd",
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/783cca38f0df082611321d7be930f88510b823c9/docs/mlc.html" target="_blank">783cca3</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-07-03
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/emily-cbaker/song-lab/blob/a60be8ed2b9562f92be143c0e35927110463bfcf/analysis/mlc.Rmd" target="_blank">a60be8e</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-07-03
-</td>
-<td>
-wflow_publish(c("analysis/barkdull.Rmd", "analysis/compare-genomes.Rmd",
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/521747a727d407e3232e8bdb9db449cef883fc91/docs/mlc.html" target="_blank">521747a</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-30
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/1126462a2adfb69005596da7dc536113a5fd9d75/docs/mlc.html" target="_blank">1126462</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-30
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/ad8ffae6b7fadda9860fff7d5f5b2d3bfe93339f/docs/mlc.html" target="_blank">ad8ffae</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-28
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/emily-cbaker/song-lab/blob/f23c37e754eb27304dc42564f4f61df0e3c82606/analysis/mlc.Rmd" target="_blank">f23c37e</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-28
-</td>
-<td>
-wflow_publish(c("analysis/week4-notes.Rmd",
-"analysis/orthop-genomes-project.Rmd",
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/94e9d6309b6decb954ef83ea7672e983e76b1e62/docs/mlc.html" target="_blank">94e9d63</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-27
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/emily-cbaker/song-lab/blob/8a621bdf242f76e9ab93716d2c690dd7bfae85d5/analysis/mlc.Rmd" target="_blank">8a621bd</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-27
-</td>
-<td>
-wflow_publish(c("analysis/index.Rmd", "analysis/week4-notes.Rmd",
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/a64d72711660f0baffa8eca1e5f5bb5ae3f4aaf1/docs/mlc.html" target="_blank">a64d727</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-26
-</td>
-<td>
-commit images
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/7ab1aa198291b18c7f74ce5b49291eda6110df35/docs/mlc.html" target="_blank">7ab1aa1</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-24
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/emily-cbaker/song-lab/blob/a87b0a82eefad50f339a689d0f1d7c9e2806e691/analysis/mlc.Rmd" target="_blank">a87b0a8</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-24
-</td>
-<td>
-wflow_publish("analysis/mlc.Rmd")
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/11fefb7898fe90d3464bcb5f4d530a4232781ed2/docs/mlc.html" target="_blank">11fefb7</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-19
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/emily-cbaker/song-lab/blob/e7e5c1a7e64ada1d372c7cd8610874cacf21eb8e/analysis/mlc.Rmd" target="_blank">e7e5c1a</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-19
-</td>
-<td>
-commit
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/e7e5c1a7e64ada1d372c7cd8610874cacf21eb8e/docs/mlc.html" target="_blank">e7e5c1a</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-19
-</td>
-<td>
-commit
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/a53134bcb7eea19f0ab5254c99f102c17c849f89/docs/mlc.html" target="_blank">a53134b</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/emily-cbaker/song-lab/blob/bb84281b2b6c35bb5f2577709bc03509a4881e66/analysis/mlc.Rmd" target="_blank">bb84281</a>
-</td>
-<td>
-Emily Baker
-</td>
-<td>
-2024-06-18
-</td>
-<td>
-wflow_publish("analysis/mlc.Rmd")
+Updates for ASU (some)
 </td>
 </tr>
 </tbody>
@@ -1246,185 +710,52 @@ wflow_publish("analysis/mlc.Rmd")
 </div>
 </div>
 </div>
-<div id="creating-genome-alignments-for-toga"
-class="section level2 tabset">
-<h2 class="tabset">Creating Genome Alignments for TOGA</h2>
-<div id="what-is-make_lastz_chains" class="section level3">
-<h3>What is make_lastz_chains?</h3>
-<blockquote>
-<p>This program is also from Hiller Lab (see <a
-href="toga.html">TOGA</a>) and it is a pipeline that takes in a
-reference and a query genome either as .fna or .2bit files and creates
-pairwise genome alignment pairs from them for use in TOGA.</p>
-</blockquote>
-<p>Read more in depth on their GitHub <a
-href="https://github.com/hillerlab/make_lastz_chains">here</a>.</p>
+<div id="identifying-and-processing-repeat-content"
+class="section level2">
+<h2>Identifying and Processing Repeat Content</h2>
+<!-- ## What is RepeatModeler & RepeatMasker? -->
 </div>
-<div id="installation-and-running" class="section level3">
-<h3>Installation and Running</h3>
-<center>
-<mark style="background: #f9d9da">This program is supported on MacOS,
-but the Hiller Lab team <em>highly<br />
-recommends</em> running it on a Linux-based machine.</mark>
-</center>
-<div id="prepare-files" class="section level4">
-<h4>Prepare Files</h4>
-<p>To acquire files to put into this pipeline, find your genome(s) of
-interest on NCBI, click on the FTP tab, and download the file ending in
-genomic.fna.gz. Then create a folder called <em>data</em> and copy your
-files from your system into this folder. Then run the command</p>
-<pre class="r"><code>gunzip YOUR-GENOME_genomic.fna.gz</code></pre>
-<p>This will turn your file from a .fna.gz to just .fna. Then create a
-file called <em>remove-headers.sh</em> in your <em>data</em> folder and
-copy the following code into it.</p>
+<div id="script" class="section level2">
+<h2>Script</h2>
+<p>To run both Repeat Modeler and Masker, we used the following script
+created by Amanda Stahlke at Colorado Mesa University, modified to run
+on the TAMU Grace cluster.</p>
 <pre class="r"><code>#!/bin/bash
+#SBATCH --job-name=Repeat-SPECIES
+#SBATCH --time=7-00:00:00
+#SBATCH --nodes=1          # max 64 nodes for partition long
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=48
+#SBATCH --mem=360G
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=user@mail.com
+#SBATCH --output=stdout.%x.%j
+#SBATCH --error=stderr.%x.%j
 
-# Define the input and output files
-input_file=&quot;input-name.fna&quot;
-output_file=&quot;input-name_only_contig_name.fna&quot;
+ASM={Genome File Suffix}_genomic.fa
+NM={Genome Name}
 
-# Use sed to process both headers and sequences in one pass
-sed -e &#39;s/^\(&gt;\S*\).*/\1/&#39; &quot;$input_file&quot; &gt; &quot;$output_file&quot;
+module purge
+module load GCC/12.3.0 openmpi/4.1.5 RepeatModeler/2.0.6
 
-echo &quot;Processing complete. Output written to $output_file.&quot;</code></pre>
-<p>This script removes everything except the contig name from the
-headers in the .fna file. We do this because make_lastz_chains will
-through a spacing error otherwise. <u> You must do this for each file
-you intend to create chains for.</u> You are now ready to run this
-pipeline!</p>
-<p>You can also run RepeatMasker and RepeatModeler on your genome files.
-The compatible versions are RepeatMasker/4.1.4 and
-RepeatModeler/2.0.5.</p>
-</div>
-<div id="running-on-grace" class="section level4">
-<h4>Running on Grace</h4>
-<p>To run the make_lastz_chains pipeline on Grace, create a file in your
-folder for make_lastz_chains called <em>run-mlc.sh</em> and copy and
-paste the following code into it:</p>
-<pre class="r"><code>#!/bin/sh
-#SBATCH --time=0-1:00:00
-#SBATCH --ntasks=48
-#SBATCH --mem=50G
-#SBATCH --nodes=1
-#SBATCH --job-name=MLC-TEST
+printf &quot;Built repeatmodler2 database on $ASM to build de novo custom library called $NM \n&quot;
+BuildDatabase -name $NM $ASM 
+printf &quot;Ran repeatmodler2 with LTRStruct on $ASM for  de novo custom library called $NM \n&quot;
+RepeatModeler -threads 40 -LTRStruct -database $NM 
 
-# module purge
+module purge
+module load GCC/11.3.0 OpenMPI/4.1.4 RepeatMasker/4.1.4
 
-module load GCC/12.3.0  make_lastz_chains/1.0.0  # load modules
-
-conda activate mlc
-
-./make_chains.py target query ${Path to Target Genome} ${Path to Query Genome} --pd test_out -f --chaining_memory 16 --executor slurm</code></pre>
-<p>Then run this script using the command</p>
-<pre class="r"><code>sbatch run-mlc.sh</code></pre>
+printf &quot;Running RepeatMasker on $ASM&quot;
+RepeatMasker -pa 40 -a -gff -lib ${NM}-families.fa -dir denovo2 $ASM</code></pre>
+<p>Please note the use of the <em>-a</em> flag, which is used to
+generate an alignment file during the masking process. This is important
+for generating the Kimura plots mentioned later on this page</p>
 </div>
-<div id="running-in-a-conda-environment" class="section level4">
-<h4>Running in a Conda Environment</h4>
-<p>Follow the instructions on the Hiller Lab GitHub <a
-href="https://github.com/hillerlab/make_lastz_chains">here</a> to
-install.</p>
-</div>
-</div>
-<div id="troubleshooting" class="section level3">
-<h3>Troubleshooting</h3>
-<div
-id="fatal-could-not-read-from-remote-repository.-please-make-sure-you-have-the-correct-access-rights-and-the-repository-exists."
-class="section level4">
-<h4>fatal: Could not read from remote repository. Please make sure you
-have the correct access rights and the repository exists.</h4>
-<p>The full error is here:</p>
-<pre class="r"><code>Warning: Permanently added the ECDSA host key for IP address &#39;140.82.113.3&#39; to the list of known hosts. Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists.</code></pre>
-<p>I corrected this by going into my home &gt; .ssh directory in Grace
-and adding the passkey from <em>id_rsa.pub</em> to my GitHub SSH keys.
-This is the public key the Grace terminal uses to download files from
-GitHub. This allowed me to download from the Hiller Lab repository.</p>
-<p>If your <em>id_rsa.pub</em> file is empty, visit <a
-href="https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Fix-GitHubs-Permission-denied-publickey-SSH-error">this
-link</a>. It has the full documentation that I followed to fix this
-error. Here you will find instructions on how to get the necessary
-information in your <em>id_rsa.pub</em> file.</p>
-</div>
-<div id="error-detected-space-or-tab-containing-sequence"
-class="section level4">
-<h4>Error: detected space-or-tab-containing sequence</h4>
-<p>The whole error is below:</p>
-<pre class="r"><code>Error! File: data/Nitens-and-Greg/GCF_021461395.2_iqSchAmer2.1_genomic.fna - detected space-or-tab-containing sequence:
-NC_060119.1 Schistocerca americana isolate TAMUIC-IGC-003095 chromosome 1, iqSchAmer2.1, whole genome shotgun sequence
-Please exclude or fix sequences with spaces and tabs.</code></pre>
-<p>To correct this error, first run your .fna files through this
-script:</p>
-<pre class="r"><code>#!/bin/bash
-
-# Define the input and output files
-input_file=&quot;input-name.fna&quot;
-output_file=&quot;input-name_only_contig_name.fna&quot;
-
-# Use sed to process both headers and sequences in one pass
-sed -e &#39;s/^\(&gt;\S*\).*/\1/&#39; &quot;$input_file&quot; &gt; &quot;$output_file&quot;
-
-echo &quot;Processing complete. Output written to $output_file.&quot;</code></pre>
-<p>This removes everything following the contig name in each header of
-the fasta file.</p>
-</div>
-<div id="error-unrecognized-arguments--f" class="section level4">
-<h4>Error: unrecognized arguments: -f</h4>
-<p>The -f or -force flag is meant to overwrite an output folder if a
-folder exists with the same name already. This error occurs when there
-is no pre-existing folder to overwrite, so simply remove this flag from
-your command and rerun.</p>
-</div>
-<div id="modulenotfounderror-no-module-named-dataclasses"
-class="section level4">
-<h4>ModuleNotFoundError: No module named ‘dataclasses’</h4>
-<p>This error occurs for me when the incorrect GCC module is loaded on
-Grace, verify that GCC 12.3.0 is available on the cluster and if not
-contact IT.</p>
-<p>If running locally, verify that the correct GCC is loaded on your
-machine.</p>
-</div>
-<div id="error-the-nextflow-process-lastz-crashed"
-class="section level4">
-<h4>Error! The nextflow process lastz crashed!</h4>
-<p>This error is addressed on the Hiller Lab GitHub page <a
-href="https://github.com/hillerlab/make_lastz_chains/issues/16">here</a>,
-but here is the comment from Dr. Hiller containing both the source of
-the issue and the solution: “I think, based on the log file, you don’t
-get to the chaining step, as some of the lastz jobs fail (increasing
-chaining mem is downstream). This typically happens when lastz ‘sees’
-too many seeds from repeats.</p>
-<p>If you already repeatModeled (a denovo RepeatModeler run is
-important) and masked your genome, you could try reducing chunksize
-(e.g. set –seq1_chunk 50000000 –seq2_chunk 10000000 ). Gives you more
-but smaller jobs.”</p>
-<p>So by adding the –seq1_chunk 50000000 and –seq2_chunk 10000000 flags
-to your <em>run-mlc.sh</em> file, this problem should be fixed.</p>
-</div>
-<div id="number-of-jobs-should-not-exceed-6000" class="section level4">
-<h4>Number of jobs should not exceed 6000</h4>
-<p>Run the command</p>
-<pre class="r"><code>rm -rf /scratch/group/songlab/emily/comparative-genomics/make_lastz_chains/greg-and-serialis/TEMP_run.lastz /scratch/group/songlab/emily/comparative-genomics/make_lastz_chains/greg-and-serialis/TEMP_psl</code></pre>
-<p>This command is provided by the error message in the
-make_lastz_chains module. If this does not work, increase your node
-memory in your slurm script and the chaining memory in your ./run-mlc.sh
-command. For example, IT had me increase my node memory from 50G to 360G
-and my chaining memory from 16 to 200.</p>
-</div>
-</div>
-<div id="citations" class="section level3">
-<h3>Citations</h3>
-<p>Kirilenko BM, Munegowda C, Osipova E, Jebb D, Sharma V, Blumer M,
-Morales A, Ahmed AW, Kontopoulos DG, Hilgers L, Lindblad-Toh K, Karlsson
-EK, Zoonomia Consortium, Hiller M. <em>Integrating gene annotation with
-orthology inference at scale.</em>, Science, 380, 2023</p>
-<p>Osipova E, Hecker N, Hiller M. <em>RepeatFiller newly identifies
-megabases of aligning repetitive sequences and improves annotations of
-conserved non-exonic elements</em>. GigaScience, 8(11), giz132, 2019</p>
-<p>Suarez H, Langer BE, Ladde P, Hiller M. <em>chainCleaner improves
-genome alignment specificity and sensitivity</em>. Bioinformatics,
-33(11), 1596-1603, 2017</p>
-<p>Kent WJ, Baertsch R, Hinrichs A, Miller W, Haussler D.
-<em>Evolution’s cauldron: Duplication, deletion, and rearrangement in
-the mouse and human genomes</em>, PNAS, 100(20):11484-9, 2003</p>
+<div id="visualization" class="section level2">
+<h2>Visualization</h2>
+<p>Plot Kimura scores of individual repeat types for one or more
+species: <a href="kimura.html">here</a></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1473,7 +804,6 @@ loaded via a namespace (and not attached):
 </div>
 </div>
 </div>
-</div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
@@ -1491,6 +821,8 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -1523,6 +855,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
