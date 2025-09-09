@@ -9,8 +9,8 @@ navbar:
     - text: "Projects"
       icon: fa-microscope
       menu:
-        - text: "Comparative Genomics of Schistocerca gregaria"
-          href: orthop-genomes-project.html
+        - text: "Comparative Genomics of Schistocerca gregaria -- In prep"
+          href:
         - text: "Comparative Genomics of Mormon Cricket subgroups -- UNDER CONSTRUCTION"
           href:
         - text: "Ensifera Ear Transcriptomics -- UNDER CONSTRUCTION"
@@ -32,7 +32,8 @@ navbar:
           - text: "RepeatModeler & RepeatMasker"
             href: rep-model-mask_asu.html
           - text: "PSMC Model Analysis"
-            href: psmc_asu.html          
+            href: psmc_asu.html
+          - text: "Transcri"
         - text: "Proteomics"
           menu:
             - text: "AlphaFold"
