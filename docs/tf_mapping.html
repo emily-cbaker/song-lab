@@ -11,7 +11,7 @@
 
 
 
-<title>Repeat Modeler and Masker</title>
+<title>Mapping Transcription Factors to Trancription Factor Families</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,9 +29,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -235,69 +232,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -305,16 +239,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -452,7 +376,8 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Repeat Modeler and Masker</h1>
+<h1 class="title toc-ignore">Mapping Transcription Factors to
+Trancription Factor Families</h1>
 
 </div>
 
@@ -670,11 +595,11 @@ have uncommitted changes.
 <div id="versions" class="tab-pane fade">
 <p>
 These are the previous versions of the repository in which changes were
-made to the R Markdown (<code>analysis/rep-model-mask_asu.Rmd</code>)
-and HTML (<code>docs/rep-model-mask_asu.html</code>) files. If you’ve
-configured a remote Git repository (see <code>?wflow_git_remote</code>),
-click on the hyperlinks in the table below to view the files as they
-were in that past version.
+made to the R Markdown (<code>analysis/tf_mapping.Rmd</code>) and HTML
+(<code>docs/tf_mapping.html</code>) files. If you’ve configured a remote
+Git repository (see <code>?wflow_git_remote</code>), click on the
+hyperlinks in the table below to view the files as they were in that
+past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -700,36 +625,19 @@ Message
 <tbody>
 <tr>
 <td>
-html
+Rmd
 </td>
 <td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/791a625b1fac52a4b4467889a7f51664d0b334da/docs/rep-model-mask_asu.html" target="_blank">791a625</a>
+<a href="https://github.com/emily-cbaker/song-lab/blob/36abff94147c225664d99cf5ce238f07b4dc794a/analysis/tf_mapping.Rmd" target="_blank">36abff9</a>
 </td>
 <td>
 emilyc-baker
 </td>
 <td>
-2025-09-09
+2025-09-17
 </td>
 <td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/emily-cbaker/song-lab/blob/959b8210675c3b5a73bb951298a634887878f34c/analysis/rep-model-mask_asu.Rmd" target="_blank">959b821</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-09-09
-</td>
-<td>
-Updates for ASU (some)
+wflow_publish(c("analysis/alphafold.Rmd", "analysis/Apollo.Rmd",
 </td>
 </tr>
 </tbody>
@@ -739,52 +647,106 @@ Updates for ASU (some)
 </div>
 </div>
 </div>
-<div id="identifying-and-processing-repeat-content"
-class="section level2">
-<h2>Identifying and Processing Repeat Content</h2>
-<!-- ## What is RepeatModeler & RepeatMasker? -->
+<div id="mapping-transcription-factors" class="section level2 tabset">
+<h2 class="tabset">Mapping Transcription Factors</h2>
+<div id="running-on-a-cluster" class="section level3">
+<h3>Running on a Cluster</h3>
+<center>
+<mark> This process is configured to run on the ASU Sols cluster.
+</mark>
+</center>
+<p>To conduct this process we will be using HMMER to map our
+transcription factors against the Pfam database. Additionally, this
+tutorial will be done the proteins of <em>Schistocerca piceifrons</em>.
+The protein data is available from NCBI <a
+href="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/021/461/385/GCF_021461385.2_iqSchPice1.1/">here</a></p>
+<div id="step-1-download-and-prepare-pfam" class="section level4">
+<h4>Step 1: Download and Prepare Pfam</h4>
+<pre class="r"><code># i) Get the latest Pfam-A HMMs
+wget ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz
+gunzip Pfam-A.hmm.gz
+
+module load hmmer-3.1b2-gcc-12.1.0 
+
+# ii) Index for hmmscan
+hmmpress Pfam-A.hmm
+
+# iii) Download protein data from NCBI, decompress file, and rename
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/021/461/385/GCF_021461385.2_iqSchPice1.1/GCF_021461385.2_iqSchPice1.1_protein.faa.gz
+
+gunzip GCF_021461385.2_iqSchPice1.1_protein.faa.gz
+
+mv GCF_021461385.2_iqSchPice1.1_protein.faa GCF_021461385.2_iqSchPice1.1_protein.fasta</code></pre>
 </div>
-<div id="script" class="section level2">
-<h2>Script</h2>
-<p>To run both Repeat Modeler and Masker, we used the following script
-created by Amanda Stahlke at Colorado Mesa University, modified to run
-on the TAMU Grace cluster.</p>
-<pre class="r"><code>#!/bin/bash
-#SBATCH --job-name=Repeat-SPECIES
-#SBATCH --time=7-00:00:00
-#SBATCH --nodes=1          # max 64 nodes for partition long
-#SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=48
-#SBATCH --mem=360G
-#SBATCH --mail-type=ALL
-#SBATCH --mail-user=user@mail.com
-#SBATCH --output=stdout.%x.%j
-#SBATCH --error=stderr.%x.%j
-
-ASM={Genome File Suffix}_genomic.fa
-NM={Genome Name}
-
-module purge
-module load GCC/12.3.0 openmpi/4.1.5 RepeatModeler/2.0.6
-
-printf &quot;Built repeatmodler2 database on $ASM to build de novo custom library called $NM \n&quot;
-BuildDatabase -name $NM $ASM 
-printf &quot;Ran repeatmodler2 with LTRStruct on $ASM for  de novo custom library called $NM \n&quot;
-RepeatModeler -threads 40 -LTRStruct -database $NM 
-
-module purge
-module load GCC/11.3.0 OpenMPI/4.1.4 RepeatMasker/4.1.4
-
-printf &quot;Running RepeatMasker on $ASM&quot;
-RepeatMasker -pa 40 -a -gff -lib ${NM}-families.fa -dir denovo2 $ASM</code></pre>
-<p>Please note the use of the <em>-a</em> flag, which is used to
-generate an alignment file during the masking process. This is important
-for generating the Kimura plots mentioned later on this page</p>
+<div id="step-2-run-hmmscan-on-proteins" class="section level4">
+<h4>Step 2: Run hmmscan on proteins</h4>
+<pre class="r"><code>hmmscan --cpu 4 \
+  --domtblout pfam.domtblout \
+  Pfam-A.hmm \
+  GCF_021461385.2_iqSchPice1.1_protein.fasta</code></pre>
+<p>This step will create a file called <em>pfam.domtblout</em>. Use the
+command ls -lh to check the file is not empty and the step has
+successfully run.</p>
 </div>
-<div id="visualization" class="section level2">
-<h2>Visualization</h2>
-<p>Plot Kimura scores of individual repeat types for one or more
-species: <a href="kimura.html">here</a></p>
+<div id="step-3-parse-and-map-to-transcription-factor-families-in-r"
+class="section level4">
+<h4>Step 3: Parse and map to transcription factor families in R</h4>
+<p>Create a file named parse-map-tf.R and copy and paste the following
+code into it:</p>
+<pre class="r"><code>library(dplyr)
+
+# 1) Read the domtblout (skip &quot;#&quot; comments)
+dom &lt;- read.delim(&quot;pfam.domtblout&quot;,
+                  header=FALSE,
+                  sep=&quot;&quot;)
+
+# 2) Name the first few columns per HMMER spec
+colnames(dom)[1:19] &lt;- c(
+  &quot;GeneID&quot;,&quot;Accession&quot;,&quot;Domain&quot;,&quot;EValue&quot;,&quot;Score&quot;,&quot;Bias&quot;,
+  paste0(&quot;i&quot;,1:10),
+  &quot;EnvStart&quot;,&quot;EnvEnd&quot;,&quot;DomainLength&quot;
+)
+
+# 3) Define which Pfam accessions → TF Family
+#    (extend this list with all families you care about)
+pfam2fam &lt;- tibble(
+  Accession = c(&quot;PF22861.1&quot;,&quot;PF00046&quot;,&quot;PF02365&quot;,&quot;PF00249&quot;,&quot;PF04434&quot;),
+  Family    = c(&quot;GEO12453p1-like&quot;,       &quot;GATA&quot;,    &quot;NAC&quot;,    &quot;MYB&quot;,    &quot;TCP&quot;)
+)
+
+# 4) Filter only hits to those TF domains
+tf_hits &lt;- dom %&gt;%
+  filter(Accession %in% pfam2fam$Accession) %&gt;%
+  distinct(GeneID, Accession)
+
+# 5) Join to get Family names
+reg_fam &lt;- tf_hits %&gt;%
+  left_join(pfam2fam, by = &quot;Accession&quot;) %&gt;%
+  select(GeneID, Family) %&gt;%
+  distinct()
+
+# 6) Your regulator vector
+regulators &lt;- reg_fam$GeneID
+
+# 7) Quick sanity check
+cat(&quot;Found&quot;, nrow(reg_fam), &quot;putative TFs across&quot;, length(unique(reg_fam$Family)), &quot;families\n&quot;)
+table(reg_fam$Family)</code></pre>
+<p>Then create a file called run-parse-map.sh and copy and paste the
+following code into it:</p>
+<pre class="r"><code>module load r-4.3.2-gcc-11.2.0
+
+Rscript parse-map-tf.R</code></pre>
+</div>
+</div>
+<div id="troubleshooting" class="section level3">
+<h3>Troubleshooting</h3>
+<div id="found-0-putative-tfs-across-0-families" class="section level4">
+<h4>Found 0 putative TFs across 0 families</h4>
+<p>For me, this error occured when no proteins in my pfam2fam matched
+proteins in the pfam.domtblout file. To verify this is the issue, use
+the command <em>head pfam.domtblout</em> and choose the first protein
+listed. Rerun the program and it should say “Found 1 putative TFs across
+1 families” along with the protein family listed below this message.</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -833,6 +795,8 @@ loaded via a namespace (and not attached):
 </div>
 </div>
 </div>
+</div>
+</div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
@@ -850,8 +814,6 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -884,35 +846,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3,h4",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
