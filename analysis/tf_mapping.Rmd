@@ -50,9 +50,22 @@ mv GCF_021461385.2_iqSchPice1.1_protein.faa GCF_021461385.2_iqSchPice1.1_protein
 
 ```{r, eval=FALSE}
 
+#!/bin/bash
+
+##NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=scan-proteins-serialis       #Set the job name to "psmc-referencegenome"
+#SBATCH --time=0-08:00:00         #Set the wall clock limit to 2 hours
+#SBATCH --ntasks=1             #Request 1 task
+#SBATCH --cpus-per-task=8       #Request 8 cpus
+#SBATCH --mem=30G              #Request 30GB per node
+#SBATCH --output=stdout.%x.%j
+#SBATCH --error=stderr.%x.%j
+
+module load hmmer-3.1b2-gcc-12.1.0 
+
 hmmscan --cpu 4 \
   --domtblout pfam.domtblout \
-  Pfam-A.hmm \
+  ../Pfam-A.hmm \
   GCF_021461385.2_iqSchPice1.1_protein.fasta
 
 ```
