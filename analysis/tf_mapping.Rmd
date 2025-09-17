@@ -1,0 +1,122 @@
+---
+title: "Mapping Transcription Factors to Trancription Factor Families"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+    toc_float: true
+    toc_collapsed: false
+    theme: default
+    css: "theme3.css"
+toc_depth: 1
+number_sections: true
+editor_options:
+  chunk_output_type: console
+---
+
+## Mapping Transcription Factors {.tabset}
+
+
+### Running on a Cluster
+<center>
+<mark> This process is configured to run on the ASU Sols cluster. </mark>
+</center>
+
+To conduct this process we will be using HMMER to map our transcription factors against the Pfam database. Additionally, this tutorial will be done the proteins of *Schistocerca piceifrons*. The protein data is available from NCBI [here](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/021/461/385/GCF_021461385.2_iqSchPice1.1/)
+
+#### Step 1: Download and Prepare Pfam
+
+```{r, eval=FALSE}
+
+# i) Get the latest Pfam-A HMMs
+wget ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz
+gunzip Pfam-A.hmm.gz
+
+module load hmmer-3.1b2-gcc-12.1.0 
+
+# ii) Index for hmmscan
+hmmpress Pfam-A.hmm
+
+# iii) Download protein data from NCBI, decompress file, and rename
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/021/461/385/GCF_021461385.2_iqSchPice1.1/GCF_021461385.2_iqSchPice1.1_protein.faa.gz
+
+gunzip GCF_021461385.2_iqSchPice1.1_protein.faa.gz
+
+mv GCF_021461385.2_iqSchPice1.1_protein.faa GCF_021461385.2_iqSchPice1.1_protein.fasta
+
+```
+
+#### Step 2: Run hmmscan on proteins
+
+```{r, eval=FALSE}
+
+hmmscan --cpu 4 \
+  --domtblout pfam.domtblout \
+  Pfam-A.hmm \
+  GCF_021461385.2_iqSchPice1.1_protein.fasta
+
+```
+
+This step will create a file called *pfam.domtblout*. Use the command ls -lh to check the file is not empty and the step has successfully run.
+
+#### Step 3: Parse and map to transcription factor families in R
+
+Create a file named parse-map-tf.R and copy and paste the following code into it:
+
+```{r, eval = FALSE}
+library(dplyr)
+
+# 1) Read the domtblout (skip "#" comments)
+dom <- read.delim("pfam.domtblout",
+                  header=FALSE,
+                  sep="")
+
+# 2) Name the first few columns per HMMER spec
+colnames(dom)[1:19] <- c(
+  "GeneID","Accession","Domain","EValue","Score","Bias",
+  paste0("i",1:10),
+  "EnvStart","EnvEnd","DomainLength"
+)
+
+# 3) Define which Pfam accessions → TF Family
+#    (extend this list with all families you care about)
+pfam2fam <- tibble(
+  Accession = c("PF22861.1","PF00046","PF02365","PF00249","PF04434"),
+  Family    = c("GEO12453p1-like",       "GATA",    "NAC",    "MYB",    "TCP")
+)
+
+# 4) Filter only hits to those TF domains
+tf_hits <- dom %>%
+  filter(Accession %in% pfam2fam$Accession) %>%
+  distinct(GeneID, Accession)
+
+# 5) Join to get Family names
+reg_fam <- tf_hits %>%
+  left_join(pfam2fam, by = "Accession") %>%
+  select(GeneID, Family) %>%
+  distinct()
+
+# 6) Your regulator vector
+regulators <- reg_fam$GeneID
+
+# 7) Quick sanity check
+cat("Found", nrow(reg_fam), "putative TFs across", length(unique(reg_fam$Family)), "families\n")
+table(reg_fam$Family)
+
+```
+
+Then create a file called run-parse-map.sh and copy and paste the following code into it:
+
+```{r, eval=FALSE}
+
+module load r-4.3.2-gcc-11.2.0
+
+Rscript parse-map-tf.R
+
+```
+
+
+### Troubleshooting
+
+#### Found 0 putative TFs across 0 families
+For me, this error occured when no proteins in my pfam2fam matched proteins in the pfam.domtblout file. To verify this is the issue, use the command *head pfam.domtblout* and choose the first protein listed. Rerun the program and it should say "Found 1 putative TFs across 1 families" along with the protein family listed below this message.
