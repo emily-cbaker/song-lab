@@ -48,6 +48,8 @@ mv GCF_021461385.2_iqSchPice1.1_protein.faa GCF_021461385.2_iqSchPice1.1_protein
 
 #### Step 2: Run hmmscan on proteins
 
+Create a file called *scan-prot.sh* and copy and paste the following code into it:
+
 ```{r, eval=FALSE}
 
 #!/bin/bash
