@@ -551,15 +551,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtree34ebc36e2ab1d999ef282828831b55bf62e1a904targetblank34ebc36a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtreee33c24f2b290d9cb40ea5df3c44fb228dff354a8targetblanke33c24fa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/emily-cbaker/song-lab/tree/34ebc36e2ab1d999ef282828831b55bf62e1a904" target="_blank">34ebc36</a>
+<a href="https://github.com/emily-cbaker/song-lab/tree/e33c24f2b290d9cb40ea5df3c44fb228dff354a8" target="_blank">e33c24f</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtree34ebc36e2ab1d999ef282828831b55bf62e1a904targetblank34ebc36a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtreee33c24f2b290d9cb40ea5df3c44fb228dff354a8targetblanke33c24fa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -569,7 +569,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/emily-cbaker/song-lab/tree/34ebc36e2ab1d999ef282828831b55bf62e1a904" target="_blank">34ebc36</a>.
+<a href="https://github.com/emily-cbaker/song-lab/tree/e33c24f2b290d9cb40ea5df3c44fb228dff354a8" target="_blank">e33c24f</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -589,10 +589,6 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    analysis/.DS_Store
-
-Unstaged changes:
-    Modified:   analysis/Publish all files
-    Modified:   analysis/_site.yml
 
 </code></pre>
 <p>
@@ -637,6 +633,74 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/emily-cbaker/song-lab/blob/e33c24f2b290d9cb40ea5df3c44fb228dff354a8/analysis/tf_mapping.Rmd" target="_blank">e33c24f</a>
+</td>
+<td>
+emilyc-baker
+</td>
+<td>
+2025-09-17
+</td>
+<td>
+wflow_publish("analysis/tf_mapping.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/emily-cbaker/song-lab/blob/c443d10c314d3d9b032358ec31bd7ee21baf7fdb/analysis/tf_mapping.Rmd" target="_blank">c443d10</a>
+</td>
+<td>
+emilyc-baker
+</td>
+<td>
+2025-09-17
+</td>
+<td>
+Update tf_mapping.Rmd
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/emily-cbaker/song-lab/blob/fbcf41ef2f4462475bfe47acbfaad1613b053017/analysis/tf_mapping.Rmd" target="_blank">fbcf41e</a>
+</td>
+<td>
+emilyc-baker
+</td>
+<td>
+2025-09-17
+</td>
+<td>
+Update tf_mapping.Rmd
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/692774db9a50424fd7e14aaf6cf69cfeb29bf610/docs/tf_mapping.html" target="_blank">692774d</a>
+</td>
+<td>
+emilyc-baker
+</td>
+<td>
+2025-09-17
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -745,9 +809,22 @@ mv GCF_021461385.2_iqSchPice1.1_protein.faa GCF_021461385.2_iqSchPice1.1_protein
 </div>
 <div id="step-2-run-hmmscan-on-proteins" class="section level4">
 <h4>Step 2: Run hmmscan on proteins</h4>
-<pre class="r"><code>hmmscan --cpu 4 \
+<pre class="r"><code>#!/bin/bash
+
+##NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=scan-proteins-serialis       #Set the job name to &quot;psmc-referencegenome&quot;
+#SBATCH --time=0-08:00:00         #Set the wall clock limit to 2 hours
+#SBATCH --ntasks=1             #Request 1 task
+#SBATCH --cpus-per-task=8       #Request 8 cpus
+#SBATCH --mem=30G              #Request 30GB per node
+#SBATCH --output=stdout.%x.%j
+#SBATCH --error=stderr.%x.%j
+
+module load hmmer-3.1b2-gcc-12.1.0 
+
+hmmscan --cpu 4 \
   --domtblout pfam.domtblout \
-  Pfam-A.hmm \
+  ../Pfam-A.hmm \
   GCF_021461385.2_iqSchPice1.1_protein.fasta</code></pre>
 <p>This step will create a file called <em>pfam.domtblout</em>. Use the
 command ls -lh to check the file is not empty and the step has
@@ -798,9 +875,30 @@ cat(&quot;Found&quot;, nrow(reg_fam), &quot;putative TFs across&quot;, length(un
 table(reg_fam$Family)</code></pre>
 <p>Then create a file called run-parse-map.sh and copy and paste the
 following code into it:</p>
-<pre class="r"><code>module load r-4.3.2-gcc-11.2.0
+<pre class="r"><code>#!/bin/bash
+
+##NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=parse-and-map-piceifrons       #Set the job name to &quot;psmc-referencegenome&quot;
+#SBATCH --time=02:00:00         #Set the wall clock limit to 2 hours
+#SBATCH --ntasks=1             #Request 1 task
+#SBATCH --cpus-per-task=8       #Request 8 cpus
+#SBATCH --mem=30G              #Request 30GB per node
+#SBATCH --output=stdout.%x.%j
+#SBATCH --error=stderr.%x.%j
+
+module load r-4.3.2-gcc-11.2.0
 
 Rscript parse-map-tf.R</code></pre>
+<p>After this has completed running, use the command <em>cat
+stdout.{YOUR_JOB_NUMBER}</em> to check the results. If you followed this
+tutorial, the output should read:</p>
+<pre class="r"><code>Found 1 putative TFs across 1 families
+
+GEO12453p1-like 
+              1 </code></pre>
+<p>Don’t worry if you know there’s multiple proteins in this family, it
+is only checking for unique protein families not individual
+proteins.</p>
 </div>
 </div>
 <div id="troubleshooting" class="section level3">
