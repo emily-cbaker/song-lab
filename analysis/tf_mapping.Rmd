@@ -133,7 +133,6 @@ Found 1 putative TFs across 1 families
 
 GEO12453p1-like 
               1 
-
 ```
 
 Don't worry if you know there's multiple proteins in this family, it is only checking for unique protein families not individual proteins.
