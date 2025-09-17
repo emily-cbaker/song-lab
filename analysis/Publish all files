@@ -20,5 +20,6 @@ wflow_publish(c(
 "analysis/rep-model-mask.Rmd",
 "analysis/rep-model-mask_asu.Rmd",
 "analysis/slurm-comm.Rmd",
+"analysis/tf_mapping.Rmd",
 "analysis/toga.Rmd"
 ))

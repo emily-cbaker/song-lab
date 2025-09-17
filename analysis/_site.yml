@@ -15,33 +15,39 @@ navbar:
           href:
         - text: "Ensifera Ear Transcriptomics -- UNDER CONSTRUCTION"
           href:
-
-    - text: "Workflows"
-      icon: fa-code
+    - text: "Comparative Genomics"
+      icon: "fa-code-compare"
       menu:
-        - text: "TAMU"
+        - text: "FormicidaeMolecularEvolution - OrthoFinder Workflow for Longest Isoform"
           menu:
-            - text: "FormicidaeMolecularEvolution - OrthoFinder Workflow for Longest Isoform"
+            - text: "TAMU Workflow"
               href: barkdull.html
-            - text: "RepeatModeler & RepeatMasker"
-              href: rep-model-mask.html
-            - text: "PSMC Model Analysis"
-              href: psmc.html
-        - text: "ASU"
-          menu:
-            - text: "FormicidaeMolecularEvolution - OrthoFinder Workflow for Longest Isoform"
+            - text: "ASU Workflow"
               href: barkdull_asu.html
-            - text: "RepeatModeler & RepeatMasker"
-              href: rep-model-mask_asu.html
-            - text: "PSMC Model Analysis"
-              href: psmc_asu.html
-            - text: "Transcriptomics"
-        - text: "Proteomics"
+        - text: "RepeatModeler & RepeatMasker"
           menu:
-            - text: "AlphaFold"
-              href: alphafold.html
-            - text: "Chimera X"
-              href: chimerax.html
+            - text: "TAMU Workflow"
+              href: rep-model-mask.html
+            - text: "ASU Workflow"
+              href: rep-model-mask_asu.html
+        - text: "PSMC Model Analysis"
+          menu:
+            - text: "TAMU Workflow"
+              href: psmc.html
+            - text: "ASU Workflow"
+              href: psmc_asu.html
+    - text: "Transcriptomics"
+      icon: "fa-pen-to-square"
+      menu:
+        - text: "Transcription Factor Mapping (ASU Only)"
+          href: tf_mapping.html
+    - text: "Proteomics"
+      icon: "fa-flask"
+      menu:
+        - text: "AlphaFold"
+          href: alphafold.html
+        - text: "Chimera X"
+          href: chimerax.html
 
     - text: "Visualization"
       icon: fa-palette
@@ -50,7 +56,7 @@ navbar:
           href: kimura.html
         - text: "GENESPACE (Synteny)"
           href: genespace.html
-          
+
     - text: "Reference"
       icon: fa-book-open-reader
       menu:
