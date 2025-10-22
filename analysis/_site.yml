@@ -39,8 +39,10 @@ navbar:
     - text: "Transcriptomics"
       icon: "fa-pen-to-square"
       menu:
-        - text: "Transcription Factor Mapping (ASU Only)"
+        - text: "Transcription Factor Family Mapping (ASU Only)"
           href: tf_mapping.html
+        - text: "Transcriptome Data Assembly with a Reference Genome"
+          href: trans-to-ref.html
     - text: "Proteomics"
       icon: "fa-flask"
       menu:

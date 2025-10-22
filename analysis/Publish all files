@@ -1,18 +1,13 @@
 wflow_publish(c(
 "analysis/alphafold.Rmd",
-"analysis/Apollo.Rmd",
-"analysis/augustus.Rmd",
 "analysis/barkdull.Rmd",
 "analysis/barkdull_asu.Rmd",
-"analysis/braker.Rmd",
-"analysis/cafe5.Rmd",
 "analysis/chimerax.Rmd",
 "analysis/compare-genomes.Rmd",
 "analysis/definitions.Rmd",
 "analysis/genespace.Rmd",
 "analysis/index.Rmd",
 "analysis/kimura.Rmd",
-"analysis/mlc.Rmd",
 "analysis/orthop-genomes-project.Rmd",
 "analysis/pop-genomics-morm-crick.Rmd",
 "analysis/psmc.Rmd",
@@ -21,5 +16,6 @@ wflow_publish(c(
 "analysis/rep-model-mask_asu.Rmd",
 "analysis/slurm-comm.Rmd",
 "analysis/tf_mapping.Rmd",
+"analysis/trans-to-ref.Rmd",
 "analysis/toga.Rmd"
 ))
