@@ -11,7 +11,7 @@
 
 
 
-<title>FormicidaeMolecularEvolution - Comparative Genomic Analysis Workflow</title>
+<title>Transcriptome Assembly with a Reference Genome</title>
 
 <script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -395,8 +395,8 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">FormicidaeMolecularEvolution - Comparative
-Genomic Analysis Workflow</h1>
+<h1 class="title toc-ignore">Transcriptome Assembly with a Reference
+Genome</h1>
 
 </div>
 
@@ -619,8 +619,8 @@ have uncommitted changes.
 <div id="versions" class="tab-pane fade">
 <p>
 These are the previous versions of the repository in which changes were
-made to the R Markdown (<code>analysis/barkdull_asu.Rmd</code>) and HTML
-(<code>docs/barkdull_asu.html</code>) files. If you’ve configured a
+made to the R Markdown (<code>analysis/trans-to-ref.Rmd</code>) and HTML
+(<code>docs/trans-to-ref.html</code>) files. If you’ve configured a
 remote Git repository (see <code>?wflow_git_remote</code>), click on the
 hyperlinks in the table below to view the files as they were in that
 past version.
@@ -652,7 +652,7 @@ Message
 Rmd
 </td>
 <td>
-<a href="https://github.com/emily-cbaker/song-lab/blob/dece38574257f32d55e11a499de9421101d7e75f/analysis/barkdull_asu.Rmd" target="_blank">dece385</a>
+<a href="https://github.com/emily-cbaker/song-lab/blob/dece38574257f32d55e11a499de9421101d7e75f/analysis/trans-to-ref.Rmd" target="_blank">dece385</a>
 </td>
 <td>
 emilyc-baker
@@ -664,108 +664,6 @@ emilyc-baker
 wflow_publish(c("analysis/alphafold.Rmd", "analysis/barkdull.Rmd",
 </td>
 </tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/692774db9a50424fd7e14aaf6cf69cfeb29bf610/docs/barkdull_asu.html" target="_blank">692774d</a>
-</td>
-<td>
-emilyc-baker
-</td>
-<td>
-2025-09-17
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/34ebc36e2ab1d999ef282828831b55bf62e1a904/docs/barkdull_asu.html" target="_blank">34ebc36</a>
-</td>
-<td>
-emilyc-baker
-</td>
-<td>
-2025-09-17
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/9d1da312b33d8122a4ca690faf6cfe56b42452d2/docs/barkdull_asu.html" target="_blank">9d1da31</a>
-</td>
-<td>
-emilyc-baker
-</td>
-<td>
-2025-09-17
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/5f7fdae208ce998d6a01e42eb395a331295a8a63/docs/barkdull_asu.html" target="_blank">5f7fdae</a>
-</td>
-<td>
-emilyc-baker
-</td>
-<td>
-2025-09-17
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/791a625b1fac52a4b4467889a7f51664d0b334da/docs/barkdull_asu.html" target="_blank">791a625</a>
-</td>
-<td>
-emilyc-baker
-</td>
-<td>
-2025-09-09
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/emily-cbaker/song-lab/blob/959b8210675c3b5a73bb951298a634887878f34c/analysis/barkdull_asu.Rmd" target="_blank">959b821</a>
-</td>
-<td>
-ecbaker7-tamu
-</td>
-<td>
-2025-09-09
-</td>
-<td>
-Updates for ASU (some)
-</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -773,46 +671,320 @@ Updates for ASU (some)
 </div>
 </div>
 </div>
-<div id="scripts-and-how-tos-for-comparative-genomics-work."
-class="section level2 tabset">
-<h2 class="tabset">Scripts and how-tos for comparative genomics
-work.</h2>
-<div id="what-is-formicidaemolecularevolution" class="section level3">
-<h3>What is FormicidaeMolecularEvolution?</h3>
-<p>This workflow was developed by Megan Barkdull of the Moreau lab at
-Cornell University to find orthogroups between a reference and at least
-1 query species. In particular, this pipeline allows for the user to
-select for the longest <a
-href="https://elifesciences.org/articles/34477">isoform</a>. This
-feature allows us to skip analyzing repeating sequences in the
-<em>schistocerca</em> genomes.</p>
-<p>On her GitHub, Barkdull provides a flowchart that summarizes the
-process of this pipeline and the purpose of each step. Pictured below is
-the simplified version of this flowchart.</p>
-<center>
-<img src="assets/barkdull-flowchart-simple.png">
-</center>
-<center>
-<i><font size="-1.5">Simplified FormicidaeMolecularEvolution Pipeline
-Flowchart</font></i>
-</center>
+<div id="mapping-transcriptome-data" class="section level2 tabset">
+<h2 class="tabset">Mapping Transcriptome Data</h2>
+<div id="data-preprocessing" class="section level3">
+<h3>Data Preprocessing</h3>
+<div id="i-load-necessary-software" class="section level4">
+<h4>i) Load Necessary Software</h4>
+<div id="ia-load-r-modules" class="section level5">
+<h5>ia) Load R Modules</h5>
+<p>Before we begin processing our files, we need to load the following R
+libraries in our R session. Load the R module using the command “module
+load r-4.3.2-gcc-11.2.0” and copy and paste the following code into your
+R session:</p>
+<pre class="r"><code>library(&quot;knitr&quot;)
+library(&quot;rmdformats&quot;)
+library(&quot;tidyverse&quot;)
+library(&quot;DT&quot;)  # for making interactive search table
+library(&quot;plotly&quot;) # for interactive plots
+library(&quot;ggthemes&quot;) # for theme_calc
+library(&quot;reshape2&quot;)
+library(&quot;readr&quot;)
+library(&quot;ggplot2&quot;)
+
+## Global options
+options(max.print=&quot;10000&quot;)
+knitr::opts_chunk$set(
+    echo = TRUE,
+    message = FALSE,
+    warning = FALSE,
+    cache = FALSE,
+    comment = FALSE,
+    prompt = FALSE,
+    tidy = TRUE
+)
+opts_knit$set(width=75)</code></pre>
 </div>
-<div id="installation-and-running" class="section level3">
-<h3>Installation and Running</h3>
-<p><mark> Note: This procedure has been updated to run on the TAMU Grace
-cluster following the March 2025 update to the Grace OS.</mark></p>
-<div id="clone-the-github-repository" class="section level4">
-<h4>Clone the GitHub repository</h4>
-<p>For both local and cluster installation, you just need to clone
-Barkdull’s GitHub repository into your own environment using the
-command</p>
-<pre class="r"><code>git clone git@github.com:mbarkdull/FormicidaeMolecularEvolution.git</code></pre>
+<div id="ib-create-mamba-environment-for-multiqc"
+class="section level5">
+<h5>ib) Create Mamba Environment for MultiQC</h5>
+<p>The package MultiQC is not readily available on the Sol cluster, so
+we will need to install it via a Mamba environment. Log into the Sol
+cluster via ssh and follow the below commands to create a new Mamba
+environment and install the MultiQC package into this environment.</p>
+<pre class="r"><code>interactive -p htc -c 4 -t 30
+
+module load mamba/latest
+
+mamba create -n trans-map -c conda-forge -c bioconda python=3 multiqc trimgalore</code></pre>
+<p>After it finishes loading, you will be prompted to answer yes or no
+(Y/n), type Y to accept.</p>
+<p>To then verify the creation of this environment, type the
+command:</p>
+<pre class="r"><code>source activate trans-map
+
+python
+
+import multiqc</code></pre>
+<p>If you receive no errors, then installation is successful!</p>
 </div>
-<div id="preparing-your-data-files" class="section level4">
-<h4>Preparing your data files</h4>
-<p>Barkdull provides a script that downloads all the data you need from
-an FTP address, but the formatting must be within a .csv file, with the
-URLs formatted within the columns as follows</p>
+</div>
+<div id="ii-quality-control" class="section level4">
+<h4>ii) Quality Control</h4>
+<p>First, we will need to assess each .fastq file’s quality using
+FASTQC. Create a file called <em>qual-control.sh</em> and copy and paste
+the follwoing code into it:</p>
+<pre class="r"><code>#!/bin/bash
+
+##NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=quality-control       #Set the job name to &quot;psmc-referencegenome&quot;
+#SBATCH --time=02:00:00         #Set the wall clock limit to 8 hours
+#SBATCH --ntasks=1             #Request 1 task
+#SBATCH --cpus-per-task=8       #Request 8 cpus
+#SBATCH --mem=30G              #Request 30GB per node
+#SBATCH --mail-user={USER@EMAIL.COM}
+#SBATCH --output=stdout.%x.%j
+#SBATCH --error=stderr.%x.%j
+
+module load fastqc-0.11.3-gcc-12.1.0
+
+mkdir fastqc_out
+
+fastqc -t 8 ../data/raw/*.fastq -o ../data/fastqc_out/
+
+module purge
+
+module load mamba/latest 
+
+source activate trans-map
+
+multiqc --title &#39;MultiQC Report&#39; -v /scratch/ebaker48/greg_transcript/data/fastqc_out</code></pre>
+<p>Edit the email in the slurm header to your email (if you wish to
+receive email alerts when your job begins and ends, otherwise delete
+that line), the path to your fastqc_out directory (your current
+directory + /fastqc_out/), and optionally, the title of the MultiQC
+report.</p>
+<p>This produces FASTQC report files for each fastq file and the MULTIQC
+is a compiles report summarizing all of the FASTQC reports.</p>
+</div>
+<div id="iii-trim-and-remove-adapters" class="section level4">
+<h4>iii) Trim and Remove Adapters</h4>
+<p>To perform this trimming step we will use trim_galore to remove the
+contaminants from the files.</p>
+<p>Create a file called <em>trim.sh</em> and copy and paste the
+following code into it:</p>
+<pre class="r"><code>#!/bin/bash
+#SBATCH --job-name=trim_galore_all
+#SBATCH --output=trim_galore_all_%j.log
+#SBATCH --error=trim_galore_all_%j.err
+#SBATCH --time=12:00:00
+#SBATCH --mem=32G
+#SBATCH -c 8
+
+# Load Trim Galore via mamba environment (Step 0)
+module purge
+module load mamba/latest
+source activate trans-map
+
+INDIR=&quot;../data/raw&quot;
+OUTDIR=&quot;../data/trimmed&quot;
+
+# --------------------------------------------------
+# Loop through paired-end FASTQ files
+# --------------------------------------------------
+for READ1 in &quot;${INDIR}&quot;/*_R1_001.fastq; do
+    READ2=&quot;${READ1/_R1_001.fastq/_R2_001.fastq}&quot;
+
+    if [[ -f &quot;$READ2&quot; ]]; then
+        echo &quot;Processing: $READ1 and $READ2&quot;
+
+        trim_galore --trim-n \
+            --cores 8 \
+            --quality 20 \
+            --clip_R1 2 \
+            --clip_R2 2 \
+            --nextera \
+            --fastqc \
+            --output_dir &quot;$OUTDIR&quot; \
+            --paired &quot;$READ1&quot; &quot;$READ2&quot;
+
+    else
+        echo &quot;Warning: Could not find pair for $READ1&quot;
+    fi
+done</code></pre>
+</div>
+<div id="iv-trimming-quality-check" class="section level4">
+<h4>iv) Trimming Quality Check</h4>
+<p>To ensure our trimming was not overly aggressive, we can perform one
+last quality check of our trimmed files using the below script:</p>
+<pre class="r"><code>#!/bin/bash
+#SBATCH --job-name=fastqc_trimmed
+#SBATCH --output=fastqc_trimmed_%j.log
+#SBATCH --error=fastqc_trimmed_%j.err
+#SBATCH --time=3:00:00
+#SBATCH --mem=500M
+#SBATCH --cpus-per-task=2
+
+module load fastqc-0.11.3-gcc-12.1.0
+
+fastqc ../data/trimmed/*_val_1.fq -o ../data/trimmed/
+fastqc ../data/trimmed/*_val_2.fq -o ../data/trimmed/</code></pre>
+</div>
+</div>
+<div id="transcript-mapping" class="section level3">
+<h3>Transcript Mapping</h3>
+<div id="i-indexing-genomes" class="section level4">
+<h4>i) Indexing Genomes</h4>
+<p>Now that our data has been processed, we can begin the mapping
+process. To accomplish this, we will use STAR in the following
+script:</p>
+<pre class="r"><code>#!/bin/bash
+#SBATCH --job-name=star_index
+#SBATCH --time=2-00:00:00
+#SBATCH --mem=256G
+#SBATCH -c 12
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=ebaker48@asu.edu
+#SBATCH --output=stdout.%x.%j
+#SBATCH --error=stderr.%x.%j
+
+# --------------------------------------------------
+# Load STAR module
+# --------------------------------------------------
+module purge
+module load star-2.7.10b-gcc-12.1.0
+
+# --------------------------------------------------
+# Define paths (edit these!)
+# --------------------------------------------------
+REFDIR=/scratch/ebaker48/greg_transcript/data/reference   # base reference directory
+SPECIES=GCF_023897955.1_iqSchGreg1.2                       # species name
+REF_GENOME=${REFDIR}/${SPECIES}_genomic.fna
+ANNOTATION=${REFDIR}/${SPECIES}_genomic.gtf
+OUTDIR=${REFDIR}/index/${SPECIES}/STAR
+
+# --------------------------------------------------
+# Make output directory if it doesn’t exist
+# --------------------------------------------------
+mkdir -p &quot;$OUTDIR&quot;
+
+# --------------------------------------------------
+# Run STAR genomeGenerate
+# --------------------------------------------------
+
+LIMIT_BYTES=$((256 * 1024 * 1024 * 1024))
+
+STAR --runMode genomeGenerate \
+     --runThreadN 12 \
+     --genomeDir &quot;$OUTDIR&quot; \
+     --genomeFastaFiles &quot;$REF_GENOME&quot; \
+     --sjdbGTFfile &quot;$ANNOTATION&quot; \
+     --alignIntronMax 2500000 \
+     --sjdbOverhang 149
+     --limitGenomeGenerateRAM $LIMIT_BYTES</code></pre>
+<p>Please note the specialized memory specifications I’ve used in this
+script. This is due to the Sol cluster killing the job for and out of
+memory error, so I had ot juice my script up a bit for it to make it
+through. You may adjust this as needed, but be sure to a) edit the
+LIMIT_BYTES variable to match your #SBATCH –mem specification, b) remove
+the variable entirely and simply replace the variable with your
+requested –mem gigs, or c) delete the line from the STAR command
+entirely.</p>
+</div>
+<div id="ii-alignment" class="section level4">
+<h4>ii) Alignment</h4>
+<p>Use the following script to produce the STAR alignment on a
+cluster:</p>
+<pre class="r"><code>#!/bin/bash
+#SBATCH --job-name=star_align
+#SBATCH --output=star_align_%j.log
+#SBATCH --error=star_align_%j.err
+#SBATCH --time=08:00:00
+#SBATCH --mem=100G
+#SBATCH -c 16
+
+# --------------------------------------------------
+# Load STAR
+# --------------------------------------------------
+module purge
+module load star-2.7.10b-gcc-12.1.0
+
+# --------------------------------------------------
+# Define input/output paths (EDIT THESE!)
+# --------------------------------------------------
+REFDIR=/scratch/ebaker48/greg_transcript/data/reference
+WORKDIR=/scratch/ebaker48/greg_transcript/data
+
+SPECIES=GCF_023897955.1_iqSchGreg1.2
+INDEX=${REFDIR}/index/${SPECIES}/STAR
+ANNOTATION=${REFDIR}/${SPECIES}_genomic.gtf
+
+TRIMDIR=${WORKDIR}/trimmed
+OUTDIR=${WORKDIR}/02-${SPECIES}-star
+COUNTDIR=${WORKDIR}/03-${SPECIES}-DESeq2
+
+mkdir -p &quot;$OUTDIR&quot; &quot;$COUNTDIR&quot;
+
+# --------------------------------------------------
+# Loop through all R1 files in trimmed dir
+# --------------------------------------------------
+for R1 in ${TRIMDIR}/*_R1_001_val_1.fq; do
+    R2=${R1/_R1_001_val_1.fq/_R2_001_val_2.fq}
+    LOCUST=$(basename &quot;$R1&quot; _R1_001_val_1.fq)
+
+    if [[ ! -f &quot;$R2&quot; ]]; then
+        echo &quot;❌ Skipping $R1 (no matching R2 found)&quot;
+        continue
+    fi
+
+    echo &quot;✅ Processing $LOCUST&quot;
+
+    PREFIX=${OUTDIR}/${LOCUST}_
+    BAM=${OUTDIR}/${LOCUST}_Aligned.sortedByCoord.out.bam
+    READTABLE=${OUTDIR}/${LOCUST}_ReadsPerGene.out.tab
+    COUNTS=${COUNTDIR}/${LOCUST}_counts.txt
+
+    STAR --runThreadN 16 \
+         --genomeDir &quot;$INDEX&quot; \
+         --genomeLoad NoSharedMemory \
+         --limitBAMsortRAM 32000000000 \
+         --outSAMtype BAM SortedByCoordinate \
+         --outSAMattrRGline ID:${LOCUST} SM:${LOCUST} LB:Stranded_Total_RNA_RiboZero PL:Illumina PU:NovaSeq6000 \
+         --quantMode TranscriptomeSAM GeneCounts \
+         --twopassMode Basic \
+         --sjdbGTFfile &quot;$ANNOTATION&quot; \
+         --sjdbOverhang 149 \
+         --outSAMattributes NH HI AS NM MD \
+         --alignIntronMax 2500000 \
+         --outSAMunmapped Within \
+         --readFilesIn &quot;$R1&quot; &quot;$R2&quot; \
+         --outFileNamePrefix &quot;$PREFIX&quot;
+
+    # --------------------------------------------------
+    # Index BAM
+    # --------------------------------------------------
+    module purge
+    module load samtools-1.21-gcc-12.1.0
+    samtools index -c &quot;$BAM&quot;
+
+    # --------------------------------------------------
+    # Extract counts
+    # --------------------------------------------------
+    cut -f1,4 &quot;$READTABLE&quot; | grep -v &quot;_&quot; &gt; &quot;$COUNTS&quot;
+
+    # reload STAR for next iteration
+    module purge
+    module load star-2.7.10b-gcc-12.1.0
+done</code></pre>
+<p>This will produce 2 directories in your working directory, one
+containing the STAR alignment outputs and one containing the per-sample
+count files for DESeq2.</p>
+</div>
+<div id="iii-quantification-using-genecount" class="section level4">
+<h4>iii) Quantification using GeneCount</h4>
+<p>The output file {locust}.ReadsPerGene.out.tab contains the read
+counts per gene as follows:</p>
 <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 </caption>
@@ -830,413 +1002,231 @@ Column_3
 <th style="text-align:left;font-weight: bold;background-color: rgba(191, 162, 176, 255) !important;">
 Column_4
 </th>
-<th style="text-align:left;font-weight: bold;background-color: rgba(191, 162, 176, 255) !important;">
-Column_5
-</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left;width: 30em; ">
-Coding Sequence URL
+Gene ID
 </td>
 <td style="text-align:left;width: 30em; ">
-Protein Sequence URL
+Counts for unstranded RNA-seq
 </td>
 <td style="text-align:left;width: 30em; ">
-Species abbreviation code
+Counts for 1st read strand aligned with RNA
 </td>
 <td style="text-align:left;width: 30em; ">
-Longest isoform? (yes/no)
-</td>
-<td style="text-align:left;width: 30em; ">
-Reference genome
+Counts for 2nd read strand aligned with RNA
 </td>
 </tr>
 </tbody>
 </table>
-<p>This should be done for each species, where the data for each species
-is on its own row. So the format would be:</p>
-<pre><code>Species 1: Coding seq. URL, Protein seq. URL, ...  
-Species 2: Coding seq. URL, Protein seq. URL, ...  
-Species 3: Coding seq. URL, Protein seq. URL, ...  </code></pre>
-<p>and so on. Be sure to copy and paste the very last line of your .csv
-file and paste it below what you want to be your last line. There is a
-quirk in this pipeline where it stops at the second to last line, so to
-ensure all of our data is loaded correctly, make sure you add in this
-line.</p>
-<p>These files are easily created in Microsoft Excel, Google Sheets, or
-any spreadsheet software by entering your data in the columns as shown
-above and selecting the .csv option under “Save as”.</p>
-<p>Then, move this file into the scripts folder within the cloned GitHub
-repository. Finally, from the FormicidaeMolecularEvolution directory run
-the command</p>
-<pre class="r"><code>./scripts/DataDownload scripts/YourInputFile.csv</code></pre>
-<p>This will download all the data you need to run this workflow.</p>
+<p>We can use this to verify the data, as in a stranded library
+preparation, there should be a large difference between the number of
+reads mapped to known genes in forward versus reverse strands. We need
+to rewrite this data so we can input it into DESeq2 for visualization to
+verify the expression pattern is appropriate. We can do this using the
+following script:</p>
+<pre class="r"><code>#!/usr/bin/env bash
+# This script extracts the 4th column (gene counts) from STAR ReadsPerGene.out.tab files
+# and writes them into new files for DESeq2 input.
+
+# Set directories
+INPUT_DIR=&quot;/scratch/ebaker48/greg_transcript/data/02-GCF_023897955.1_iqSchGreg1.2-star&quot;
+OUTPUT_DIR=&quot;/scratch/ebaker48/greg_transcript/data/02-GCF_023897955.1_iqSchGreg1.2-star/gene_count_quant&quot;
+
+# Create output directory if it doesn’t exist
+mkdir -p &quot;$OUTPUT_DIR&quot;
+
+echo &quot;Extracting gene counts from files in $INPUT_DIR...&quot;
+
+# Loop through all ReadsPerGene.out.tab files
+for file in &quot;$INPUT_DIR&quot;/*ReadsPerGene.out.tab; do
+    echo &quot;Processing: $file&quot;
+    # Extract columns 1 and 4, remove rows with underscores, and write to new file
+    base=$(basename &quot;$file&quot; ReadsPerGene.out.tab)
+    output_file=&quot;${OUTPUT_DIR}/${base}counts.txt&quot;
+    cut -f1,4 &quot;$file&quot; | grep -v &quot;_&quot; &gt; &quot;$output_file&quot;
+    echo &quot;Saved: $output_file&quot;
+done
+
+echo &quot;✅ All files processed! Results are in: $OUTPUT_DIR&quot;</code></pre>
 </div>
-<div id="running-the-pipeline" class="section level4">
-<h4>Running the Pipeline</h4>
-<div id="step-1-set-up-the-environment" class="section level5">
-<h5>Step 1: Set Up the Environment</h5>
-<p>First, we need to load the the necessary modules onto your terminal.
-The commands are as follows:</p>
-<pre class="r"><code>module purge
-module load r-4.5.1-gcc-12.1.0
-
-rm -rf $HOME/.R*
-rm -rf $SCRATCH/.R*
-rm -rf /path/to/your/FormicidaeMolecularEvolution/.R*
-  
-R --vanilla
-
-library(&quot;orthologr&quot;)
-library(&quot;biomartr&quot;)
-
-quit()</code></pre>
-<p><strong>Is orthologr not available?</strong> Copy and paste the code
-from <a href="https://github.com/drostlab/orthologr">this link</a> under
-<em>Install orthologr</em>. <mark> Use this code in the RStudio web app
-on Sol, as it will not work on an ssh login</mark></p>
 </div>
-<div id="step-2-select-the-longest-isoforms" class="section level5">
-<h5>Step 2: Select the Longest Isoforms</h5>
-<p>The next step is the command</p>
-<pre class="r"><code>interactive --mem=6G
-
-./scripts/GeneRetrieval.R scripts/YourInputFile.csv</code></pre>
-<p>Running this script selects for the single longest isoform in each
-gene then matches protein names to gene names in order to subset the
-coding sequence file to just the longest isoforms. This produces 2 files
-for each species, one containing the longest protein isoforms and
-another with the longest coding sequence isoforms in a directory called
-<em>2_LongestIsoforms</em>.</p>
-</div>
-<div id="step-3-clean-the-raw-data" class="section level5">
-<h5>Step 3: Clean the Raw Data</h5>
-<p>The next step is to clean the data using the command</p>
-<pre class="r"><code>./scripts/DataCleaning scripts/YourInputFile.csv</code></pre>
-<p>This script removes any special characters from gene names and adds
-the 4-letter taxon abbreviation to the beginning of each gene name. This
-creates a new directory called <em>3_CleanedData</em>.</p>
-</div>
-<div id="step-4-translate-nucleotide-sequences-to-amino-acid-sequences"
-class="section level5">
-<h5>Step 4: Translate Nucleotide Sequences to Amino Acid Sequences</h5>
-<p>For this next step we will need to create a mamba envrionment as well
-as alter one of Barkdull’s files with some of our own lines.</p>
-<div id="mamba-environment" class="section level6">
-<h6>Mamba environment</h6>
-<p>Use the following code to create a new environment called
-<em>ortho-step3</em>.</p>
-<pre class="r"><code>module purge
-module load mamba/latest
-
-mamba create -n ortho-step3 -c conda-forge -c bioconda python=3 TransDecoder 
-source activate ortho-step3
-mamba install BioPython
-source deactivate</code></pre>
-<p>This creates a mamba environment with TransDecoder and BioPython
-installed, which are necessary for this next step.</p>
-<ol style="list-style-type: lower-roman">
-<li><p>Create a file in <em>scripts</em> called
-<em>DataTranslating_modif</em>.</p></li>
-<li><p>Copy and paste the code from the <em>scripts/DataTranslating</em>
-file.</p></li>
-<li><p>Replace lines 25-28 in <em>DataTranslating_modif</em> with the
-following code</p></li>
+<div id="differential-gene-expression-analysis" class="section level3">
+<h3>Differential Gene Expression Analysis</h3>
+<div id="i-prepare-input-files" class="section level4">
+<h4>i) Prepare input files</h4>
+<p>To perform this analysis, we will need 4 files:</p>
+<ol style="list-style-type: decimal">
+<li><p>Raw count matrices These were produces during the STAR mapping
+step.</p></li>
+<li><p>Transcript to gene annotation file We have to reformat our .gtf
+file for input into DESeq2 and edgeR. First, download your species of
+interest’s .gtf annotation file from NCBI. Then run the following
+command directly in your terminal:</p></li>
 </ol>
-<pre class="r"><code>     # Now we can run Transdecoder on the cleaned file:
-  echo &quot;First, attempting TransDecoder run on $cleanName&quot;
-  source activate ortho-step3
-  TransDecoder.LongOrfs -t $cleanName
-  TransDecoder.Predict -t $cleanName --single_best_only</code></pre>
-<ol start="4" style="list-style-type: lower-roman">
-<li>Replace the header in <em>DataTranslating_modif</em> with the
-following lines</li>
+<pre class="r"><code>zcat {SPECIES}.gtf.gz | awk -F &quot;\t&quot; &#39;BEGIN{OFS=&quot;\t&quot;}{if($3==&quot;transcript&quot;){split($9, a, &quot;\&quot;&quot;); print a[4],a[2],a[8]}}&#39; &gt; tx2gene.{SPECIES}.csv</code></pre>
+<p>This command outputs a .csv file containing the transcript ID, gene
+ID, and gene symbol in the 3 co,umns respectively.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Sample sheet This file is a .txt file that is tab-delimited
+containing necessary information about your samples. The format is as
+follows:</li>
 </ol>
-<pre class="r"><code>  #!/bin/bash
-
-  ##NECESSARY JOB SPECIFICATIONS
-  #SBATCH --job-name=Transdecoder         #Set the job name to &quot;JobExample4&quot;
-  #SBATCH --time=02:00:00         #Set the wall clock limit to 1hr and 30min
-  #SBATCH --ntasks=2              #Request 2 task
-  #SBATCH --cpus-per-task=4       #Request 8 task
-  #SBATCH --mem=20G              #Request 50GB per node
-
-  source activate ortho-step3    </code></pre>
-<ol start="22" style="list-style-type: lower-alpha">
-<li>Run the script using the command</li>
+<pre class="r"><code>SampleName  FileName  Tissue  ControlVariable</code></pre>
+<p>For example, here is the file I created to analyze differential
+expression between male and female <em>Schistocerca gregaria</em> in
+crowded conditions:</p>
+<pre class="r"><code>SampleName  FileName    Tissue  Sex
+23475Son_SchgreF1_S54_L001  23475Son_SchgreF1_S54_L001_counts.txt   Ear Female
+23475Son_SchgreF2_S55_L001  23475Son_SchgreF2_S55_L001_counts.txt   Ear Female
+23475Son_SchgreF3_S56_L001  23475Son_SchgreF3_S56_L001_counts.txt   Ear Female
+23475Son_SchgreM1_S51_L001  23475Son_SchgreM1_S51_L001_counts.txt   Ear Male
+23475Son_SchgreM2_S52_L001  23475Son_SchgreM2_S52_L001_counts.txt   Ear Male
+23475Son_SchgreM3_S53_L001  23475Son_SchgreM3_S53_L001_counts.txt   Ear Male</code></pre>
+<p>Extra columns can be added to include information that could be
+useful for statistical analysis, such as rearing condition, time points,
+replicates, etc.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Reference State Finally, we will need the reference state for which
+we will perform our differential expression analysis. In the example
+above, I chose male as the reference state, as the reference genome for
+<em>S. gregaria</em> on NCBI is from a male specimen.</li>
 </ol>
-<pre class="r"><code>sbatch ./scripts/DataTranslating_modif ./scripts/YourInputFile.csv</code></pre>
 </div>
-</div>
-<div id="step-5-running-orthofinder" class="section level5">
-<h5>Step 5: Running OrthoFinder</h5>
-<p>For this step we will not be using anything from the original
-pipeline’s steps, instead we will create our own directory and copy over
-the translated fasta files as follows:</p>
-<pre class="r"><code>  mkdir LocustsGenomeEvolution
-  mkdir LocustsGenomeEvolution/tmp
-  mkdir 5_OrthoFinder
-  mkdir 5_OrthoFinder/fasta
-  cp ./4_1_TranslatedData/OutputFiles/translated* ./5_OrthoFinder/fasta
-  cd ./5_OrthoFinder/fasta
-  rename translated &#39;&#39; translated*
-  cd ..
-  cd ..</code></pre>
-<p>Then to run OrthoFinder on the Grace cluster we will create a file
-within the <em>scripts</em> directory called <em>run-ortho.sh</em>. Copy
-and paste the following code into <em>run-ortho.sh</em></p>
-<pre class="r"><code>#!/bin/bash
+<div id="ii-deseq2-analysis-from-star-output" class="section level4">
+<h4>ii) DESeq2 Analysis from STAR Output</h4>
+<p>We can use the following R script to generate the DEG analysis using
+DESeq2. The modules necessary to run this script may not be readily
+available on CRAN or Bioconductor, so be prepared to use devtools or
+GitHub to install certain packages.</p>
+<pre class="r"><code>library(&quot;DESeq2&quot;)
+library(&quot;tximport&quot;)
+library(&quot;txdbmaker&quot;)
+library(&quot;knitr&quot;)
+library(&quot;rmdformats&quot;)
+library(&quot;tidyverse&quot;)
+library(&quot;data.table&quot;)
+library(&quot;DT&quot;)  # for making interactive search table
+library(&quot;plotly&quot;) # for interactive plots
+library(&quot;ggthemes&quot;) # for theme_calc
+library(&quot;reshape2&quot;)
+library(&quot;ComplexHeatmap&quot;)
+library(&quot;RColorBrewer&quot;)
+library(&quot;circlize&quot;)
+library(&quot;apeglm&quot;)
+library(&quot;ggpubr&quot;)
+library(&quot;ggplot2&quot;)
+library(&quot;ggrepel&quot;)
+library(&quot;EnhancedVolcano&quot;)
+library(&quot;SARTools&quot;)
+library(&quot;pheatmap&quot;)
+library(&quot;clusterProfiler&quot;)
+library(&quot;sva&quot;)
+library(&quot;cowplot&quot;)
+library(&quot;ashr&quot;)
+library(&quot;ggforce&quot;)
+library(&quot;ggConvexHull&quot;)
 
-##NECESSARY JOB SPECIFICATIONS
-#SBATCH --job-name=orthofinder         #Set the job name to &quot;orthofinder&quot;
-#SBATCH --time=06:00:00         #Set the wall clock limit to 6 hours
-#SBATCH --ntasks=2              #Request 2 task
-#SBATCH --cpus-per-task=4       #Request 4 task
-#SBATCH --mem=30G              #Request 30GB per node
+###############################################################
+### USER-DEFINED PARAMETERS (EDIT THESE ONLY)
+###############################################################
 
-ml purge
-ml GCC/12.3.0 OpenMPI/4.1.5 OrthoFinder/2.5.5 IQ-TREE/2.3.6 fasttree/2.1.11 MAFFT/7.520-with-extensions
+homeDir &lt;- &quot;/path/to/folder&quot;                # e.g., your home project directory
+workDir &lt;- &quot;path/to/working/directory&quot;  
+projectName &lt;- &quot;Project Name&quot;
+author &lt;- &quot;Author McScienceFace&quot;
+species &lt;- &quot;Species name&quot;                   # MUST MATCH STAR RUN SPECIES NAME!
+varInt &lt;- &quot;Condition&quot;                       # Experimental factor of interest
+condRef &lt;- &quot;Control&quot;                        # Reference condition (baseline)
+sampleFile &lt;- &quot;Sample File Name&quot;            # Name of your tab-delimited sample file
 
-orthofinder -S diamond -T iqtree -A mafft -I 5 -t 32 -a 4 -M msa -f ${file path to 5_OrthoFinder/fasta} -p ${file path to LocustsGenomeEvolution/tmp}</code></pre>
-<details>
-<summary>
-What do these flags mean? (-S, -T, etc.)
-</summary>
-<p>-S diamond: Use diamond as the sequence search program.</p>
-<p>-T iqtree: Use iqtree as the tree inference program.</p>
-<p>-A mafft: Use mafft as the multiple sequence alignment (MSA)
-program.</p>
-<p>-I 5: Sets the MCL inflation parameter to 5.</p>
-<p>-t 32: Sets the number of threads to 32.</p>
-</details>
-<p>and then we can run our slurm script using</p>
-<pre class="r"><code>sbatch scripts/run-ortho.sh</code></pre>
-</div>
-<div id="step-6-orthogroups-to-geneid" class="section level5">
-<h5>Step 6: Orthogroups to GeneID</h5>
-<p>First we must remove the suffixes that the pipeline puts in front of
-our protein coding sequences, so create a file called
-<em>remove-suffix.py</em> in the directory
-5_OrthoFinder/fasta/OrthoFinder/Results_{DATE-OF-RUN}/Orthogroups and
-copy the following code into it</p>
-<pre class="r"><code>import re
+###############################################################
+### AUTOMATIC PATHS AND INITIALIZATION
+###############################################################
 
-# Define the input and output file names
-input_file = &#39;Orthogroups.txt&#39;
-output_file = &#39;Orthogroups_reprocessed.txt&#39;
+# Create working directory structure
+dir.create(workDir, showWarnings = FALSE, recursive = TRUE)
+setwd(workDir)
 
-# Read the input file
-with open(input_file, &#39;r&#39;) as file:
-    data = file.read()
+rawDir &lt;- file.path(workDir, paste0(&quot;03-&quot;, species, &quot;-DESeq2&quot;))
+dir.create(rawDir, showWarnings = FALSE, recursive = TRUE)
 
-# Remove all prefixes before any occurrence of &quot;_XP&quot;, &quot;_NP&quot;, and &quot;_YP&quot;
-result = re.sub(r&#39;\b\w+_(XP|NP|YP)&#39;, r&#39;\1&#39;, data)
+# Create subdirectory for DESeq2 run
+Dirname &lt;- paste0(&quot;DESeq2_&quot;, projectName)
+dir.create(Dirname, showWarnings = FALSE)
+setwd(Dirname)
+workDir_DEseq2 &lt;- getwd()
 
-# Write the result to the output file
-with open(output_file, &#39;w&#39;) as file:
-    file.write(result)
+# Define path to target file
+targetFile &lt;- file.path(workDir, paste0(sampleFile))
 
-print(f&quot;Processed data has been written to {output_file}&quot;)</code></pre>
-</div>
-<div id="step-7-create-a-table-and-clean-the-data"
-class="section level5">
-<h5>Step 7: Create a Table and Clean the Data</h5>
-<p>We then need to create a table with each protein and gene ID for all
-species present, so we must use the the script
-<em>protein2geneid_loop.py</em> by David Emms, a software developer for
-OrthoFinder.</p>
-<p>Create a file called <em>protein2geneid_loop.py</em> in your
-<em>1_RawData</em> directory and copy and paste the following code into
-it</p>
-<pre class="r"><code>import os
-import re
+###############################################################
+### DESeq2 PARAMETERS
+###############################################################
 
-# Get the current working directory
-gff_directory = os.getcwd()
+tresh_logfold &lt;- 1
+tresh_padj &lt;- 0.05
+alpha_DEseq2 &lt;- 0.05
+pAdjustMethod_DEseq2 &lt;- &quot;BH&quot;
+featuresToRemove &lt;- NULL
+batch &lt;- NULL
+fitType &lt;- &quot;parametric&quot;
+cooksCutoff &lt;- TRUE
+independentFiltering &lt;- TRUE
+typeTrans &lt;- &quot;rlog&quot;
+locfunc &lt;- &quot;median&quot;
+colors &lt;- c(&quot;#B31B21&quot;, &quot;#1465AC&quot;)
 
-# Create a directory to store the output files
-output_directory = os.path.join(gff_directory, &quot;output_files&quot;)
-os.makedirs(output_directory, exist_ok=True)
+###############################################################
+### ANALYSIS PIPELINE
+###############################################################
 
-# List GFF files with &quot;_GFF.gff&quot; extension
-species_list = [filename for filename in os.listdir(gff_directory) if filename.endswith(&quot;_GFF.gff&quot;)]
+message(&quot;&gt;&gt;&gt; Starting DESeq2 analysis for project: &quot;, projectName)
 
-# Process each species&#39; GFF file
-for species_filename in species_list:
-    # Extract the species name from the file name
-    species_name = re.sub(r&quot;_GFF\.gff$&quot;, &quot;&quot;, species_filename)
-    
-    # Construct input and output file paths
-    input_path = os.path.join(gff_directory, species_filename)
-    output_filename = f&quot;xp{species_name}.gff&quot;  # Remove the dot before species_name
-    output_path = os.path.join(output_directory, output_filename)
-    
-    # Use &#39;grep&#39; to filter lines containing &quot;XP&quot; and save to the output file
-    grep_command = f&#39;grep &quot;XP&quot; &quot;{input_path}&quot; &gt; &quot;{output_path}&quot;&#39;
-    os.system(grep_command)
-    
-    # Print a message indicating the filtering process
-    print(f&quot;Filtered {species_filename} to {output_filename}&quot;)
+# 1. Load target file ----
+if (!file.exists(targetFile)) {
+  stop(&quot;Target file not found: &quot;, targetFile)
+}
+target &lt;- loadTargetFile(targetFile = targetFile, varInt = varInt, condRef = condRef, batch = batch)
 
-    # Construct the output TSV file path
-    tsv_output_filename = f&#39;gffKey{species_name}.tsv&#39;  # Remove the dot before species_name
-    tsv_output_path = os.path.join(output_directory, tsv_output_filename)
-    lol = {}
+# 2. Load counts ----
+counts &lt;- loadCountData(target = target, rawDir = rawDir, featuresToRemove = featuresToRemove)
 
-    # Read and process the contents of the GFF file
-    with open(output_path) as gffFile:
-        for line in gffFile:
-            if re.search(r&quot;product=[^;]+&quot;, line):
-                gene_match = re.search(r&quot;gene=[^;=]+&quot;, line)
-                product_match = re.search(r&quot;product=[^;]+&quot;, line)
-                proteinID_match = re.search(r&quot;protein_id=(.+)&quot;, line)
-                
-                if gene_match and product_match and proteinID_match:
-                    gene = gene_match.group(0)
-                    if gene.endswith(&#39;product&#39;):
-                        gene = gene[5:-7]
-                    else:
-                        gene = gene[5:]
-                    
-                    product = product_match.group(0)
-                    product = product.replace(&quot;product=&quot;, &quot;&quot;)
-                    product = product.rstrip()
-                    
-                    proteinID = proteinID_match.group(1)
-                    
-                    if proteinID not in lol.keys():
-                        lol[proteinID] = [gene, product, species_name]  # Add species name
+# 3. Description plots ----
+majSequences &lt;- descriptionPlots(counts = counts, group = target[, varInt], col = colors)
 
-    # Write the processed data to the output TSV file
-    with open(tsv_output_path, &#39;w&#39;) as output:
-        for proID, lis in lol.items():
-            output.writelines(proID + &#39;\t&#39; + lis[0] + &#39;\t&#39; + lis[1] + &#39;\t&#39; + lis[2] + &#39;\n&#39;)  # Include species name
+# 4. Run DESeq2 ----
+out.DESeq2 &lt;- run.DESeq2(
+  counts = counts, target = target, varInt = varInt, batch = batch,
+  locfunc = locfunc, fitType = fitType, pAdjustMethod = pAdjustMethod_DEseq2,
+  cooksCutoff = cooksCutoff, independentFiltering = independentFiltering,
+  alpha = alpha_DEseq2
+)
 
-    # Print a message indicating the processing of the GFF file
-    print(f&quot;Processed {output_filename} to {tsv_output_filename}&quot;)
+# 5. PCA + Clustering ----
+exploreCounts(object = out.DESeq2$dds, group = target[, varInt], typeTrans = typeTrans, col = colors)
 
-# Concatenate all final files into a single file
-final_output_filename = &quot;allspecies_protein2geneid.tsv&quot;
-final_output_path = os.path.join(output_directory, final_output_filename)
+# 6. Summarize results ----
+summaryResults &lt;- summarizeResults.DESeq2(
+  out.DESeq2, group = target[, varInt], col = colors,
+  independentFiltering = independentFiltering,
+  cooksCutoff = cooksCutoff, alpha = alpha_DEseq2
+)
 
-with open(final_output_path, &#39;w&#39;) as final_output:
-    for species_filename in species_list:
-        species_name = re.sub(r&quot;_GFF\.gff$&quot;, &quot;&quot;, species_filename)
-        tsv_output_filename = f&#39;gffKey{species_name}.tsv&#39;  # Remove the dot before species_name
-        tsv_output_path = os.path.join(output_directory, tsv_output_filename)
-        
-        with open(tsv_output_path, &#39;r&#39;) as species_output:
-            final_output.write(species_output.read())
+# 7. Generate HTML report ----
+writeReport.DESeq2(
+  target = target, counts = counts, out.DESeq2 = out.DESeq2, summaryResults = summaryResults,
+  majSequences = majSequences, workDir = workDir_DEseq2, projectName = projectName, author = author,
+  targetFile = targetFile, rawDir = rawDir, featuresToRemove = featuresToRemove, varInt = varInt,
+  condRef = condRef, batch = batch, fitType = fitType, cooksCutoff = cooksCutoff,
+  independentFiltering = independentFiltering, alpha = alpha_DEseq2, pAdjustMethod = pAdjustMethod_DEseq2,
+  typeTrans = typeTrans, locfunc = locfunc, colors = colors
+)
 
-print(f&quot;Concatenated all species files into {final_output_filename}&quot;)</code></pre>
-<p>Then run this script in the folder <em>1_RawData</em> using</p>
-<pre class="r"><code>cd {PATH TO 1_RawData}
-
-python3 protein2geneid_loop.py</code></pre>
-</div>
-<div id="step-8-correct-possible-errors-in-table"
-class="section level5">
-<h5>Step 8: Correct Possible Errors in Table</h5>
-<p>After we get this table, we need to run this script to clean some
-small errors that may occur in the table. Create a file named
-<em>clean-table.R</em> in your main OrthoFinder directory and copy and
-paste the following code into it</p>
-<pre class="r"><code>library(readr)
-library(tidyverse)
-
-orthogroup &lt;- read_table(&quot;data/orthologs/Orthogroups_reprocessed.txt&quot;, col_names = FALSE)
-
-# We reshape the table so that we have one orthogroup line associated with one protein id
-transformed_orthogroup &lt;- orthogroup %&gt;%
-  pivot_longer(cols = -X1, names_to = &quot;Protein_Column&quot;, values_to = &quot;protein_id&quot;) %&gt;%
-  replace_na(list(X1 = &quot;N/A&quot;)) %&gt;%
-  select(orthogroup = X1, protein_id) %&gt;%
-  filter(!is.na(protein_id))
-
-# Export the table to  tab-separated text file (you can change the delimiter if needed)
-write.table(transformed_orthogroup, file = &quot;data/orthologs/Orthogroups_11species_May2024.txt&quot;, sep = &quot;\t&quot;, quote = FALSE, row.names = FALSE)
-
-proteingeneid &lt;- read_tsv(&quot;data/orthologs/allspecies_protein2geneid.tsv&quot;, col_names = TRUE ) 
-
-final_orthotable &lt;- left_join(transformed_orthogroup, proteingeneid, by = &quot;protein_id&quot;)
-write.table(final_orthotable, file = &quot;data/orthologs/Orthogroups_genesprotein_11species_May2024.csv&quot;, sep = &quot;,&quot;, quote = FALSE, row.names = FALSE)</code></pre>
-<p>We can run this script in the main directory using the following
-commands:</p>
-<pre class="r"><code>module purge
-module load GCC/13.2.0  OpenMPI/4.1.6 R_tamu/4.3.2
-
-Rscript clean-table.R</code></pre>
-<p>Finally, we have finished and gotten a table of all species and their
-corresponding IDs.</p>
-</div>
-</div>
-</div>
-<div id="troubleshooting" class="section level3">
-<h3>Troubleshooting</h3>
-<div id="no-module-named-bio" class="section level5">
-<h5>No Module named Bio</h5>
-<p>This error occurs when the program can’t find BioPython. Before the
-“ml” line in your script add the command</p>
-<pre class="r"><code>module purge</code></pre>
-<p>This will get rid of all previously loaded packages before you reload
-the ones you need for this script. Not quite sure why this works but it
-does.</p>
-</div>
-<div id="species-on-last-line-of-.csv-file-not-being-processed"
-class="section level5">
-<h5>Species on Last Line of .csv File Not Being Processed</h5>
-<p>There is a glitch in this pipeline that causes the program to index 1
-row short of the actual number of rows. To correct this, I just copy and
-paste the last line of my data entries on the line right below the
-“real” entries. This dummy line will correct the indexing issues and in
-the event it is read, the line will not cause any issues with the data
-processing. Pictured below is a screenshot of my .csv file with my dummy
-line highlighted in green. Notice it is a duplicate of the line right
-above it.</p>
-<center>
-<img src="assets/dummy-line.png">
-</center>
-<center>
-<i><font size="-1.5">Example of .csv with dummy line</font></i>
-</center>
-</div>
-<div id="species-tree-inference-failed" class="section level5">
-<h5>Species Tree Inference Failed</h5>
-<p>David Emms says that sometimes when running OrthoFinder with IQ-Tree,
-it will randomly throw an error when in the tree inference step. The way
-to correct this is to manually root the tree using the following script
-(adapted to run on Grace from David Emms’ comment <a
-href="https://github.com/davidemms/OrthoFinder/issues/624#issuecomment-929088084">here</a>
-with the help of Thang Ha from the HPRC help desk):</p>
-<pre class="r"><code>#!/bin/bash
-
-##NECESSARY JOB SPECIFICATIONS
-#SBATCH --job-name=manual-root-tree-orthofinder         #Set the job name to &quot;manual-root-tree-orthofinder&quot;
-#SBATCH --time=7-00:00:00         #Set the wall clock limit to 7 days
-#SBATCH --ntasks=2              #Request 2 task
-#SBATCH --cpus-per-task=4       #Request 4 task
-#SBATCH --mem=30G              #Request 30GB per node
-
-ml purge
-ml GCC/12.3.0 OpenMPI/4.1.5 OrthoFinder/2.5.5 IQ-TREE/2.3.6 FastTree/2.1.11 MAFFT/7.520-with-extensions
-
-iqtree2 -s /Path/to/5_OrthoFinder/fasta/OrthoFinder/Results_{DATE}/WorkingDirectory/Alignments_ids/SpeciesTreeAlignment.fa -bb 1000 -pre /Path/to/5_OrthoFinder/fasta/OrthoFinder/Results_{DATE}/WorkingDirectory/Alignments_ids/SpeciesTree -safe -nt AUTO
-
-python convert_orthofinder_tree_ids /Path/to/5_OrthoFinder/fasta/OrthoFinder/Results_{DATE}/WorkingDirectory/Alignments_ids/SpeciesTree.treefile /Path/to/5_OrthoFinder/fasta/OrthoFinder/Results_{DATE}/WorkingDirectory/SpeciesIDs.txt
-
-python orthofinder -ft //Path/to/5_OrthoFinder/fasta/OrthoFinder/Results_{DATE} -s SpeciesTreeRooted.txt</code></pre>
-<p>This will pick up from where your run quit, root the tree, and then
-run OrthoFinder with the tree generated. <mark> Note: This will take
-longer than a regular OrthoFinder run</mark></p>
-</div>
-</div>
-<div id="citations" class="section level3">
-<h3>Citations</h3>
-<p>Megan Barkdull. (2021). mbarkdull/FormicidaeMolecularEvolution:
-v1.0.0-beta (v1.0.0-beta). Zenodo. <a
-href="https://doi.org/10.5281/zenodo.5668329">https://doi.org/10.5281/zenodo.5668329</a></p>
+message(&quot;&gt;&gt;&gt; DESeq2 analysis complete. Results saved to: &quot;, workDir_DEseq2)
+###############################################################</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1279,6 +1269,7 @@ loaded via a namespace (and not attached):
 [37] rstudioapi_0.17.1  lifecycle_1.0.4    vctrs_0.6.5        evaluate_1.0.5    
 [41] glue_1.8.0         farver_2.1.2       whisker_0.4.1      rmarkdown_2.30    
 [45] httr_1.4.7         tools_4.5.1        pkgconfig_2.0.3    htmltools_0.5.8.1 </code></pre>
+</div>
 </div>
 </div>
 </div>
