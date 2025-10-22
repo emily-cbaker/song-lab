@@ -172,7 +172,7 @@ ml GCC/12.3.0 OpenMPI/4.1.5 TransDecoder/5.7.1 Biopython/1.83
 
   v) Run the script using the command
   ```{r run-datatrans-modif, eval=FALSE}
-  sbatch ./scripts/DataTranslating_modif ./scripts/YourInputFile.csv
+  sbatch scripts/DataTranslating_modif scripts/YourInputFile.csv
   ```
   
 ##### Step 5: Running OrthoFinder

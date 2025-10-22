@@ -1,0 +1,593 @@
+---
+title: "Transcriptome Assembly with a Reference Genome"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+    toc_float: true
+    toc_collapsed: false
+    theme: default
+    css: "theme3.css"
+toc_depth: 1
+number_sections: true
+editor_options:
+  chunk_output_type: console
+---
+
+## Mapping Transcriptome Data {.tabset}
+
+### Data Preprocessing
+
+#### i) Load Necessary Software
+##### ia) Load R Modules
+
+Before we begin processing our files, we need to load the following R libraries in our R session. Load the R module using the command "module load r-4.3.2-gcc-11.2.0" and copy and paste the following code into your R session:
+
+```{r, eval=FALSE}
+
+library("knitr")
+library("rmdformats")
+library("tidyverse")
+library("DT")  # for making interactive search table
+library("plotly") # for interactive plots
+library("ggthemes") # for theme_calc
+library("reshape2")
+library("readr")
+library("ggplot2")
+
+## Global options
+options(max.print="10000")
+knitr::opts_chunk$set(
+    echo = TRUE,
+    message = FALSE,
+    warning = FALSE,
+    cache = FALSE,
+    comment = FALSE,
+    prompt = FALSE,
+    tidy = TRUE
+)
+opts_knit$set(width=75)
+
+```
+
+
+##### ib) Create Mamba Environment for MultiQC
+
+The package MultiQC is not readily available on the Sol cluster, so we will need to install it via a Mamba environment. Log into the Sol cluster via ssh and follow the below commands to create a new Mamba environment and install the MultiQC package into this environment.
+
+```{r, eval = FALSE}
+
+interactive -p htc -c 4 -t 30
+
+module load mamba/latest
+
+mamba create -n trans-map -c conda-forge -c bioconda python=3 multiqc trimgalore
+
+```
+
+After it finishes loading, you will be prompted to answer yes or no (Y/n), type Y to accept.
+
+To then verify the creation of this environment, type the command:
+
+```{r, eval=FALSE}
+
+source activate trans-map
+
+python
+
+import multiqc
+
+```
+
+If you receive no errors, then installation is successful!
+
+#### ii) Quality Control
+
+First, we will need to assess each .fastq file's quality using FASTQC. Create a file called *qual-control.sh* and copy and paste the follwoing code into it:
+
+```{r, eval=FALSE}
+#!/bin/bash
+
+##NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=quality-control       #Set the job name to "psmc-referencegenome"
+#SBATCH --time=02:00:00         #Set the wall clock limit to 8 hours
+#SBATCH --ntasks=1             #Request 1 task
+#SBATCH --cpus-per-task=8       #Request 8 cpus
+#SBATCH --mem=30G              #Request 30GB per node
+#SBATCH --mail-user={USER@EMAIL.COM}
+#SBATCH --output=stdout.%x.%j
+#SBATCH --error=stderr.%x.%j
+
+module load fastqc-0.11.3-gcc-12.1.0
+
+mkdir fastqc_out
+
+fastqc -t 8 ../data/raw/*.fastq -o ../data/fastqc_out/
+
+module purge
+
+module load mamba/latest 
+
+source activate trans-map
+
+multiqc --title 'MultiQC Report' -v /scratch/ebaker48/greg_transcript/data/fastqc_out
+
+```
+
+Edit the email in the slurm header to your email (if you wish to receive email alerts when your job begins and ends, otherwise delete that line), the path to your fastqc_out directory (your current directory + /fastqc_out/), and optionally, the title of the MultiQC report.
+
+This produces FASTQC report files for each fastq file and the MULTIQC is a compiles report summarizing all of the FASTQC reports.
+
+#### iii) Trim and Remove Adapters
+
+To perform this trimming step we will use trim_galore to remove the contaminants from the files.
+
+Create a file called *trim.sh* and copy and paste the following code into it:
+
+```{r, eval=FALSE}
+
+#!/bin/bash
+#SBATCH --job-name=trim_galore_all
+#SBATCH --output=trim_galore_all_%j.log
+#SBATCH --error=trim_galore_all_%j.err
+#SBATCH --time=12:00:00
+#SBATCH --mem=32G
+#SBATCH -c 8
+
+# Load Trim Galore via mamba environment (Step 0)
+module purge
+module load mamba/latest
+source activate trans-map
+
+INDIR="../data/raw"
+OUTDIR="../data/trimmed"
+
+# --------------------------------------------------
+# Loop through paired-end FASTQ files
+# --------------------------------------------------
+for READ1 in "${INDIR}"/*_R1_001.fastq; do
+    READ2="${READ1/_R1_001.fastq/_R2_001.fastq}"
+
+    if [[ -f "$READ2" ]]; then
+        echo "Processing: $READ1 and $READ2"
+
+        trim_galore --trim-n \
+            --cores 8 \
+            --quality 20 \
+            --clip_R1 2 \
+            --clip_R2 2 \
+            --nextera \
+            --fastqc \
+            --output_dir "$OUTDIR" \
+            --paired "$READ1" "$READ2"
+
+    else
+        echo "Warning: Could not find pair for $READ1"
+    fi
+done
+
+
+```
+
+#### iv) Trimming Quality Check
+
+To ensure our trimming was not overly aggressive, we can perform one last quality check of our trimmed files using the below script:
+
+```{r, eval=FALSE}
+
+#!/bin/bash
+#SBATCH --job-name=fastqc_trimmed
+#SBATCH --output=fastqc_trimmed_%j.log
+#SBATCH --error=fastqc_trimmed_%j.err
+#SBATCH --time=3:00:00
+#SBATCH --mem=500M
+#SBATCH --cpus-per-task=2
+
+module load fastqc-0.11.3-gcc-12.1.0
+
+fastqc ../data/trimmed/*_val_1.fq -o ../data/trimmed/
+fastqc ../data/trimmed/*_val_2.fq -o ../data/trimmed/
+
+```
+
+
+
+
+
+
+### Transcript Mapping
+
+#### i) Indexing Genomes
+
+Now that our data has been processed, we can begin the mapping process. To accomplish this, we will use STAR in the following script:
+
+```{r, eval=FALSE}
+
+#!/bin/bash
+#SBATCH --job-name=star_index
+#SBATCH --time=2-00:00:00
+#SBATCH --mem=256G
+#SBATCH -c 12
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=ebaker48@asu.edu
+#SBATCH --output=stdout.%x.%j
+#SBATCH --error=stderr.%x.%j
+
+# --------------------------------------------------
+# Load STAR module
+# --------------------------------------------------
+module purge
+module load star-2.7.10b-gcc-12.1.0
+
+# --------------------------------------------------
+# Define paths (edit these!)
+# --------------------------------------------------
+REFDIR=/scratch/ebaker48/greg_transcript/data/reference   # base reference directory
+SPECIES=GCF_023897955.1_iqSchGreg1.2                       # species name
+REF_GENOME=${REFDIR}/${SPECIES}_genomic.fna
+ANNOTATION=${REFDIR}/${SPECIES}_genomic.gtf
+OUTDIR=${REFDIR}/index/${SPECIES}/STAR
+
+# --------------------------------------------------
+# Make output directory if it doesn’t exist
+# --------------------------------------------------
+mkdir -p "$OUTDIR"
+
+# --------------------------------------------------
+# Run STAR genomeGenerate
+# --------------------------------------------------
+
+LIMIT_BYTES=$((256 * 1024 * 1024 * 1024))
+
+STAR --runMode genomeGenerate \
+     --runThreadN 12 \
+     --genomeDir "$OUTDIR" \
+     --genomeFastaFiles "$REF_GENOME" \
+     --sjdbGTFfile "$ANNOTATION" \
+     --alignIntronMax 2500000 \
+     --sjdbOverhang 149
+     --limitGenomeGenerateRAM $LIMIT_BYTES
+
+
+```
+
+Please note the specialized memory specifications I've used in this script. This is due to the Sol cluster killing the job for and out of memory error, so I had ot juice my script up a bit for it to make it through. You may adjust this as needed, but be sure to a) edit the LIMIT_BYTES variable to match your #SBATCH --mem specification, b) remove the variable entirely and simply replace the variable with your requested --mem gigs, or c) delete the line from the STAR command entirely. 
+
+#### ii) Alignment
+
+Use the following script to produce the STAR alignment on a cluster:
+
+```{r, eval=FALSE}
+#!/bin/bash
+#SBATCH --job-name=star_align
+#SBATCH --output=star_align_%j.log
+#SBATCH --error=star_align_%j.err
+#SBATCH --time=08:00:00
+#SBATCH --mem=100G
+#SBATCH -c 16
+
+# --------------------------------------------------
+# Load STAR
+# --------------------------------------------------
+module purge
+module load star-2.7.10b-gcc-12.1.0
+
+# --------------------------------------------------
+# Define input/output paths (EDIT THESE!)
+# --------------------------------------------------
+REFDIR=/scratch/ebaker48/greg_transcript/data/reference
+WORKDIR=/scratch/ebaker48/greg_transcript/data
+
+SPECIES=GCF_023897955.1_iqSchGreg1.2
+INDEX=${REFDIR}/index/${SPECIES}/STAR
+ANNOTATION=${REFDIR}/${SPECIES}_genomic.gtf
+
+TRIMDIR=${WORKDIR}/trimmed
+OUTDIR=${WORKDIR}/02-${SPECIES}-star
+COUNTDIR=${WORKDIR}/03-${SPECIES}-DESeq2
+
+mkdir -p "$OUTDIR" "$COUNTDIR"
+
+# --------------------------------------------------
+# Loop through all R1 files in trimmed dir
+# --------------------------------------------------
+for R1 in ${TRIMDIR}/*_R1_001_val_1.fq; do
+    R2=${R1/_R1_001_val_1.fq/_R2_001_val_2.fq}
+    LOCUST=$(basename "$R1" _R1_001_val_1.fq)
+
+    if [[ ! -f "$R2" ]]; then
+        echo "❌ Skipping $R1 (no matching R2 found)"
+        continue
+    fi
+
+    echo "✅ Processing $LOCUST"
+
+    PREFIX=${OUTDIR}/${LOCUST}_
+    BAM=${OUTDIR}/${LOCUST}_Aligned.sortedByCoord.out.bam
+    READTABLE=${OUTDIR}/${LOCUST}_ReadsPerGene.out.tab
+    COUNTS=${COUNTDIR}/${LOCUST}_counts.txt
+
+    STAR --runThreadN 16 \
+         --genomeDir "$INDEX" \
+         --genomeLoad NoSharedMemory \
+         --limitBAMsortRAM 32000000000 \
+         --outSAMtype BAM SortedByCoordinate \
+         --outSAMattrRGline ID:${LOCUST} SM:${LOCUST} LB:Stranded_Total_RNA_RiboZero PL:Illumina PU:NovaSeq6000 \
+         --quantMode TranscriptomeSAM GeneCounts \
+         --twopassMode Basic \
+         --sjdbGTFfile "$ANNOTATION" \
+         --sjdbOverhang 149 \
+         --outSAMattributes NH HI AS NM MD \
+         --alignIntronMax 2500000 \
+         --outSAMunmapped Within \
+         --readFilesIn "$R1" "$R2" \
+         --outFileNamePrefix "$PREFIX"
+
+    # --------------------------------------------------
+    # Index BAM
+    # --------------------------------------------------
+    module purge
+    module load samtools-1.21-gcc-12.1.0
+    samtools index -c "$BAM"
+
+    # --------------------------------------------------
+    # Extract counts
+    # --------------------------------------------------
+    cut -f1,4 "$READTABLE" | grep -v "_" > "$COUNTS"
+
+    # reload STAR for next iteration
+    module purge
+    module load star-2.7.10b-gcc-12.1.0
+done
+
+```
+
+This will produce 2 directories in your working directory, one containing the STAR alignment outputs and one containing the per-sample count files for DESeq2.
+
+#### iii) Quantification using GeneCount
+The output file {locust}.ReadsPerGene.out.tab contains the read counts per gene as follows:
+
+```{r NCBI-stats csv-format, echo=FALSE, message=FALSE, warning =FALSE}
+library(knitr)
+library(kableExtra)
+
+# Data for the table
+data <- data.frame(
+  Column_1 = c("Gene ID"),
+  Column_2 = c("Counts for unstranded RNA-seq"),
+  Column_3 = c("Counts for 1st read strand aligned with RNA"),
+  Column_4 = c("Counts for 2nd read strand aligned with RNA")
+)
+
+# Create the table
+kable(data, escape = FALSE, caption = "") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), 
+                full_width = F) %>%
+  column_spec(1, width = "30em") %>%
+  column_spec(2, width = "30em") %>%
+  column_spec(3, width = "30em") %>%
+  column_spec(4, width = "30em") %>%
+  row_spec(0, bold = TRUE, background = "#bfa2b0")
+```
+
+We can use this to verify the data, as in a stranded library preparation, there should be a large difference between the number of reads mapped to known genes in forward versus reverse strands. We need to rewrite this data so we can input it into DESeq2 for visualization to verify the expression pattern is appropriate. We can do this using the following script:
+
+```{r, eval=FALSE}
+
+#!/usr/bin/env bash
+# This script extracts the 4th column (gene counts) from STAR ReadsPerGene.out.tab files
+# and writes them into new files for DESeq2 input.
+
+# Set directories
+INPUT_DIR="/scratch/ebaker48/greg_transcript/data/02-GCF_023897955.1_iqSchGreg1.2-star"
+OUTPUT_DIR="/scratch/ebaker48/greg_transcript/data/02-GCF_023897955.1_iqSchGreg1.2-star/gene_count_quant"
+
+# Create output directory if it doesn’t exist
+mkdir -p "$OUTPUT_DIR"
+
+echo "Extracting gene counts from files in $INPUT_DIR..."
+
+# Loop through all ReadsPerGene.out.tab files
+for file in "$INPUT_DIR"/*ReadsPerGene.out.tab; do
+    echo "Processing: $file"
+    # Extract columns 1 and 4, remove rows with underscores, and write to new file
+    base=$(basename "$file" ReadsPerGene.out.tab)
+    output_file="${OUTPUT_DIR}/${base}counts.txt"
+    cut -f1,4 "$file" | grep -v "_" > "$output_file"
+    echo "Saved: $output_file"
+done
+
+echo "✅ All files processed! Results are in: $OUTPUT_DIR"
+
+```
+
+
+
+### Differential Gene Expression Analysis
+#### i) Prepare input files
+To perform this analysis, we will need 4 files:
+
+1. Raw count matrices
+These were produces during the STAR mapping step.
+
+2. Transcript to gene annotation file
+We have to reformat our .gtf file for input into DESeq2 and edgeR. First, download your species of interest's .gtf annotation file from NCBI. Then run the following command directly in your terminal:
+
+```{r, eval=FALSE}
+
+zcat {SPECIES}.gtf.gz | awk -F "\t" 'BEGIN{OFS="\t"}{if($3=="transcript"){split($9, a, "\""); print a[4],a[2],a[8]}}' > tx2gene.{SPECIES}.csv
+
+```
+
+This command outputs a .csv file containing the transcript ID, gene ID, and gene symbol in the 3 co,umns respectively.
+
+3. Sample sheet
+This file is a .txt file that is tab-delimited containing necessary information about your samples. The format is as follows:
+
+```{r, eval=FALSE}
+
+SampleName  FileName  Tissue  ControlVariable
+
+```
+
+For example, here is the file I created to analyze differential expression between male and female *Schistocerca gregaria* in crowded conditions:
+
+```{r, eval=FALSE}
+
+SampleName	FileName	Tissue	Sex
+23475Son_SchgreF1_S54_L001	23475Son_SchgreF1_S54_L001_counts.txt	Ear Female
+23475Son_SchgreF2_S55_L001	23475Son_SchgreF2_S55_L001_counts.txt	Ear	Female
+23475Son_SchgreF3_S56_L001	23475Son_SchgreF3_S56_L001_counts.txt	Ear	Female
+23475Son_SchgreM1_S51_L001	23475Son_SchgreM1_S51_L001_counts.txt	Ear	Male
+23475Son_SchgreM2_S52_L001	23475Son_SchgreM2_S52_L001_counts.txt	Ear	Male
+23475Son_SchgreM3_S53_L001	23475Son_SchgreM3_S53_L001_counts.txt	Ear	Male
+
+```
+
+Extra columns can be added to include information that could be useful for statistical analysis, such as rearing condition, time points, replicates, etc.
+
+4. Reference State
+Finally, we will need the reference state for which we will perform our differential expression analysis. In the example above, I chose male as the reference state, as the reference genome for *S. gregaria* on NCBI is from a male specimen. 
+
+#### ii) DESeq2 Analysis from STAR Output
+
+We can use the following R script to generate the DEG analysis using DESeq2. The modules necessary to run this script may not be readily available on CRAN or Bioconductor, so be prepared to use devtools or GitHub to install certain packages.
+
+```{r, eval=FALSE}
+
+library("DESeq2")
+library("tximport")
+library("txdbmaker")
+library("knitr")
+library("rmdformats")
+library("tidyverse")
+library("data.table")
+library("DT")  # for making interactive search table
+library("plotly") # for interactive plots
+library("ggthemes") # for theme_calc
+library("reshape2")
+library("ComplexHeatmap")
+library("RColorBrewer")
+library("circlize")
+library("apeglm")
+library("ggpubr")
+library("ggplot2")
+library("ggrepel")
+library("EnhancedVolcano")
+library("SARTools")
+library("pheatmap")
+library("clusterProfiler")
+library("sva")
+library("cowplot")
+library("ashr")
+library("ggforce")
+library("ggConvexHull")
+
+###############################################################
+### USER-DEFINED PARAMETERS (EDIT THESE ONLY)
+###############################################################
+
+homeDir <- "/path/to/folder"                # e.g., your home project directory
+workDir <- "path/to/working/directory"  
+projectName <- "Project Name"
+author <- "Author McScienceFace"
+species <- "Species name"                   # MUST MATCH STAR RUN SPECIES NAME!
+varInt <- "Condition"                       # Experimental factor of interest
+condRef <- "Control"                        # Reference condition (baseline)
+sampleFile <- "Sample File Name"            # Name of your tab-delimited sample file
+
+###############################################################
+### AUTOMATIC PATHS AND INITIALIZATION
+###############################################################
+
+# Create working directory structure
+dir.create(workDir, showWarnings = FALSE, recursive = TRUE)
+setwd(workDir)
+
+rawDir <- file.path(workDir, paste0("03-", species, "-DESeq2"))
+dir.create(rawDir, showWarnings = FALSE, recursive = TRUE)
+
+# Create subdirectory for DESeq2 run
+Dirname <- paste0("DESeq2_", projectName)
+dir.create(Dirname, showWarnings = FALSE)
+setwd(Dirname)
+workDir_DEseq2 <- getwd()
+
+# Define path to target file
+targetFile <- file.path(workDir, paste0(sampleFile))
+
+###############################################################
+### DESeq2 PARAMETERS
+###############################################################
+
+tresh_logfold <- 1
+tresh_padj <- 0.05
+alpha_DEseq2 <- 0.05
+pAdjustMethod_DEseq2 <- "BH"
+featuresToRemove <- NULL
+batch <- NULL
+fitType <- "parametric"
+cooksCutoff <- TRUE
+independentFiltering <- TRUE
+typeTrans <- "rlog"
+locfunc <- "median"
+colors <- c("#B31B21", "#1465AC")
+
+###############################################################
+### ANALYSIS PIPELINE
+###############################################################
+
+message(">>> Starting DESeq2 analysis for project: ", projectName)
+
+# 1. Load target file ----
+if (!file.exists(targetFile)) {
+  stop("Target file not found: ", targetFile)
+}
+target <- loadTargetFile(targetFile = targetFile, varInt = varInt, condRef = condRef, batch = batch)
+
+# 2. Load counts ----
+counts <- loadCountData(target = target, rawDir = rawDir, featuresToRemove = featuresToRemove)
+
+# 3. Description plots ----
+majSequences <- descriptionPlots(counts = counts, group = target[, varInt], col = colors)
+
+# 4. Run DESeq2 ----
+out.DESeq2 <- run.DESeq2(
+  counts = counts, target = target, varInt = varInt, batch = batch,
+  locfunc = locfunc, fitType = fitType, pAdjustMethod = pAdjustMethod_DEseq2,
+  cooksCutoff = cooksCutoff, independentFiltering = independentFiltering,
+  alpha = alpha_DEseq2
+)
+
+# 5. PCA + Clustering ----
+exploreCounts(object = out.DESeq2$dds, group = target[, varInt], typeTrans = typeTrans, col = colors)
+
+# 6. Summarize results ----
+summaryResults <- summarizeResults.DESeq2(
+  out.DESeq2, group = target[, varInt], col = colors,
+  independentFiltering = independentFiltering,
+  cooksCutoff = cooksCutoff, alpha = alpha_DEseq2
+)
+
+# 7. Generate HTML report ----
+writeReport.DESeq2(
+  target = target, counts = counts, out.DESeq2 = out.DESeq2, summaryResults = summaryResults,
+  majSequences = majSequences, workDir = workDir_DEseq2, projectName = projectName, author = author,
+  targetFile = targetFile, rawDir = rawDir, featuresToRemove = featuresToRemove, varInt = varInt,
+  condRef = condRef, batch = batch, fitType = fitType, cooksCutoff = cooksCutoff,
+  independentFiltering = independentFiltering, alpha = alpha_DEseq2, pAdjustMethod = pAdjustMethod_DEseq2,
+  typeTrans = typeTrans, locfunc = locfunc, colors = colors
+)
+
+message(">>> DESeq2 analysis complete. Results saved to: ", workDir_DEseq2)
+###############################################################
+
+
+```
+
+
+
+
+
+
+

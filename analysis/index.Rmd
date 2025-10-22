@@ -22,14 +22,12 @@ p {
 </style>
 <div class="text">
   <p>   
-    This website is dedicated to the work I conduct at the Song Laboratory at the Texas A&M University Department of Entomology. Documented on this site are all of the projects I have previously or currently am working on, along with documentation of pipeline installation, error correction, and a glossary of bioinformatics terminology for quick reference.
+    This website is dedicated to the work I conduct at the Song Laboratory at the Arizona State University School of Life Sciences. Documented on this site are all of the projects I have previously or currently am working on, along with documentation of pipeline installation, error correction, and a glossary of bioinformatics terminology for quick reference.
   </p>
   
   <p>
-  There are links for almost every software and package used on this site if you wish to view the original documentation. For installation and execution, I have tried to provide robust instructions but I am limited somewhat by the operating systems I use and am familiar with (Windows OS, slurm cluster).
+  There are links for almost every software and package used on this site if you wish to view the original documentation. For installation and execution, all programs I have previously run at Texas A&M have seperate pages with the workflows I used on the Grace cluster. However, any new workflows will only have configurations for the ASU Sol cluster documented. While these clusters are both run on a slurm scheduler, there are slight differences in their execution such that I found it worth maintaining both sets of instructions. Please keep this in mind when reviewing the workflow pages.
   </p>
-  
-
   
 </div>
 

@@ -48,7 +48,7 @@ data <- data.frame(
   Column_2 = c("Protein Sequence URL"),
   Column_3 = c("Species abbreviation code"),
   Column_4 = c("Longest isoform? (yes/no)"),
-  Column_5 = c("Comments")
+  Column_5 = c("Reference genome")
 )
 
 # Create the table
@@ -69,7 +69,7 @@ This should be done for each species, where the data for each species is on its 
     Species 2: Coding seq. URL, Protein seq. URL, ...  
     Species 3: Coding seq. URL, Protein seq. URL, ...  
   
-and so on.
+and so on. Be sure to copy and paste the very last line of your .csv file and paste it below what you want to be your last line. There is a quirk in this pipeline where it stops at the second to last line, so to ensure all of our data is loaded correctly, make sure you add in this line.
 
 These files are easily created in Microsoft Excel, Google Sheets, or any spreadsheet software by entering your data in the columns as shown above and selecting the .csv option under "Save as". 
 
@@ -86,19 +86,13 @@ This will download all the data you need to run this workflow.
 
 ##### Step 1: Set Up the Environment
 
-First we need to download PanDoc in order to update our packages as needed without interference. We do this with the command
+First, we need to load the the necessary modules onto your terminal. The commands are as follows:
+
 
 ```{r configR, eval=FALSE}
 module purge
-module load GCC/13.2.0  OpenMPI/4.1.6 r-4.3.2-gcc
+module load r-4.5.1-gcc-12.1.0
 
-export R_LIBS=$SCRATCH/R_LIBS_USER/4.3.2-foss-2023b:$R_LIBS
-```
-
-
-Then, we need to load the the necessary modules onto your terminal. The commands are as follows:
-
-```{r ml-R, eval=FALSE}
 rm -rf $HOME/.R*
 rm -rf $SCRATCH/.R*
 rm -rf /path/to/your/FormicidaeMolecularEvolution/.R*
@@ -111,13 +105,16 @@ library("biomartr")
 quit()
 ```
 
-**Is orthologr not available?** Copy and paste the code from [this link](https://github.com/drostlab/orthologr) under *Install orthologr*.
+**Is orthologr not available?** Copy and paste the code from [this link](https://github.com/drostlab/orthologr) under *Install orthologr*. <mark> Use this code in the RStudio web app on Sol, as it will not work on an ssh login</mark>
 
 ##### Step 2: Select the Longest Isoforms
 
 The next step is the command
 
 ```{r gene-retrieval, eval=FALSE}
+
+interactive --mem=6G
+
 ./scripts/GeneRetrieval.R scripts/YourInputFile.csv
 ```
 
@@ -137,7 +134,25 @@ This script removes any special characters from gene names and adds the 4-letter
 
 ##### Step 4: Translate Nucleotide Sequences to Amino Acid Sequences
 
-For this next step we will need to alter one of Barkdull's files with some of our own lines.
+For this next step we will need to create a mamba envrionment as well as alter one of Barkdull's files with some of our own lines.
+
+###### Mamba environment
+
+Use the following code to create a new environment called *ortho-step3*.
+
+```{r, eval=FALSE}
+
+module purge
+module load mamba/latest
+
+mamba create -n ortho-step3 -c conda-forge -c bioconda python=3 TransDecoder 
+source activate ortho-step3
+mamba install BioPython
+source deactivate
+```
+
+This creates a mamba environment with TransDecoder and BioPython installed, which are necessary for this next step.
+
 
   i) Create a file in *scripts* called *DataTranslating_modif*. 
     
@@ -147,7 +162,7 @@ For this next step we will need to alter one of Barkdull's files with some of ou
   ```{r add-datatranslating-lines, eval=FALSE}
        # Now we can run Transdecoder on the cleaned file:
     echo "First, attempting TransDecoder run on $cleanName"
-ml GCC/12.3.0 OpenMPI/4.1.5 TransDecoder/5.7.1 Biopython/1.83
+    source activate ortho-step3
     TransDecoder.LongOrfs -t $cleanName
     TransDecoder.Predict -t $cleanName --single_best_only
   ```
@@ -166,8 +181,7 @@ ml GCC/12.3.0 OpenMPI/4.1.5 TransDecoder/5.7.1 Biopython/1.83
     #SBATCH --cpus-per-task=4       #Request 8 task
     #SBATCH --mem=20G              #Request 50GB per node
 
-ml GCC/12.3.0 OpenMPI/4.1.5 TransDecoder/5.7.1 Biopython/1.83
-    
+    source activate ortho-step3    
   ```
 
   v) Run the script using the command
