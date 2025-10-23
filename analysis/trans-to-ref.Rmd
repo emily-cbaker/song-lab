@@ -195,6 +195,8 @@ fastqc ../data/trimmed/*_val_2.fq -o ../data/trimmed/
 
 
 
+
+
 ### Transcript Mapping
 
 #### i) Indexing Genomes
@@ -403,6 +405,7 @@ echo "✅ All files processed! Results are in: $OUTPUT_DIR"
 
 
 
+
 ### Differential Gene Expression Analysis
 #### i) Prepare input files
 To perform this analysis, we will need 4 files:
@@ -591,3 +594,60 @@ message(">>> DESeq2 analysis complete. Results saved to: ", workDir_DEseq2)
 
 
 
+
+
+
+### Troubleshooting
+#### Lua Filter Skipped
+This error occurs when the pandoc version isn't compatible with the default Rmarkdown template system. I fixed this in my run by updating my pandoc to the most recent version using the following steps:
+
+1. Check if pandoc is updated to the most recent version (as of 10/22/25, 3.1.12.3 is the most recent).
+```{r, eval=FALSE}
+
+module avail pandoc
+
+```
+
+2. If not the most recent version, then using the following code to install a newer version. Since the pandoc module isn't managed by Sol, we have to update it ourselves. 
+
+```{r, eval=FALSE}
+
+cd ~
+wget https://github.com/jgm/pandoc/releases/download/3.1.12.3/pandoc-3.1.12.3-linux-amd64.tar.gz
+
+tar -xvzf pandoc-3.1.12.3-linux-amd64.tar.gz
+
+```
+
+There should now be a folder named "pandoc-3.1.12.3". We can now move this file to our personal bin directory using the following code:
+
+```{r, eval=FALSE}
+
+mkdir -p ~/bin
+
+mv pandoc-3.1.12.3/bin/pandoc ~/bin/
+
+```
+
+Now we can add the new pandoc module to our path so the computer is able to locate the module when we run our R script.
+
+```{r, eval=FALSE}
+
+echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+
+```
+
+We can now verify our installation with
+
+```{r, eval=FALSE}
+
+pandoc --version
+
+```
+
+This should match the version you downloaded.
+
+
+### Citations
+Workflow developed by Maeva Techer
