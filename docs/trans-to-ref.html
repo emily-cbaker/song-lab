@@ -324,6 +324,13 @@ $(document).ready(function () {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Analysis</a>
+      <ul class="dropdown-menu" role="menu">
+        <li class="dropdown-header">Differential Gene Expression</li>
+        <li class="dropdown-header">GO Term Enrichment</li>
+      </ul>
+    </li>
     <li>
       <a href="tf_mapping.html">Transcription Factor Family Mapping (ASU Only)</a>
     </li>
@@ -556,15 +563,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtree3cfa3a5190e21364c43046ee3cafdb9934a675aatargetblank3cfa3a5a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtreef31d079675982b12d79f33f03d109ee15aa59f17targetblankf31d079a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/emily-cbaker/song-lab/tree/3cfa3a5190e21364c43046ee3cafdb9934a675aa" target="_blank">3cfa3a5</a>
+<a href="https://github.com/emily-cbaker/song-lab/tree/f31d079675982b12d79f33f03d109ee15aa59f17" target="_blank">f31d079</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtree3cfa3a5190e21364c43046ee3cafdb9934a675aatargetblank3cfa3a5a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtreef31d079675982b12d79f33f03d109ee15aa59f17targetblankf31d079a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -574,7 +581,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/emily-cbaker/song-lab/tree/3cfa3a5190e21364c43046ee3cafdb9934a675aa" target="_blank">3cfa3a5</a>.
+<a href="https://github.com/emily-cbaker/song-lab/tree/f31d079675982b12d79f33f03d109ee15aa59f17" target="_blank">f31d079</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -594,6 +601,10 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    analysis/.DS_Store
+
+Unstaged changes:
+    Modified:   analysis/Publish all files
+    Modified:   analysis/_site.yml
 
 </code></pre>
 <p>
@@ -638,6 +649,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/emily-cbaker/song-lab/blob/f31d079675982b12d79f33f03d109ee15aa59f17/analysis/trans-to-ref.Rmd" target="_blank">f31d079</a>
+</td>
+<td>
+emilyc-baker
+</td>
+<td>
+2025-10-22
+</td>
+<td>
+wflow_publish(c("analysis/alphafold.Rmd", "analysis/barkdull.Rmd",
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/fdf475e59539d05b2d7dcbb16101a0db9ba5abf3/docs/trans-to-ref.html" target="_blank">fdf475e</a>
+</td>
+<td>
+emilyc-baker
+</td>
+<td>
+2025-10-22
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -713,8 +758,9 @@ wflow_publish(c("analysis/alphafold.Rmd", "analysis/barkdull.Rmd",
 </div>
 </div>
 </div>
-<div id="mapping-transcriptome-data" class="section level2 tabset">
-<h2 class="tabset">Mapping Transcriptome Data</h2>
+<div id="transcriptome-assembly-with-a-reference-genome"
+class="section level2 tabset">
+<h2 class="tabset">Transcriptome Assembly with a Reference Genome</h2>
 <div id="data-preprocessing" class="section level3">
 <h3>Data Preprocessing</h3>
 <div id="i-load-necessary-software" class="section level4">
@@ -1095,220 +1141,10 @@ done
 echo &quot;✅ All files processed! Results are in: $OUTPUT_DIR&quot;</code></pre>
 </div>
 </div>
-<div id="differential-gene-expression-analysis" class="section level3">
-<h3>Differential Gene Expression Analysis</h3>
-<div id="i-prepare-input-files" class="section level4">
-<h4>i) Prepare input files</h4>
-<p>To perform this analysis, we will need 4 files:</p>
-<ol style="list-style-type: decimal">
-<li><p>Raw count matrices These were produces during the STAR mapping
-step.</p></li>
-<li><p>Transcript to gene annotation file We have to reformat our .gtf
-file for input into DESeq2 and edgeR. First, download your species of
-interest’s .gtf annotation file from NCBI. Then run the following
-command directly in your terminal:</p></li>
-</ol>
-<pre class="r"><code>zcat {SPECIES}.gtf.gz | awk -F &quot;\t&quot; &#39;BEGIN{OFS=&quot;\t&quot;}{if($3==&quot;transcript&quot;){split($9, a, &quot;\&quot;&quot;); print a[4],a[2],a[8]}}&#39; &gt; tx2gene.{SPECIES}.csv</code></pre>
-<p>This command outputs a .csv file containing the transcript ID, gene
-ID, and gene symbol in the 3 co,umns respectively.</p>
-<ol start="3" style="list-style-type: decimal">
-<li>Sample sheet This file is a .txt file that is tab-delimited
-containing necessary information about your samples. The format is as
-follows:</li>
-</ol>
-<pre class="r"><code>SampleName  FileName  Tissue  ControlVariable</code></pre>
-<p>For example, here is the file I created to analyze differential
-expression between male and female <em>Schistocerca gregaria</em> in
-crowded conditions:</p>
-<pre class="r"><code>SampleName  FileName    Tissue  Sex
-23475Son_SchgreF1_S54_L001  23475Son_SchgreF1_S54_L001_counts.txt   Ear Female
-23475Son_SchgreF2_S55_L001  23475Son_SchgreF2_S55_L001_counts.txt   Ear Female
-23475Son_SchgreF3_S56_L001  23475Son_SchgreF3_S56_L001_counts.txt   Ear Female
-23475Son_SchgreM1_S51_L001  23475Son_SchgreM1_S51_L001_counts.txt   Ear Male
-23475Son_SchgreM2_S52_L001  23475Son_SchgreM2_S52_L001_counts.txt   Ear Male
-23475Son_SchgreM3_S53_L001  23475Son_SchgreM3_S53_L001_counts.txt   Ear Male</code></pre>
-<p>Extra columns can be added to include information that could be
-useful for statistical analysis, such as rearing condition, time points,
-replicates, etc.</p>
-<ol start="4" style="list-style-type: decimal">
-<li>Reference State Finally, we will need the reference state for which
-we will perform our differential expression analysis. In the example
-above, I chose male as the reference state, as the reference genome for
-<em>S. gregaria</em> on NCBI is from a male specimen.</li>
-</ol>
-</div>
-<div id="ii-deseq2-analysis-from-star-output" class="section level4">
-<h4>ii) DESeq2 Analysis from STAR Output</h4>
-<p>We can use the following R script to generate the DEG analysis using
-DESeq2. The modules necessary to run this script may not be readily
-available on CRAN or Bioconductor, so be prepared to use devtools or
-GitHub to install certain packages.</p>
-<pre class="r"><code>library(&quot;DESeq2&quot;)
-library(&quot;tximport&quot;)
-library(&quot;txdbmaker&quot;)
-library(&quot;knitr&quot;)
-library(&quot;rmdformats&quot;)
-library(&quot;tidyverse&quot;)
-library(&quot;data.table&quot;)
-library(&quot;DT&quot;)  # for making interactive search table
-library(&quot;plotly&quot;) # for interactive plots
-library(&quot;ggthemes&quot;) # for theme_calc
-library(&quot;reshape2&quot;)
-library(&quot;ComplexHeatmap&quot;)
-library(&quot;RColorBrewer&quot;)
-library(&quot;circlize&quot;)
-library(&quot;apeglm&quot;)
-library(&quot;ggpubr&quot;)
-library(&quot;ggplot2&quot;)
-library(&quot;ggrepel&quot;)
-library(&quot;EnhancedVolcano&quot;)
-library(&quot;SARTools&quot;)
-library(&quot;pheatmap&quot;)
-library(&quot;clusterProfiler&quot;)
-library(&quot;sva&quot;)
-library(&quot;cowplot&quot;)
-library(&quot;ashr&quot;)
-library(&quot;ggforce&quot;)
-library(&quot;ggConvexHull&quot;)
-
-###############################################################
-### USER-DEFINED PARAMETERS (EDIT THESE ONLY)
-###############################################################
-
-homeDir &lt;- &quot;/path/to/folder&quot;                # e.g., your home project directory
-workDir &lt;- &quot;path/to/working/directory&quot;  
-projectName &lt;- &quot;Project Name&quot;
-author &lt;- &quot;Author McScienceFace&quot;
-species &lt;- &quot;Species name&quot;                   # MUST MATCH STAR RUN SPECIES NAME!
-varInt &lt;- &quot;Condition&quot;                       # Experimental factor of interest
-condRef &lt;- &quot;Control&quot;                        # Reference condition (baseline)
-sampleFile &lt;- &quot;Sample File Name&quot;            # Name of your tab-delimited sample file
-
-###############################################################
-### AUTOMATIC PATHS AND INITIALIZATION
-###############################################################
-
-# Create working directory structure
-dir.create(workDir, showWarnings = FALSE, recursive = TRUE)
-setwd(workDir)
-
-rawDir &lt;- file.path(workDir, paste0(&quot;03-&quot;, species, &quot;-DESeq2&quot;))
-dir.create(rawDir, showWarnings = FALSE, recursive = TRUE)
-
-# Create subdirectory for DESeq2 run
-Dirname &lt;- paste0(&quot;DESeq2_&quot;, projectName)
-dir.create(Dirname, showWarnings = FALSE)
-setwd(Dirname)
-workDir_DEseq2 &lt;- getwd()
-
-# Define path to target file
-targetFile &lt;- file.path(workDir, paste0(sampleFile))
-
-###############################################################
-### DESeq2 PARAMETERS
-###############################################################
-
-tresh_logfold &lt;- 1
-tresh_padj &lt;- 0.05
-alpha_DEseq2 &lt;- 0.05
-pAdjustMethod_DEseq2 &lt;- &quot;BH&quot;
-featuresToRemove &lt;- NULL
-batch &lt;- NULL
-fitType &lt;- &quot;parametric&quot;
-cooksCutoff &lt;- TRUE
-independentFiltering &lt;- TRUE
-typeTrans &lt;- &quot;rlog&quot;
-locfunc &lt;- &quot;median&quot;
-colors &lt;- c(&quot;#B31B21&quot;, &quot;#1465AC&quot;)
-
-###############################################################
-### ANALYSIS PIPELINE
-###############################################################
-
-message(&quot;&gt;&gt;&gt; Starting DESeq2 analysis for project: &quot;, projectName)
-
-# 1. Load target file ----
-if (!file.exists(targetFile)) {
-  stop(&quot;Target file not found: &quot;, targetFile)
-}
-target &lt;- loadTargetFile(targetFile = targetFile, varInt = varInt, condRef = condRef, batch = batch)
-
-# 2. Load counts ----
-counts &lt;- loadCountData(target = target, rawDir = rawDir, featuresToRemove = featuresToRemove)
-
-# 3. Description plots ----
-majSequences &lt;- descriptionPlots(counts = counts, group = target[, varInt], col = colors)
-
-# 4. Run DESeq2 ----
-out.DESeq2 &lt;- run.DESeq2(
-  counts = counts, target = target, varInt = varInt, batch = batch,
-  locfunc = locfunc, fitType = fitType, pAdjustMethod = pAdjustMethod_DEseq2,
-  cooksCutoff = cooksCutoff, independentFiltering = independentFiltering,
-  alpha = alpha_DEseq2
-)
-
-# 5. PCA + Clustering ----
-exploreCounts(object = out.DESeq2$dds, group = target[, varInt], typeTrans = typeTrans, col = colors)
-
-# 6. Summarize results ----
-summaryResults &lt;- summarizeResults.DESeq2(
-  out.DESeq2, group = target[, varInt], col = colors,
-  independentFiltering = independentFiltering,
-  cooksCutoff = cooksCutoff, alpha = alpha_DEseq2
-)
-
-# 7. Generate HTML report ----
-writeReport.DESeq2(
-  target = target, counts = counts, out.DESeq2 = out.DESeq2, summaryResults = summaryResults,
-  majSequences = majSequences, workDir = workDir_DEseq2, projectName = projectName, author = author,
-  targetFile = targetFile, rawDir = rawDir, featuresToRemove = featuresToRemove, varInt = varInt,
-  condRef = condRef, batch = batch, fitType = fitType, cooksCutoff = cooksCutoff,
-  independentFiltering = independentFiltering, alpha = alpha_DEseq2, pAdjustMethod = pAdjustMethod_DEseq2,
-  typeTrans = typeTrans, locfunc = locfunc, colors = colors
-)
-
-message(&quot;&gt;&gt;&gt; DESeq2 analysis complete. Results saved to: &quot;, workDir_DEseq2)
-###############################################################</code></pre>
-</div>
-</div>
-<div id="troubleshooting" class="section level3">
-<h3>Troubleshooting</h3>
-<div id="lua-filter-skipped" class="section level4">
-<h4>Lua Filter Skipped</h4>
-<p>This error occurs when the pandoc version isn’t compatible with the
-default Rmarkdown template system. I fixed this in my run by updating my
-pandoc to the most recent version using the following steps:</p>
-<ol style="list-style-type: decimal">
-<li>Check if pandoc is updated to the most recent version (as of
-10/22/25, 3.1.12.3 is the most recent).</li>
-</ol>
-<pre class="r"><code>module avail pandoc</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>If not the most recent version, then using the following code to
-install a newer version. Since the pandoc module isn’t managed by Sol,
-we have to update it ourselves.</li>
-</ol>
-<pre class="r"><code>cd ~
-wget https://github.com/jgm/pandoc/releases/download/3.1.12.3/pandoc-3.1.12.3-linux-amd64.tar.gz
-
-tar -xvzf pandoc-3.1.12.3-linux-amd64.tar.gz</code></pre>
-<p>There should now be a folder named “pandoc-3.1.12.3”. We can now move
-this file to our personal bin directory using the following code:</p>
-<pre class="r"><code>mkdir -p ~/bin
-
-mv pandoc-3.1.12.3/bin/pandoc ~/bin/</code></pre>
-<p>Now we can add the new pandoc module to our path so the computer is
-able to locate the module when we run our R script.</p>
-<pre class="r"><code>echo &#39;export PATH=$HOME/bin:$PATH&#39; &gt;&gt; ~/.bashrc
-source ~/.bashrc</code></pre>
-<p>We can now verify our installation with</p>
-<pre class="r"><code>pandoc --version</code></pre>
-<p>This should match the version you downloaded.</p>
-</div>
-</div>
 <div id="citations" class="section level3">
 <h3>Citations</h3>
-<p>Workflow developed by Maeva Techer</p>
+<p>This workflow was developed by Maeva Techer and has been reconfigured
+to run on the Sol cluster.</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
