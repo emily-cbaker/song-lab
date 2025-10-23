@@ -39,6 +39,11 @@ navbar:
     - text: "Transcriptomics"
       icon: "fa-pen-to-square"
       menu:
+        - text: "Analysis"
+          menu:
+            - text: "Differential Gene Expression"
+              href:
+            - text: "GO Term Enrichment"
         - text: "Transcription Factor Family Mapping (ASU Only)"
           href: tf_mapping.html
         - text: "Transcriptome Data Assembly with a Reference Genome (ASU)"

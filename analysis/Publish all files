@@ -5,6 +5,7 @@ wflow_publish(c(
 "analysis/chimerax.Rmd",
 "analysis/compare-genomes.Rmd",
 "analysis/definitions.Rmd",
+"analysis/deg.Rmd",
 "analysis/genespace.Rmd",
 "analysis/index.Rmd",
 "analysis/kimura.Rmd",
