@@ -556,15 +556,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtree68cf684b98ddd87b4c2caed12c31d39120671f12targetblank68cf684a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtree3cfa3a5190e21364c43046ee3cafdb9934a675aatargetblank3cfa3a5a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/emily-cbaker/song-lab/tree/68cf684b98ddd87b4c2caed12c31d39120671f12" target="_blank">68cf684</a>
+<a href="https://github.com/emily-cbaker/song-lab/tree/3cfa3a5190e21364c43046ee3cafdb9934a675aa" target="_blank">3cfa3a5</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtree68cf684b98ddd87b4c2caed12c31d39120671f12targetblank68cf684a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtree3cfa3a5190e21364c43046ee3cafdb9934a675aatargetblank3cfa3a5a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -574,7 +574,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/emily-cbaker/song-lab/tree/68cf684b98ddd87b4c2caed12c31d39120671f12" target="_blank">68cf684</a>.
+<a href="https://github.com/emily-cbaker/song-lab/tree/3cfa3a5190e21364c43046ee3cafdb9934a675aa" target="_blank">3cfa3a5</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -594,9 +594,6 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    analysis/.DS_Store
-
-Unstaged changes:
-    Modified:   analysis/_site.yml
 
 </code></pre>
 <p>
@@ -641,6 +638,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/emily-cbaker/song-lab/blob/3cfa3a5190e21364c43046ee3cafdb9934a675aa/analysis/trans-to-ref.Rmd" target="_blank">3cfa3a5</a>
+</td>
+<td>
+emilyc-baker
+</td>
+<td>
+2025-10-22
+</td>
+<td>
+wflow_publish("analysis/trans-to-ref.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/e7223293e2da2dc35d0b767f72ba87baa072d6d3/docs/trans-to-ref.html" target="_blank">e722329</a>
+</td>
+<td>
+emilyc-baker
+</td>
+<td>
+2025-10-22
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -1238,6 +1269,46 @@ writeReport.DESeq2(
 
 message(&quot;&gt;&gt;&gt; DESeq2 analysis complete. Results saved to: &quot;, workDir_DEseq2)
 ###############################################################</code></pre>
+</div>
+</div>
+<div id="troubleshooting" class="section level3">
+<h3>Troubleshooting</h3>
+<div id="lua-filter-skipped" class="section level4">
+<h4>Lua Filter Skipped</h4>
+<p>This error occurs when the pandoc version isn’t compatible with the
+default Rmarkdown template system. I fixed this in my run by updating my
+pandoc to the most recent version using the following steps:</p>
+<ol style="list-style-type: decimal">
+<li>Check if pandoc is updated to the most recent version (as of
+10/22/25, 3.1.12.3 is the most recent).</li>
+</ol>
+<pre class="r"><code>module avail pandoc</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>If not the most recent version, then using the following code to
+install a newer version. Since the pandoc module isn’t managed by Sol,
+we have to update it ourselves.</li>
+</ol>
+<pre class="r"><code>cd ~
+wget https://github.com/jgm/pandoc/releases/download/3.1.12.3/pandoc-3.1.12.3-linux-amd64.tar.gz
+
+tar -xvzf pandoc-3.1.12.3-linux-amd64.tar.gz</code></pre>
+<p>There should now be a folder named “pandoc-3.1.12.3”. We can now move
+this file to our personal bin directory using the following code:</p>
+<pre class="r"><code>mkdir -p ~/bin
+
+mv pandoc-3.1.12.3/bin/pandoc ~/bin/</code></pre>
+<p>Now we can add the new pandoc module to our path so the computer is
+able to locate the module when we run our R script.</p>
+<pre class="r"><code>echo &#39;export PATH=$HOME/bin:$PATH&#39; &gt;&gt; ~/.bashrc
+source ~/.bashrc</code></pre>
+<p>We can now verify our installation with</p>
+<pre class="r"><code>pandoc --version</code></pre>
+<p>This should match the version you downloaded.</p>
+</div>
+</div>
+<div id="citations" class="section level3">
+<h3>Citations</h3>
+<p>Workflow developed by Maeva Techer</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1280,7 +1351,6 @@ loaded via a namespace (and not attached):
 [37] rstudioapi_0.17.1  lifecycle_1.0.4    vctrs_0.6.5        evaluate_1.0.5    
 [41] glue_1.8.0         farver_2.1.2       whisker_0.4.1      rmarkdown_2.30    
 [45] httr_1.4.7         tools_4.5.1        pkgconfig_2.0.3    htmltools_0.5.8.1 </code></pre>
-</div>
 </div>
 </div>
 </div>
