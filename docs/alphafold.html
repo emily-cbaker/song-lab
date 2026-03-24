@@ -257,57 +257,24 @@ $(document).ready(function () {
       <ul class="nav navbar-nav">
         <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <span class="fa fa-microscope"></span>
+    <span class="fa fa-dna"></span>
      
-    Projects
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Comparative Genomics of Schistocerca gregaria -- In prep</li>
-    <li class="dropdown-header">Comparative Genomics of Mormon Cricket subgroups -- UNDER CONSTRUCTION</li>
-    <li class="dropdown-header">Ensifera Ear Transcriptomics -- UNDER CONSTRUCTION</li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <span class="fa fa-code-compare"></span>
-     
-    Comparative Genomics
+    Genomics
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-submenu">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">FormicidaeMolecularEvolution - OrthoFinder Workflow for Longest Isoform</a>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Comparative Genomics</a>
       <ul class="dropdown-menu" role="menu">
         <li>
-          <a href="barkdull.html">TAMU Workflow</a>
+          <a href="barkdull_asu.html">FormicidaeMolecularEvolution - OrthoFinder Workflow for Longest Isoform</a>
         </li>
         <li>
-          <a href="barkdull_asu.html">ASU Workflow</a>
-        </li>
-      </ul>
-    </li>
-    <li class="dropdown-submenu">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">RepeatModeler &amp; RepeatMasker</a>
-      <ul class="dropdown-menu" role="menu">
-        <li>
-          <a href="rep-model-mask.html">TAMU Workflow</a>
+          <a href="rep-model-mask_asu.html">RepeatModeler &amp; RepeatMasker</a>
         </li>
         <li>
-          <a href="rep-model-mask_asu.html">ASU Workflow</a>
-        </li>
-      </ul>
-    </li>
-    <li class="dropdown-submenu">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">PSMC Model Analysis</a>
-      <ul class="dropdown-menu" role="menu">
-        <li>
-          <a href="psmc.html">TAMU Workflow</a>
-        </li>
-        <li>
-          <a href="psmc_asu.html">ASU Workflow</a>
+          <a href="psmc_asu.html">PSMC Model Analysis</a>
         </li>
       </ul>
     </li>
@@ -323,19 +290,28 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-submenu">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Analysis</a>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Data Assembly</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="trans-to-ref.html">Transcriptome Data Assembly with a Reference Genome</a>
+        </li>
+        <li>
+          <a href="de_novo_assembly.html">De Novo Transcriptome Assembly</a>
+        </li>
+      </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Analyses</a>
       <ul class="dropdown-menu" role="menu">
         <li>
           <a href="deg.html">Differential Gene Expression</a>
         </li>
         <li class="dropdown-header">GO Term Enrichment</li>
+        <li>
+          <a href="tf_mapping.html">Transcription Factor Family Mapping</a>
+        </li>
+        <li class="dropdown-header">KEGG Pathway Enrichment</li>
       </ul>
-    </li>
-    <li>
-      <a href="tf_mapping.html">Transcription Factor Family Mapping (ASU Only)</a>
-    </li>
-    <li>
-      <a href="trans-to-ref.html">Transcriptome Data Assembly with a Reference Genome (ASU)</a>
     </li>
   </ul>
 </li>
@@ -353,6 +329,20 @@ $(document).ready(function () {
     </li>
     <li>
       <a href="chimerax.html">Chimera X</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="fa fa-bacterium"></span>
+     
+    Metagenomics
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="shotgun_mg_analysis.html">Shotgun Metagenomic Data Analysis</a>
     </li>
   </ul>
 </li>
@@ -377,7 +367,7 @@ $(document).ready(function () {
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fa fa-book-open-reader"></span>
      
-    Reference
+    Misc.
      
     <span class="caret"></span>
   </a>
@@ -387,6 +377,20 @@ $(document).ready(function () {
     </li>
     <li>
       <a href="definitions.html">Glossary of Terminology</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Old TAMU Workflows</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="barkdull.html">Formicidae Molecular Evolution</a>
+        </li>
+        <li>
+          <a href="rep-model-mask.html">Repeat Modeler and Masker</a>
+        </li>
+        <li>
+          <a href="psmc.html">PSMC Analysis</a>
+        </li>
+      </ul>
     </li>
   </ul>
 </li>
@@ -431,7 +435,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2025-10-22
+<strong>Last updated:</strong> 2026-03-24
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -478,15 +482,15 @@ results.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtree541168a1ae0eaf68efa560206e21be587825028dtargetblank541168aa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtree7b0a72bf182a0ec81dfbe2735e782e529e61b6actargetblank7b0a72ba">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/emily-cbaker/song-lab/tree/541168a1ae0eaf68efa560206e21be587825028d" target="_blank">541168a</a>
+<a href="https://github.com/emily-cbaker/song-lab/tree/7b0a72bf182a0ec81dfbe2735e782e529e61b6ac" target="_blank">7b0a72b</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtree541168a1ae0eaf68efa560206e21be587825028dtargetblank541168aa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtree7b0a72bf182a0ec81dfbe2735e782e529e61b6actargetblank7b0a72ba"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -496,7 +500,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/emily-cbaker/song-lab/tree/541168a1ae0eaf68efa560206e21be587825028d" target="_blank">541168a</a>.
+<a href="https://github.com/emily-cbaker/song-lab/tree/7b0a72bf182a0ec81dfbe2735e782e529e61b6ac" target="_blank">7b0a72b</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -517,8 +521,29 @@ Ignored files:
     Ignored:    .Rproj.user/
     Ignored:    analysis/.DS_Store
 
+Untracked files:
+    Untracked:  abundance_stacked_bar.R
+    Untracked:  analysis/de_novo_assembly.Rmd
+    Untracked:  analysis/go-term-enrichment.Rmd
+    Untracked:  analysis/ref_mg_assembly.Rmd
+    Untracked:  analysis/trans-de-novo.Rmd
+
 Unstaged changes:
+    Modified:   analysis/Publish all files
     Modified:   analysis/_site.yml
+    Modified:   analysis/theme3.css
+    Deleted:    analysis/transcriptome.Rmd
+    Deleted:    analysis/week1-notes.Rmd
+    Deleted:    analysis/week12-notes.Rmd
+    Deleted:    analysis/week14-notes.Rmd
+    Deleted:    analysis/week16-notes.Rmd
+    Deleted:    analysis/week2-notes.Rmd
+    Deleted:    analysis/week3-notes.Rmd
+    Deleted:    analysis/week4-notes.Rmd
+    Deleted:    analysis/week5-notes.Rmd
+    Deleted:    analysis/week6-notes.Rmd
+    Deleted:    analysis/week7-notes.Rmd
+    Deleted:    analysis/week9-notes.Rmd
 
 </code></pre>
 <p>
@@ -563,6 +588,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/5716b6e08bd3a059dd021c37282cc50de67cb2b2/docs/alphafold.html" target="_blank">5716b6e</a>
+</td>
+<td>
+emilyc-baker
+</td>
+<td>
+2025-10-22
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html

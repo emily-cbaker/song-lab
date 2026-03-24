@@ -11,7 +11,7 @@
 
 
 
-<title>Kimura Plots for Repeat Content Visualization</title>
+<title>Kimura Plots for Repeat Family (RF) Content Visualization</title>
 
 <script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -257,57 +257,24 @@ $(document).ready(function () {
       <ul class="nav navbar-nav">
         <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <span class="fa fa-microscope"></span>
+    <span class="fa fa-dna"></span>
      
-    Projects
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Comparative Genomics of Schistocerca gregaria -- In prep</li>
-    <li class="dropdown-header">Comparative Genomics of Mormon Cricket subgroups -- UNDER CONSTRUCTION</li>
-    <li class="dropdown-header">Ensifera Ear Transcriptomics -- UNDER CONSTRUCTION</li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <span class="fa fa-code-compare"></span>
-     
-    Comparative Genomics
+    Genomics
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-submenu">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">FormicidaeMolecularEvolution - OrthoFinder Workflow for Longest Isoform</a>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Comparative Genomics</a>
       <ul class="dropdown-menu" role="menu">
         <li>
-          <a href="barkdull.html">TAMU Workflow</a>
+          <a href="barkdull_asu.html">FormicidaeMolecularEvolution - OrthoFinder Workflow for Longest Isoform</a>
         </li>
         <li>
-          <a href="barkdull_asu.html">ASU Workflow</a>
-        </li>
-      </ul>
-    </li>
-    <li class="dropdown-submenu">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">RepeatModeler &amp; RepeatMasker</a>
-      <ul class="dropdown-menu" role="menu">
-        <li>
-          <a href="rep-model-mask.html">TAMU Workflow</a>
+          <a href="rep-model-mask_asu.html">RepeatModeler &amp; RepeatMasker</a>
         </li>
         <li>
-          <a href="rep-model-mask_asu.html">ASU Workflow</a>
-        </li>
-      </ul>
-    </li>
-    <li class="dropdown-submenu">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">PSMC Model Analysis</a>
-      <ul class="dropdown-menu" role="menu">
-        <li>
-          <a href="psmc.html">TAMU Workflow</a>
-        </li>
-        <li>
-          <a href="psmc_asu.html">ASU Workflow</a>
+          <a href="psmc_asu.html">PSMC Model Analysis</a>
         </li>
       </ul>
     </li>
@@ -323,19 +290,28 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-submenu">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Analysis</a>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Data Assembly</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="trans-to-ref.html">Transcriptome Data Assembly with a Reference Genome</a>
+        </li>
+        <li>
+          <a href="de_novo_assembly.html">De Novo Transcriptome Assembly</a>
+        </li>
+      </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Analyses</a>
       <ul class="dropdown-menu" role="menu">
         <li>
           <a href="deg.html">Differential Gene Expression</a>
         </li>
         <li class="dropdown-header">GO Term Enrichment</li>
+        <li>
+          <a href="tf_mapping.html">Transcription Factor Family Mapping</a>
+        </li>
+        <li class="dropdown-header">KEGG Pathway Enrichment</li>
       </ul>
-    </li>
-    <li>
-      <a href="tf_mapping.html">Transcription Factor Family Mapping (ASU Only)</a>
-    </li>
-    <li>
-      <a href="trans-to-ref.html">Transcriptome Data Assembly with a Reference Genome (ASU)</a>
     </li>
   </ul>
 </li>
@@ -353,6 +329,20 @@ $(document).ready(function () {
     </li>
     <li>
       <a href="chimerax.html">Chimera X</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="fa fa-bacterium"></span>
+     
+    Metagenomics
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="shotgun_mg_analysis.html">Shotgun Metagenomic Data Analysis</a>
     </li>
   </ul>
 </li>
@@ -377,7 +367,7 @@ $(document).ready(function () {
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fa fa-book-open-reader"></span>
      
-    Reference
+    Misc.
      
     <span class="caret"></span>
   </a>
@@ -387,6 +377,20 @@ $(document).ready(function () {
     </li>
     <li>
       <a href="definitions.html">Glossary of Terminology</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Old TAMU Workflows</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="barkdull.html">Formicidae Molecular Evolution</a>
+        </li>
+        <li>
+          <a href="rep-model-mask.html">Repeat Modeler and Masker</a>
+        </li>
+        <li>
+          <a href="psmc.html">PSMC Analysis</a>
+        </li>
+      </ul>
     </li>
   </ul>
 </li>
@@ -402,7 +406,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Kimura Plots for Repeat Content
+<h1 class="title toc-ignore">Kimura Plots for Repeat Family (RF) Content
 Visualization</h1>
 
 </div>
@@ -432,7 +436,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2025-10-22
+<strong>Last updated:</strong> 2026-03-24
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -563,15 +567,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtree541168a1ae0eaf68efa560206e21be587825028dtargetblank541168aa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtree7b0a72bf182a0ec81dfbe2735e782e529e61b6actargetblank7b0a72ba">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/emily-cbaker/song-lab/tree/541168a1ae0eaf68efa560206e21be587825028d" target="_blank">541168a</a>
+<a href="https://github.com/emily-cbaker/song-lab/tree/7b0a72bf182a0ec81dfbe2735e782e529e61b6ac" target="_blank">7b0a72b</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtree541168a1ae0eaf68efa560206e21be587825028dtargetblank541168aa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomemilycbakersonglabtree7b0a72bf182a0ec81dfbe2735e782e529e61b6actargetblank7b0a72ba"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -581,7 +585,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/emily-cbaker/song-lab/tree/541168a1ae0eaf68efa560206e21be587825028d" target="_blank">541168a</a>.
+<a href="https://github.com/emily-cbaker/song-lab/tree/7b0a72bf182a0ec81dfbe2735e782e529e61b6ac" target="_blank">7b0a72b</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -602,8 +606,29 @@ Ignored files:
     Ignored:    .Rproj.user/
     Ignored:    analysis/.DS_Store
 
+Untracked files:
+    Untracked:  abundance_stacked_bar.R
+    Untracked:  analysis/de_novo_assembly.Rmd
+    Untracked:  analysis/go-term-enrichment.Rmd
+    Untracked:  analysis/ref_mg_assembly.Rmd
+    Untracked:  analysis/trans-de-novo.Rmd
+
 Unstaged changes:
+    Modified:   analysis/Publish all files
     Modified:   analysis/_site.yml
+    Modified:   analysis/theme3.css
+    Deleted:    analysis/transcriptome.Rmd
+    Deleted:    analysis/week1-notes.Rmd
+    Deleted:    analysis/week12-notes.Rmd
+    Deleted:    analysis/week14-notes.Rmd
+    Deleted:    analysis/week16-notes.Rmd
+    Deleted:    analysis/week2-notes.Rmd
+    Deleted:    analysis/week3-notes.Rmd
+    Deleted:    analysis/week4-notes.Rmd
+    Deleted:    analysis/week5-notes.Rmd
+    Deleted:    analysis/week6-notes.Rmd
+    Deleted:    analysis/week7-notes.Rmd
+    Deleted:    analysis/week9-notes.Rmd
 
 </code></pre>
 <p>
@@ -647,6 +672,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/emily-cbaker/song-lab/blob/7b0a72bf182a0ec81dfbe2735e782e529e61b6ac/analysis/kimura.Rmd" target="_blank">7b0a72b</a>
+</td>
+<td>
+emilyc-baker
+</td>
+<td>
+2026-03-24
+</td>
+<td>
+wflow_publish(c("analysis/alphafold.Rmd", "analysis/barkdull.Rmd",
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/emily-cbaker/song-lab/5716b6e08bd3a059dd021c37282cc50de67cb2b2/docs/kimura.html" target="_blank">5716b6e</a>
+</td>
+<td>
+emilyc-baker
+</td>
+<td>
+2025-10-22
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -875,14 +934,11 @@ wflow_publish(c("analysis/alphafold.Rmd", "analysis/Apollo.Rmd",
 </div>
 </div>
 </div>
-<div id="repeat-content-visualization-analysis"
+<div id="rf-content-visualization-analysis"
 class="section level3 tabset">
-<h3 class="tabset">Repeat Content Visualization &amp; Analysis</h3>
-<div
-id="file-preparation-necessary-for-single-or-multiple-plotting-options"
-class="section level4">
-<h4>File Preparation (Necessary for single or multiple plotting
-options)</h4>
+<h3 class="tabset">RF Content Visualization &amp; Analysis</h3>
+<div id="file-preparation" class="section level4">
+<h4>File Preparation</h4>
 <p>To generate a kimura repeat content plot, first you must run the
 script included in the RepeatMasker module called
 <em>calcDivergenceFromAlign.pl</em>. I did this using the script below
@@ -947,9 +1003,9 @@ should look like this:</p>
 0 290 2240 223288 ... 214984 707342 328 ... 6524  711 0 56168370 340641 
 ⋮</code></pre>
 </div>
-<div id="for-a-single-genome" class="section level4">
-<h4>For a single genome</h4>
-<p><img src="assets/SchCanc_Kimura.png" /></p>
+<div id="major-rfs-single-genome" class="section level4">
+<h4>Major RFs: Single Genome</h4>
+<p><img src="assets/simple_single_kimura.png" /></p>
 <p>To create a Kimura plot for a single genome, create a file called
 <em>kimura-single.R</em> and copy and paste the following code into
 it:</p>
@@ -1054,21 +1110,116 @@ pdf(
 print(kimura.gg)
 invisible(dev.off())</code></pre>
 </div>
-<div id="for-multiple-genomes-stacked" class="section level4">
-<h4>For multiple genomes (stacked)</h4>
-<center>
-<img src="assets/stacked-kimura.png" style="width: 500px">
-</center>
-<p>This plot has the genome of importance at the top, but if you wish to
-have all genome in the columns side-by-side, simply delete the section
-that begins with the comment “Seperate gregaria from the others” and
-ends just above the comment “Other species” and add all genomes to the
-second plotting section. You will also need to alter the output commands
-by simply removing the line combining all the plots into a single plot
-called “combined” and print the <em>other_group</em> plot instead. This
-should give you a combined plot with all genomes in a maximum fof 2
-columns, which of course can also be adjusted within the facet_wrap
-command.</p>
+<div id="specific-rfs-single-genome" class="section level4">
+<h4>Specific RFs: Single Genome</h4>
+<p><img src="assets/complex_single_kimura.png" /></p>
+<p>To create the more complex style Kimura plot for a single genome,
+create a file called <em>kimura-single-complex.R</em> and copy and paste
+the below code into it:</p>
+<p><mark>Please note that this script uses manually assigned colors for
+each sub-family, as to assure consistency across different species’
+plots. You will likely need to generate your own color mapping based on
+the various repeat groups that are present in your genome.</mark></p>
+<pre class="r"><code># ------------------------------------------------------------------------------------------------ #
+# Repeat annotation summary - consistent subfamily colors
+#
+# This script reads a .distance file, calculates subfamily genome percentages,
+# and plots a stacked Kimura plot with consistent subfamily colors across species.
+# ------------------------------------------------------------------------------------------------ #
+
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(magrittr)
+  library(readr)
+  library(scales)
+})
+
+# ------------------- Edit for your species ------------------------------------------------- #
+size &lt;- 9100000000          # Total genome size
+sample_name &lt;- &quot;Schistocerca serialis cubense&quot;
+file &lt;- &quot;song_assembly/SchGreg.distance&quot;
+# ------------------------------------------------------------------------------------------- #
+
+# Define a fixed subfamily palette
+subfamily_palette &lt;- c(
+  &quot;DNA&quot; = &quot;#4eaf49&quot;, &quot;DNA/Academ-1&quot; = &quot;#ffb703&quot;, &quot;DNA/CMC-Chapaev-3&quot; = &quot;#984f9f&quot;,
+  &quot;DNA/CMC-EnSpm&quot; = &quot;#b57db5&quot;, &quot;DNA/CMC-Transib&quot; = &quot;#fb8500&quot;, &quot;DNA/Kolobok-Hydra&quot; = &quot;#6fa7d6&quot;,
+  &quot;DNA/MULE-MuDR&quot; = &quot;#f7941d&quot;, &quot;DNA/MULE-NOF&quot; = &quot;#737e76&quot;, &quot;DNA/Maverick&quot; = &quot;#90e0ef&quot;,
+  &quot;DNA/Merlin&quot; = &quot;#ffa69e&quot;, &quot;DNA/P&quot; = &quot;#00b4d8&quot;, &quot;DNA/PIF-Harbinger&quot; = &quot;#d1495b&quot;,
+  &quot;DNA/PiggyBac&quot; = &quot;#6ecf6e&quot;, &quot;DNA/Sola-1&quot; = &quot;#ff595e&quot;, &quot;DNA/Sola-2&quot; = &quot;#f94144&quot;,
+  &quot;DNA/TcMar-Fot1&quot; = &quot;#f3722c&quot;, &quot;DNA/TcMar-Mariner&quot; = &quot;#f8961e&quot;, &quot;DNA/TcMar-Pogo&quot; = &quot;#f9c74f&quot;,
+  &quot;DNA/TcMar-Tc1&quot; = &quot;#90be6d&quot;, &quot;DNA/TcMar-Tc2&quot; = &quot;#43aa8b&quot;, &quot;DNA/TcMar-Tc4&quot; = &quot;#577590&quot;,
+  &quot;DNA/TcMar-Tigger&quot; = &quot;#277da1&quot;, &quot;LINE&quot; = &quot;#4e79a7&quot;, &quot;LINE/CR1&quot; = &quot;#f28e2b&quot;,
+  &quot;LINE/Dong-R4&quot; = &quot;#e15759&quot;, &quot;LINE/I&quot; = &quot;#76b7b2&quot;, &quot;LINE/I-Jockey&quot; = &quot;#59a14f&quot;,
+  &quot;LINE/L1-Tx1&quot; = &quot;#edc948&quot;, &quot;LINE/L2&quot; = &quot;#b07aa1&quot;, &quot;LINE/Penelope&quot; = &quot;#ff9da7&quot;,
+  &quot;LINE/R1&quot; = &quot;#9c755f&quot;, &quot;LINE/R1-LOA&quot; = &quot;#bab0ac&quot;, &quot;LINE/R2&quot; = &quot;#d37295&quot;,
+  &quot;LINE/RTE-BovB&quot; = &quot;#fabfd2&quot;, &quot;LINE/RTE-RTE&quot; = &quot;#b0b0b0&quot;, &quot;LINE/RTE-X&quot; = &quot;#d4a6c8&quot;,
+  &quot;LINE/Rex-Babar&quot; = &quot;#7f7f7f&quot;, &quot;LTR&quot; = &quot;#59c9a5&quot;, &quot;LTR/Copia&quot; = &quot;#ff6f59&quot;,
+  &quot;LTR/Gypsy&quot; = &quot;#1982c4&quot;, &quot;LTR/Pao&quot; = &quot;#ffca3a&quot;, &quot;RC/Helitron&quot; = &quot;#8ac926&quot;,
+  &quot;Simple_repeat&quot; = &quot;#6a4c93&quot;, &quot;Unknown&quot; = &quot;#397fb9&quot;, &quot;tRNA&quot; = &quot;#ffca3a&quot;
+)
+
+# ------------------- Read and process .distance file ---------------------------------------- #
+df.kimura &lt;- read_table(file, col_types = cols(.default = col_double()))
+
+# Remove any trailing empty column (from whitespace)
+if (colnames(df.kimura)[ncol(df.kimura)] == &quot;&quot;) df.kimura &lt;- df.kimura[, -ncol(df.kimura)]
+
+# Add sample info
+df.kimura &lt;- df.kimura %&gt;%
+  mutate(sample = sample_name, size = size) %&gt;%
+  pivot_longer(
+    cols = -c(sample, size, Div),
+    names_to = &quot;Sub-family&quot;,
+    values_to = &quot;value&quot;
+  ) %&gt;%
+  mutate(
+    # Extract top-level family (optional)
+    Family = ifelse(str_detect(`Sub-family`, &quot;/&quot;),
+                    str_extract(`Sub-family`, &quot;^[^/]+&quot;),
+                    `Sub-family`),
+    # Clean whitespace
+    `Sub-family` = str_trim(`Sub-family`),
+    percentage_subfamily = (value / size) * 100
+  ) %&gt;%
+  filter(!is.na(value), percentage_subfamily &gt; 0.01)
+
+# Keep only subfamilies present in palette
+df.kimura &lt;- df.kimura %&gt;%
+  filter(`Sub-family` %in% names(subfamily_palette)) %&gt;%
+  mutate(`Sub-family` = factor(`Sub-family`, levels = names(subfamily_palette)))
+
+# ------------------- Plot --------------------------------------------------------------- #
+kimura.gg &lt;- ggplot(df.kimura, aes(x = Div, y = percentage_subfamily, fill = `Sub-family`)) +
+  geom_bar(position = &quot;stack&quot;, stat = &quot;identity&quot;, alpha = 0.8) +
+  scale_fill_manual(values = subfamily_palette) +
+  labs(
+    x = &quot;Kimura substitution level&quot;,
+    y = &quot;Genome percentage&quot;,
+    fill = &quot;Sub-family&quot;
+  ) +
+  scale_y_continuous(labels = label_number(suffix = &quot;%&quot;), limits = c(0, 5)) +
+  scale_x_continuous(breaks = seq(0, 50, 5), limits = c(0, 55), expand = c(0,0)) +
+  coord_cartesian(xlim = c(0, 51)) +
+  theme_minimal() +
+  theme(
+    axis.title = element_text(size = 20, face = &quot;bold&quot;),
+    axis.text = element_text(size = 18),
+    legend.position = &quot;right&quot;,
+    legend.title = element_text(size = 18),
+    legend.text = element_text(size = 14),
+    strip.text = element_text(size = 20, face = &quot;bold.italic&quot;)
+  ) +
+  facet_wrap(~sample, nrow = 4)
+
+# ------------------- Save plot ---------------------------------------------------------- #
+pdf(paste0(sample_name, &quot;-kimura-subfamily.pdf&quot;), width = 12, height = 9)
+print(kimura.gg)
+invisible(dev.off())</code></pre>
+</div>
+<div id="major-rfs-multi-genome" class="section level4">
+<h4>Major RFs: Multi-genome</h4>
+<p><img src="assets/simple_multi_kimura.png" /></p>
 <p>Create a new R script called <em>kimura-plot-mult-genomes.R</em> and
 copy and paste the following script into it:</p>
 <pre class="r"><code># ------------------------------------------------------------------------------------------------ #
@@ -1091,13 +1242,13 @@ suppressPackageStartupMessages({
 #########################################################################################################################
 ################################################# CHANGE HERE 1/5 ########################################################
 genome.sizes &lt;- tibble(
-  sample = c(&#39;Schistocerca gregaria&#39;, &#39;Schistocerca piceifrons&#39;, &#39;Schistocerca cancellata&#39;, &#39;Schistocerca nitens&#39;, &#39;Schistocerca serialis cubense&#39;, &#39;Schistocerca americana&#39;, &#39;Locusta migratoria&#39;, &#39;Anabrus simplex&#39;, &#39;Gryllus bimaculatus&#39;, &#39;Gryllus longicercus&#39;, &#39;Cryptotermes secundus&#39;, &#39;Bacillus rossius redtenbacheri&#39;, &#39;Periplaneta americana&#39;),
-  size = c(8700000000, 8700000000, 8500000000, 8800000000, 9100000000, 9000000000, 6300000000, 6400000000, 1700000000, 1900000000, 1000000000, 1600000000, 3200000000)
+  sample = c(&#39;Schistocerca gregaria&#39;, &#39;Schistocerca piceifrons&#39;, &#39;Schistocerca cancellata&#39;, &#39;Schistocerca nitens&#39;, &#39;Schistocerca serialis cubense&#39;, &#39;Schistocerca americana&#39;),
+  size = c(8700000000, 8700000000, 8500000000, 8800000000, 9100000000, 9000000000)
 )
 ##########################################################################################################################
 ##########################################################################################################################
 
-pal &lt;- colorRampPalette(RColorBrewer::brewer.pal(n = 7, &#39;Set3&#39;))
+pal &lt;- colorRampPalette(RColorBrewer::brewer.pal(n = 6, &#39;Set3&#39;))
 
 # ------------------------------------------------------------------------------------------------ #
 # Kimura divergence tables
@@ -1115,15 +1266,7 @@ df.kimura &lt;- fs::dir_ls(
       sample == &#39;song_assembly/SchCanc.distance&#39; ~ &#39;Schistocerca cancellata&#39;,
       sample == &#39;song_assembly/SchNite.distance&#39; ~ &#39;Schistocerca nitens&#39;,
       sample == &#39;song_assembly/SchSeri.distance&#39; ~ &#39;Schistocerca serialis cubense&#39;,
-      sample == &#39;song_assembly/SchAmer.distance&#39; ~ &#39;Schistocerca americana&#39;,
-      sample == &#39;song_assembly/LocMig.distance&#39; ~ &#39;Locusta migratoria&#39;,
-      sample == &#39;song_assembly/AnsimpID.distance&#39; ~ &#39;Anabrus simplex&#39;,
-      sample == &#39;song_assembly/GryBi.distance&#39; ~ &#39;Gryllus bimaculatus&#39;,
-      sample ==&#39;song_assembly/GryLong.distance&#39; ~ &#39;Gryllus longicercus&#39;,
-      sample == &#39;song_assembly/Csecu.distance&#39; ~ &#39;Cryptotermes secundus&#39;,
-      sample ==&#39;song_assembly/Brsri.distance&#39; ~ &#39;Bacillus rossius redtenbacheri&#39;,
-      sample == &#39;song_assembly/PeriAmer.distance&#39; ~ &#39;Periplaneta americana&#39;,
-      .default = sample
+      sample == &#39;song_assembly/SchAmer.distance&#39; ~ &#39;Schistocerca americana&#39;
     )#########################################################################################################################
   ) |&gt;########################################################################################################################
   select(-starts_with(&#39;...&#39;)) |&gt;
@@ -1131,7 +1274,7 @@ df.kimura &lt;- fs::dir_ls(
   left_join(genome.sizes, by = &quot;sample&quot;)|&gt;
   mutate(
     percentage = (value/size) * 100,################################# CHANGE HERE 3/5 #######################################################
-    sample = factor(sample, levels = c(&#39;Schistocerca gregaria&#39;, &#39;Schistocerca piceifrons&#39;, &#39;Schistocerca cancellata&#39;, &#39;Schistocerca nitens&#39;, &#39;Schistocerca serialis cubense&#39;, &#39;Schistocerca americana&#39;, &#39;Locusta migratoria&#39;, &#39;Anabrus simplex&#39;, &#39;Gryllus bimaculatus&#39;, &#39;Gryllus longicercus&#39;, &#39;Cryptotermes secundus&#39;, &#39;Bacillus rossius redtenbacheri&#39;, &#39;Periplaneta americana&#39;))
+    sample = factor(sample, levels = c(&#39;Schistocerca gregaria&#39;, &#39;Schistocerca piceifrons&#39;, &#39;Schistocerca cancellata&#39;, &#39;Schistocerca nitens&#39;, &#39;Schistocerca serialis cubense&#39;, &#39;Schistocerca americana&#39;))
     ) |&gt;####################################################################################################################################
   separate(col = repeat_type, into = c(&#39;Family&#39;, &#39;Sub-family&#39;), sep = &#39;/&#39;) |&gt;
   mutate(`Sub-family` = ifelse(is.na(`Sub-family`), Family, `Sub-family`))
@@ -1145,44 +1288,17 @@ tmp &lt;- df.kimura |&gt;
   ungroup() |&gt;
   distinct()
 
+tmp &lt;- tmp %&gt;% filter(!is.na(sample))
+
+
 # ------------------------------------------------------------------------------------------------ #
 library(ggplot2)
 library(dplyr)
 library(scales)
 library(patchwork)
 
-# Separate gregaria from others
-greg_plot &lt;- tmp |&gt;################################# CHANGE HERE 4/5 #######################################################
-  filter(sample == &quot;Schistocerca gregaria&quot;, percentage_family &gt; 0.01) |&gt;
-  ggplot(aes(x = Div, y = percentage_family, fill = Family)) +##################################################################
-  geom_bar(position = &quot;stack&quot;, stat = &quot;identity&quot;, alpha = 0.6) +
-  scale_fill_manual(
-    values = c(DNA = &#39;#4eaf49&#39;, LINE = &#39;#984f9f&#39;, LTR = &#39;#397fb9&#39;, MITE = &#39;#f7941d&#39;, Unknown = &#39;#737e76&#39;),
-    labels = c(DNA = &quot;DNA&quot;, LINE = &quot;LINEs&quot;, LTR = &quot;LTRs&quot;, MITE = &quot;MITEs&quot;, Unknown = &quot;Unknown Repeats&quot;)
-  ) +
-  labs(
-    x = &#39;\nKimura substitution level&#39;,
-    y = &#39;Genome percentage\n&#39;,
-    fill = &#39;\n&#39;
-  ) +
-  scale_y_continuous(labels = label_number(suffix = &#39;%&#39;)) +
-  scale_x_continuous(breaks = seq(0, 50, 5), limits = c(0, 55), expand = c(0,0)) +
-  coord_cartesian(xlim = c(0, 51)) +
-  theme_minimal() +
-  theme(
-    axis.title = element_text(size = 20, face = &#39;bold&#39;),
-    axis.text = element_text(size = 18),
-    legend.position = &#39;bottom&#39;,
-    legend.title = element_text(size = 18),
-    legend.text = element_text(size = 18),
-    strip.text = element_text(size = 20, face = &#39;bold.italic&#39;),
-    plot.title = element_text(size = 30, face = &#39;bold.italic&#39;, hjust = 0.5)
-  ) +
-  facet_wrap(~sample)
-
-# Other species
-other_plot &lt;- tmp |&gt;####################################################### CHANGE HERE 5/5 ############################################
-  filter(sample != &quot;Schistocerca gregaria&quot;, percentage_family &gt; 0.01) |&gt;
+# Now plot the rest (not gregaria) in 2 columns
+other_plot &lt;- tmp %&gt;%
   ggplot(aes(x = Div, y = percentage_family, fill = Family)) +
   geom_bar(position = &quot;stack&quot;, stat = &quot;identity&quot;, alpha = 0.6) +
   scale_fill_manual(
@@ -1206,16 +1322,207 @@ other_plot &lt;- tmp |&gt;######################################################
     legend.text = element_text(size = 18),
     strip.text = element_text(size = 20, face = &#39;bold.italic&#39;)
   ) +
-  facet_wrap(~sample, ncol = 2)
+  facet_wrap(~sample, ncol = 2)   # 2 columns, 3 rows automatically
+
 
 # Combine the plots
-combined &lt;- ((plot_spacer() + greg_plot + plot_spacer()) + plot_layout(widths = c(0.05, 2, 0.05))) /
-  other_plot + plot_layout(heights = c(0.7, 2))
+combined &lt;- other_plot + plot_layout(ncol=2)
 
 # Save
 pdf(file = here(&quot;multigenome-kimura.pdf&quot;), width = 18, height = 25)
-print(combined)
+print(other_plot)
 invisible(dev.off())</code></pre>
+</div>
+<div id="specific-rfs-multi-genome" class="section level4">
+<h4>Specific RFs: Multi Genome</h4>
+<p><img src="assets/complex_multi_kimura.png" /></p>
+<p><mark>Please note that this script uses manually assigned colors for
+each sub-family, as to assure consistency across different species’
+plots. You will likely need to generate your own color mapping based on
+the various repeat groups that are present in your genome.</mark></p>
+<p>To create the more complex style Kimura plot for a single genome,
+create a file called <em>kimura-multi-complex.R</em> and copy and paste
+the below code into it:</p>
+<pre class="r"><code># ------------------------------------------------------------------------------------------------ #
+# 6-species Kimura plot
+# - Centered titles
+# - Only Schistocerca gregaria has y-axis label
+# - Only Schistocerca nitens has x-axis label
+# - Shared legend
+# - Adds axis labels manually to avoid pivoting issues
+# ------------------------------------------------------------------------------------------------ #
+
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(cowplot)
+  library(patchwork)
+  library(readr)
+  library(scales)
+})
+
+# ------------------- Species/files &amp; genome sizes ---------------------------------------------- #
+species_files &lt;- list(
+  &quot;Schistocerca gregaria&quot; = &quot;song_assembly/SchGreg.distance&quot;,
+  &quot;Schistocerca serialis cubense&quot; = &quot;song_assembly/SchSeri.distance&quot;,
+  &quot;Schistocerca piceifrons&quot; = &quot;song_assembly/SchPice.distance&quot;,
+  &quot;Schistocerca cancellata&quot; = &quot;song_assembly/SchCanc.distance&quot;,
+  &quot;Schistocerca nitens&quot; = &quot;song_assembly/SchNite.distance&quot;,
+  &quot;Schistocerca americana&quot; = &quot;song_assembly/SchAmer.distance&quot;
+)
+
+genome_sizes &lt;- c(
+  &quot;Schistocerca gregaria&quot; = 8700000000,
+  &quot;Schistocerca serialis cubense&quot; = 9100000000,
+  &quot;Schistocerca piceifrons&quot; = 8700000000,
+  &quot;Schistocerca cancellata&quot; = 8500000000,
+  &quot;Schistocerca nitens&quot; = 8800000000,
+  &quot;Schistocerca americana&quot; = 9000000000
+)
+
+subfamily_palette &lt;- c(
+  # ---------------- DNA (blue → purple → green, more purples, muted) ----------------
+  &quot;DNA&quot; = &quot;#c8d9e8&quot;,
+  &quot;DNA/Academ-1&quot; = &quot;#b0c6db&quot;,
+  &quot;DNA/CMC-Chapaev-3&quot; = &quot;#99b3ce&quot;,
+  &quot;DNA/CMC-EnSpm&quot; = &quot;#8aa0d9&quot;,   # added purple tone
+  &quot;DNA/CMC-Transib&quot; = &quot;#7a8ddd&quot;, # added purple tone
+  &quot;DNA/Kolobok-Hydra&quot; = &quot;#6b7adf&quot;,# added purple tone
+  &quot;DNA/MULE-MuDR&quot; = &quot;#5c66e2&quot;,
+  &quot;DNA/MULE-NOF&quot; = &quot;#4d53e5&quot;,
+  &quot;DNA/Maverick&quot; = &quot;#3e40e8&quot;,
+  &quot;DNA/Merlin&quot; = &quot;#5340c5&quot;,      # darker purple
+  &quot;DNA/P&quot; = &quot;#6a5fce&quot;,
+  &quot;DNA/PIF-Harbinger&quot; = &quot;#807ecd&quot;,
+  &quot;DNA/PiggyBac&quot; = &quot;#968dd1&quot;,
+  &quot;DNA/Sola-1&quot; = &quot;#ac9dd4&quot;,
+  &quot;DNA/Sola-2&quot; = &quot;#c2add8&quot;,
+  &quot;DNA/TcMar-Fot1&quot; = &quot;#b7d8c2&quot;,  # muted green starts
+  &quot;DNA/TcMar-Mariner&quot; = &quot;#92c9a0&quot;,
+  &quot;DNA/TcMar-Pogo&quot; = &quot;#6ebb7e&quot;,
+  &quot;DNA/TcMar-Tc1&quot; = &quot;#4aa95c&quot;,
+  &quot;DNA/TcMar-Tc2&quot; = &quot;#369044&quot;,
+  &quot;DNA/TcMar-Tc4&quot; = &quot;#246a2f&quot;,
+  &quot;DNA/TcMar-Tigger&quot; = &quot;#134f1d&quot;,
+
+  # ---------------- LINE (red → orange, muted) ----------------
+  &quot;LINE&quot; = &quot;#f4c8c8&quot;,
+  &quot;LINE/CR1&quot; = &quot;#eaa5a5&quot;,
+  &quot;LINE/Dong-R4&quot; = &quot;#e18383&quot;,
+  &quot;LINE/I&quot; = &quot;#d96161&quot;,
+  &quot;LINE/I-Jockey&quot; = &quot;#cf3f3f&quot;,
+  &quot;LINE/L1-Tx1&quot; = &quot;#b73535&quot;,
+  &quot;LINE/L2&quot; = &quot;#992b2b&quot;,
+  &quot;LINE/Penelope&quot; = &quot;#f4b38c&quot;,
+  &quot;LINE/R1&quot; = &quot;#e99f6a&quot;,
+  &quot;LINE/R1-LOA&quot; = &quot;#df8552&quot;,
+  &quot;LINE/R2&quot; = &quot;#d46a3b&quot;,
+  &quot;LINE/RTE-BovB&quot; = &quot;#ca5030&quot;,
+  &quot;LINE/RTE-RTE&quot; = &quot;#b84028&quot;,
+  &quot;LINE/RTE-X&quot; = &quot;#a12f20&quot;,
+  &quot;LINE/Rex-Babar&quot; = &quot;#892818&quot;,
+
+  # ---------------- LTR (pink gradient, muted) ----------------
+  &quot;LTR&quot; = &quot;#f4d8e8&quot;,
+  &quot;LTR/Copia&quot; = &quot;#eaa5c9&quot;,
+  &quot;LTR/Gypsy&quot; = &quot;#e183ac&quot;,
+  &quot;LTR/Pao&quot; = &quot;#d9618f&quot;,
+
+  # ---------------- RC/Helitron (muted orange) ----------------
+  &quot;RC/Helitron&quot; = &quot;#a002c7&quot;,
+
+  # ---------------- Simple repeats (muted black/gray) ----------------
+  &quot;Simple_repeat&quot; = &quot;#2e2e2e&quot;,
+
+  # ---------------- Unknown (muted gray) ----------------
+  &quot;Unknown&quot; = &quot;#8c8c8c&quot;,
+
+  # ---------------- tRNA (muted yellow) ----------------
+  &quot;tRNA&quot; = &quot;#f4d966&quot;
+)
+
+
+
+
+
+
+# ------------------- Function to create a basic plot without axis labels ------------------------- #
+make_kimura_plot &lt;- function(species, file, size) {
+  # Read table safely
+  df &lt;- read_table(file, guess_max = 10000, na = c(&quot;&quot;, &quot;NA&quot;))
+
+  # Remove empty trailing columns
+  df &lt;- df[, colSums(!is.na(df)) &gt; 0]
+
+  if (!&quot;Div&quot; %in% colnames(df)) stop(paste(&quot;Div column missing in file:&quot;, file))
+
+  # Convert numeric columns
+  df$Div &lt;- as.numeric(df$Div)
+  num_cols &lt;- setdiff(colnames(df), &quot;Div&quot;)
+  df[num_cols] &lt;- lapply(df[num_cols], as.numeric)
+
+  df_long &lt;- df %&gt;%
+    pivot_longer(cols = -Div, names_to = &quot;Sub-family&quot;, values_to = &quot;value&quot;, values_drop_na = TRUE) %&gt;%
+    filter(value &gt; 0) %&gt;%
+    mutate(
+      percentage_subfamily = (value / size) * 100,
+      `Sub-family` = factor(str_trim(`Sub-family`), levels = names(subfamily_palette))
+    )
+
+  if (nrow(df_long) == 0) return(ggplot() + ggtitle(species) + theme_void())
+
+  ggplot(df_long, aes(x = Div, y = percentage_subfamily, fill = `Sub-family`)) +
+    geom_bar(position = &quot;stack&quot;, stat = &quot;identity&quot;, alpha = 0.8) +
+    scale_fill_manual(values = subfamily_palette, drop = FALSE) +
+    labs(title = species, x = &quot;&quot;, y = &quot;&quot;) +
+    scale_y_continuous(labels = label_number(suffix = &quot;%&quot;), limits = c(0, 5)) +
+    scale_x_continuous(breaks = seq(0, 50, 5), limits = c(0, 55), expand = c(0,0)) +
+    coord_cartesian(xlim = c(0, 51)) +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(size = 16, face = &quot;bold.italic&quot;, hjust = 0.5),
+      axis.text = element_text(size = 12),
+      legend.position = &quot;none&quot;,
+      plot.margin = margin(t = 10, r = 0, b = 30, l = 40)
+    )
+}
+
+# ------------------- Generate 6 plots ----------------------------------------------------------- #
+plots &lt;- list(
+  make_kimura_plot(&quot;Schistocerca gregaria&quot;, species_files[[&quot;Schistocerca gregaria&quot;]], genome_sizes[&quot;Schistocerca gregaria&quot;]),
+  make_kimura_plot(&quot;Schistocerca serialis cubense&quot;, species_files[[&quot;Schistocerca serialis cubense&quot;]], genome_sizes[&quot;Schistocerca serialis cubense&quot;]),
+  make_kimura_plot(&quot;Schistocerca piceifrons&quot;, species_files[[&quot;Schistocerca piceifrons&quot;]], genome_sizes[&quot;Schistocerca piceifrons&quot;]),
+  make_kimura_plot(&quot;Schistocerca cancellata&quot;, species_files[[&quot;Schistocerca cancellata&quot;]], genome_sizes[&quot;Schistocerca cancellata&quot;]),
+  make_kimura_plot(&quot;Schistocerca nitens&quot;, species_files[[&quot;Schistocerca nitens&quot;]], genome_sizes[&quot;Schistocerca nitens&quot;]),
+  make_kimura_plot(&quot;Schistocerca americana&quot;, species_files[[&quot;Schistocerca americana&quot;]], genome_sizes[&quot;Schistocerca americana&quot;])
+)
+
+# ------------------- Shared legend ------------------------------------------------------------- #
+legend_plot &lt;- ggplot() +
+  geom_bar(aes(x = 1, y = 1, fill = names(subfamily_palette)), stat = &quot;identity&quot;) +
+  scale_fill_manual(values = subfamily_palette, name = &quot;Sub-family&quot;, guide = guide_legend(ncol = 1)) +
+  theme_void() +
+  theme(legend.position = &quot;right&quot;)
+
+shared_legend &lt;- get_legend(legend_plot)
+
+# ------------------- Combine plots ------------------------------------------------------------- #
+combined_plot &lt;- wrap_plots(plots, ncol = 2, nrow = 3, guides = &quot;collect&quot;)
+
+final_plot &lt;- plot_grid(
+  combined_plot, shared_legend,
+  rel_widths = c(3, 1),
+  align = &quot;hv&quot;
+)
+
+# ------------------- Add manual axis labels ----------------------------------------------- #
+final_plot_with_labels &lt;- ggdraw(final_plot) +
+  draw_label(&quot;Genome percentage&quot;, x = 0.03, y = 0.83, angle = 90, fontface = &quot;bold&quot;, size = 16) +  # y-axis on left
+  draw_label(&quot;Kimura substitution level&quot;, x = 0.22, y = 0.023, fontface = &quot;bold&quot;, size = 16)       # x-axis at bottom
+
+# ------------------- Save to PDF --------------------------------------------------------------- #
+pdf(&quot;6_species_kimura_manual_labels.pdf&quot;, width = 16, height = 18)
+print(final_plot_with_labels)
+dev.off()</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1246,17 +1553,17 @@ other attached packages:
 [1] workflowr_1.7.2
 
 loaded via a namespace (and not attached):
- [1] vctrs_0.6.5       httr_1.4.7        cli_3.6.5         knitr_1.50       
- [5] rlang_1.1.6       xfun_0.53         stringi_1.8.7     processx_3.8.6   
- [9] promises_1.3.3    jsonlite_2.0.0    glue_1.8.0        rprojroot_2.1.1  
-[13] git2r_0.36.2      htmltools_0.5.8.1 httpuv_1.6.16     ps_1.9.1         
-[17] sass_0.4.10       rmarkdown_2.30    jquerylib_0.1.4   tibble_3.3.0     
-[21] evaluate_1.0.5    fastmap_1.2.0     yaml_2.3.10       lifecycle_1.0.4  
-[25] whisker_0.4.1     stringr_1.5.2     compiler_4.5.1    fs_1.6.6         
-[29] pkgconfig_2.0.3   Rcpp_1.1.0        rstudioapi_0.17.1 later_1.4.4      
-[33] digest_0.6.37     R6_2.6.1          pillar_1.11.1     callr_3.7.6      
-[37] magrittr_2.0.4    bslib_0.9.0       tools_4.5.1       cachem_1.1.0     
-[41] getPass_0.2-4    </code></pre>
+ [1] vctrs_0.6.5       httr_1.4.7        cli_3.6.5         knitr_1.51       
+ [5] rlang_1.1.6       xfun_0.55         stringi_1.8.7     otel_0.2.0       
+ [9] processx_3.8.6    promises_1.5.0    jsonlite_2.0.0    glue_1.8.0       
+[13] rprojroot_2.1.1   git2r_0.36.2      htmltools_0.5.9   httpuv_1.6.16    
+[17] ps_1.9.1          sass_0.4.10       rmarkdown_2.30    jquerylib_0.1.4  
+[21] tibble_3.3.0      evaluate_1.0.5    fastmap_1.2.0     yaml_2.3.12      
+[25] lifecycle_1.0.4   whisker_0.4.1     stringr_1.6.0     compiler_4.5.1   
+[29] fs_1.6.6          pkgconfig_2.0.3   Rcpp_1.1.0        rstudioapi_0.17.1
+[33] later_1.4.4       digest_0.6.39     R6_2.6.1          pillar_1.11.1    
+[37] callr_3.7.6       magrittr_2.0.4    bslib_0.9.0       tools_4.5.1      
+[41] cachem_1.1.0      getPass_0.2-4    </code></pre>
 </div>
 </div>
 </div>
