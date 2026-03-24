@@ -44,11 +44,11 @@ library(kableExtra)
 
 # Data for the table
 data <- data.frame(
-  Column_1 = c("Coding Sequence URL"),
-  Column_2 = c("Protein Sequence URL"),
-  Column_3 = c("Species abbreviation code"),
-  Column_4 = c("Longest isoform? (yes/no)"),
-  Column_5 = c("Comments")
+  Column_1 = c("Translated Coding Sequence URL (_translated_cds.faa.gz)"),
+  Column_2 = c("Protein Sequence URL (_protein.faa.gz)"),
+  Column_3 = c("GFF Annotation (_genomic.gff.gz)"),
+  Column_4 = c("Species abbreviation code"),
+  Column_5 = c("Longest isoform? (yes/no)")
 )
 
 # Create the table

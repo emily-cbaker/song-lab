@@ -1,5 +1,5 @@
 ---
-title: "Kimura Plots for Repeat Content Visualization"
+title: "Kimura Plots for Repeat Family (RF) Content Visualization"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
@@ -14,9 +14,9 @@ editor_options:
   chunk_output_type: console
 ---
 
-### Repeat Content Visualization & Analysis {.tabset}
+### RF Content Visualization & Analysis {.tabset}
 
-#### File Preparation (Necessary for single or multiple plotting options)
+#### File Preparation
 
 
 To generate a kimura repeat content plot, first you must run the script included in the RepeatMasker module called *calcDivergenceFromAlign.pl*. I did this using the script below on the TAMU Grace Cluster
@@ -86,10 +86,10 @@ Div DNA DNA/Academ-1 ... LINE LINE/CR1 ... LTR/Copia ... RC/Helitron Simple_repe
 ⋮
 ```
 
-#### For a single genome
+#### Major RFs: Single Genome
 
 
-![](assets/SchCanc_Kimura.png)
+![](assets/simple_single_kimura.png)
 
 To create a Kimura plot for a single genome, create a file called *kimura-single.R* and copy and paste the following code into it:
 ```{r, eval=FALSE}
@@ -197,13 +197,118 @@ invisible(dev.off())
 ```
 
 
-#### For multiple genomes (stacked)
 
-<center> 
-<img src="assets/stacked-kimura.png" style="width: 500px">
-</center>
+#### Specific RFs: Single Genome 
+![](assets/complex_single_kimura.png)
 
-This plot has the genome of importance at the top, but if you wish to have all genome in the columns side-by-side, simply delete the section that begins with the comment "Seperate gregaria from the others" and ends just above the comment "Other species" and add all genomes to the second plotting section. You will also need to alter the output commands by simply removing the line combining all the plots into a single plot called "combined" and print the *other_group* plot instead. This should give you a combined plot with all genomes in a maximum fof 2 columns, which of course can also be adjusted within the facet_wrap command.
+To create the more complex style Kimura plot for a single genome, create a file called *kimura-single-complex.R* and copy and paste the below code into it:
+
+<mark>Please note that this script uses manually assigned colors for each sub-family, as to assure consistency across different species' plots. You will likely need to generate your own color mapping based on the various repeat groups that are present in your genome.</mark>
+
+```{r, eval=FALSE}
+
+# ------------------------------------------------------------------------------------------------ #
+# Repeat annotation summary - consistent subfamily colors
+#
+# This script reads a .distance file, calculates subfamily genome percentages,
+# and plots a stacked Kimura plot with consistent subfamily colors across species.
+# ------------------------------------------------------------------------------------------------ #
+
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(magrittr)
+  library(readr)
+  library(scales)
+})
+
+# ------------------- Edit for your species ------------------------------------------------- #
+size <- 9100000000          # Total genome size
+sample_name <- "Schistocerca serialis cubense"
+file <- "song_assembly/SchGreg.distance"
+# ------------------------------------------------------------------------------------------- #
+
+# Define a fixed subfamily palette
+subfamily_palette <- c(
+  "DNA" = "#4eaf49", "DNA/Academ-1" = "#ffb703", "DNA/CMC-Chapaev-3" = "#984f9f",
+  "DNA/CMC-EnSpm" = "#b57db5", "DNA/CMC-Transib" = "#fb8500", "DNA/Kolobok-Hydra" = "#6fa7d6",
+  "DNA/MULE-MuDR" = "#f7941d", "DNA/MULE-NOF" = "#737e76", "DNA/Maverick" = "#90e0ef",
+  "DNA/Merlin" = "#ffa69e", "DNA/P" = "#00b4d8", "DNA/PIF-Harbinger" = "#d1495b",
+  "DNA/PiggyBac" = "#6ecf6e", "DNA/Sola-1" = "#ff595e", "DNA/Sola-2" = "#f94144",
+  "DNA/TcMar-Fot1" = "#f3722c", "DNA/TcMar-Mariner" = "#f8961e", "DNA/TcMar-Pogo" = "#f9c74f",
+  "DNA/TcMar-Tc1" = "#90be6d", "DNA/TcMar-Tc2" = "#43aa8b", "DNA/TcMar-Tc4" = "#577590",
+  "DNA/TcMar-Tigger" = "#277da1", "LINE" = "#4e79a7", "LINE/CR1" = "#f28e2b",
+  "LINE/Dong-R4" = "#e15759", "LINE/I" = "#76b7b2", "LINE/I-Jockey" = "#59a14f",
+  "LINE/L1-Tx1" = "#edc948", "LINE/L2" = "#b07aa1", "LINE/Penelope" = "#ff9da7",
+  "LINE/R1" = "#9c755f", "LINE/R1-LOA" = "#bab0ac", "LINE/R2" = "#d37295",
+  "LINE/RTE-BovB" = "#fabfd2", "LINE/RTE-RTE" = "#b0b0b0", "LINE/RTE-X" = "#d4a6c8",
+  "LINE/Rex-Babar" = "#7f7f7f", "LTR" = "#59c9a5", "LTR/Copia" = "#ff6f59",
+  "LTR/Gypsy" = "#1982c4", "LTR/Pao" = "#ffca3a", "RC/Helitron" = "#8ac926",
+  "Simple_repeat" = "#6a4c93", "Unknown" = "#397fb9", "tRNA" = "#ffca3a"
+)
+
+# ------------------- Read and process .distance file ---------------------------------------- #
+df.kimura <- read_table(file, col_types = cols(.default = col_double()))
+
+# Remove any trailing empty column (from whitespace)
+if (colnames(df.kimura)[ncol(df.kimura)] == "") df.kimura <- df.kimura[, -ncol(df.kimura)]
+
+# Add sample info
+df.kimura <- df.kimura %>%
+  mutate(sample = sample_name, size = size) %>%
+  pivot_longer(
+    cols = -c(sample, size, Div),
+    names_to = "Sub-family",
+    values_to = "value"
+  ) %>%
+  mutate(
+    # Extract top-level family (optional)
+    Family = ifelse(str_detect(`Sub-family`, "/"),
+                    str_extract(`Sub-family`, "^[^/]+"),
+                    `Sub-family`),
+    # Clean whitespace
+    `Sub-family` = str_trim(`Sub-family`),
+    percentage_subfamily = (value / size) * 100
+  ) %>%
+  filter(!is.na(value), percentage_subfamily > 0.01)
+
+# Keep only subfamilies present in palette
+df.kimura <- df.kimura %>%
+  filter(`Sub-family` %in% names(subfamily_palette)) %>%
+  mutate(`Sub-family` = factor(`Sub-family`, levels = names(subfamily_palette)))
+
+# ------------------- Plot --------------------------------------------------------------- #
+kimura.gg <- ggplot(df.kimura, aes(x = Div, y = percentage_subfamily, fill = `Sub-family`)) +
+  geom_bar(position = "stack", stat = "identity", alpha = 0.8) +
+  scale_fill_manual(values = subfamily_palette) +
+  labs(
+    x = "Kimura substitution level",
+    y = "Genome percentage",
+    fill = "Sub-family"
+  ) +
+  scale_y_continuous(labels = label_number(suffix = "%"), limits = c(0, 5)) +
+  scale_x_continuous(breaks = seq(0, 50, 5), limits = c(0, 55), expand = c(0,0)) +
+  coord_cartesian(xlim = c(0, 51)) +
+  theme_minimal() +
+  theme(
+    axis.title = element_text(size = 20, face = "bold"),
+    axis.text = element_text(size = 18),
+    legend.position = "right",
+    legend.title = element_text(size = 18),
+    legend.text = element_text(size = 14),
+    strip.text = element_text(size = 20, face = "bold.italic")
+  ) +
+  facet_wrap(~sample, nrow = 4)
+
+# ------------------- Save plot ---------------------------------------------------------- #
+pdf(paste0(sample_name, "-kimura-subfamily.pdf"), width = 12, height = 9)
+print(kimura.gg)
+invisible(dev.off())
+
+
+```
+#### Major RFs: Multi-genome
+
+![](assets/simple_multi_kimura.png)
   
 Create a new R script called *kimura-plot-mult-genomes.R* and copy and paste the following script into it:
 
@@ -228,13 +333,13 @@ suppressPackageStartupMessages({
 #########################################################################################################################
 ################################################# CHANGE HERE 1/5 ########################################################
 genome.sizes <- tibble(
-  sample = c('Schistocerca gregaria', 'Schistocerca piceifrons', 'Schistocerca cancellata', 'Schistocerca nitens', 'Schistocerca serialis cubense', 'Schistocerca americana', 'Locusta migratoria', 'Anabrus simplex', 'Gryllus bimaculatus', 'Gryllus longicercus', 'Cryptotermes secundus', 'Bacillus rossius redtenbacheri', 'Periplaneta americana'),
-  size = c(8700000000, 8700000000, 8500000000, 8800000000, 9100000000, 9000000000, 6300000000, 6400000000, 1700000000, 1900000000, 1000000000, 1600000000, 3200000000)
+  sample = c('Schistocerca gregaria', 'Schistocerca piceifrons', 'Schistocerca cancellata', 'Schistocerca nitens', 'Schistocerca serialis cubense', 'Schistocerca americana'),
+  size = c(8700000000, 8700000000, 8500000000, 8800000000, 9100000000, 9000000000)
 )
 ##########################################################################################################################
 ##########################################################################################################################
 
-pal <- colorRampPalette(RColorBrewer::brewer.pal(n = 7, 'Set3'))
+pal <- colorRampPalette(RColorBrewer::brewer.pal(n = 6, 'Set3'))
 
 # ------------------------------------------------------------------------------------------------ #
 # Kimura divergence tables
@@ -252,15 +357,7 @@ df.kimura <- fs::dir_ls(
       sample == 'song_assembly/SchCanc.distance' ~ 'Schistocerca cancellata',
       sample == 'song_assembly/SchNite.distance' ~ 'Schistocerca nitens',
       sample == 'song_assembly/SchSeri.distance' ~ 'Schistocerca serialis cubense',
-      sample == 'song_assembly/SchAmer.distance' ~ 'Schistocerca americana',
-      sample == 'song_assembly/LocMig.distance' ~ 'Locusta migratoria',
-      sample == 'song_assembly/AnsimpID.distance' ~ 'Anabrus simplex',
-      sample == 'song_assembly/GryBi.distance' ~ 'Gryllus bimaculatus',
-      sample =='song_assembly/GryLong.distance' ~ 'Gryllus longicercus',
-      sample == 'song_assembly/Csecu.distance' ~ 'Cryptotermes secundus',
-      sample =='song_assembly/Brsri.distance' ~ 'Bacillus rossius redtenbacheri',
-      sample == 'song_assembly/PeriAmer.distance' ~ 'Periplaneta americana',
-      .default = sample
+      sample == 'song_assembly/SchAmer.distance' ~ 'Schistocerca americana'
     )#########################################################################################################################
   ) |>########################################################################################################################
   select(-starts_with('...')) |>
@@ -268,7 +365,7 @@ df.kimura <- fs::dir_ls(
   left_join(genome.sizes, by = "sample")|>
   mutate(
     percentage = (value/size) * 100,################################# CHANGE HERE 3/5 #######################################################
-    sample = factor(sample, levels = c('Schistocerca gregaria', 'Schistocerca piceifrons', 'Schistocerca cancellata', 'Schistocerca nitens', 'Schistocerca serialis cubense', 'Schistocerca americana', 'Locusta migratoria', 'Anabrus simplex', 'Gryllus bimaculatus', 'Gryllus longicercus', 'Cryptotermes secundus', 'Bacillus rossius redtenbacheri', 'Periplaneta americana'))
+    sample = factor(sample, levels = c('Schistocerca gregaria', 'Schistocerca piceifrons', 'Schistocerca cancellata', 'Schistocerca nitens', 'Schistocerca serialis cubense', 'Schistocerca americana'))
     ) |>####################################################################################################################################
   separate(col = repeat_type, into = c('Family', 'Sub-family'), sep = '/') |>
   mutate(`Sub-family` = ifelse(is.na(`Sub-family`), Family, `Sub-family`))
@@ -282,44 +379,17 @@ tmp <- df.kimura |>
   ungroup() |>
   distinct()
 
+tmp <- tmp %>% filter(!is.na(sample))
+
+
 # ------------------------------------------------------------------------------------------------ #
 library(ggplot2)
 library(dplyr)
 library(scales)
 library(patchwork)
 
-# Separate gregaria from others
-greg_plot <- tmp |>################################# CHANGE HERE 4/5 #######################################################
-  filter(sample == "Schistocerca gregaria", percentage_family > 0.01) |>
-  ggplot(aes(x = Div, y = percentage_family, fill = Family)) +##################################################################
-  geom_bar(position = "stack", stat = "identity", alpha = 0.6) +
-  scale_fill_manual(
-    values = c(DNA = '#4eaf49', LINE = '#984f9f', LTR = '#397fb9', MITE = '#f7941d', Unknown = '#737e76'),
-    labels = c(DNA = "DNA", LINE = "LINEs", LTR = "LTRs", MITE = "MITEs", Unknown = "Unknown Repeats")
-  ) +
-  labs(
-    x = '\nKimura substitution level',
-    y = 'Genome percentage\n',
-    fill = '\n'
-  ) +
-  scale_y_continuous(labels = label_number(suffix = '%')) +
-  scale_x_continuous(breaks = seq(0, 50, 5), limits = c(0, 55), expand = c(0,0)) +
-  coord_cartesian(xlim = c(0, 51)) +
-  theme_minimal() +
-  theme(
-    axis.title = element_text(size = 20, face = 'bold'),
-    axis.text = element_text(size = 18),
-    legend.position = 'bottom',
-    legend.title = element_text(size = 18),
-    legend.text = element_text(size = 18),
-    strip.text = element_text(size = 20, face = 'bold.italic'),
-    plot.title = element_text(size = 30, face = 'bold.italic', hjust = 0.5)
-  ) +
-  facet_wrap(~sample)
-
-# Other species
-other_plot <- tmp |>####################################################### CHANGE HERE 5/5 ############################################
-  filter(sample != "Schistocerca gregaria", percentage_family > 0.01) |>
+# Now plot the rest (not gregaria) in 2 columns
+other_plot <- tmp %>%
   ggplot(aes(x = Div, y = percentage_family, fill = Family)) +
   geom_bar(position = "stack", stat = "identity", alpha = 0.6) +
   scale_fill_manual(
@@ -343,14 +413,214 @@ other_plot <- tmp |>####################################################### CHAN
     legend.text = element_text(size = 18),
     strip.text = element_text(size = 20, face = 'bold.italic')
   ) +
-  facet_wrap(~sample, ncol = 2)
+  facet_wrap(~sample, ncol = 2)   # 2 columns, 3 rows automatically
+
 
 # Combine the plots
-combined <- ((plot_spacer() + greg_plot + plot_spacer()) + plot_layout(widths = c(0.05, 2, 0.05))) /
-  other_plot + plot_layout(heights = c(0.7, 2))
+combined <- other_plot + plot_layout(ncol=2)
 
 # Save
 pdf(file = here("multigenome-kimura.pdf"), width = 18, height = 25)
-print(combined)
+print(other_plot)
 invisible(dev.off())
+
+
+
+
+```
+
+
+
+#### Specific RFs: Multi Genome
+![](assets/complex_multi_kimura.png)
+
+<mark>Please note that this script uses manually assigned colors for each sub-family, as to assure consistency across different species' plots. You will likely need to generate your own color mapping based on the various repeat groups that are present in your genome.</mark>
+
+To create the more complex style Kimura plot for a single genome, create a file called *kimura-multi-complex.R* and copy and paste the below code into it:
+
+
+```{r, eval=FALSE}
+
+# ------------------------------------------------------------------------------------------------ #
+# 6-species Kimura plot
+# - Centered titles
+# - Only Schistocerca gregaria has y-axis label
+# - Only Schistocerca nitens has x-axis label
+# - Shared legend
+# - Adds axis labels manually to avoid pivoting issues
+# ------------------------------------------------------------------------------------------------ #
+
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(cowplot)
+  library(patchwork)
+  library(readr)
+  library(scales)
+})
+
+# ------------------- Species/files & genome sizes ---------------------------------------------- #
+species_files <- list(
+  "Schistocerca gregaria" = "song_assembly/SchGreg.distance",
+  "Schistocerca serialis cubense" = "song_assembly/SchSeri.distance",
+  "Schistocerca piceifrons" = "song_assembly/SchPice.distance",
+  "Schistocerca cancellata" = "song_assembly/SchCanc.distance",
+  "Schistocerca nitens" = "song_assembly/SchNite.distance",
+  "Schistocerca americana" = "song_assembly/SchAmer.distance"
+)
+
+genome_sizes <- c(
+  "Schistocerca gregaria" = 8700000000,
+  "Schistocerca serialis cubense" = 9100000000,
+  "Schistocerca piceifrons" = 8700000000,
+  "Schistocerca cancellata" = 8500000000,
+  "Schistocerca nitens" = 8800000000,
+  "Schistocerca americana" = 9000000000
+)
+
+subfamily_palette <- c(
+  # ---------------- DNA (blue → purple → green, more purples, muted) ----------------
+  "DNA" = "#c8d9e8",
+  "DNA/Academ-1" = "#b0c6db",
+  "DNA/CMC-Chapaev-3" = "#99b3ce",
+  "DNA/CMC-EnSpm" = "#8aa0d9",   # added purple tone
+  "DNA/CMC-Transib" = "#7a8ddd", # added purple tone
+  "DNA/Kolobok-Hydra" = "#6b7adf",# added purple tone
+  "DNA/MULE-MuDR" = "#5c66e2",
+  "DNA/MULE-NOF" = "#4d53e5",
+  "DNA/Maverick" = "#3e40e8",
+  "DNA/Merlin" = "#5340c5",      # darker purple
+  "DNA/P" = "#6a5fce",
+  "DNA/PIF-Harbinger" = "#807ecd",
+  "DNA/PiggyBac" = "#968dd1",
+  "DNA/Sola-1" = "#ac9dd4",
+  "DNA/Sola-2" = "#c2add8",
+  "DNA/TcMar-Fot1" = "#b7d8c2",  # muted green starts
+  "DNA/TcMar-Mariner" = "#92c9a0",
+  "DNA/TcMar-Pogo" = "#6ebb7e",
+  "DNA/TcMar-Tc1" = "#4aa95c",
+  "DNA/TcMar-Tc2" = "#369044",
+  "DNA/TcMar-Tc4" = "#246a2f",
+  "DNA/TcMar-Tigger" = "#134f1d",
+
+  # ---------------- LINE (red → orange, muted) ----------------
+  "LINE" = "#f4c8c8",
+  "LINE/CR1" = "#eaa5a5",
+  "LINE/Dong-R4" = "#e18383",
+  "LINE/I" = "#d96161",
+  "LINE/I-Jockey" = "#cf3f3f",
+  "LINE/L1-Tx1" = "#b73535",
+  "LINE/L2" = "#992b2b",
+  "LINE/Penelope" = "#f4b38c",
+  "LINE/R1" = "#e99f6a",
+  "LINE/R1-LOA" = "#df8552",
+  "LINE/R2" = "#d46a3b",
+  "LINE/RTE-BovB" = "#ca5030",
+  "LINE/RTE-RTE" = "#b84028",
+  "LINE/RTE-X" = "#a12f20",
+  "LINE/Rex-Babar" = "#892818",
+
+  # ---------------- LTR (pink gradient, muted) ----------------
+  "LTR" = "#f4d8e8",
+  "LTR/Copia" = "#eaa5c9",
+  "LTR/Gypsy" = "#e183ac",
+  "LTR/Pao" = "#d9618f",
+
+  # ---------------- RC/Helitron (muted orange) ----------------
+  "RC/Helitron" = "#a002c7",
+
+  # ---------------- Simple repeats (muted black/gray) ----------------
+  "Simple_repeat" = "#2e2e2e",
+
+  # ---------------- Unknown (muted gray) ----------------
+  "Unknown" = "#8c8c8c",
+
+  # ---------------- tRNA (muted yellow) ----------------
+  "tRNA" = "#f4d966"
+)
+
+
+
+
+
+
+# ------------------- Function to create a basic plot without axis labels ------------------------- #
+make_kimura_plot <- function(species, file, size) {
+  # Read table safely
+  df <- read_table(file, guess_max = 10000, na = c("", "NA"))
+
+  # Remove empty trailing columns
+  df <- df[, colSums(!is.na(df)) > 0]
+
+  if (!"Div" %in% colnames(df)) stop(paste("Div column missing in file:", file))
+
+  # Convert numeric columns
+  df$Div <- as.numeric(df$Div)
+  num_cols <- setdiff(colnames(df), "Div")
+  df[num_cols] <- lapply(df[num_cols], as.numeric)
+
+  df_long <- df %>%
+    pivot_longer(cols = -Div, names_to = "Sub-family", values_to = "value", values_drop_na = TRUE) %>%
+    filter(value > 0) %>%
+    mutate(
+      percentage_subfamily = (value / size) * 100,
+      `Sub-family` = factor(str_trim(`Sub-family`), levels = names(subfamily_palette))
+    )
+
+  if (nrow(df_long) == 0) return(ggplot() + ggtitle(species) + theme_void())
+
+  ggplot(df_long, aes(x = Div, y = percentage_subfamily, fill = `Sub-family`)) +
+    geom_bar(position = "stack", stat = "identity", alpha = 0.8) +
+    scale_fill_manual(values = subfamily_palette, drop = FALSE) +
+    labs(title = species, x = "", y = "") +
+    scale_y_continuous(labels = label_number(suffix = "%"), limits = c(0, 5)) +
+    scale_x_continuous(breaks = seq(0, 50, 5), limits = c(0, 55), expand = c(0,0)) +
+    coord_cartesian(xlim = c(0, 51)) +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(size = 16, face = "bold.italic", hjust = 0.5),
+      axis.text = element_text(size = 12),
+      legend.position = "none",
+      plot.margin = margin(t = 10, r = 0, b = 30, l = 40)
+    )
+}
+
+# ------------------- Generate 6 plots ----------------------------------------------------------- #
+plots <- list(
+  make_kimura_plot("Schistocerca gregaria", species_files[["Schistocerca gregaria"]], genome_sizes["Schistocerca gregaria"]),
+  make_kimura_plot("Schistocerca serialis cubense", species_files[["Schistocerca serialis cubense"]], genome_sizes["Schistocerca serialis cubense"]),
+  make_kimura_plot("Schistocerca piceifrons", species_files[["Schistocerca piceifrons"]], genome_sizes["Schistocerca piceifrons"]),
+  make_kimura_plot("Schistocerca cancellata", species_files[["Schistocerca cancellata"]], genome_sizes["Schistocerca cancellata"]),
+  make_kimura_plot("Schistocerca nitens", species_files[["Schistocerca nitens"]], genome_sizes["Schistocerca nitens"]),
+  make_kimura_plot("Schistocerca americana", species_files[["Schistocerca americana"]], genome_sizes["Schistocerca americana"])
+)
+
+# ------------------- Shared legend ------------------------------------------------------------- #
+legend_plot <- ggplot() +
+  geom_bar(aes(x = 1, y = 1, fill = names(subfamily_palette)), stat = "identity") +
+  scale_fill_manual(values = subfamily_palette, name = "Sub-family", guide = guide_legend(ncol = 1)) +
+  theme_void() +
+  theme(legend.position = "right")
+
+shared_legend <- get_legend(legend_plot)
+
+# ------------------- Combine plots ------------------------------------------------------------- #
+combined_plot <- wrap_plots(plots, ncol = 2, nrow = 3, guides = "collect")
+
+final_plot <- plot_grid(
+  combined_plot, shared_legend,
+  rel_widths = c(3, 1),
+  align = "hv"
+)
+
+# ------------------- Add manual axis labels ----------------------------------------------- #
+final_plot_with_labels <- ggdraw(final_plot) +
+  draw_label("Genome percentage", x = 0.03, y = 0.83, angle = 90, fontface = "bold", size = 16) +  # y-axis on left
+  draw_label("Kimura substitution level", x = 0.22, y = 0.023, fontface = "bold", size = 16)       # x-axis at bottom
+
+# ------------------- Save to PDF --------------------------------------------------------------- #
+pdf("6_species_kimura_manual_labels.pdf", width = 16, height = 18)
+print(final_plot_with_labels)
+dev.off()
+
+
 ```

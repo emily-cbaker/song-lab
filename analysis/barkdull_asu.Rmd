@@ -44,11 +44,11 @@ library(kableExtra)
 
 # Data for the table
 data <- data.frame(
-  Column_1 = c("Coding Sequence URL"),
-  Column_2 = c("Protein Sequence URL"),
-  Column_3 = c("Species abbreviation code"),
-  Column_4 = c("Longest isoform? (yes/no)"),
-  Column_5 = c("Reference genome")
+  Column_1 = c("Translated Coding Sequence URL (_translated_cds.faa.gz)"),
+  Column_2 = c("Protein Sequence URL (_protein.faa.gz)"),
+  Column_3 = c("GFF Annotation (_genomic.gff.gz)"),
+  Column_4 = c("Species abbreviation code"),
+  Column_5 = c("Longest isoform? (yes/no)")
 )
 
 # Create the table
@@ -81,6 +81,8 @@ Then, move this file into the scripts folder within the cloned GitHub repository
 
 This will download all the data you need to run this workflow.
 
+<hr>
+
 #### Running the Pipeline 
 
 
@@ -107,6 +109,8 @@ quit()
 
 **Is orthologr not available?** Copy and paste the code from [this link](https://github.com/drostlab/orthologr) under *Install orthologr*. <mark> Use this code in the RStudio web app on Sol, as it will not work on an ssh login</mark>
 
+<hr>
+
 ##### Step 2: Select the Longest Isoforms
 
 The next step is the command
@@ -120,6 +124,8 @@ interactive --mem=6G
 
 Running this script selects for the single longest isoform in each gene then matches protein names to gene names in order to subset the coding sequence file to just the longest isoforms. This produces 2 files for each species, one containing the longest protein isoforms and another with the longest coding sequence isoforms in a directory called *2_LongestIsoforms*.
 
+<hr>
+
 ##### Step 3: Clean the Raw Data
 
 The next step is to clean the data using the command
@@ -131,6 +137,8 @@ The next step is to clean the data using the command
 ```
 
 This script removes any special characters from gene names and adds the 4-letter taxon abbreviation to the beginning of each gene name. This creates a new directory called *3_CleanedData*.
+
+<hr>
 
 ##### Step 4: Translate Nucleotide Sequences to Amino Acid Sequences
 
@@ -189,6 +197,8 @@ This creates a mamba environment with TransDecoder and BioPython installed, whic
   sbatch ./scripts/DataTranslating_modif ./scripts/YourInputFile.csv
   ```
   
+<hr>
+  
 ##### Step 5: Running OrthoFinder
 For this step we will not be using anything from the original pipeline's steps, instead we will create our own directory and copy over the translated fasta files as follows:
 
@@ -246,6 +256,7 @@ sbatch scripts/run-ortho.sh
 
 ```
 
+<hr>
 
 ##### Step 6: Orthogroups to GeneID
 
@@ -274,6 +285,7 @@ print(f"Processed data has been written to {output_file}")
 
 ```
 
+<hr>
 
 ##### Step 7: Create a Table and Clean the Data
 We then need to create a table with each protein and gene ID for all species present, so we must use the the script *protein2geneid_loop.py* by David Emms, a software developer for OrthoFinder.
@@ -375,6 +387,8 @@ cd {PATH TO 1_RawData}
 python3 protein2geneid_loop.py
 
 ```
+
+<hr>
 
 ##### Step 8: Correct Possible Errors in Table
 After we get this table, we need to run this script to clean some small errors that may occur in the table. Create a file named *clean-table.R* in your main OrthoFinder directory and copy and paste the following code into it

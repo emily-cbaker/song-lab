@@ -81,6 +81,8 @@ import multiqc
 
 If you receive no errors, then installation is successful!
 
+<hr>
+
 #### ii) Quality Control
 
 First, we will need to assess each .fastq file's quality using FASTQC. Create a file called *qual-control.sh* and copy and paste the follwoing code into it:
@@ -117,6 +119,8 @@ multiqc --title 'MultiQC Report' -v /scratch/ebaker48/greg_transcript/data/fastq
 Edit the email in the slurm header to your email (if you wish to receive email alerts when your job begins and ends, otherwise delete that line), the path to your fastqc_out directory (your current directory + /fastqc_out/), and optionally, the title of the MultiQC report.
 
 This produces FASTQC report files for each fastq file and the MULTIQC is a compiles report summarizing all of the FASTQC reports.
+
+<hr>
 
 #### iii) Trim and Remove Adapters
 
@@ -169,6 +173,8 @@ done
 
 ```
 
+<hr>
+
 #### iv) Trimming Quality Check
 
 To ensure our trimming was not overly aggressive, we can perform one last quality check of our trimmed files using the below script:
@@ -192,12 +198,7 @@ fastqc ../data/trimmed/*_val_2.fq -o ../data/trimmed/
 
 
 
-
-
-
-
-
-### Transcript Mapping
+### Assembly
 
 #### i) Indexing Genomes
 
@@ -255,6 +256,8 @@ STAR --runMode genomeGenerate \
 
 Please note the specialized memory specifications I've used in this script. This is due to the Sol cluster killing the job for and out of memory error, so I had ot juice my script up a bit for it to make it through. You may adjust this as needed, but be sure to a) edit the LIMIT_BYTES variable to match your #SBATCH --mem specification, b) remove the variable entirely and simply replace the variable with your requested --mem gigs, or c) delete the line from the STAR command entirely. 
 
+<hr>
+
 #### ii) Alignment
 
 Use the following script to produce the STAR alignment on a cluster:
@@ -298,11 +301,11 @@ for R1 in ${TRIMDIR}/*_R1_001_val_1.fq; do
     LOCUST=$(basename "$R1" _R1_001_val_1.fq)
 
     if [[ ! -f "$R2" ]]; then
-        echo "❌ Skipping $R1 (no matching R2 found)"
+        echo "Skipping $R1 (no matching R2 found)"
         continue
     fi
 
-    echo "✅ Processing $LOCUST"
+    echo "Processing $LOCUST"
 
     PREFIX=${OUTDIR}/${LOCUST}_
     BAM=${OUTDIR}/${LOCUST}_Aligned.sortedByCoord.out.bam
@@ -345,6 +348,8 @@ done
 ```
 
 This will produce 2 directories in your working directory, one containing the STAR alignment outputs and one containing the per-sample count files for DESeq2.
+
+<hr>
 
 #### iii) Quantification using GeneCount
 The output file {locust}.ReadsPerGene.out.tab contains the read counts per gene as follows:
@@ -399,11 +404,9 @@ for file in "$INPUT_DIR"/*ReadsPerGene.out.tab; do
     echo "Saved: $output_file"
 done
 
-echo "✅ All files processed! Results are in: $OUTPUT_DIR"
+echo "All files processed! Results are in: $OUTPUT_DIR"
 
 ```
-
-
 
 
 ### Citations
