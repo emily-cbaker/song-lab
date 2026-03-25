@@ -6,48 +6,35 @@ navbar:
   icon: fa-home
   type: inverse
   left:
-    - text: "Projects"
-      icon: fa-microscope
+    - text: "Genomics"
+      icon: "fa-dna"
       menu:
-        - text: "Comparative Genomics of Schistocerca gregaria -- In prep"
-          href:
-        - text: "Comparative Genomics of Mormon Cricket subgroups -- UNDER CONSTRUCTION"
-          href:
-        - text: "Ensifera Ear Transcriptomics -- UNDER CONSTRUCTION"
-          href:
-    - text: "Comparative Genomics"
-      icon: "fa-code-compare"
-      menu:
-        - text: "FormicidaeMolecularEvolution - OrthoFinder Workflow for Longest Isoform"
+        - text: "Comparative Genomics"
           menu:
-            - text: "TAMU Workflow"
-              href: barkdull.html
-            - text: "ASU Workflow"
+            - text: "FormicidaeMolecularEvolution - OrthoFinder Workflow for Longest Isoform"
               href: barkdull_asu.html
-        - text: "RepeatModeler & RepeatMasker"
-          menu:
-            - text: "TAMU Workflow"
-              href: rep-model-mask.html
-            - text: "ASU Workflow"
+            - text: "RepeatModeler & RepeatMasker"
               href: rep-model-mask_asu.html
-        - text: "PSMC Model Analysis"
-          menu:
-            - text: "TAMU Workflow"
-              href: psmc.html
-            - text: "ASU Workflow"
+            - text: "PSMC Model Analysis"
               href: psmc_asu.html
     - text: "Transcriptomics"
       icon: "fa-pen-to-square"
       menu:
-        - text: "Analysis"
+        - text: "Data Assembly"
+          menu:
+            - text: "Transcriptome Data Assembly with a Reference Genome"
+              href: trans-to-ref.html
+            - text: "De Novo Transcriptome Assembly"
+              href: de_novo_assembly.html
+        - text: "Analyses"
           menu:
             - text: "Differential Gene Expression"
               href: deg.html
             - text: "GO Term Enrichment"
-        - text: "Transcription Factor Family Mapping (ASU Only)"
-          href: tf_mapping.html
-        - text: "Transcriptome Data Assembly with a Reference Genome (ASU)"
-          href: trans-to-ref.html
+            - text: "Transcription Factor Family Mapping"
+              href: tf_mapping.html
+            - text: "KEGG Pathway Enrichment"
+
     - text: "Proteomics"
       icon: "fa-flask"
       menu:
@@ -55,7 +42,11 @@ navbar:
           href: alphafold.html
         - text: "Chimera X"
           href: chimerax.html
-
+    - text: "Metagenomics"
+      icon: fa-bacterium
+      menu:
+        - text: "Shotgun Metagenomic Data Analysis"
+          href: shotgun_mg_analysis.html
     - text: "Visualization"
       icon: fa-palette
       menu:
@@ -64,13 +55,21 @@ navbar:
         - text: "GENESPACE (Synteny)"
           href: genespace.html
 
-    - text: "Reference"
+    - text: "Misc."
       icon: fa-book-open-reader
       menu:
         - text: "Linux and Slurm Commands"
           href: slurm-comm.html
         - text: "Glossary of Terminology"
           href: definitions.html
+        - text: "Old TAMU Workflows"
+          menu:
+            - text: "Formicidae Molecular Evolution"
+              href: barkdull.html
+            - text: "Repeat Modeler and Masker"
+              href: rep-model-mask.html
+            - text: "PSMC Analysis"
+              href: psmc.html
 output:
   workflowr::wflow_html:
     toc: yes

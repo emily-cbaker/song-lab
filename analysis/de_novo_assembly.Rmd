@@ -1,0 +1,228 @@
+---
+title: "De Novo Transcriptome Assembly"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: FALSE
+    toc_float: true
+    toc_collapsed: false
+    theme: default
+    css: "theme3.css"
+toc_depth: 1
+number_sections: true
+editor_options:
+  chunk_output_type: console
+---
+## De Novo Assembly {.tabset}
+
+### Introduction
+
+### Installation & Running
+#### Mamba Environment Creation
+For use on the ASU Sol cluster, we must construct Mamba environments for some programs we need to use in this workflow. To do this, you can copy and paste the following code into the command line:
+
+```{r, eval=FALSE}
+
+ml mamba/latest
+mamba create -n trim trim_galore -c bioconda -c conda-forge
+
+```
+
+Alternatively, if these modules are available for loading on your cluster, you may skip this step and alter the scripts to call the cluster module instead.
+
+<hr>
+
+#### Trimming and Quality Control
+
+To trim we will use trim_galore. 
+
+This script relies on the existence of a file called *directory_list.txt*, containing the names of each project directory you wish to perform the trimming operation on.  Below is an example of the expected directory structure, as well as an example of the directory_list.txt file.
+
+####### Directory Structure
+```{r, eval=FALSE}
+
+└── De_novo_transcriptome/
+    ├── Sample1/
+    │   └── data/
+    │       └── raw/
+    │           ├── sample1a_R1.fa.gz
+    │           ├── sample1a_R2.fa.gz
+    │           ├── sample1b_R1.fa.gz
+    │           └── sample1b_R2.fa.gz
+    └── Sample2/
+        └── data/
+            └── raw/
+                ├── sample2a_R1.fa.gz
+                └── sample2a_R2.fa.gz
+
+```
+
+####### directory_list.txt 
+```{r, eval=FALSE}
+
+Sample1
+Sample2
+
+
+```
+Be sure to add a new line after the last sample name or else the program <u> will not read your last sample.</u>
+
+If you wish to only run this script on one sample, only provide 1 sample name in the directory_list.txt file. Once these files are prepared, launch the below script:
+<details>
+<summary> <b>Expand for code</b> </summary>
+```{r, eval=FALSE}
+    #!/bin/bash
+    #SBATCH --job-name=tg_array
+    #SBATCH --output=logs/trimming/tg_%A_%a.out
+    #SBATCH --error=logs/trimming/tg_%A_%a.err
+    #SBATCH --time=12:00:00
+    #SBATCH --mem=32G
+    #SBATCH -c 8
+    #SBATCH --mail-type=ALL
+    #SBATCH --mail-user=user48@email.com
+    #SBATCH --array=1-{NUMBER_OF_PROJECTS}
+    
+    # --------------------------------------------------
+    # Setup
+    # --------------------------------------------------
+    module purge
+    module load mamba/latest
+    source activate trim
+    
+    # Get directory list and select one based on array index
+    DIR_LIST="directory_list.txt"
+    DIR=$(sed -n "${SLURM_ARRAY_TASK_ID}p" "$DIR_LIST")
+    
+    INDIR="${DIR}/data/raw"
+    OUTDIR="${DIR}/data/trimmed"
+    mkdir -p "$OUTDIR"
+    
+    echo "Processing directory: $DIR"
+    echo "Input:  $INDIR"
+    echo "Output: $OUTDIR"
+    
+    # --------------------------------------------------
+    # Run trim_galore on all read pairs
+    # --------------------------------------------------
+    for READ1 in "${INDIR}"/*_1.fq.gz; do
+        [[ -f "$READ1" ]] || continue
+        READ2="${READ1/_1.fq.gz/_2.fq.gz}"
+    
+        if [[ -f "$READ2" ]]; then
+            echo "Trimming: $READ1 / $READ2"
+            trim_galore --trim-n \ 
+                --cores 8 \
+                --quality 20 \
+                --clip_R1 2 \
+                --clip_R2 2 \
+                --nextera \
+                --fastqc \
+                --output_dir "$OUTDIR" \
+                --paired "$READ1" "$READ2"
+        else
+            echo "Warning: Missing pair for $READ1"
+        fi
+    done
+```
+</details>
+<hr>
+
+#### Assembly
+
+To assemble our genomes, we will use rnaSPAdes. I attempted to run this with Trinity at first, but I couldn't get it properly configured for my runs on the Sol cluster. Additionally, rnaSPAdes is much more memory efficient than Trinity, so it ended up being the better choice for our usage overall. 
+
+Note for this step I do not call a mamba environment to use SPAdes. This is because SPAdes was already loaded on the Sol cluster, so it was easier for me to call the preloaded module rather than creating a new mamba environment. If you do create a mamba env for SPAdes, please be aware the download is quite memory intensive, so you will need to start an interactive session to allocate more memory (6-8Gb).
+  
+You will need to use *directory_list.txt* to run this file. As for the script, you only need to edit the User Settings block, as well as enter your email into the slurm job header if you want updates on your job's execution.
+
+<details>
+<summary> <b>Expand for code</b> </summary>
+```{r, eval=FALSE}
+
+#!/usr/bin/env bash
+#SBATCH -J rnaSPAdes
+#SBATCH -o logs/rnaspades/rnaSPAdes.%A_%a.out
+#SBATCH -e logs/rnaspades/rnaSPAdes.%A_%a.err
+#SBATCH -N 1
+#SBATCH -c 64
+#SBATCH --mem=400G
+#SBATCH -t 2-00:00:00
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=USER@email.com
+#SBATCH -p public
+#SBATCH -q public
+#SBATCH --array=0-{NUMBER_OF_SAMPLES}
+
+set -euo pipefail
+
+###############################################
+# USER SETTINGS
+###############################################
+BASE="/path/to/project/folder"
+SPECIES_LIST="de_novo_list.txt"
+RNASPADES="{path/to/rnaspades.py}"
+
+###############################################
+# DETERMINE SPECIES FOR THIS ARRAY TASK
+###############################################
+SPECIES=$(sed -n "$((SLURM_ARRAY_TASK_ID+1))p" "$SPECIES_LIST")
+echo "Running SLURM_ARRAY_TASK_ID: $SLURM_ARRAY_TASK_ID → SPECIES: $SPECIES"
+
+TRIMDIR="${BASE}/${SPECIES}/data/trimmed"
+OUTDIR="${BASE}/${SPECIES}/rnaSPAdes"
+
+###############################################
+# VERIFY FILES
+###############################################
+cd "$TRIMDIR"
+
+R1=( $(ls *_val_1.fq.gz 2>/dev/null | sort) )
+R2=( $(ls *_val_2.fq.gz 2>/dev/null | sort) )
+
+if [[ ${#R1[@]} -eq 0 ]]; then
+    echo "ERROR: No R1 reads found for $SPECIES"
+    exit 1
+fi
+
+if [[ ${#R1[@]} -ne ${#R2[@]} ]]; then
+    echo "ERROR: R1/R2 count mismatch for $SPECIES"
+    exit 1
+fi
+
+###############################################
+# CONCATENATE READS
+###############################################
+echo "Combining reads for $SPECIES..."
+zcat "${R1[@]}" | gzip -c > combined_R1.fq.gz
+zcat "${R2[@]}" | gzip -c > combined_R2.fq.gz
+
+###############################################
+# RUN RNA-SPAdes
+###############################################
+module load spades-3.15.5-gcc-11.2.0
+
+mkdir -p "$OUTDIR"
+
+echo "Running rnaSPAdes for $SPECIES..."
+python3 "$RNASPADES" \
+    -t 64 \
+    -m 400 \
+    -1 combined_R1.fq.gz \
+    -2 combined_R2.fq.gz \
+    -o "$OUTDIR"
+
+echo "Completed $SPECIES → Output in $OUTDIR"
+```
+</details>
+<hr>
+
+#### Alignment and Abundance Redistribution
+
+For quality control of our de novo alignments, we will use a pseudo-aligner, Salmon. Pseudo-aligners are typically faster than traditional alignment software like Bowtie2 or STAR, and perform about the same as these more conventional programs when assessing de novo assemblies as opposed to reference-based assemblies.
+
+<hr>
+
+#### Assembly Thinning and Redundancy Reduction
+
+CD-hit-est
+

@@ -1,0 +1,201 @@
+---
+title: "De Novo Transcriptome Assembly"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+    toc_float: true
+    toc_collapsed: false
+    theme: default
+    css: "theme3.css"
+toc_depth: 1
+number_sections: true
+editor_options:
+  chunk_output_type: console
+---
+
+## De Novo Transcriptome Assembly {.tabset}
+
+
+### Data Preprocessing
+
+#### i) Load Necessary Software
+##### ia) Load R Modules
+
+Before we begin processing our files, we need to load the following R libraries in our R session. Load the R module using the command "module load r-4.3.2-gcc-11.2.0" and copy and paste the following code into your R session:
+
+```{r, eval=FALSE}
+
+library("knitr")
+library("rmdformats")
+library("tidyverse")
+library("DT")  # for making interactive search table
+library("plotly") # for interactive plots
+library("ggthemes") # for theme_calc
+library("reshape2")
+library("readr")
+library("ggplot2")
+
+## Global options
+options(max.print="10000")
+knitr::opts_chunk$set(
+    echo = TRUE,
+    message = FALSE,
+    warning = FALSE,
+    cache = FALSE,
+    comment = FALSE,
+    prompt = FALSE,
+    tidy = TRUE
+)
+opts_knit$set(width=75)
+
+```
+
+
+##### ib) Create Mamba Environment for MultiQC
+
+The package MultiQC is not readily available on the Sol cluster, so we will need to install it via a Mamba environment. Log into the Sol cluster via ssh and follow the below commands to create a new Mamba environment and install the MultiQC package into this environment.
+
+```{r, eval = FALSE}
+
+interactive -p htc -c 4 -t 30
+
+module load mamba/latest
+
+mamba create -n trans-map -c conda-forge -c bioconda python=3 multiqc trimgalore
+
+```
+
+After it finishes loading, you will be prompted to answer yes or no (Y/n), type Y to accept.
+
+To then verify the creation of this environment, type the command:
+
+```{r, eval=FALSE}
+
+source activate trans-map
+
+python
+
+import multiqc
+
+```
+
+If you receive no errors, then installation is successful!
+
+#### ii) Quality Control
+
+First, we will need to assess each .fastq file's quality using FASTQC. Create a file called *qual-control.sh* and copy and paste the follwoing code into it:
+
+```{r, eval=FALSE}
+#!/bin/bash
+
+##NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=quality-control       #Set the job name to "psmc-referencegenome"
+#SBATCH --time=02:00:00         #Set the wall clock limit to 8 hours
+#SBATCH --ntasks=1             #Request 1 task
+#SBATCH --cpus-per-task=8       #Request 8 cpus
+#SBATCH --mem=30G              #Request 30GB per node
+#SBATCH --mail-user={USER@EMAIL.COM}
+#SBATCH --output=stdout.%x.%j
+#SBATCH --error=stderr.%x.%j
+
+module load fastqc-0.11.3-gcc-12.1.0
+
+mkdir fastqc_out
+
+fastqc -t 8 ../data/raw/*.fastq -o ../data/fastqc_out/
+
+module purge
+
+module load mamba/latest 
+
+source activate trans-map
+
+multiqc --title 'MultiQC Report' -v /scratch/ebaker48/greg_transcript/data/fastqc_out
+
+```
+
+Edit the email in the slurm header to your email (if you wish to receive email alerts when your job begins and ends, otherwise delete that line), the path to your fastqc_out directory (your current directory + /fastqc_out/), and optionally, the title of the MultiQC report.
+
+This produces FASTQC report files for each fastq file and the MULTIQC is a compiles report summarizing all of the FASTQC reports.
+
+#### iii) Trim and Remove Adapters
+
+To perform this trimming step we will use trim_galore to remove the contaminants from the files.
+
+Create a file called *trim.sh* and copy and paste the following code into it:
+
+```{r, eval=FALSE}
+
+#!/bin/bash
+#SBATCH --job-name=trim_galore_all
+#SBATCH --output=trim_galore_all_%j.log
+#SBATCH --error=trim_galore_all_%j.err
+#SBATCH --time=12:00:00
+#SBATCH --mem=32G
+#SBATCH -c 8
+
+# Load Trim Galore via mamba environment (Step 0)
+module purge
+module load mamba/latest
+source activate trans-map
+
+INDIR="../data/raw"
+OUTDIR="../data/trimmed"
+
+# --------------------------------------------------
+# Loop through paired-end FASTQ files
+# --------------------------------------------------
+for READ1 in "${INDIR}"/*_R1_001.fastq; do
+    READ2="${READ1/_R1_001.fastq/_R2_001.fastq}"
+
+    if [[ -f "$READ2" ]]; then
+        echo "Processing: $READ1 and $READ2"
+
+        trim_galore --trim-n \
+            --cores 8 \
+            --quality 20 \
+            --clip_R1 2 \
+            --clip_R2 2 \
+            --nextera \
+            --fastqc \
+            --output_dir "$OUTDIR" \
+            --paired "$READ1" "$READ2"
+
+    else
+        echo "Warning: Could not find pair for $READ1"
+    fi
+done
+
+
+```
+
+#### iv) Trimming Quality Check
+
+To ensure our trimming was not overly aggressive, we can perform one last quality check of our trimmed files using the below script:
+
+```{r, eval=FALSE}
+
+#!/bin/bash
+#SBATCH --job-name=fastqc_trimmed
+#SBATCH --output=fastqc_trimmed_%j.log
+#SBATCH --error=fastqc_trimmed_%j.err
+#SBATCH --time=3:00:00
+#SBATCH --mem=500M
+#SBATCH --cpus-per-task=2
+
+module load fastqc-0.11.3-gcc-12.1.0
+
+fastqc ../data/trimmed/*_val_1.fq -o ../data/trimmed/
+fastqc ../data/trimmed/*_val_2.fq -o ../data/trimmed/
+
+```
+
+
+
+
+
+
+
+
+### De Novo Assembly 
